@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>变量和数据类型</title>
+</head>
+<body>
+  <script>
+    // 在js中，定义变量的关键字是var
+    // 注意：var是关键字，不是数据类型，在js中定义变量不需要明确数据类型，类型由赋值的数据确定
+    // 这一点跟我们之前学校的java语言是不同的，java是强类型语言，定义变量时必须要明确类型，而js是弱类型语言。
+    // 强类型语言也叫编译型语言，就是程序在编辑阶段就需要明确类型
+    // 比如java语言，是先将java的源程序编译成.class字节码文件，在运行.class文件
+    // 弱类型语言也叫解释型语言，程序不需要编译，直接运行
+    // 比如js语言，直接由浏览器逐行运行，不需要先编程，比如浏览器运行到定义变量的语句时，它会根据具体的值确定数据类型
+    var a = 100;   // 这里的a就是数字类型
+    // typeof查看指定变量的类型
+    console.log(typeof a);
+    var b = 55.55;
+    console.log(typeof b);
+    // 在js中，没有严格区分整型和浮点型，都是数字类型number
+    var c = "hello";   // 这里的b就是字符串类型
+    console.log(typeof c);
+    var d = 'A';
+    console.log(typeof d);
+    // 在js中，没有严格区分字符型和字符串，都是字符串，所以也不严格区分 ''和 "" 
+    var e = true;
+    console.log(typeof e);  //e是布尔类型
+    var f;
+    // undefined是未定义，表示不知道是什么类型，比如这里定义变量没有赋值，浏览器也不知道它是啥
+    console.log(typeof f);
+    // 在js中，可以直接是{}定义对象
+    var g = {name:"张三",age:20};
+    console.log(typeof g);
+    //console.log(g.__proto__);  // 这里可以正常打印
+    var h = null;   
+    // 注意：这里打印的结果虽然是object,其实它不是object类型，它就是null类型，因为它不具备任何object类型的特征
+    // 那为什么打印是object呢？这是js语言前期设计时遗留下俩的一个bug，所以变量赋值为null就是null类型
+    console.log(typeof h);
+    console.log(h);
+    //console.log(h.__proto__);  // 这里会报错
+    // symbol类型是SE6新推出的一种类型，用于定义唯一的数据
+    var h = Symbol('hello');
+    console.log(typeof h);
+    console.log(h);
+    var i = Symbol('hello');
+    console.log(i);
+    // 这里两份数据不相等
+    console.log(h == i);
+    // 之后还推出长整型bigInt
+    var j = BigInt(11111111111)
+    console.log(typeof j);
+    console.log(j);
+    
+    
+    
+    
+    
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>主轴方向的对齐方式</title>
+  <style>
+    .box1,.box2{
+      width: 600px;
+      height: 600px;
+      border: 1px solid black;
+      margin: 5px;
+      /* 设置为弹性盒子布局 */
+      display: flex;
+    }
+    div[class^="box"] div{
+      width: 100px;
+      height: 100px;
+      background-color: lightblue;
+      border: 1px solid red;
+      text-align: center;
+      line-height: 100px;
+      font-size:40px;
+    }
+    .box1{
+      /* 这里是横向排列，那么主轴方向就是横向 */
+      flex-direction: row;
+      /* justify-content属性，设置主轴方向的排列方式
+      属性值包括：flex-start，flex-end，center，
+      space-between：平均分布（两端定格）
+      space-around：平均分布（两端空间占中间的一半）
+      space-evenly：平均分布（两端和中间的间距相同） */
+      /* justify-content: flex-start; */
+      /* justify-content: flex-end; */
+      /* justify-content: center; */
+      /* justify-content: space-between; */
+      /* justify-content: space-around; */
+      justify-content: space-evenly;
+    }
+    .box2{
+      /* 这里是纵向排列，那么主轴方向就是纵向 */
+      flex-direction: column;
+      /* justify-content: flex-start; */
+      /* justify-content: flex-end; */
+      /* justify-content: center; */
+      /* justify-content: space-between; */
+      /* justify-content: space-around; */
+      justify-content: space-evenly;
+    }
+  </style>
+</head>
+<body>
+  <div class="box1">
+    <div>A</div>
+    <div>B</div>
+    <div>C</div>
+    <div>D</div>
+  </div>
+  <div class="box2">
+    <div>A</div>
+    <div>B</div>
+    <div>C</div>
+    <div>D</div>
+  </div>
+</body>
+</html>

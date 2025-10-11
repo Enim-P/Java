@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ES6如何实现继承</title>
+</head>
+<body>
+  <script>
+    // 定义一个人类
+    class Person{
+      constructor(name,age){
+        this.name = name
+        this.age = age
+      }
+      sayHi=function(){
+        console.log('你好！我是人类！');
+      }
+      play(){
+        console.log('人都喜欢玩！');
+      }
+    }
+
+    // ES6中实现继承，直接使用extends就行了
+    // 学生类
+    class Student extends Person{
+      constructor(name,age,score){
+        super(name,age)  //调用父类的构造函数
+        this.score = score
+      }
+      study(){
+        console.log('学生要学习！');
+      }
+    }
+    let s1 = new Student("小明",22,66)
+    s1.study()
+    s1.sayHi()
+    s1.play()
+    console.log(s1.name,s1.age,s1.score);
+
+    // 无论是class定义类型，还是是使用extends继承类，都是语法糖
+    // js引擎还是会将这些新的的语法编程成ES5的语法去运行。
+  </script>
+</body>
+</html>

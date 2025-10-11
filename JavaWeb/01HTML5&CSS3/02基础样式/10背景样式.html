@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>背景样式</title>
+  <style>
+    .a{
+      width: 400px;
+      height: 400px;
+      /* 背景颜色 */
+      background-color: lightblue;
+      /* 背景图片，默认会平铺 */
+      background-image: url(./imgs/cat.jpg);
+      /* 背景图片的平铺方式，属性包括：no-repeat，repeat，repeat-x，repeat-y */
+      background-repeat: no-repeat;
+      /* 背景图片的位置，可以通过left，center，right，top，bottom这些固定的方向值
+      控制背景图片的位置 */
+      /* background-position: center right; */
+      /* 也可以通过固定值，移动背景图片的位置 */
+      background-position: 50px 100px;
+    }
+    /* 利用背景图片的位置属性，再结合宽高属性去截图 */
+    .b{
+      width: 32px;
+      height: 32px;
+      background-image: url(./imgs/tb.png);
+      background-repeat: no-repeat;
+      background-position: -322px -200px;
+    }
+    .c{
+      width: 400px;
+      height: 300px;
+      background-color: lightblue;
+      background-image: url(./imgs/cat.jpg);
+      background-repeat: no-repeat;
+      /* 背景图片的大小，属性值contain和cover都是等比放大
+      contain是放大到跟任意一边重叠时停止，cover是放大到跟所有边重叠 */
+      /* background-size:cover; */
+      /* 背景图片的大小，也可以给固定值，这样的话图片可能会失真 */
+      background-size: 400px 300px;
+    }
+    .d{
+      width: 400px;
+      height: 300px;
+      /* 背景的缩写属性，/左边设置的是背景颜色、背景图片、图片的平铺方式、图片的位置，
+      /右边设置的是背景图片的大小 */
+      background: lightblue url(./imgs/cat.jpg) no-repeat center / 300px 200px;
+    }
+    .e{
+      width: 200px;
+      height: 100px;
+      /* 背景渐变,linear-gradient是线性渐变，第一个参数是渐变方向，后面是渐变颜色 */
+      background: linear-gradient(to left top,red,blue);
+    }
+    .f{
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(red,blue);
+    }
+  </style>
+</head>
+<body>
+  <div class="a">好好学习，天天向上</div>
+  <hr>
+  <div class="b"></div>
+  <hr>
+  <div class="c">好好学习，天天向上</div>
+  <hr>
+  <div class="d">好好学习，天天向上</div>
+  <hr>
+  <div class="e"></div>
+  <hr>
+  <div class="f"></div>
+</body>
+</html>

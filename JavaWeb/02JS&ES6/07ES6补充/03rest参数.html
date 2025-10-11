@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>rest参数</title>
+</head>
+<body>
+  <script>
+    function fn(a,b){
+      console.log(a,b);
+      // 通过arguments对象，可以获取方法的所有参数
+      console.log(arguments);
+    }
+    fn(11,22,33,44);
+    console.log('-----------------');
+    // ...就是rest参数，它会自动将所有的参数转为一个数组进行存储
+    // 如果方法中，定了部分参数，它先有定义的参数接受，剩余的再使用rest参数接收
+    function fn2(a,b,...args){
+      console.log(a,b);
+      console.log(args);
+    }
+    fn2(11,22,33,44)
+  </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>结构伪类选择器</title>
+  <style>
+    /* 获取第一个li，如果第一个元素不是li，样式失效 */
+    .a li:first-child{
+      background-color: red;
+    }
+    /* 获取最后一个li，如果最后一个元素不是li，样式失效 */
+    .a li:last-child{
+      background-color: green;
+    }
+    /* 指定第几个li，它是先找位置，在获取当前位置的li */
+    .a li:nth-child(4){
+      background-color: blue;
+    }
+    /* nth-of-type 和 nth-child的区别是，
+    nth-child是先找位置，在判断是否是指定元素
+    nth-of-type是先把指定元素都找出来，在通过位置获取 */
+    .b li:first-of-type{
+      background-color: red;
+    }
+    .b li:last-of-type{
+      background-color: green;
+    }
+    .b li:nth-of-type(4){
+      background-color: blue;
+    }
+    /* 所有奇数行,odd也可以用2n-1表示 */
+    .c li:nth-of-type(odd){
+      background-color: lightblue;
+    }
+    /* 所有偶数行，even也可以用2n表示 */
+    .c li:nth-of-type(even){
+      background-color: lightpink;
+    }
+  </style>
+</head>
+<body>
+  <ul class="a">
+    <p>水果信息</p>
+    <li>苹果</li>
+    <li>橘子</li>
+    <p>哈密瓜</p>
+    <li>西瓜</li>
+    <li>葡萄</li>
+    <li>草莓</li>
+    <li>榴莲</li>
+    <li>芒果</li>
+    <p>请选择</p>
+  </ul>
+  <hr>
+  <ul class="b">
+    <p>水果信息</p>
+    <li>苹果</li>
+    <li>橘子</li>
+    <P>哈密瓜</P>
+    <li>西瓜</li>
+    <li>葡萄</li>
+    <li>草莓</li>
+    <li>榴莲</li>
+    <li>芒果</li>
+    <p>请选择</p>
+  </ul>
+  <hr>
+  <ul class="c">
+    <li>苹果</li>
+    <li>橘子</li>
+    <li>西瓜</li>
+    <li>葡萄</li>
+    <li>草莓</li>
+    <li>榴莲</li>
+    <li>芒果</li>
+  </ul>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>插入元素的方法</title>
+  <style>
+    .box{
+      border: 1px solid #333;
+      padding: 10px;
+    }
+    p{
+      margin: 5px;
+      padding: 5px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <input type="text" id="txt">
+    <button id="append">append</button>
+    <button id="appendTo">appendTo</button>
+    <button id="prepend">prepend</button>
+    <button id="prependTo">prependTo</button>
+    <button id="after">after</button>
+    <button id="insertAfter">insertAfter</button>
+    <button id="before">before</button>
+    <button id="insertBefore">insertBefore</button>
+  </div>
+  <hr>
+
+  <p>苹果</p>
+  <p>西瓜</p>
+  <div class="box">
+    <p>南京</p>
+    <p>无锡</p>
+  </div>
+  <p>奔驰</p>
+  <p>宝马</p>
+  <script src="./js/jquery.js"></script>
+  <script>
+    let box = $('.box')
+    $('#append').click(function(){
+      let p = $('<p>')
+      //val方法，获取文本框的value值
+      p.html($('#txt').val())
+      // append方法，在容器底部追加内容
+      box.append(p)
+    })
+    $('#appendTo').click(function(){
+      let p = $('<p>')
+      p.html($('#txt').val())
+      p.appendTo(box)
+    })
+    $('#prepend').click(function(){
+      let p = $('<p>')
+      p.html($('#txt').val())
+      // prepend方法，在容器顶部追加内容
+      box.prepend(p)
+    })
+    $('#prependTo').click(function(){
+      let p = $('<p>')
+      p.html($('#txt').val())
+      p.prependTo(box)
+    })
+    $('#after').click(function(){
+      let p = $('<p>')
+      p.html($('#txt').val())
+      // after方法，在元素的下面插入内容
+      box.after(p)
+    })
+    $('#insertAfter').click(function(){
+      let p = $('<p>')
+      p.html($('#txt').val())
+      p.insertAfter(box)
+    })
+    $('#before').click(function(){
+      let p = $('<p>')
+      p.html($('#txt').val())
+      // before方法，在元素的上面插入内容
+      box.before(p)
+    })
+    $('#insertBefore').click(function(){
+      let p = $('<p>')
+      p.html($('#txt').val())
+      p.insertBefore(box)
+    })
+  </script>
+</body>
+</html>

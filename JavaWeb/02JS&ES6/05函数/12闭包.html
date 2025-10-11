@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>闭包</title>
+</head>
+<body>
+  <script>
+    // 比如：方法a中定义了方法b，而方法b有用到方法a中定义的变量，此时就形成了闭包
+    function a(){
+      let num = 100;
+      function b(){
+        // 方法b中使用了方法a中定义变量
+        console.log(num);
+      }
+      return b;
+    }
+    // 这里方法a虽然已经执行完毕，但是方法a中定义的变量，一直没有释放
+    // 因为方法b中用到了方法a中定义的变量
+    let b = a()
+    // 这里这里的b什么时候执行是确定的，所以大量使用闭包确实是占用资源
+    b()
+    // 那闭包有什么优势呢？对核心数据起到保护作用
+  </script>
+</body>
+</html>

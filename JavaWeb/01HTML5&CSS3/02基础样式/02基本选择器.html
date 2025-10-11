@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>基本选择器</title>
+  <style>
+    /* 标签选择器，直接以标签的名字命名，作用于所有该标签 */
+    div{
+      /* !important具有最高级别的优先级，
+      该关键字的作用就是防止部分样式被其他优先级高的样式替换掉 */
+      font-size: 30px !important;
+      color: red;
+    }
+    /* 类选择器，命名方式是.类名，类名是自定义的 */
+    .a{
+      font-size: 40px;
+      color: green;
+    }
+    .b{
+      background-color: lightblue;
+    }
+    /* id选择器，命名方式是#id名称，id名称是自定义的 */
+    #a{
+      font-size: 50px;
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+  <div>苹果</div>
+  <div class="a">西瓜</div>
+  <div id="a">榴莲</div>
+  <div class="a" id="a">葡萄</div>
+  <!-- id选择器的优先级最高，然后是类选取，最后是标签选择器 -->
+  <hr>
+  <!-- 使用类选择器，标签中需要通过class属性去指定，而且可以指定多个 -->
+  <p class="a">广州</p>
+  <p>深圳</p>
+  <!-- 如果需要指定多个类选择器，使用空格隔开 -->
+  <p class="a b">合肥</p>
+  <p>南京</p>
+  <hr>
+  <h4>奔驰</h4>
+  <!-- 使用id选择器， 标签中需要通过id属性去指定，只能指定一个-->
+  <h4 id="a">宝马</h4>
+  <!-- 这里我们的两个id属性值都是a，其实是不规范的，
+   按照H5的编码规范，id属性值要唯一 -->
+  <h4 id="a">奥迪</h4>
+  <h4>大众</h4>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>盒子尺寸</title>
+  <style>
+    /* 盒子的实际使用空间 = width/height + border + padding + margin */
+    .a{
+      width: 200px;
+      height: 200px;
+      background-color: lightblue;
+      border: 20px solid black;
+      padding: 50px;
+      margin: 50px;
+    }
+    .b{
+      width: 200px;
+      height: 200px;
+      background-color: lightblue;
+      /* 设置盒子类型，content-box是内容盒子，border-box是边框盒子，
+      默认是内容盒子，
+      如果设置为边框盒子，此时边框和内边距的空间会从width和height中去减,
+      那么盒子实际使用的空间就会减少 */
+      box-sizing: border-box;
+      border: 20px solid black;
+      padding: 50px;
+      margin: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="a">好好学习，天天向上</div>
+  <div class="b">好好学习，天天向上</div>
+</body>
+</html>

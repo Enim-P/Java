@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>购物车</title>
+  <style>
+    table{
+      border-collapse: collapse;
+    }
+    td,th{
+      border: 1px solid #ccc;
+      padding: 2px 20px;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          <input type="checkbox" id="ckAll"/>全选
+        </th>
+        <th>商品名称</th>
+        <th>商品单价</th>
+        <th>购买数量</th>
+        <th>小计</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody id="tbody">
+
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="6">
+          <span>总价：</span>
+          <span id="totalPrice"></span>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+  <script>
+    // 购物车数据
+    let goods = [
+      {
+        name:'小米手机',
+        price:3999,
+        count:2,
+        state:true
+      },
+      {
+        name:'华为耳机',
+        price:699,
+        count:3,
+        state:false
+      },
+      {
+        name:'格力空调',
+        price:1999,
+        count:1,
+        state:true
+      },
+      {
+        name:'美的冰箱',
+        price:4999,
+        count:4,
+        state:false
+      }
+    ]
+
+    // 计算总价的方法
+    function calcTotalPrice(){
+      document.querySelector('#totalPrice').innerText = "￥"+
+        goods.filter(g=>g.state).map(g=>g.price*g.count)
+             .reduce((t,g)=>t+g,0).toFixed(2)
+    }
+
+    // 设置全选状态
+    function isCkAll(){
+      document.querySelector('#ckAll').checked = goods.every(g=>g.state)
+    }
+
+    // 全选复选框点击事件
+    document.querySelector('#ckAll').onclick = function(){
+      goods.forEach(g=>{
+        g.state = this.checked
+      })
+      // 重新加载表格
+      loadGoods()
+      // 计算总价
+      calcTotalPrice()
+    }
+    
+    // 加载购物车数据
+    function loadGoods(){
+      // 每次在遍历数据之前，先清空表格中的内容
+      document.querySelector('#tbody').innerHTML = ""
+      // 遍历购物车数组
+      goods.forEach((g,i)=>{
+        // 每个商品创建一个tr
+        let tr = document.createElement("tr")
+        // 创建6个td
+        let td1 = document.createElement("td")
+        // 第一列里面放一个复选框
+        let ck = document.createElement("input")
+        ck.type = "checkbox"
+        // 判断复选框是否是选中状态
+        if(g.state){
+          ck.checked = true
+        }
+        // 复选框的点击事件
+        ck.onclick = function(){
+          // 将复选框的状态 传给当前商品状态
+          g.state = this.checked
+          // 判断全选状态
+          isCkAll()
+          // 计算总价
+          calcTotalPrice()
+        }
+        td1.appendChild(ck)
+        let td2 = document.createElement("td")
+        td2.innerText = g.name
+        let td3 = document.createElement("td")
+        td3.innerText = g.price
+        let td4 = document.createElement("td")
+        // 里面放三个元素：数量减按钮 数量 数量加按钮
+        let jian = document.createElement("button")
+        jian.innerText = '-'
+        // 数量减按钮点击事件
+        jian.onclick = function(){
+          if(g.count>0){
+            g.count--
+            loadGoods()   //重新加载数据
+            // 计算总价
+            calcTotalPrice()
+          }else{
+            alert('数量不能小于0')
+          }
+        }
+        let count = document.createElement("span")
+        count.innerText = g.count 
+        let jia = document.createElement("button")
+        jia.innerText = "+"
+        // 数量加按钮点击事件
+        jia.onclick = function(){
+          g.count++
+          loadGoods()   //重新加载数据
+          // 计算总价
+          calcTotalPrice()
+        }
+        td4.appendChild(jian)
+        td4.appendChild(count)
+        td4.appendChild(jia)
+        let td5 = document.createElement("td")
+        td5.innerText = g.price*g.count
+        let td6 = document.createElement("td")
+        // 里面放置一个删除按钮
+        let del = document.createElement('button')
+        del.innerText = '删除'
+        // 删除按钮点击事件
+        del.onclick = function(){
+          if(confirm('确定删除吗？')){
+            goods.splice(i,1)
+            //重新加载数据
+            loadGoods()   
+            // 判断全选状态
+            isCkAll()
+            // 计算总价
+            calcTotalPrice()
+          }
+        }
+        td6.appendChild(del)
+        tr.appendChild(td1)
+        tr.appendChild(td2)
+        tr.appendChild(td3)
+        tr.appendChild(td4)
+        tr.appendChild(td5)
+        tr.appendChild(td6)
+        document.querySelector('#tbody').appendChild(tr)
+      })
+    }
+
+    // 调用加载购物车数据的方法
+    loadGoods()
+    // 判断全选状态
+    isCkAll()
+    // 计算总价
+    calcTotalPrice()
+  </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>手动实现字符串的方法</title>
+</head>
+<body>
+  <script>
+    //1. indexOf
+    function indexOf(str,s){
+      let index = -1
+      for(let i=0;i<str.length;i++){
+        if(str[i]==s){
+          index = i;
+          break;
+        }
+      }
+      return index
+    }
+    console.log(indexOf("abcdecfg","c"));
+    console.log(indexOf("abcdecfg","w"));
+    //2. lastIndexOf
+    function lastIndexOf(str,s){
+      let index = -1;
+      for(let i=str.length-1;i>=0;i--){
+        if(str[i]==s){
+          index = i;
+          break;
+        }
+      }
+      return index;
+    }
+    console.log(lastIndexOf("abcdecfg","c"));
+    console.log(lastIndexOf("abcdecfg","w"));
+    //3. substring
+    function substring(str,index1,index2){
+      let ret = ''
+      for(let i=index1;i<index2 && i<str.length;i++){
+        ret += str[i]
+      }
+      return ret
+    }
+    console.log(substring("abcdefg",2,4));
+    //4. substr
+    function substr(str,index1,len){
+      let ret = ''
+      for(let i=index1;i<index1+len && i<str.length;i++){
+        ret += str[i]
+      }
+      return ret;
+    }
+    console.log(substr("abcdefg",2,4));
+    
+    
+  </script>
+</body>
+</html>

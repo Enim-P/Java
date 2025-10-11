@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>样式表</title>
+  <!-- 内部样式表，在head标签中定义style标签，在里面定义选择器，
+   内部样式表可以做到当前页面中样式的复用 -->
+  <style>
+    /* 在style标签中，可以通过@import方式导入外部样式表 */
+    @import url("./css/button.css");
+    .a{
+      font-size: 30px;
+      color: green;
+    }
+  </style>
+  <!-- 外部样式表通过单独的css文件定义，再通过link标签引入，
+   可以做到多个页面间样式的复用 -->
+  <link rel="stylesheet" href="./css/style.css"/>
+</head>
+<body>
+  <!-- 在CSS中有三种样式表：1.行内样式表 2.内部样式表 3.外部样式表 -->
+
+  <!-- 行内样式表，直接在标签的身上通过style属性定义样式
+   这种方式比较低效，样式会写的分成耦合，实际开发时基本不用 -->
+  <p style="font-size: 30px; color: red;">南京</p>
+  <p style="font-size: 30px; color: red;">苏州</p>
+  <hr>
+  <div class="a">徐州</div>
+  <div class="a">宿迁</div>
+  <hr>
+  <h2 class="b">南通</h2>
+  <h2 class="b">泰州</h2>
+  <hr>
+  <button>按钮1</button>
+  <button>按钮2</button>
+  <!-- 总结：项目上线时通常都是采用外部样式表，它真正做到结构和样式的完全分离，
+   开发阶段我们还是会使用内部样式表写编写，这样方便调试，写完后再分离。
+   行内样式表最有最高的优先级，内部样式表和外部样式的优先级采用就近原则 -->
+</body>
+</html>

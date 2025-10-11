@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date对象</title>
+</head>
+<body>
+  <script>
+    // 创建日期的几种方式：
+    // 1. 直接new，返回的是当前日期
+    let date1 = new Date();
+    console.log(date1);
+    // 2. 可以在构造函数中指定一个日期
+    let date2 = new Date('2020-1-1')
+    console.log(date2);
+    // 3. 可以在构造函数中指定一个时间戳
+    // 时间戳：是从1970-1-1开始的毫秒数
+    let date3 = new Date(1324214333331)
+    console.log(date3);
+    console.log('----------------');
+
+    // 日期对象的方法：
+
+    //getFullYear方法，获取日期的年份
+    console.log(date1.getFullYear());
+    //getMonth方法，获取日期的月份，返回值是0-11
+    console.log(date1.getMonth()+1);
+    //getDate方法，获取月份的天数
+    console.log(date1.getDate());
+    //getHours方法，获取小时
+    console.log(date1.getHours());
+    //getMinutes方法，获取分钟
+    console.log(date1.getMinutes());
+    //getSeconds方法，获取秒
+    console.log(date1.getSeconds());
+    //getMilliseconds方法，获取毫秒
+    console.log(date1.getMilliseconds());
+    //getDay方法，获取星期几
+    console.log(date1.getDay());
+    console.log('----------------');
+    //每一个get方法，都有一个对应的set方法，用于设置日期的指定部分
+    date1.setFullYear(2026)
+    console.log(date1);
+    date1.setMonth(7)
+    console.log(date1);
+    date1.setDate(15)
+    console.log(date1);
+    console.log('----------------');
+    // 将一个日期以中国人习惯的方式展示
+    let date = new Date()
+    // 获取年 月 日
+    let y = date.getFullYear()
+    let m = date.getMonth()+1
+    let d = date.getDate()
+    // 获取时 分 秒
+    let h = date.getHours()
+    let mi = date.getMinutes()
+    let s = date.getSeconds()
+    // 获取周几
+    let w = date.getDay()
+    let str = [y,m,d].join('-')+' '+[h,mi,s].join(':')+
+              ' 星期'+'日一二三四五六'[w]
+    console.log(str);
+    
+
+  </script>
+</body>
+</html>

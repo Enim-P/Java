@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习</title>
+</head>
+<body>
+  <button id="btn1">节流</button>
+  <button id="btn2">防抖</button>
+  <script src="./js/jquery.js"></script>
+  <script src="./js/bing.js"></script>
+  <script src="./js/lodash.js"></script>
+  <script src="./js/moment.js"></script>
+  <script>
+    let time1 = moment(new Date()).format('YYYY-MM-DD hh:mm:ss')
+    console.log(time1);
+    let time2 = moment(new Date()).format('YYYY/MM/DD hh时 mm分 ss秒')
+    console.log(time2);
+    
+    
+    $('#btn1').click(function(){
+      // 使用自己封装的节流方法
+      // $b.throttle(()=>{
+      //   console.log('节流操作...');
+      // },2000)
+      // 使用lodash封装的节流方法
+      _.throttle(()=>{
+        console.log('节流操作...');
+      },2000)()
+    })
+
+    $('#btn2').click(function(){
+      // 使用自己封装的防抖方法
+      // $b.shake(()=>{
+      //   console.log('防抖操作...');
+      // },2000)
+      // 使用lodash封装的防抖方法
+      _.debounce(()=>{
+        console.log('防抖操作...');
+      },2000)()
+    })
+
+    let zs = {
+      name:'张三',
+      age:20,
+      friend:{
+        name:'李四',
+        age:22,
+        car:{
+          name:'奔驰',
+          price:100
+        }
+      }
+    }
+    // 深拷贝方法
+    let zs2 = _.cloneDeep(zs)
+    zs2.name = '小张'
+    zs2.friend.name = '小李'
+    zs2.friend.car.name = '宝马'
+    console.log(zs2);
+    console.log(zs);
+    
+  </script>
+</body>
+</html>

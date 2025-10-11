@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习8</title>
+</head>
+<body>
+  <script>
+    // 鸡兔同笼：有25个头，94只脚，请问鸡和兔各多少只
+    
+    // 外层循环控制鸡的数量
+    for(let i=0;i<=25;i++){
+      // 内层循环控制兔的数量
+      for(let j=1;j<=23;j++){
+        if(i+j==25 && i*2+j*4==94){
+          console.log('鸡的数量：'+i+"，兔的数量："+j);
+        }
+      }
+    }
+  </script>
+</body>
+</html>

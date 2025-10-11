@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数组高阶方法的原理</title>
+</head>
+<body>
+  <script>
+    let arr = [11,22,33,44,55,66,111,222,333,444]
+    //1.forEach：遍历方法
+    function forEach(callback){
+      for(let i=0;i<arr.length;i++){
+        callback(arr[i],i)
+      }
+    }
+    forEach((val,index)=>{
+      console.log(index+' -> '+val);
+    })
+    console.log("---------------");
+    //2.filter：过滤方法
+    function filter(callback){
+      let ret = []
+      for(let i=0;i<arr.length;i++){
+        if(callback(arr[i])){
+          ret.push(arr[i])
+        }
+      }
+      return ret;
+    }
+    let ret1 = filter(val=>val%2==0)
+    console.log(ret1);
+    console.log("---------------");
+    //3.find：查找方法
+    function find(callback){
+      let ret;
+      for(let i=0;i<arr.length;i++){
+        if(callback(arr[i])){
+          ret = arr[i]
+          break;
+        }
+      }
+      return ret;
+    }
+    let ret2 = find(val=>val>50)
+    console.log(ret2);
+    let ret3 = find(val=>val>1000)
+    console.log(ret3);
+    console.log("---------------");
+    //4.findIndex：查找索引
+    function findIndex(callback){
+      let index = -1;
+      for(let i=0;i<arr.length;i++){
+        if(callback(arr[i])){
+          index = i;
+          break;
+        }
+      }
+      return index;
+    }
+    let ret4 = findIndex(val=>val>50)
+    console.log(ret4);
+    let ret5 = findIndex(val=>val>1000)
+    console.log(ret5);
+    console.log("---------------");
+    //5.some：是否有满足条件的元素
+    function some(callback){
+      let ret = false;
+      for(let i=0;i<arr.length;i++){
+        if(callback(arr[i])){
+          ret = true
+          break;
+        }
+      }
+      return ret;
+    }
+    let ret6 = some(val=>val>100)
+    console.log(ret6);
+    let ret7 = some(val=>val>1000)
+    console.log(ret7);
+    console.log("---------------");
+    //6.every：所有元素是否满足条件
+    function every(callback){
+      for(let i=0;i<arr.length;i++){
+        if(!callback(arr[i])){
+          return false
+        }
+      }
+      return true
+    }
+    let ret8 = every(val=>val>100)
+    console.log(ret8);
+    let ret9 = every(val=>val>10)
+    console.log(ret9);
+    console.log("---------------");
+    //7.map：映射方法
+    function map(callback){
+      let ret = []
+      for(let i=0;i<arr.length;i++){
+        ret.push(callback(arr[i]))
+      }
+      return ret;
+    }
+    let ret10 = map(val=>val+100)
+    console.log(ret10);
+    let ret11 = map(val=>val%5)
+    console.log(ret11);
+    console.log("---------------");
+    //8.reduce：统计方法
+    function reduce(callback,init){
+      let ret = init
+      for(let i=0;i<arr.length;i++){
+        ret = callback(ret,arr[i])
+      }
+      return ret
+    }
+    let ret12 = reduce((pre,cur)=>pre+cur,0)
+    console.log(ret12);
+    let ret13 = reduce((pre,cur)=>pre+cur%5,0)
+    console.log(ret13);
+    console.log("---------------");
+    //9.reduceRight：统计方法（方向遍历）
+    function reduceRight(callback,init){
+      let ret = init
+      for(let i=arr.length-1;i>=0;i--){
+        ret = callback(ret,arr[i])
+      }
+      return ret
+    }
+    console.log("---------------");
+    let ret14 = reduceRight((pre,cur)=>pre+cur,0)
+    console.log(ret14);
+    console.log("---------------");
+    //10.sort：排序数组
+    let arr2 = [33,11,55,22,44]
+    function sort(callback){
+      //这里面我们选择冒泡排序算法
+      for(let i=0;i<arr2.length-1;i++){
+        for(let j=0;j<arr2.length-1-i;j++){
+          if(callback(arr2[j],arr2[j+1])>0){
+            let temp = arr2[j]
+            arr2[j] = arr2[j+1]
+            arr2[j+1] = temp
+          }
+        }
+      }
+      return arr2;
+    }
+    let arr3 = sort((a,b)=>a-b)
+    console.log(arr3);
+    console.log(arr2);
+    console.log("---------------");
+    let arr4 = sort((a,b)=>b-a)
+    console.log(arr4);
+    console.log(arr2);
+    
+  </script>
+</body>
+</html>

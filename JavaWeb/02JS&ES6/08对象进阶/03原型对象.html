@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>原型对象</title>
+</head>
+<body>
+  <script>
+    // 定义一个学生类型
+    function Student(name,age,sex){
+      this.name = name 
+      this.age = age 
+      this.sex = sex
+      this.sayHi = function(){
+        console.log(`大家好！我叫${this.name}，今年${this.age}岁，性别是${this.sex}`);
+      }
+      this.study = function(time){
+        console.log('我是'+this.name+'，我每天学习'+time+'小时');
+      }
+    }
+    // prototype属性是类型的原型对象
+    // 原型对象上定义的所有成员，所以的对象将会共享
+    Student.prototype.play = function(time){
+      console.log('我是'+this.name+'，我每天玩'+time+'小时');
+    }
+
+    let s1 = new Student('张三',20,'男')
+    let s2 = new Student('李四',22,'女')
+    let s3 = new Student('王五',24,'男')
+    // 打印对象观察：三个对象身上都具备了sayHi和study方法
+    // 其实每个对象身上的sayHi和study方法都是一样的，创建一个对象就要在对象的空间中定义一下
+    // 如果创建的对象太多，非常消耗内存空间
+    // 类的原型对象上的方法，每个对象都是共享关系，所以从始至终只有一个
+    console.log(s1);
+    s1.sayHi()
+    s1.study(8)
+    s1.play(4)
+    console.log('----------------------');
+    console.log(s2);
+    s2.sayHi()
+    s2.study(4)
+    s2.play(8)
+    console.log('----------------------');
+    console.log(s3);
+    s3.sayHi()
+    s3.study(5)
+    s3.play(5)
+    console.log('----------------------');
+    // sayHi方法是每个对象独享的
+    console.log(s1.sayHi === s2.sayHi);  
+    // play方法是每个对象共享的
+    console.log(s1.play === s2.play);
+    console.log('----------------------');
+    s1.sayHi = function(){
+      console.log('哈哈哈哈！我把sayHi方法改了！！！');
+    }
+    s1.sayHi()
+    s2.sayHi()
+    // 对象通过__proto__获取类型的原型对象
+    // 为什么对象获取原型对象的属性长这么奇怪，就是让你不要去改它
+    console.log(Student.prototype === s1.__proto__);   // 这里返回true
+    s1.__proto__.play = function(){
+      console.log('哈哈哈哈！我把play方法改了！！！');
+    }
+    // 注意：s1改了原型对象上的方法，所以的对象都改了
+    s1.play()
+    s2.play()
+  </script>
+</body>
+</html>

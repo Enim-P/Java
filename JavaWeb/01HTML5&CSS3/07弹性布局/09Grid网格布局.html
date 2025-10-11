@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grid网格布局</title>
+  <style>
+    .box1{
+      width: 500px;
+      height: 500px;
+      padding: 10px;
+      border: 1px solid black;
+      /* 设置为网格布局 */
+      display: grid;
+      /* 定义行和列的布局： 高度... / 宽度... */
+      grid:100px 120px 100px 100px / 100px 100px 150px 100px;
+      /* 间距 */
+      grid-gap:10px;
+    }
+    .box1 div{
+      background-color: lightblue;
+    }
+    .box2{
+      width: 500px;
+      height: 500px;
+      padding: 10px;
+      border: 1px solid black;
+      display: grid;
+      grid-gap:10px;
+      /* 使用模板布局 */
+      grid:'a a . .'
+           'a a . .'
+           'b b b b'
+           '. . . .';
+    }
+    .box2 .a{
+      /* 定义合并的区域 */
+      grid-area: a;
+    }
+    .box2 .b{
+      grid-area: b;
+    }
+    .box2 div{
+      background-color: lightblue;
+    }
+  </style>
+</head>
+<body>
+  <div class="box1">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>10</div>
+    <div>11</div>
+    <div>12</div>
+    <div>13</div>
+    <div>14</div>
+    <div>15</div>
+    <div>16</div>
+  </div>
+  <hr>
+  <div class="box2">
+    <div class="a">1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div class="b">6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>10</div>
+  </div>
+</body>
+</html>

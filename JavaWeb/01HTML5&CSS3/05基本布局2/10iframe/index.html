@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>首页</title>
+  <style>
+    .content{
+      width: 1200px;
+      height: 700px;
+      border: 1px solid #ccc;
+      margin: 0 auto;
+      padding: 10px;
+    }
+    .left{
+      border: 1px solid #ccc;
+      padding: 10px;
+      width: 200px;
+      float: left;
+      height: 680px;
+    }
+    .right{
+      border: 1px solid #ccc;
+      padding: 10px;
+      width: 940px;
+      height: 680px;
+      float: left;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <div class="left">
+      <p>
+        <!-- 超链接的target属性设置跳转方式，属性值：
+         _blank是打开新窗口
+         _self是替换自身窗口
+         还可以设置为iframe的名字，此时超链接就在指定的iframe中打开 -->
+        <a href="./nanjing.html" target="right">南京</a>
+      </p>
+      <p>
+        <a href="./suzhou.html" target="right">苏州</a>
+      </p>
+      <p>
+        <a href="./wuxi.html" target="right">无锡</a>
+      </p>
+    </div>
+    <div class="right">
+      <!-- 这里的iframe设置一个name属性，属性值是自定义的 -->
+      <iframe style="width: 100%; height: 680px;" src="./nanjing.html"
+      frameborder="0" scrolling="no" name="right"></iframe>
+    </div>
+  </div>
+</body>
+</html>

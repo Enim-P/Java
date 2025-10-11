@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>动画练习</title>
+  <style>
+    .box{
+      width: 400px;
+      height: 400px;
+      /* 溢出部分隐藏 */
+      overflow: hidden;
+      /* 相对定位 */
+      position: relative;
+    }
+    .box .imgs{
+      width: 2400px;
+      height: 400px;
+      /* 绝对定位 */
+      position: absolute;
+      /* animation: move2 15s linear infinite; */
+      /* 动画的动作函数可以使用steps()去分隔动作次数 */
+      animation: move1 15s steps(5) infinite;
+    }
+    .box img{
+      width: 400px;
+      height: 400px;
+      float: left;
+    }
+    @keyframes move1 {
+      from{
+        left: 0;
+      }
+      to{
+        left: -2000px;
+      }
+    }
+    @keyframes move2 {
+      0%{
+        left: 0;
+      }
+      5%{
+        left: -400px;
+      }
+      20%{
+        left: -400px;
+      }
+      25%{
+        left: -800px;
+      }
+      40%{
+        left: -800px;
+      }
+      45%{
+        left: -1200px;
+      }
+      60%{
+        left: -1200px;
+      }
+      65%{
+        left: -1600px;
+      }
+      80%{
+        left: -1600px;
+      }
+      85%{
+        left: -2000px;
+      }
+      100%{
+        left: -2000px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="imgs">
+      <img src="./风景/image1.jpg"/>
+      <img src="./风景/image2.jpg"/>
+      <img src="./风景/image3.jpg"/>
+      <img src="./风景/image4.jpg"/>
+      <img src="./风景/image5.jpg"/>
+      <img src="./风景/image6.jpg"/>
+    </div>
+  </div>
+</body>
+</html>

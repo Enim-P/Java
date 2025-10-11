@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>防抖</title>
+  <style>
+    .fd{
+      width: 300px;
+      height: 300px;
+      background-color: lightblue;
+    }
+  </style>
+</head>
+<body>
+  <div class="fd"></div>
+  <script src="./js/jquery.js"></script>
+  <script>
+    // 连续行为只触发一次：防抖
+    let time = null   //防抖时间
+    $('.fd').click(function(){
+      if(new Date() - time >= 5000){
+        // 这里的的业务执行完成需要时间，连续触发影响性能
+        console.log('有效防抖....');
+      }
+      // 更新防抖时间
+      time = new Date()
+    })
+  </script>
+</body>
+</html>

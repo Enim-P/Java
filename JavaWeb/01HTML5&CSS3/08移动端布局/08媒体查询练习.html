@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>媒体查询练习</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    /* 常规状态下的样式 */
+    .box{
+      background-image: url(./zls.webp);
+      background-repeat: no-repeat;
+      width: 800px;
+      height: 1000px;
+      margin: 0 auto;
+    }
+    /* 使用媒体查询，定义在不同视口大小状态下的样式 */
+    @media screen and (max-width:1200px) {
+      .box{
+         background-image: url(./zls.webp);
+          background-repeat: no-repeat;
+          background-size: 600px 750px;
+          width: 600px;
+          height: 750px;
+          margin: 0 auto;
+      }
+    }
+    @media screen and (max-width:992px) {
+      .box{
+         background-image: url(./zls.webp);
+          background-repeat: no-repeat;
+          background-size: 400px 500px;
+          width: 400px;
+          height: 500px;
+          margin: 0 auto;
+      }
+    }
+    /* 超过576px的视口，都发光 */
+    @media screen and (min-width:576px) {
+      .box{
+        box-shadow: 0 0 10px red;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>移动端网页</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    /* 这里我们为什么针对iphone6来计算，因为iphone6是设计稿的标准尺寸 */
+    html{
+      /* 100vw是屏幕宽度，100vh是屏幕高度
+      在iphone6中 375px == 100vw
+      那么 1px == 0.266666vw
+      那么 20px == 5.33333vw
+      */
+      /* 这里我们是按照iphone6的尺寸设计的，相当于在iphone6中的20px */
+      font-size: 5.33333vw;  
+    }
+    .box{
+      display: flex;
+      justify-content: space-between;
+    }
+    .box .a{
+      /* 这里的宽高85px*85px，在iphone6中很合理，但是换一个设备可能就不合理了
+      所以，在移动端上布局不能直接使用px单位（css像素单位）
+      要是使用rem单位。
+      em是父元素的font-size大小
+      rem是根元素的font-size大小 */
+      width: 4.25rem;
+      height: 4.25rem;
+      background-color: lightblue;
+      line-height: 4.25rem;
+      text-align: center;
+    }
+    .box1{
+      width: 6.75rem;
+      height: 6.75rem;
+      background-color: lightgreen;
+    }
+    .box2{
+      font-size: 10px;
+    }
+    .box3{
+      width: 5em;
+      height: 5em;
+      background-color: lightcoral;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="a">1</div>
+    <div class="a">2</div>
+    <div class="a">3</div>
+    <div class="a">4</div>
+  </div>
+  <div class="box1">
+
+  </div>
+  <hr style="margin: 10px 0;">
+  <div class="box2">
+    <div class="box3"></div>
+  </div>
+</body>
+</html>

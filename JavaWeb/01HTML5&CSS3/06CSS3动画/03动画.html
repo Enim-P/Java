@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>动画</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .a{
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      position: absolute;
+      /* 指定动画名称，就是指定一个动画的关键帧 */
+      animation-name: move;
+      /* 指定动画时间 */
+      animation-duration: 4s;
+      /* 指定动画的等待时间 */
+      animation-delay: 1s;
+      /* 指定动画的动作函数 */
+      animation-timing-function: ease;
+      /* 指定动画次数,可以是固定次数，infinite表示无限次 */
+      animation-iteration-count: 4;
+      /* 指定动画的状态：paused(暂停动画)，running(运行动画，默认值) */
+      animation-play-state:running;
+      /* 指定动画模式，属性值：
+      forwards：动画结束后元素停止结束位置
+      backwards：动画结束后元素回到原始位置 */
+      animation-fill-mode:forwards;
+      /* 指定动画方向，属性值包括：
+      normal：正常方向
+      reverse：反向运动
+      alternate：正反方向运动
+      alternate-reverse：反向正反方向运动 */
+      animation-direction:alternate;
+      /* 动画的缩写属性，属性值的前两位必须是动画名称和动画时间，其他属性值可以省略 */
+      animation: move2 4s 1s alternate 4;
+    }
+    /* 第一步：定义动画的关键帧，就是动画规则 */
+    @keyframes move {
+      /* from是起始点 */
+      from{
+        left: 0px;
+        background-color: red;
+      }
+      /* to是结束点 */
+      to{
+        left: 500px;
+        background-color: green;
+        border-radius: 50%;
+      }
+    }
+    @keyframes move2 {
+      /* 可以使用百分比定义动画规则 */
+      0%{
+        left: 0;
+        top: 0;
+      }
+      25%{
+        left: 500px;
+        top: 0;
+      }
+      50%{
+        left: 500px;
+        top: 500px;
+      }
+      75%{
+        left: 0;
+        top: 500px;
+      }
+      100%{
+        left: 0;
+        top: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="a"></div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>选择器</title>
+</head>
+<body>
+  <div>我是div</div>
+  <p>我是p</p>
+  <div id="one">id='one'</div>
+  <div class="two">class='two'</div>
+  <div id="three">
+    <div>北京</div>
+    <div class="four">天津</div>
+    <div>上海</div>
+    <div>
+      <div class="four">重庆</div>
+    </div>
+  </div>
+  <ul>
+    <li>苹果</li>
+    <li>西瓜</li>
+    <li>葡萄</li>
+    <li name="cm">草莓</li>
+    <li>柚子</li>
+    <li>橘子</li>
+  </ul>
+  <script src="./js/jquery.js"></script>
+  <script>
+    // *获取所有元素
+    $('*').css('font-size','30px')
+    // id选择器
+    $('#one').css({
+      backgroundColor:'lightblue'
+    })
+    // 类选择器
+    $('.two').css('background-color','lightpink')
+    // 后代选择器
+    $('#three .four').css({
+      color:'red'
+    })
+    // 子选择器
+    $('#three>.four').css({
+      backgroundColor:'green'
+    })
+    // 结构伪类选择器
+    $('ul li:first').css({
+      color:'blue'
+    })
+    $('ul li:last').css({
+      color:'red'
+    })
+    $('ul li:nth-child(3)').css({
+      color:'green'
+    })
+    // 获取所有奇数行，索引从0开始
+    $('ul li:odd').css({
+      backgroundColor:'lightblue'
+    })
+    $('ul li:even').css({
+      backgroundColor:'lightpink'
+    })
+    // 属性选择器
+    $('ul li[name="cm"]').css({
+      textAlign:'center'
+    })
+    // 选择器的作用是选择器DOM元素
+    // jQuery的选择器规则就是css选择器的规则，部分地方稍微优化了一下
+  </script>
+</body>
+</html>

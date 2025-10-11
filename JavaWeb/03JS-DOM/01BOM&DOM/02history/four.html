@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>four</title>
+</head>
+<body>
+  <h1>软件大道</h1>
+  <!-- 按钮通过onclick属性，调用js中定义的方法 -->
+  <button onclick="back()">后退</button>
+  <script>
+    function back(){
+      // history：是浏览器的历史记录对象
+      // back方法，用于后退
+      //history.back()
+      // go方法，传负数是后退，传正数是前进
+      // 传-1表示退一级，那么传-3就表示退三级
+      history.go(-3)
+    }
+  </script>
+</body>
+</html>

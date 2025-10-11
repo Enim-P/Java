@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习6</title>
+</head>
+<body>
+  <script>
+    // 练习题6：找出100以内所有的质数
+    // 质数：只能被1和自身整除的数，1除外
+    // 任何数都能被1和自身整除，而质数是只能被1和自身整除
+    
+    // 外层循环控制数据的范围
+    for(let i=2;i<=100;i++){
+      let count = 0   //用于表示被整除的次数
+      // 内层循环判断这个数是否是质数
+      for(let j=1;j<=i;j++){
+        if(i%j==0){
+          count++   //整除次数加1
+        }
+      }
+      // 只能被整除2次的就是质数
+      if(count==2){
+        console.log(i);
+      }
+    }
+  </script>
+</body>
+</html>

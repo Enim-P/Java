@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>阻止默认行为</title>
+  <style>
+    .box{
+      width: 150px;
+      height: 150px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <a href="http://baidu.com" id="go">百度</a>
+  <script>
+    // 注册右击事件
+    // 鼠标右键点击时，会触发浏览器的默认事件，打开浏览器的快捷菜单
+    // 这个时候就要阻止默认行为
+    document.querySelector('.box').oncontextmenu = function(e){
+      // 事件方法其实默认有一个参数，这个参数是事件对象
+      // 这个参数不用的话可以不定义
+      // 事件对象的preventDefault方法，用于阻止默认行为
+      e.preventDefault();
+      console.log('鼠标右键点击事件...');
+    }
+    document.querySelector('#go').onclick = function(e){
+      // 阻止超链接跳转
+      e.preventDefault()
+      console.log('点击了超链接...');
+      setTimeout(() => {
+        location.href = 'http://baidu.com'
+      }, 5000);
+    }
+  </script>
+</body>
+</html>

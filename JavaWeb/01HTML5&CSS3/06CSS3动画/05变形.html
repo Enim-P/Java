@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>变形</title>
+  <style>
+    .a{
+      width: 200px;
+      height: 200px;
+      background-color: red;
+      text-align: center;
+      font-size: 30px;
+      line-height: 200px;
+      margin: 100px auto;
+      /* 添加过渡效果 */
+      transition: all 1s;
+    }
+    /* transform属性是css的变形属性，
+    属性值是具体的变形函数
+    translate(x,y)：设置水平和垂直方向平移
+    translateX(x)：设置水平方向平移
+    translateY(y)：设置垂直方向平移 
+    rotate(度数)：设置旋转，单位是deg 或 turn
+    skew(x轴倾斜度数,y轴倾斜度数)：设置倾斜
+    scale(倍数)：设置缩放
+    */
+    .a:hover{
+      /* 平移 */
+      /* transform: translate(50px,50px); */
+      /* 旋转 */
+      /* transform: rotate(360deg); */
+      /* 倾斜 */
+      /* transform: skew(35deg,35deg); */
+      /* 缩放 */
+      transform: scale(1.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="a">你好世界</div>
+</body>
+</html>

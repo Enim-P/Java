@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM</title>
+</head>
+<body>
+  <div id="a"></div>
+  <div id="a"></div>
+  <p>奔驰</p>
+  <p>宝马</p>
+  <p>奥迪</p>
+  <div name="sr">李白</div>
+  <h2 name="sr">苏轼</h2>
+  <div name="sr">苏洵</div>
+  <div class="food">榴莲</div>
+  <div class="food">蛋糕</div>
+  <div class="food">巧克力</div>
+  <hr>
+  <div id="b"></div>
+  <h1 id="b"></h1>
+  <div class="c">苹果</div>
+  <div class="c">三星</div>
+  <div class="c">华为</div>
+  <script>
+    // DOM：文档对象模型，其实就是document对象，提供了操作当前网页的方法
+    // document本身也是window的一个属性，所以DOM属于BOM
+    console.log(window.document);
+    // 1.获取网页元素
+    // 如果获取的网页元素是唯一的，可以直接获取
+    document.title = "哈哈哈哈哈"
+    document.body.style.backgroundColor = 'lightblue'
+    // 根据元素身上的id属性获取元素
+    // 如果id属性不唯一，它获取的是第一个元素
+    document.getElementById("a").innerText = "北京"
+    // 根据标签名称，获取所有该元素
+    let ps = document.getElementsByTagName("p")
+    for(let i=0;i<ps.length;i++){
+      ps[i].style.color = 'red'
+    }
+    // 获取所有指定name属性值的元素
+    let srs = document.getElementsByName("sr")
+    srs.forEach(r=>{
+      r.style.color = 'green'
+    })
+    // 获取所有指定class属性值的元素
+    let foods = document.getElementsByClassName("food")
+    for(let i=0;i<foods.length;i++){
+      foods[i].style.color = 'blue'
+    }
+    console.log("-----------------------");
+    //querySelector方法，根据选择器查找第一个元素
+    document.querySelector("#b").innerText = "南京"
+    //这里只获取第一个.c
+    document.querySelector('.c').style.color = 'red'
+    //querySelectorAll方法，根据选择器查找所有元素
+    document.querySelectorAll('.c').forEach(c=>{
+      c.style.backgroundColor = 'orange'
+    })
+    
+    
+  </script>
+</body>
+</html>

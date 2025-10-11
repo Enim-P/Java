@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>焦点事件</title>
+  <style>
+    #search{
+      outline: none;
+      width: 300px;
+    }
+    .focus{
+      border: 1px solid red;
+      box-shadow: 0 0 10px blue;
+    }
+  </style>
+</head>
+<body>
+  <input type="text" id="search">
+  <script>
+    // 获得焦点事件
+    document.querySelector('#search').onfocus = function(){
+      this.classList.add('focus')
+    }
+    // 失去焦点事件
+    document.querySelector('#search').onblur = function(){
+      this.classList.remove('focus')
+    }
+  </script>
+</body>
+</html>

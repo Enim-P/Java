@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>显示和隐藏</title>
+  <style>
+    img{
+      width: 300px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <button id="show">显示</button>
+    <button id="hide">隐藏</button>
+    <button id="toggle">显示/隐藏</button>
+    <button id="slideDown">下拉显示</button>
+    <button id="slideUp">上拉隐藏</button>
+    <button id="slideToggle">下拉显示/上拉隐藏</button>
+    <button id="fadeIn">淡入</button>
+    <button id="fadeOut">淡出</button>
+    <button id="fadeToggle">淡入/淡出</button>
+  </div>
+  <hr>
+  <img id="one" src="https://img1.baa.bitautotech.com/dzusergroupfiles/2024/07/01/83e5d605353a46809af3d84e8a24edda.jpg" />
+  <script src="./js/jquery.js"></script>
+  <script>
+    $('#show').click(function(){
+      // 显示
+      // $('#one').show()
+      // 可以指定完全显示需要的时间
+      // $('#one').show(2000)
+      // 还可以定义一个回调函数，在完全显示后执行
+      $('#one').show(2000,function(){
+        alert('完全显示...')
+      })
+    })
+    $('#hide').click(function(){
+      // $('#one').hide()
+      $('#one').hide(2000)
+    })
+    $('#toggle').click(function(){
+      $('#one').toggle(500)
+    })
+    $('#slideDown').click(function(){
+      $('#one').slideDown(500)
+    })
+    $('#slideUp').click(function(){
+      $('#one').slideUp(500)
+    })
+    $('#slideToggle').click(function(){
+      $('#one').slideToggle(500)
+    })
+    $('#fadeIn').click(function(){
+      $('#one').fadeIn(500)
+    })
+    $('#fadeOut').click(function(){
+      $('#one').fadeOut(500)
+    })
+    $('#fadeToggle').click(function(){
+      $('#one').fadeToggle(500)
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D变形</title>
+  <style>
+    body{
+      /* 定义视距：一般取值在600px-1200px之间，
+      视距就是假设眼睛到显示器的距离 */
+      perspective: 1000px;
+    }
+    .a{
+      width: 400px;
+      height: 400px;
+      background-color: red;
+      text-align: center;
+      line-height: 400px;
+      font-size: 40px;
+      margin: 100px auto;
+      /* 添加过渡效果 */
+      transition: all 1s;
+    }
+    .a:hover{
+      /* 设置为3D变形 */
+      transform-style: preserve-3d;
+      /* 设置为3D变形后，可以沿X轴和Y轴旋转 */
+      /* transform: rotateY(45deg); */
+      /* 设置为3D变形后，可以沿Z轴平移 */
+      transform: translateZ(100px);
+    }
+  </style>
+</head>
+<body>
+  <div class="a">你好世界</div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/JavaSE/01JavaBasic/01JavaBasic.iml" filepath="$PROJECT_DIR$/JavaSE/01JavaBasic/01JavaBasic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaSE/02JavaOOP/MyProject01/MyProject01.iml" filepath="$PROJECT_DIR$/JavaSE/02JavaOOP/MyProject01/MyProject01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaSE/03JavaAPI/MyProject01/MyProject011.iml" filepath="$PROJECT_DIR$/JavaSE/03JavaAPI/MyProject01/MyProject011.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaSE/02JavaOOP/MyProject02/MyProject02.iml" filepath="$PROJECT_DIR$/JavaSE/02JavaOOP/MyProject02/MyProject02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaSE/03JavaAPI/MyProject02/MyProject021.iml" filepath="$PROJECT_DIR$/JavaSE/03JavaAPI/MyProject02/MyProject021.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaSE/02JavaOOP/MyProject03/MyProject03.iml" filepath="$PROJECT_DIR$/JavaSE/02JavaOOP/MyProject03/MyProject03.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaSE/03JavaAPI/MyProject03/MyProject031.iml" filepath="$PROJECT_DIR$/JavaSE/03JavaAPI/MyProject03/MyProject031.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/TeacherGSubjectFile.iml" filepath="$PROJECT_DIR$/.idea/TeacherGSubjectFile.iml" />
+    </modules>
+  </component>
+</project>

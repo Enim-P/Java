@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>将对象转为字符串格式</title>
+</head>
+<body>
+  <script>
+    let obj = {
+      no:'1001',
+      name:'周杰伦',
+      age:30,
+      sex:'男'
+    }
+    //将上面的对象转为字符串
+    //no=1001&name=周杰伦&age=30&sex=男
+
+    //Object.keys方法，用于返回一个对象中的所有key（属性名）
+    console.log(Object.keys(obj));  //返回数组
+    //Object.values方法，用于返回一个对象中的所有value（属性值）
+    console.log(Object.values(obj));  //返回数组
+    //获取一个对象的属性有两种方式：
+    //1. 对象名.属性
+    console.log(obj.name);
+    //2. 对象名['属性']
+    console.log(obj['name']);
+    //第二种方式的优势在于，它比较灵活，可以动态设置操作的属性
+    let key = 'age'
+    console.log(obj[key]);
+    console.log('-----------------');
+    let keys = Object.keys(obj)
+    console.log(keys);
+    let kvs = keys.map(k=>k+'='+obj[k])
+    console.log(kvs);
+    let str = kvs.join('&')
+    console.log(str);
+    let str2 = Object.keys(obj).map(k=>k+'='+obj[k]).join('&')
+    console.log(str2);
+    
+    
+    
+  </script>
+</body>
+</html>

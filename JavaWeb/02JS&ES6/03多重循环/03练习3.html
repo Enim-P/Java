@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习3</title>
+</head>
+<body>
+  <script>
+    // 练习题3：打印等腰三角形
+    /*
+            *
+           ***
+          *****
+         *******
+        *********
+    */
+    // 外层循环控制打印行数
+    for(let i=1;i<=5;i++){
+      let str = ""
+      for(let j=5;j>=i;j--){
+        str += " "
+      }
+      // 内层循环控制每行打印列数
+      for(let j=1;j<=i*2-1;j++){
+        str += "*"
+      }
+      console.log(str);
+    }
+  </script>
+</body>
+</html>

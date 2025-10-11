@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>类型继承</title>
+</head>
+<body>
+  <script>
+    // 首先JS本身不是一个完全面向对象的设计语言
+    // 我们只是通过一些手法让它具备了面向对象的一些特征
+    // 比如如何实现继承关系
+
+    // 动物类型
+    function Animal(){
+      this.name = "我是动物"
+      this.run = function(){
+        console.log('动物会运动...');
+      }
+    }
+
+    // 猫科动物类型
+    function Felid(){
+      this.climbTree = function(){
+        console.log('猫科动物会爬树...');
+      }
+    }
+    // 将猫科动物的原型对象指向一个动物对象
+    Felid.prototype = new Animal()
+
+    // 猫类型
+    function Cat(){
+      this.swimm = function(){
+        console.log('猫会游泳...');
+      }
+    }
+    // 将猫的原型对象指向一个猫科动物对象
+    Cat.prototype = new Felid()
+
+    let cat = new Cat()
+    console.log(cat);
+    console.log(cat.name);
+    cat.swimm()
+    cat.climbTree()
+    cat.run()
+    // 经典面试题：JS如何实现继承？
+    // 通过原型对象实现，子类的原型对象new一个父类类型，这种关系也叫原型链关系，因为具有传递信息
+  </script>
+</body>
+</html>

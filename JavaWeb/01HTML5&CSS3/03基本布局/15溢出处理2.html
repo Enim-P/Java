@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>溢出处理2</title>
+  <style>
+    .left{
+      width: 200px;
+      height: 500px;
+      border: 1px solid black;
+      float: left;
+    }
+    .content{
+      width: 500px;
+      height: 500px;
+      border: 1px solid black;
+      float: left;
+      margin-left: 10px;
+      /* 溢出部分隐藏 */
+      overflow: hidden;
+    }
+    .content div{
+      width: 500px;
+      height: 500px;
+      font-size: 100px;
+    }
+    #one{
+      background-color: lightblue;
+    }
+    #two{
+      background-color: lightcoral;
+    }
+    #three{
+      background-color: lightgreen;
+    }
+    #four{
+      background-color: lightskyblue;
+    }
+  </style>
+</head>
+<body>
+  <!-- 溢出处理可以结合锚链接来使用 -->
+  <div class="left">
+    <!-- 下面div的id属性值作为这里锚链接的锚标记 -->
+    <p><a href="#one">one</a></p>
+    <p><a href="#two">two</a></p>
+    <p><a href="#three">three</a></p>
+    <p><a href="#four">four</a></p>
+  </div>
+  <div class="content">
+    <div id="one">One</div>
+    <div id="two">Two</div>
+    <div id="three">Three</div>
+    <div id="four">Four</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>创建和删除DOM元素</title>
+</head>
+<body>
+  <div>
+    <button id="btn1">创建一张图片</button>
+    <button id="btn2">移除最后一张图片</button>
+  </div>
+  <div id="box">
+
+  </div>
+  <script>
+    // 获取box
+    let box = document.querySelector('#box')
+
+    document.querySelector('#btn1').onclick = function(){
+      // 创建图片元素
+      let img = document.createElement("img")
+      img.style.width="200px"
+      img.src="https://q2.itc.cn/images01/20241020/8347172534bc4fb38614c8c4d90e9aae.jpeg"
+      // 给图片添加一个点击事件
+      img.onclick = function(){
+        // 这里的this指向图片本身
+        // remove方法，用于删除自己
+        this.remove()
+      }
+      // 将图片添加到box中
+      box.appendChild(img)
+    }
+
+    document.querySelector('#btn2').onclick = function(){
+      // 获取#box里面的最后一张图片
+      let img = document.querySelector('#box img:last-child')
+      // removeChild方法，用于移除子元素
+      box.removeChild(img)
+    }
+  </script>
+</body>
+</html>

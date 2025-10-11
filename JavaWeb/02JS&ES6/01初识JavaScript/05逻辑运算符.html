@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>逻辑运算符</title>
+</head>
+<body>
+  <script>
+    // &&与   ||或   !非(取反)
+    var num1 = 5;
+    var num2 = 6;
+    // &&运算符，两个条件都成立，整个表达式返回true
+    var s1 = num1>10 && num2>5;
+    console.log(s1);
+    // ||运算符，两个条件只要成立一个，整个表达式返回true
+    var s2 = num1>10 || num2>5;
+    console.log(s2);
+    // !非运算符（取反）
+    var s3 = !(num2>5);
+    console.log(s3);
+    // 运算符的优先级：() > 算法运算符[先乘除取余，再加减] > 关系运算符 > ! > && > ||
+    // 所以不确定优先级的时候，最好的方式就是加()
+
+    // 变量名的命名规范：
+    // 1.只能使用字母、数字、下划线、美元符号
+    // 2.数字不要开头
+    // 3.不用使用js中的关键字
+    // 4.多个单词组成的变量名，要采用小驼峰命名方式：myFirstName
+    // 5.变量名要见面知意，比如：name，age，sex
+  </script>
+</body>
+</html>

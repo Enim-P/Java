@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>H5新增的表单元素</title>
+</head>
+<body>
+  <form>
+    <table>
+      <tr>
+        <td>年龄：</td>
+        <td>
+          <!-- number是数字文本框，可以通过min和max设置数值范围，
+           step属性设置增量值 -->
+          <input type="number" min="0" max="100" step="5">
+        </td>
+      </tr>
+      <tr>
+        <td>幸福指数：</td>
+        <td>
+          <!-- range是滑块，可以通过min和max设置数值范围，
+           step属性设置增量值  -->
+          <input type="range" min="0" max="100" step="10" value="10">
+        </td>
+      </tr>
+      <tr>
+        <td>网址：</td>
+        <td>
+          <!-- url是网址文本框，只能输入网址信息
+           验证的规则是必须以http:// https:// ftp://开头 -->
+          <input type="url">
+        </td>
+      </tr>
+      <tr>
+        <td>邮箱：</td>
+        <td>
+          <!-- email是邮箱文本框，只能输入邮箱信息
+           验证的规则是必须包含@符号 -->
+          <input type="email">
+        </td>
+      </tr>
+      <tr>
+        <td>搜索：</td>
+        <td>
+          <!-- search是搜索框，跟普通的文本框没有太多区别，
+           搜索文本框自带一个清除按钮 -->
+          <input type="search">
+        </td>
+      </tr>
+      <tr>
+        <td>姓名：</td>
+        <td>
+          <!-- required属性设置表单元素必填
+           placeholder属性设置表单元素的提示信息，提示信息在输入第一个字符后自动清除 -->
+          <input type="text" required placeholder="请输入姓名">
+        </td>
+      </tr>
+      <tr>
+        <td>手机号码：</td>
+        <td>
+          <!-- pattern属性通过正则表达式验证表单元素
+           这里的\d是通配符，表示数字 -->
+          <input type="text" pattern="\d{11}" required>
+        </td>
+      </tr>
+      <tr>
+        <td>邮政编码：</td>
+        <td>
+          <input type="text" pattern="\d{6}" required>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <!-- H5新增了button标签来定义按钮，通过type属性设置按钮类型，
+           type属性的默认值是submit -->
+          <button type="submit">提交</button>
+          <button type="reset">重置</button>
+          <button type="button">普通按钮</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>

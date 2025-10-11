@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>解构赋值</title>
+</head>
+<body>
+  <script>
+    let arr = [11,22,33,44]
+    // 分别定义4个变量，接收数组中的四个元素
+    let a = arr[0]
+    let b = arr[1]
+    let c = arr[2]
+    let d = arr[3]
+    console.log(a,b,c,d);
+    // 数组通过[]的方式解构数组中对应下标的元素
+    // 解构数组是根据数组的下标，所以这里的变量名可以随意定义
+    let [e,f,g,h] = arr;
+    console.log(e,f,g,h);
+    console.log('----------------');
+    let obj = {
+      name:'张家辉',
+      sex:'男',
+      age:20
+    }
+    // 分别定义3个变量，接收对象的三个属性值
+    let i = obj.name
+    let j = obj.sex 
+    let k = obj.age
+    console.log(i,j,k);
+    let name = '彭于晏'
+    // 对象通过{}的方式解构对象的每个属性
+    // 因为是根据对象的属性名进行结构，所以变量名不能乱定义
+    // 会存在一个问题：可能程序中已经有同名的变量了，这个时候就要通过:的方式重命名
+    let {name:name2,sex,age} = obj;
+    // let name = obj.name  //相当于这个意思
+    console.log(name2,sex,age);
+    console.log('----------------');
+    let address = {
+      province:'四川省',
+      city:{
+        cityName:'成都市',
+        district:{
+          districtName:'武侯区'
+        }
+      }
+    }
+    // 可以根据解构出来的的属性继续向内解构
+    let {province,city:{cityName,district:{districtName}}} = address
+    console.log(province,cityName,districtName);
+    
+  </script>
+</body>
+</html>

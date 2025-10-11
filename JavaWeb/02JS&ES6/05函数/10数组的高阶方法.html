@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数组的高阶方法</title>
+</head>
+<body>
+  <script>
+    let arr = [11,22,33,44,55,66,111,222,333,444]
+    //1.forEach方法，用于遍历数组
+    arr.forEach((val,index)=>{
+      //回调函数的第一个参数是数组中的每个元素，第二个参数是索引
+      //第三个参数是数组本身（很少使用）
+      console.log(index+" -> "+val);
+    })
+    console.log('-----------------------');
+    //2.filter方法，用于过滤出数组中满足条件的元素
+    let ret1 = arr.filter(val=>val%2==0)
+    console.log(ret1);
+    let ret2 = arr.filter(val=>val>=100 && val<1000)
+    console.log(ret2);
+    console.log('-----------------------');
+    //3.find方法，用于查找数组中第一个满足条件的元素
+    let ret3 = arr.find(val=>val>50)
+    console.log(ret3);
+    let ret4 = arr.find(val=>val%3==0)
+    console.log(ret4);
+    console.log('-----------------------');
+    //4.findIndex方法，用于查找数组中第一个满足条件元素的索引
+    //跟indexOf的区别是，findIndex是根据条件查询，indexOf是根据值完全匹配查询
+    let ret5 = arr.findIndex(val=>val>50)
+    console.log(ret5);
+    let ret6 = arr.findIndex(val=>val%3==0)
+    console.log(ret6);
+    console.log('-----------------------');
+    //5.some方法，用于检查数组中是否有满足条件的元素
+    let ret7 = arr.some(val=>val>100)
+    console.log(ret7);
+    let ret8 = arr.some(val=>val>1000)
+    console.log(ret8);
+    console.log('-----------------------');
+    //6.every方法，用于检查数组中所有元素是否满足条件
+    let ret9 = arr.every(val=>val>100)
+    console.log(ret9);
+    let ret10 = arr.every(val=>val>10)
+    console.log(ret10);
+    console.log('-----------------------');
+    //7.map方法，用于根据数组中的元素映射出全新的数组
+    let ret11 = arr.map(val=>val+200)
+    console.log(ret11);
+    let ret12 = arr.map(val=>val%5)
+    console.log(ret12);
+    console.log('-----------------------');
+    //8.reduce方法，用于根据规则统计数组
+    // reduce方法，通常需要传两个参数，第一个参数是回调函数，第二个参数是统计的初始值
+    let ret13 = arr.reduce((pre,cur)=>{
+      //回调函数的第一个参数的默认值是统计的初始值，之后该方法返回的值就是第一个参数的当前值
+      //回调函数的第二个参数是数组中的每个元素
+      //console.log(pre,cur);
+      return pre+cur
+    },0)
+    console.log(ret13);
+    // 统计数组中所有数除以5的余数
+    let ret14 = arr.reduce((pre,cur)=>pre+cur%5,0)
+    console.log(ret14);
+    console.log('-----------------------');
+    //9.reduceRight方法，也是用于根据规则统计数组
+    //跟reduce方法的区别在于，数组的元素是从后往前遍历
+    let ret15 = arr.reduceRight((pre,cur)=>{
+      //console.log(pre,cur);
+      return pre+cur
+    },0)
+    console.log(ret15);
+    console.log('-----------------------');
+    //10.sort方法，用于对数组排序
+    let arr2 = [44,33,55,22,11]
+    //回调函数的两个参数，参数1-参数2是升序，参数2-参数1是降序
+    let arr3 = arr2.sort((a,b)=>a-b)
+    console.log(arr3);
+    console.log(arr2);
+    console.log('-----------------------');
+    let arr4 = arr2.sort((a,b)=>b-a)
+    console.log(arr4);
+    console.log(arr2);
+    
+    
+  </script>
+</body>
+</html>

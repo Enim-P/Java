@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>子元素Flex属性</title>
+  <style>
+    .box1{
+      width: 500px;
+      height: 100px;
+      border: 1px solid black;
+      display: flex;
+      overflow: auto;
+    }
+    /* 父级采用flex布局后，子元素如果超出父元素的空间，
+    子元素默认会收缩，除非父元素采用换行。
+    如果既不想换行，也不想收缩，就需要设置flex-shrink属性，
+    属性值设置为0表示不收缩，该属性值越大越收缩 */
+    .box1 div{
+      height: 80px;
+      width: 80px;
+      background-color: lightblue;
+      border: 1px solid red;
+      /* 设置收缩比例，值越大收缩比例越高 */
+      flex-shrink: 0;
+    }
+    .box2{
+      width: 500px;
+      height: 100px;
+      border: 1px solid black;
+      display: flex;
+    }
+    .box2 div{
+      height: 80px;
+      width: 80px;
+      background-color: lightblue;
+      border: 1px solid red;
+    }
+    .box2 .a{
+      /* flex-grow属性，用于抢占剩余空间，值越大抢的越多 */
+      flex-grow: 1;
+    }
+    .box2 .b{
+      flex-grow: 2;
+    }
+    .box2 .c{
+      flex-grow: 3;
+    }
+  </style>
+</head>
+<body>
+  <div class="box1">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>10</div>
+  </div>
+  <hr>
+  <div class="box2">
+    <div class="a">A</div>
+    <div class="b">B</div>
+    <div class="c">C</div>
+  </div>
+</body>
+</html>

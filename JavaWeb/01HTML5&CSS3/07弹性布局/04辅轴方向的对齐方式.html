@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>辅轴方向的对齐方式</title>
+  <style>
+    .box1{
+      width: 600px;
+      height: 600px;
+      border: 1px solid black;
+      margin: 5px;
+      /* 设置为弹性盒子布局 */
+      display: flex;
+    }
+    div[class^="box"] div{
+      width: 100px;
+      /* height: 100px; */
+      background-color: lightblue;
+      border: 1px solid red;
+      text-align: center;
+      line-height: 100px;
+      font-size:40px;
+    }
+    .box1{
+      /* 排列方向设置为横向 */
+      flex-direction: row;
+      /* 主轴方向的排列方式 */
+      justify-content: space-evenly;
+      /* align-items设置辅轴方向的对齐方式
+      属性值包括：flex-start，flex-end，center，
+      baseline：根据基线对齐（根据所有子元素第一行文本的基线对齐）
+      stretch：是拉伸布局（当子元素没有设置高度时生效）
+       */
+      /* align-items:flex-start; */
+      /* align-items: flex-end; */
+      /* align-items: center; */
+      align-items: baseline;
+      /* align-items: stretch; */
+    }
+    .c{
+      font-size: 100px !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="box1">
+    <div>A</div>
+    <div>B</div>
+    <div class="c">C</div>
+    <div>D</div>
+  </div>
+</body>
+</html>

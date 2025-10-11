@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>函数</title>
+</head>
+<body>
+  <script>
+    // function是定义函数的关键字，函数也称为方法
+    function fun1(){
+      // 可以将业务逻辑封装到函数内部
+      console.log("你好世界！");
+    }
+    // 调用函数，执行函数内部的代码
+    fun1()
+
+    // 在js中，函数的形参是没有数据类型的，所以可以传递任意类型的实参
+    function fun2(a,b){
+      return a + b;
+    }
+
+    console.log(fun2(100,200));
+    console.log(fun2("Hello","World"));
+    
+
+  </script>
+</body>
+</html>

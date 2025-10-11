@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表单验证</title>
+  <style>
+    span{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <form id="myForm" action="">
+    <table>
+      <tr>
+        <td>账号：</td>
+        <td>
+          <input type="text" id="loginId">
+          <span id="loginIdMsg"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>密码：</td>
+        <td>
+          <input type="password" id="loginPwd">
+          <span id="loginPwdMsg"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>姓名：</td>
+        <td>
+          <input type="text" id="name">
+          <span id="nameMsg"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>性别：</td>
+        <td>
+          <input type="radio" value="男" name="sex" checked>男
+          <input type="radio" value="女" name="sex">女
+        </td>
+      </tr>
+      <tr>
+        <td>年级：</td>
+        <td>
+          <select id="grade">
+            <option value="0">请选择年级</option>
+            <option value="1">一年级</option>
+            <option value="2">二年级</option>
+            <option value="3">三年级</option>
+          </select>
+          <span id="gradeMsg"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>邮箱：</td>
+        <td>
+          <input type="text" id="email">
+          <span id="emailMsg"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>生日：</td>
+        <td>
+          <input type="text" id="bornDate">
+          <span id="bornDateMsg"></span>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <button type="submit">提交</button>
+          <button type="reset">取消</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <script>
+    // 封装一个获取元素的方法
+    function $(select){
+      return document.querySelector(select)
+    }
+    // 封装一个验证方法
+    function ckInput(value,reg,msg,text){
+      if(reg.test(value)){
+        msg.innerText = ""
+        return true  //验证成功
+      }else{
+        msg.innerText = text
+        return false  //验证失败
+      }
+    }
+    // 表单提交事件
+    $('#myForm').onsubmit = function(){
+      // 返回true表示提交表单，
+      return ckLoginId() && ckLoginPwd() && ckName()
+            && ckGrade() && ckEmail() && ckBornDate()
+    }
+
+    // 给账号文本框注册失去焦点事件
+    function ckLoginId(){
+      let value = $('#loginId').value
+      let reg = /^\w{4,12}$/
+      return ckInput(value,reg,$('#loginIdMsg'),'账号由4到12位字母、数字、_ 组成')
+    }
+    $('#loginId').onblur = ckLoginId
+
+    // 给密码文本框注册失去焦点事件
+    function ckLoginPwd(){
+      let value = $('#loginPwd').value
+      let reg = /^\w{6,18}$/
+      return ckInput(value,reg,$('#loginPwdMsg'),'密码由6到18位字母、数字、_ 组成')
+    }
+    $('#loginPwd').onblur = ckLoginPwd
+
+    // 验证姓名
+    function ckName(){
+      let value = $('#name').value
+      let reg = /^[\u4E00-\u9FA5]{2,4}$/
+      return ckInput(value,reg,$('#nameMsg'),'姓名由2到4位汉字组成')
+    }
+    $('#name').onblur = ckName
+
+    // 验证年级
+    function ckGrade(){
+      let value = $('#grade').value;
+      if(value==0){
+        $('#gradeMsg').innerText = '请选择年级'
+        return false
+      }else{
+        $('#gradeMsg').innerText = ''
+        return true
+      }
+    }
+    $('#grade').onblur = ckGrade
+
+    // 验证邮箱
+    function ckEmail(){
+      let value = $('#email').value
+      let reg = /^\w+@\w+\.com(\.cn)?$/
+      return ckInput(value,reg,$('#emailMsg'),'请输入正确的邮箱格式')
+    }
+    $('#email').onblur = ckEmail
+
+    // 验证生日
+    function ckBornDate(){
+      let value = $('#bornDate').value 
+      let reg = /^\d{4}-\d{1,2}-\d{1,2}$/
+      return ckInput(value,reg,$('#bornDateMsg'),'请输入正确的日期格式')
+    }
+    $('#bornDate').onblur = ckBornDate
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习9</title>
+</head>
+<body>
+  <script>
+    // 百钱买百鸡：公鸡5文钱一只，母鸡3文钱一只，小鸡1文钱3只，请问公鸡母鸡小鸡各多少只
+    // 第一层循环控制公鸡的数量
+    for(let i=0;i<=20;i++){
+      // 第二层循环控制母鸡的数量
+      for(let j=0;j<=33;j++){
+        // 第三层循环控制小鸡的数量
+        for(let k=0;k<=100;k+=3){
+          // 100只鸡     花了   100文钱
+          if(i+j+k==100 && i*5+j*3+k/3==100){
+            console.log(`公鸡:${i}只 母鸡:${j}只 小鸡:${k}只`);
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>

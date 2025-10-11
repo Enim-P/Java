@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习4</title>
+</head>
+<body>
+  <script>
+    let arr = [38,27,55,8,46]
+    // 手写排序算法，对上面的数组进行排序
+
+    // 方式一：冒泡排序（每次都是前面的数跟后面的数比较，大的数往后）
+    /*
+    // 外层循环控制比较轮数
+    for(let i=0;i<arr.length-1;i++){
+      // 内层循环控制每轮比较次数
+      for(let j=0;j<arr.length-1-i;j++){
+        if(arr[j]>arr[j+1]){
+          let temp = arr[j]
+          arr[j] = arr[j+1]
+          arr[j+1] = temp
+        }
+      }
+    }
+    */
+
+    // 方式二：选择排序（每次选择一个数，其他的数挨个跟选择的数比较，比它小替换它）
+    // 外层循环控制每轮选择的数
+    for(let i=0;i<arr.length-1;i++){
+      // 内层循环控制每轮参与比较的数
+      for(let j=i+1;j<arr.length;j++){
+        if(arr[i]>arr[j]){
+          let temp = arr[i]
+          arr[i] = arr[j]
+          arr[j] = temp
+        }
+      }
+    }
+
+    console.log(arr);
+    
+  </script>
+</body>
+</html>

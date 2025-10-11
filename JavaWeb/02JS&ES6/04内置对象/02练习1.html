@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习1</title>
+</head>
+<body>
+  <script>
+    // 输入邮箱地址，验证邮箱格式是否正确
+    // 比如：abc@abc.com就是一个正确的邮箱格式
+    // 要求：必须包含@ 和 .符号， .符号必须在@符号的后面，而且中间至少隔一位
+    // @符号在开头，.符号不能在最后
+    let email = prompt('请输入邮箱：')
+    // 获取@符号的位置
+    let index1 = email.indexOf('@')
+    // 获取.符号的位置
+    let index2 = email.indexOf('.')
+    if(index1>0 && index2-1>index1 && index2<email.length-1){
+      alert('邮箱格式正确！')
+    }else{
+      alert('邮箱格式错误！')
+    }
+  </script>
+</body>
+</html>

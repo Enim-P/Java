@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>定义函数的几种方式</title>
+</head>
+<body>
+  <script>
+    // 定义函数的第一种方式：使用function直接定义
+    function fun1(){
+      console.log("我是一个函数");
+    }
+    fun1()
+
+    // 定义函数的第二种方式：通过一个变量接收定义的函数
+    // function后面没有定义函数的名字，这样的函数也叫匿名函数
+    let fun2 = function(){
+      console.log('我是一个函数');
+    }
+    fun2()
+
+    // 定义函数的第三种方式：箭头函数（ES6才推出的写法）
+    // 箭头函数就是第二种方式的简写
+    let fun3 = ()=>{
+      console.log("我是一个函数");
+    }
+    fun3()
+    console.log("-----------------------");
+    // 当箭头函数的方法体，只有一条语句时{}可以省略
+    let fun4 = () => console.log("我是一个箭头函数");
+    fun4()
+    // 箭头函数的方法体，如果只有一条返回语句，在省略{}的同时，return必须省略
+    let fun5 = () => "你好世界！"
+    console.log(fun5());
+    // 当箭头函数只有一个参数时，()可以省略
+    let fun6 = num => num * num
+    
+    console.log(fun6(100));
+    
+  </script>
+</body>
+</html>

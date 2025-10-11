@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>do-while循环</title>
+</head>
+<body>
+  <script>
+    // do-while循环，没有入口条件判断，无论循环条件是否成立，至少会执行一次循环体
+    // while循环，有入口条件判断，入口循环条件不成立，一次循环都不执行
+    // 总结：while是先判断，再执行，do-while是先执行一次，再判断
+    /* let i = 6;
+    do{
+      console.log("好好学习，天天向上"+i);
+      i++;
+    }while(i<=5); */
+    // 练习题1：系统菜单：输入 1.添加学生，2.修改学生，3.查询学生，4.删除学生，0.退出系统
+    let no;
+    do{
+      no = parseInt(prompt(`系统菜单
+      1.添加学生 2.修改学生 3.查询学生 4.删除学生 0.退出系统`))
+      switch(no){
+        case 1:
+          alert("成功添加学生！")
+          break;
+        case 2: 
+          alert("成功修改学生！")
+          break;
+        case 3:
+          alert("成功查询学生！")
+          break;
+        case 4: 
+          alert("成功删除学生！")
+          break;
+        default: 
+          alert("成功退出系统！")
+          break;
+      }
+    }while(no!=0);
+    
+  </script>
+</body>
+</html>

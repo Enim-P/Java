@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>边框</title>
+  <style>
+    div{
+      width: 200px;
+      height: 200px;
+      background-color: lightblue;
+    }
+    .a{
+      /* 每条边框可以分别设置：边框宽度、边框类型、边框颜色 */
+      border-top-width: 5px;
+      border-top-style: solid;
+      border-top-color: red;
+      border-right-width: 10px;
+      border-right-style: double;
+      border-right-color: blue;
+      border-bottom-width: 5px;
+      border-bottom-style: dotted;
+      border-bottom-color: green;
+      border-left-width: 10px;
+      border-left-style: dashed;
+      border-left-color: orange;
+    }
+    .b{
+      /* 使用缩写属性设置单条边框的宽度、类型、颜色，
+      属性值的顺序是没有要求的 */
+      border-top: 5px solid red;
+      border-right: blue 10px double;
+      border-bottom: dotted 5px green;
+      border-left: dashed 10px orange;
+    }
+    .c{
+      /* 统一设置所有边框的宽度、类型、颜色 */
+      border-width: 10px;
+      border-style: solid;
+      border-color: red;
+    }
+    .d{
+      /* 使用缩写属性统一设置所有边框 */
+      border: 10px solid red;
+    }
+    .e{
+      /* 去掉文本框的轮廓线 */
+      outline: none;
+      /* 先去掉所有边框 */
+      border: none;
+      /* 再添加下边框 */
+      border-bottom: 1px solid #ccc;
+    }
+    /* 设置文本框获得焦点样式 */
+    .e:focus{
+      border-bottom: 1px solid red;
+    }
+    .f{
+      width: 400px;
+      height: 100px;
+      /* 去掉表格中单元格之间的间隙 */
+      border-collapse: collapse;
+    }
+    .f td{
+      border: 1px solid #ccc;
+    }
+    .g{
+      width: 200px;
+      height: 45px;
+      /* 按钮的边框改成红色 */
+      border: 1px solid red;
+    }
+    /* 点击按钮时边框改成绿色 */
+    .g:active{
+      border: 1px solid green;
+      background-color: lightcoral;
+    }
+  </style>
+</head>
+<body>
+  <div class="a"></div>
+  <hr>
+  <div class="b"></div>
+  <hr>
+  <div class="c"></div>
+  <hr>
+  <div class="d"></div>
+  <hr>
+  <input class="e" type="text">
+  <hr>
+  <table class="f">
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+  <hr>
+  <button class="g">查询学生信息</button>
+</body>
+</html>

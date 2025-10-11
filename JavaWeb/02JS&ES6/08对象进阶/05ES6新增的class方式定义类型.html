@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ES6新增的class方式定义类型</title>
+</head>
+<body>
+  <script>
+    // 在js中，通过构造函数定义类型
+    // 构造函数本身就是函数，可以直接调用，也可以通过new创建成对象，整个语法显得很不规范
+    function Student(name,age){
+      this.name = name
+      this.age = age
+      this.sayHi = function(){
+         console.log(`大家好！我叫${this.name}，今年${this.age}岁`);
+      }
+    }
+    Student.prototype.study = function(time){
+      console.log('我是'+this.name+'，我每天学习'+time+'小时');
+    }
+
+    // 创建对象
+    let s1 = new Student('张杰',20)
+    console.log(s1);
+    s1.sayHi()
+    s1.study(8)
+    console.log('----------------------------');
+
+    // 为了规范类型的定义，ES6推出了class关键字定义类型
+    class Teacher{
+      // constructor是类型的构造函数，new对象时，调用的就是该函数
+      constructor(name,age){
+        // 属性定义在构造函数里面
+        this.name = name 
+        this.age = age
+      }
+      // 定义类的方法（这种方式定义的是类的实例方法，每个对象独享的方法）
+      sayHi = function(){
+        console.log(`大家好！我叫${this.name}，今年${this.age}岁`);
+      }
+
+      // 定义原型上的方法（每个对象共享的方法）
+      work(time){
+        console.log('我是'+this.name+'，我每天工作'+time+'小时');
+      }
+    }
+    let t1 = new Teacher('张天',25)
+    console.log(t1);
+    t1.sayHi()
+    t1.work(8)
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习</title>
+  <style>
+    ul{
+      display: flex;
+      padding: 10px;
+      list-style: none;
+    }
+    ul li{
+      border: 1px solid #eee;
+      padding: 5px 20px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    ul li.active{
+      background-color: tomato;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li id="nj" class="active">南京</li>
+    <li>无锡</li>
+    <li>苏州</li>
+    <li>常州</li>
+    <li>镇江</li>
+  </ul>
+  <script src="./js/jquery.js"></script>
+  <script>
+    /*
+    let nj = $('#nj')
+    nj.css({
+      backgroundColor:'tomato',
+      color:'white'
+    })
+    // 获取所有的li，注册点击事件
+    $('ul li').click(function(){
+      $(this).css({
+        backgroundColor:'tomato',
+        color:'white'
+      }).siblings().css({
+        backgroundColor:'white',
+        color:'black'
+      })
+    })
+    */
+    $('ul li').click(function(){
+      // addClass方法，添加类选择器
+      // removeClass方法，移除类选择器
+      $(this).addClass('active')
+      .siblings().removeClass('active')
+    })
+  </script>
+</body>
+</html>

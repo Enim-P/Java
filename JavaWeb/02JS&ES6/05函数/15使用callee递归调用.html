@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使用callee递归调用</title>
+</head>
+<body>
+  <script>
+    function menu(){
+      let no = parseInt(prompt('请选择：1.添加 2.修改 3.查询 4.删除 0.退出'))
+      if(no==1){
+        alert('执行添加')
+      }else if(no==2){
+        alert('执行修改')
+      }else if(no==3){
+        alert('执行查询')
+      }else if(no==4){
+        alert('执行删除')
+      }else{
+        alert('成功退出！')
+        return
+      }
+      //使用递归调用
+      //递归就是在方法的内部的某个地方，重新调用自己
+      //它有一个缺陷，就是如果外面的方法改名字，里面的方法也要改名字
+      //关键在于，可能改名字的程序员，不知道这个方法是一个递归方法
+      //所以在递归中，通常都是用arguments.callee去调用
+      //arguments.callee指向当前方法本身
+      arguments.callee()
+    }
+
+    menu()
+  </script>
+</body>
+</html>

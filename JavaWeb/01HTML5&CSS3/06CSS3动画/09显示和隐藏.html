@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>显示和隐藏</title>
+  <style>
+    .a{
+      width: 200px;
+      height: 200px;
+      background-color: red;  
+      /* visibility属性，用于元素的显示和隐藏
+      visible是显示，hidden是隐藏，
+      元素隐藏后，只是是看不见，依然占用位置 */
+      /* visibility: hidden; */
+      /* display属性，用于设置元素的类型，
+      block是块级元素，inline是行级元素，
+      none表示不显示元素，注意它直接没了，不会占用位置 */
+      display: none;
+    }
+    .b{
+      width: 200px;
+      height: 200px;
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="a">1</div>
+  <div class="b">2</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>改变this指向</title>
+</head>
+<body>
+  <script>
+    let zs = {
+      name:'张三',
+      sayHi:function(){
+        console.log(`大家好！我叫${this.name}`);
+      },
+      calc(num1,num2){
+        console.log(`大家好！我叫${this.name}`);
+        console.log(num1+num2);
+      }
+    }
+    let ls = {
+      name:'李四'
+    }
+
+    //通过方法的call方法，改变当前方法中this的指向
+    zs.sayHi.call(ls)
+    //通过apply方法，也可以改变当前方法中的this指向
+    zs.sayHi.apply(ls)
+    console.log('---------------');
+    // 如果当前方法需要传参，call方法的第一个参数是this指向，后面是当前方法的参数
+    zs.calc.call(ls,100,200)
+    // apply方法，需要将当前方法的参数使用一个数组进行包装
+    zs.calc.apply(ls,[100,200])
+    console.log('---------------');
+    // bind方法的用法跟call一样，只是它是返回一个全新的方法，需要接收
+    let ret = zs.sayHi.bind(ls)
+    ret()
+    zs.calc.bind(ls,1000,2000)()
+  </script>
+</body>
+</html>

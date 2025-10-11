@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>彩妆热卖产品列表</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    body{
+      background-color: #EFE6E1;
+    }
+    .box{
+      margin: 10px;
+      background-color: white;
+      width: 350px;
+    }
+    .box h2{
+      background-color: #E9165A;
+      color: white;
+      font-size: 20px;
+      height: 40px;
+      line-height: 40px;
+      padding-left: 16px;
+    }
+    .box li{
+      border-bottom: 1px dashed #9999;
+      padding: 10px;
+    }
+    .box a{
+      text-decoration: none;
+      color: #666;
+      /* 将a标签改成块级元素 */
+      display: block;
+      /* 设置a标签的高度为30px */
+      height: 30px;
+      /* 溢出部分要隐藏 */
+      overflow: hidden;
+    }
+    .box a span{
+      /* 将span标签改成行内块元素 */
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background-color: #666;
+      color: white;
+      text-align: center;
+      line-height: 30px;
+      border-radius: 50%;
+    }
+    .box a div{
+      text-align: center;
+    }
+    .box a:hover{
+      color: #E9165A;
+      /* 鼠标悬停时高度改成自动 */
+      height: auto;
+    }
+    .box a:hover span{
+      background-color: #E9165A;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>大家都喜欢的彩妆</h2>
+    <ul>
+      <li>
+        <a href="#">
+          <span>1</span>
+          Za姬芮新能真皙美白隔离霜 35g
+          <div>
+            <img src="./img/icon-1.jpg"/>
+            <p>¥62.00 最近69122人购买</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <span>2</span>
+          美宝莲精纯矿物奇妙新颜乳霜BB霜 30ml
+          <div>
+            <img src="./img/icon-2.jpg"/>
+            <p>¥89.00 最近13610人购买</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <span>3</span>
+          菲奥娜水漾CC霜40g 
+          <div>
+            <img src="./img/icon-3.jpg"/>
+            <p>¥59.90 最近13403人购买</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <span>4</span>
+          DHC 蝶翠诗橄榄卸妆油 200ml
+          <div>
+            <img src="./img/icon-4.jpg"/>
+            <p>¥169.00 最近16757人购买</p>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>

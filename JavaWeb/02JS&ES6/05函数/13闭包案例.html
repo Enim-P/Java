@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>闭包按钮</title>
+</head>
+<body>
+  <script>
+    // 没有采用闭包设计的程序
+    /*
+    // 存款肯定是核心数据，现在我们将存款定义成了全局变量，那么就可以随意修改
+    let money = 10000;
+
+    // 其他业务肯能会篡改核心数据
+    function fun1(){
+      money = 0
+    }
+    fun1()
+
+    function pay(){
+      let m = parseInt(prompt('请输入消费金额：'))
+      if(money>m){
+        money -=m;
+        alert(`本次消费${m}元，剩余存款${money}元`)
+      }else{
+        alert('账户余额不足！')
+      }
+    }
+    pay()
+    */
+    
+    // 使用闭包设计
+    function bank(m){
+      let money = m;
+      let pay = function(){
+        let m = parseInt(prompt('请输入消费金额：'))
+        if(money>m){
+          money -=m;
+          alert(`本次消费${m}元，剩余存款${money}元`)
+        }else{
+          alert('账户余额不足！')
+        }
+      }
+      return pay;
+    }
+
+    //将10000元存到银行，银行给我返回一个支付方法
+    let pay = bank(10000)
+    // 这里个10000元，除了银行提供给你的支付方法能改它，没有任何途径还能改它
+    pay()
+    // 其实在前端领域，大量的框架都是还有闭包思想设计的
+  </script>
+</body>
+</html>

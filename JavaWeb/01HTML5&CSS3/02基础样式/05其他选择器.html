@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>其他选择器</title>
+  <style>
+    /* 这里两个选择器之间不能有空格，这样的选择器就是交集选择器，有空格是后代选择器，
+    交集选择器的样式只会作用在同时具备多种选择器特征的元素 */
+    div.a{
+      font-size: 30px;
+      color: red;
+    }
+    div.a#b{
+      font-size:40px;
+      color: green;
+    }
+    /* 并集选择器，就是同时定义多个选择器，设置相同的样式，
+    并集选择器通常会用来出去掉网页标签的默认样式，比如：ul,ol,dl,dt,dd,p{....} */
+    .one,.three{
+      font-size: 30px;
+      color: blue;
+    }
+    /* *号是通用选择器，代表网页中所有的元素，
+    下面的具体样式是在清除所有标签的外边距和内边距 */
+    *{
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="a">我是div标签</div>
+  <p class="a">我是p标签</p>
+  <div class="a" id="b">
+    我是div元素，同时具有class="a" 和 id="b"
+  </div>
+  <hr>
+  <div class="one">one</div>
+  <div class="two">two</div>
+  <div class="three">three</div>
+</body>
+</html>

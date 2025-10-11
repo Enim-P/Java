@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自执行函数</title>
+</head>
+<body>
+  <script>
+    //定义函数
+    function sayHi(){
+      console.log('你好！');
+    }
+    //执行函数
+    sayHi()
+    console.log('------------------')
+    // 注意：子执行函数的前面一条语句，必须要加分号结束
+    // 通常的做法是，自己在自执行函数的前面加上分号，表示前面的语句结束
+    ;(function sayHello(){
+      console.log('你好！');
+    })()
+    //()可以简写成+号，函数名可以省略
+    ;+function(){
+      console.log('你好！');
+      
+    }();
+  </script>
+</body>
+</html>

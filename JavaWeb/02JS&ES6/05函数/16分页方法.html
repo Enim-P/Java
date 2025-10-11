@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>分页方法</title>
+</head>
+<body>
+  <script>
+    // 封装返回数组分页数据的方法
+    function pageData(arr,pageIndex,pageSize){
+      // 起始位置
+      let index1 = (pageIndex-1)*pageSize
+      // 结束位置
+      let index2 = index1 + pageSize
+      // 直接使用数组的slice方法实现分页效果
+      return arr.slice(index1,index2)
+    }
+    let arr = [11,22,33,44,55,66,77,88,99,111,222,333,444,555,666]
+
+    // 这里就表示返回数组的第三页数据，每页数据是四条
+    let ret1 = pageData(arr,3,4)
+    console.log(ret1);
+    let ret2 = pageData(arr,2,5)
+    console.log(ret2);
+  </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flex练习</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    div{
+      border: 1px solid black;
+      box-sizing: border-box;
+      padding: 10px;
+    }
+    .container{
+      width: 800px;
+      height: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .header{
+      height: 100px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .header .left{
+      width: 200px;
+    }
+    .header .right{
+      width: 540px;
+    }
+    .main{
+      height: 560px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .main .left{
+      width: 200px;
+    }
+    .main .right{
+      width: 540px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .main .right .top{
+      height: 120px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .main .right .top div{
+      width: 116px;
+    }
+    .main .right .bottom{
+      height: 380px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-content: space-between;
+    }
+    .main .right .bottom div{
+      width: 242px;
+      height: 172px;
+    }
+    .footer{
+      height: 100px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .footer div{
+      width: 140px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="left"></div>
+      <div class="right"></div>
+    </div>
+    <div class="main">
+      <div class="left"></div>
+      <div class="right">
+        <div class="top">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="bottom">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</body>
+</html>

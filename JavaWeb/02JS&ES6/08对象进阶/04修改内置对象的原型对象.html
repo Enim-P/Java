@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>修改内置对象的原型对象</title>
+</head>
+<body>
+  <script src="./js/bing.js"></script>
+  <script>
+    // 之前我们学的那么多数组的方法，其实都是在数组类型的原型对象上定义的
+    console.log(Array.prototype);
+    // 定义一个属性，其实就是创建了一个数组的对象
+    let arr = [11,22,33,44,55] 
+    let arr2 = [111,222,333,444,555] 
+    // 所以通过数组对象的原型对象，也能获取到这些方法
+    console.log(arr.__proto__);
+    arr.forEach(r=>{
+      console.log(r);
+    })
+    // 注意：任何数组对象改了数组原型对象上的方法，所有数组都用不了了
+    arr.__proto__.forEach = function(){
+      console.log('这是forEach方法');
+    }
+    arr2.forEach(r=>{
+      console.log(r);
+    })
+    // 所以，不要轻易修改内置对象原型对象身上的方法，通常去给它继续增强
+    // 比如我们给字符串添加反转方法
+    // String.prototype.reverse = function(){
+    //   return this.split('').reverse().join('')
+    // }
+    let str1 = "我爱你"
+    // 注意：字符串本身是反转方法的，是我们手动增强的
+    console.log(str1.reverse());
+    // 再比如，给日期对象正确返回短日期的方法
+    // Date.prototype.getMiniDate = function(){
+    //   let y = this.getFullYear()
+    //   let m = this.getMonth()+1
+    //   let d = this.getDate()
+    //   return [y,m,d].map(r=>r>=10?r:'0'+r).join('-')
+    // }
+    let date1 = new Date()
+    console.log(date1.getMiniDate());
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>浮动布局</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    /* float属性设置元素浮动布局，属性值包括：left和right
+    元素一旦浮动后，就就脱离标准文档流，脱离标准文档流后，块元素就失去了独占一行的能力 */
+    .a{
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      float: left;
+    }
+    .b{
+      width: 150px;
+      height: 150px;
+      background-color: green;
+      float: left;
+    }
+    .c{
+      width: 200px;
+      height: 200px;
+      background-color: blue;
+      float: right;
+    }
+    .d{
+      width: 250px;
+      height: 250px;
+      background-color: yellow;
+      /* clear属性用于清除前面的浮动
+      属性值包括在：left，right，both */
+      clear: both;
+      float: left;
+    }
+    .e{
+      width: 200px;
+      height: 200px;
+      background-color: pink;
+      float: left;
+    }
+  </style>
+</head>
+<body>
+  <div class="a"></div>
+  <div class="b"></div>
+  <div class="c"></div>
+  <div class="d"></div>
+  <div class="e"></div>
+</body>
+</html>

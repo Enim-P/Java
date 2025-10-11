@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS面试题</title>
+</head>
+<body>
+  <script>
+    /*
+    console.log(a)  // undefined
+    var a = 12   //var定义的变量会提升到当前作用域的最上方(作用域以方法为单位)
+    function fn() {
+        console.log(a)  // undefined
+        var a = 13  //该变量会提升到当前方法的最上方定义
+    }
+    fn()
+    console.log(a)   // 12
+    */
+
+    /*
+    console.log(a)  // undefined
+    var a = 12
+    function fn() {
+        console.log(a)  // 12
+        a = 13
+    }
+    fn()
+    console.log(a)  // 13
+    */
+
+    /*
+    console.log(a)   //报错
+    let a = 12   // let定义的变量不存在作用域提升
+    function fn() {
+        console.log(a)  //报错
+        let a = 13
+    }
+    fn()
+    console.log(a)  //12
+    */
+
+    /*
+    console.log(a)   // 报错
+    a = 12   //定义变量时不加任何关键字，该变量不会提升
+    function fn() {
+        console.log(a)  // 报错
+        let a = 13
+    }
+    fn()
+    console.log(a)  // 12
+    */
+
+    /*
+    var foo = 1
+    function bar() {
+        if(!foo){
+            var foo = 10  // 这个foo会提升到方法的最顶端定义
+        }
+        console.log(foo)  // 10
+    }
+    bar()
+    */
+
+    /*
+    var foo = 1
+    function bar() {
+        if(!foo){
+            foo = 10  // 这个foo是全局的foo
+        }
+        console.log(foo)  // 1
+    }
+    bar()
+    */
+    
+    /*
+    var n=0
+    function a() {
+        var n = 10
+        function b() {
+            n++
+            console.log(n)  // 11 12
+        }
+        b()  // n=>11
+        return b
+    }
+
+    var c=a()
+    c()  // n=>12
+    console.log(n)  // 0
+    */
+
+    /*
+    var a=10
+    var b=11  //这是外部的b
+    var c=12
+
+    function test(a){
+        a = 1
+        var b = 2  //这是内部的b
+        c = 3     //这里改的是外部的c
+    }
+    test(10)
+
+    console.log(a)  // 10
+    console.log(b)  // 11
+    console.log(c)  // 3
+    */
+
+    /*
+    if(!('a' in window)){
+        var a = 10  // 这个变量肯定会提升到全局
+    }
+    console.log(a)  // undefined
+    */
+
+    /*
+    var a = 4
+    function b(x, y, a) {
+        console.log(a)   // 3
+        arguments[2] = 10  // a = 10
+        console.log(a)   // 10
+        // 方法没有显示返回任何结果，默认返回undefind
+    }
+    a = b(1,2,3)   // b方法的返回值是undefind
+    console.log(a) // undefined
+    */
+
+    /*
+    var a = 9
+    function fn() {
+        a = 0  // 此时全局a变成了0
+        return function(b){
+            return b+a++
+        }
+    }
+    var f=fn()
+    console.log(f(5))     //5  此时a变成1
+    console.log(fn()(5))  //5  fn()执行的时候a又变成了0，再执行(5)的时候a变成了1
+    console.log(f(5))     //6  因为当前a的值是1，之外后a的值变成2
+    console.log(a)        //2
+    */
+
+    /*
+    var ary = [1,2,3,4]  //数组是引用类型
+    function fn(ary){
+        ary[0] = 0  // 将数组中的第一个元素改成了0，此时数组是[0,2,3,4]
+        ary = [0]   // 形参换了一个数组，从此跟外部的数组就没有关系了
+        ary[0] = 100  // 形参又将新数组里面的唯一的元素改成了100
+
+        return ary   // 返回新数组 [100]
+    }
+    var res = fn(ary)  // 调用方法传递数组，传进去的是数组的地址
+    console.log(ary)  // [0,2,3,4]
+    console.log(res)  // [100]
+    */ 
+    
+    /*
+    function fn(i){
+      return function(n){
+          console.log(n + (i++))
+      }
+    }
+    var f = fn(10)
+    f(20)       // 30  i已经变成11
+    fn(20)(40)  // 60
+    fn(30)(50)  // 80
+    f(30)       // 41  i又变成了12
+    */
+
+    /*
+    var num = 10  // 它变成了60 => 65
+    var obj = {num: 20}  // 它从20 => 30
+    //给obj对象添加一个fn方法
+    obj.fn = (function(num){  //这里的num就是20，因为是obj.num传进来的值
+      // 注意：这里是自执行方法，没有对象点它，这里的this指向window
+      this.num = num * 3   // this.num => 60
+      num++   //形参变成了21
+      return function (n) {  // n=>5  n=>10
+          this.num += n     // 全局变量从60 变成了 65 , obj的num从20 变成了 30
+          num++  // 从21 变成了 22 , 从22 变成了 23
+          console.log(num)  // 打印22 , 打印23
+      }
+    })(obj.num)  //这里传进去的是20
+    // 这里又将obj的fn方法，传给了定义的fn变量
+    var fn = obj.fn
+    console.log(fn)   // 这个fn一定是方法定义
+    fn(5)    // fn方法内部的this指向window，控制台会打印22
+    obj.fn(10)  // fn方法内部的this指向obj，控制台会打印23
+    console.log(num, obj.num)  // 65 , 30
+    */
+
+    /*
+    var fullName = 'language'
+    var obj = {
+        fullName: 'javascript',
+        prop: {
+            getFullName: function() {
+                // 谁在点这个方法，方法中的this就指向谁
+                return this.fullName
+            }
+        }
+    }
+    console.log(obj.prop.getFullName())  // undefined
+    var test = obj.prop.getFullName
+    console.log(test())   //language 
+    */
+
+    var name = 'window'
+    var Tom = {
+        name: "tom",
+        show: function() {
+            console.log(this.name)
+        },
+        wait: function() {
+            var fun = this.show
+            fun()   //fun是自己执行的，内部this指向window
+        }
+    }
+    Tom.wait()  //window
+  </script>
+</body>
+</html>

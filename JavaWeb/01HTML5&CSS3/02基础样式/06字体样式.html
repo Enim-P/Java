@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字体样式</title>
+  <style>
+    .a{
+      /* 字体大小 */
+      font-size: 30px;
+      /* 字体粗细，属性值可以取整数从100-900，默认是400 */
+      /* font-weight: 900; */
+      /* 属性值：lighter更细，normal正常，bold加粗，bolder更粗 */
+      font-weight: bold;
+      /* 字体风格，属性值italic表示倾斜 */
+      font-style: italic;
+      /* 字体类型 */
+      /* font-family: 幼圆; */
+      /* 如果要分别设置英文和中文字体，英文字体类型要放在前面 */
+      font-family: 'Courier New','幼圆'
+    }
+    .b{
+      /* font是缩写属性，属性值至少要包含字体大小和字体类型 */
+      /* font: 30px '幼圆'; */
+      /* 字体风格和字体粗细放在最前面 */
+      font: italic bold 30px 'Courier New','幼圆';
+    }
+  </style>
+</head>
+<body>
+  <div class="a">Hello World, 好好学习，天天向上</div>
+  <hr>
+  <div class="b">Hello World, 好好学习，天天向上</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>arguments参数</title>
+</head>
+<body>
+  <script>
+    function fun1(a){
+      console.log(a);
+      // arguments是方法中的一个内置对象，它会接收调用方法时传递的所有参数
+      console.log(arguments);
+      // arguments对象的callee属性，指向当前方法本身，在递归方法中会经常使用
+      console.log(arguments.callee)
+      let ret = 0
+      for(let i=0;i<arguments.length;i++){
+        ret += arguments[i]
+      }
+      return ret;
+    }
+    let ret = fun1(100,200,300,400,500)
+    console.log(ret);
+    
+    // 注意：箭头函数中没有arguments对象
+    let fun2 = ()=>{
+      console.log(arguments);
+    }
+    fun2()
+  </script>
+</body>
+</html>

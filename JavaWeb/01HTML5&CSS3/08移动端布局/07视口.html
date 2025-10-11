@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- 使用meta标签定义视口大小，设置name="viewport"
+   视口的大小通过content属性设置，width=device-width表示视口的宽度由设备决定
+   initial-scale=1.0表示缩放比例为1.0 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 针对移动端开发，也可以手动设置视口的宽度，其实就是手动设置css像素的宽度 -->
+  <!-- <meta name="viewport" content="width=480"/> -->
+  <title>视口</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .box1{
+     width: 100%;
+     display: flex;
+     justify-content: space-between;
+    }
+    .box1 div{
+      width: 80px;
+      height: 80px;
+      background-color:lightblue;
+    }
+  </style>
+</head>
+<body>
+  <div class="box1">
+    <div>one</div>
+    <div>two</div>
+    <div>three</div>
+    <div>four</div>
+  </div>
+</body>
+</html>

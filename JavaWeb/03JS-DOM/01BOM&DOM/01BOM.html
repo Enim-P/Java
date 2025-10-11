@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOM</title>
+</head>
+<body>
+  <script>
+    /*
+      BOM：浏览器对象模型，其实就是window对象，它提供了操作浏览器的方法
+    */
+   console.log(window);
+   // 1.各种弹框方法
+   /*
+   window.alert('消息框')
+   let ret1 = window.prompt('输入框')
+   console.log(ret1);
+   let ret2 = window.confirm('确认框')
+   console.log(ret2);
+   */ 
+
+   // 2.打开和关闭窗口
+   /*
+   // open：打开新窗口
+   window.open('https://baidu.com')
+   // close：关闭当前窗口
+   window.close()
+   */ 
+
+   // 3.类型转换方法
+   /*
+   // parseInt：将数据转为整数
+   let ret3 = window.parseInt('11.11.11')
+   console.log(ret3);
+   // parseFloat：将数据转为浮点数
+   let ret4 = window.parseFloat('11.11.11')
+   console.log(ret4);
+   // isNaN：判断是否不是数字
+   console.log(window.isNaN("11"));
+   console.log(window.isNaN("11.11"));
+   console.log(window.isNaN("11.11.11"));
+   */ 
+   
+   // 4.定时器方法
+   /*
+   // setTimeout：等待指定的毫秒后执行一次
+   let ret5 = window.setTimeout(()=>{
+    console.log("我的等了你3秒钟");
+   },3000)
+   // 定时器方法的返回值是定时器的序号
+   console.log(ret5);
+   
+   // setInterval：每隔指定的毫秒后执行一次
+   let ret6 = window.setInterval(()=>{
+    console.log("我每隔3秒执行一下");
+   },1000)
+   console.log(ret6);
+   // 根据定时器的序号清除指定的定时器
+   setTimeout(() => {
+    // clearTimeout：用于清除setTimeout定时器
+    window.clearTimeout(ret5)
+    // clearInterval：用于清除setInterval定时器
+    window.clearInterval(ret6)
+   }, 5000);
+   */ 
+
+    // 5.location属性：用设置地址栏
+    console.log(window.location);
+    // 因为widow是全局对象，其实是可以省略的
+    console.log(location.href);
+    console.log(location.host);
+    console.log(location.hostname);
+    console.log(location.port);
+    console.log(location.pathname);
+    console.log(location.search);
+    // 通过href属性进行跳转
+    location.href = 'https://baidu.com'
+    
+  </script>
+</body>
+</html>

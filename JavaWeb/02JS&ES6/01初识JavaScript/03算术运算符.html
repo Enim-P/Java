@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>算术运算符</title>
+</head>
+<body>
+  <script>
+    // 算术运算符：+ - * / %
+    var num1 = 55;
+    var num2 = 12;
+    var s1 = num1 + num2;
+    console.log(s1);
+    var s2 = num1 - num2;
+    console.log(s2);
+    var s3 = num1 * num2;
+    console.log(s3);
+    // 注意：在js中，两个数字相除，如果除不尽，会保留小数（依赖是number类型）
+    var s4 = num1 / num2;
+    console.log(s4);
+    console.log(parseInt(s4))   //转为整数，会去掉所有的小数
+    // %是取余，就是求余数
+    var s5 = num1 % num2;
+    console.log(s5);
+    console.log('---------------------------');
+    var num3 = 5678;
+    //计算出上面变量中，每一位数之和
+    var q = parseInt(num3/1000);
+    var b = parseInt(num3%1000/100);
+    var s = parseInt(num3%100/10);
+    var g = num3%10;
+    var s6 = q + b + s + g;
+    console.log(s6);
+    console.log('---------------------------');
+    var num4 = 100;
+    num4+=5;  // num4 = num4 + 5
+    console.log(num4);
+    num4-=5;
+    console.log(num4);
+    num4*=5;
+    console.log(num4);
+    num4/=5;
+    console.log(num4);
+    num4%=7;
+    console.log(num4);
+    console.log('---------------------------');
+    var num5 = 5;
+    console.log(num5++);  //++在后，是先返回结果，再加1
+    console.log(num5);
+    console.log(++num5);  //++在前，是先加1，在返回结果
+    console.log(num5);
+    var num6 = 5;
+    var s7 = --num6 + num6++ - num6-- + ++num6;
+    //          4   +   4    -   5    +    5
+    console.log(s7);
+    
+  </script>
+</body>
+</html>

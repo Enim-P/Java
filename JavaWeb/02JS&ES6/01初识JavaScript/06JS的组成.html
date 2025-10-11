@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS的组成</title>
+</head>
+<body>
+  <script>
+    /*
+      JavaScript包含三大核心：
+      1.ECMAScript核心语法，它是JS的底层架构，比如：定义变量，条件语句，函数编程，等等
+      2.BOM浏览器对象模型，其实就是window对象，它提供了操作浏览器的各种方法
+      3.DOM文档对象模型，其实就是document对象，它提供了操作网页的各种方法
+    */
+    //console.log(window);
+    //console.log(document);
+    //window对象的常用方法
+    // 1.alert()，用于弹出消息框
+    //window.alert("哈哈哈哈哈哈")
+
+    // 2.prompt()，输入框
+    // 第一个参数是输入框的描述信息，第二个参数可以设置输入框的默认值
+    //prompt("请输入第一个数：","100")
+    //var num1 = window.prompt("请输入第一个数：")
+    // 注意：由于window是浏览器环境中的全局对象，所以操作window对象的成员时，可以省略window
+    //var num2 = prompt("请输入第二个数：")
+    // 注意：输入框输入的内容是字符串类型，字符串使用+号是做拼接
+    //var num3 = parseInt(num1) + parseInt(num1);
+    //console.log(num3);
+
+    // 3.confirm()，确认框
+    // 确认框的返回类型是boolean类型
+    //var ret = confirm("确定删除吗？")
+    //console.log(ret);
+
+    // 4.parseInt()，用于强转为整数的number
+    console.log(parseInt(55.01));
+    console.log(parseInt(55.99));
+    // 可以直接强转字符串数据
+    console.log(parseInt("55.55"));
+    // 哪怕字符串不是数字数据，只要开头部分有数字，它都帮你强转
+    var n1 = parseInt("55.55.55.55")
+    console.log(n1);
+    console.log(typeof n1);   //类型是number，只不过数据的形式是整型
+    console.log("------------------------");
+    // 5.parseFloat()，用于强转为小数的number
+    console.log(parseFloat(55.55));
+    console.log(parseFloat("55.55"));
+    console.log(parseFloat("55.55.55.55"));
+    console.log("------------------------");
+    // 5.isNaN()，用于判断是否是不是number
+    // isNan:is not a number的意思
+    console.log(isNaN(123));
+    console.log(isNaN("123"));  //虽然是字符串，但是字符串数据是数字
+    console.log(isNaN("123.123"));  //字符串的内容还是数字
+    console.log(isNaN("123.123.123"));  //字符串的内容不是数字（既不是整数，也不是小数）
+    
+    
+    
+    
+    
+    
+    
+  </script>
+</body>
+</html>

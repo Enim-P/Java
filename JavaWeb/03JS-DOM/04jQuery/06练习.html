@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习</title>
+  <style>
+    ul{
+      display: flex;
+      padding: 10px;
+      list-style: none;
+    }
+    ul li{
+      border: 1px solid #eee;
+      padding: 5px 20px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    ul li.active{
+      background-color: tomato;
+      color: white;
+    }
+    img{
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li id="nj">南京</li>
+    <li>无锡</li>
+    <li class="active">苏州</li>
+    <li>常州</li>
+    <li>镇江</li>
+  </ul>
+  <div>
+    <img src="https://img2.baidu.com/it/u=1017554026,2537394666&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=331"/>
+    <img src="https://qcloud.dpfile.com/pc/ZDmuYj2gl87m3tzG5qSt-3GeMdN_UM26_tUgNx_0Gf6ZCJcBAmuvpeV0dDPaOhRI.jpg"/>
+    <img src="https://x0.ifengimg.com/ucms/2024_23/7203CA5D3073EA55291A2B6C7CAA1188292570CF_size1924_w2400_h1601.jpg"/>
+    <img src="https://x0.ifengimg.com/ucms/2024_39/47877AACC39EDEE0B09BD5E530230626BF4A5BB5_size2969_w2500_h1081.jpg"/>
+    <img src="https://q1.itc.cn/q_70/images03/20250921/58d0a019238b4650bd32febb7af38d1a.jpeg"/>
+  </div>
+  <script src="./js/jquery.js"></script>
+  <script>
+    // 获取当前高亮索引
+    let index = $('.active').index()
+    $('img').hide().eq(index).show()
+    $('ul li').click(function(){
+      // addClass方法，添加类选择器
+      // removeClass方法，移除类选择器
+      $(this).addClass('active')
+      .siblings().removeClass('active')
+      let index = $(this).index()
+      $('img').hide().eq(index).show()
+    })
+  </script>
+</body>
+</html>

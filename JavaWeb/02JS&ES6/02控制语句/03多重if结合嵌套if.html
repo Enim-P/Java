@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>多重if结合嵌套if</title>
+</head>
+<body>
+  <script>
+    /*
+    多重if和嵌套if的综合练习题：
+    输入年 月 输出该月份有多少天？
+    闰年公式：年份能被4整除，但不能被100整除；或者年份能被400整除。闰年的2月份是29天，平年的2月份是28天。
+    */
+    var y = prompt('请输入年份：')
+    var m = prompt('请输入月份：')
+    var days = 0;   //表示天数
+    if(m==1 || m==3 || m==5 || m==7 || m==8 || m==10 || m==12){
+      days = 31
+    }else if(m==4 || m==6 || m==9 || m==11){
+      days = 30
+    }else{
+      if(y%4==0 && y%100!=0 || y%400==0){
+        days = 29
+      }else{
+        days = 28
+      }
+    }
+    alert('当前月份有'+days+'天')
+  </script>
+</body>
+</html>

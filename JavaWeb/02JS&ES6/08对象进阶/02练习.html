@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使用递归算法深拷贝对象</title>
+</head>
+<body>
+  <script>
+    let obj1 = {
+      name:'张三',
+      age:20,
+      firend:{
+        name:'李四',
+        age:22,
+        car:{
+          name:'宝马',
+          color:'红色'
+        }
+      }
+    }
+    /*
+    // 直接将一个对象赋值给另一个对象，是浅拷贝，拷贝的是地址
+    let obj2 = obj1;
+    console.log(obj1);
+    console.log(obj2);
+    obj2.name = '周杰伦'   //浅拷贝，任何一个对象修改了属性，大家都改
+    console.log(obj1);
+    console.log(obj2);
+    */
+    
+    function deepObj(obj){
+      let ret = {};
+      // 遍历对象的所有属性
+      for(let key in obj){
+        // 这里只是完成了浅度深拷贝，因为没有考虑对象的属性有可能也是对象
+        //ret[key] = obj[key]
+        // 判断属性的类型是不是对象类型
+        if(typeof obj[key] == 'object'){
+          // 如果是对象，递归调用
+          ret[key] = deepObj(obj[key])
+        }else{
+          // 如果不是对象，直接赋值属性
+          ret[key] = obj[key]
+        }
+      }
+      return ret;
+    }
+    let obj2 = deepObj(obj1);
+    console.log(obj1);
+    console.log(obj2);
+    console.log('---------------');
+    obj1.name = '周杰伦'
+    obj1.firend.name = '赵露思'
+    obj1.firend.car.name = '奔驰'
+    console.log(obj1);
+    console.log(obj2);
+    
+  </script>
+</body>
+</html>

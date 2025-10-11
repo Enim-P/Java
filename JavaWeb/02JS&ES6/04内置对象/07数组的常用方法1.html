@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数组的常用方法1</title>
+</head>
+<body>
+  <script>
+    let arr1 = [11,22,33]
+    let arr2 = [44,55,66]
+    //concat方法，用于合并数组
+    let arr3 = arr1.concat(arr2)
+    console.log(arr3);
+    let arr4 = [11,22,33,44]
+    //fill方法，使用一个固定值，填充数组
+    arr4.fill(55)
+    console.log(arr4);
+    let arr5 = [11,22,33,44]
+    //includes方法，用于检查数组中是否包含指定的元素
+    console.log(arr5.includes(22));
+    console.log(arr5.includes(55));
+    //indexOf方法，用于查找指定的元素，在数组中第一次出现的位置，如果没有返回-1
+    console.log(arr5.indexOf(22));
+    //lastIndexOf方法，用于查找指定的元素，在数组中最后一次出现的位置，如果没有返回-1
+    console.log(arr5.lastIndexOf(55));
+    //isArray方法，用于检查一个对象是否是数组
+    console.log(Array.isArray(arr5));
+    //join方法，根据一个指定的字符串，将数组中的所有元素进行拼接
+    let str = arr5.join("--")
+    console.log(str);
+    //split方法，根据一个指定的字符串，将原始字符串分隔成数组
+    let arr6 = str.split('--')
+    console.log(arr6);
+  </script>
+</body>
+</html>

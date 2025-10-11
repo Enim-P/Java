@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>超链接样式</title>
+  <style>
+    /* 超链接默认是蓝色并且带下划线，点击的时候变成红色，点完之后变成紫色 */
+    /* 未点击样式 */
+    .one a:link{
+      color: black;
+      text-decoration: none;
+    }
+    /* 点击后样式 */
+    .one a:visited{
+      color: green;
+    }
+    /* 鼠标悬停样式 */
+    .one a:hover{
+      color: red;
+    }
+    /* 点击未释放 */
+    .one a:active{
+      color: blue;
+    }
+    /* 注意设置超链接样式的顺序：link，visited，hover，active */
+
+    /* 通常情况下我需要将超的所有样式进行统一 */
+    .two a{
+      color: #333;
+      text-decoration: none;
+    }
+    /* 只是在鼠标悬停时，修改一下样式 */
+    .two a:hover{
+      color: #999;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="one">
+    <a href="#">超链接</a>
+  </div>
+  <div class="two">
+    <a href="#">超链接2</a>
+  </div>
+</body>
+</html>

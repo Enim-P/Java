@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字符串的常用方法</title>
+</head>
+<body>
+  <script>
+    let s1 = "helloworld"
+    //length属性，返回字符串的长度
+    console.log(s1.length);
+    //charAt方法，获取指定下标的字符（字符串的索引从0开始）
+    console.log(s1.charAt(2));
+    //在js中，可以直接通过[索引]的方式获取指定下标的字符
+    console.log(s1[2]);
+    //charCodeAt方法，获取指定位置字符的Unicode编码
+    // A的Unicode编码是65 a的Unicode编码是97
+    console.log(s1.charCodeAt(2));
+    let s2 = "Jack"
+    let s3 = "Tom"
+    //concat方法，用于字符串的拼接
+    let s4 = s2.concat(s3)
+    console.log(s4);
+    //使用+号运算符拼接字符串
+    let s5 = s2 + s3;
+    console.log(s5);
+    let s6 = "abcdabcdabcdabcd"
+    //indexOf方法，用于查找指定字符串第一次出现的位置
+    console.log(s6.indexOf("cd"));
+    //查找不到，返回-1
+    console.log(s6.indexOf("ef"));
+    //lastIndexOf方法，用于查找指定字符串最后一次出现的位置
+    console.log(s6.lastIndexOf("cd"));
+    //查找不到也是返回-1
+    console.log(s6.lastIndexOf("ef"));
+    let s7 = "abcdefg"
+    //substring方法，用于截取字符串
+    //参数1是起始位置，参数2是截止位置，注意：取不到截止位置
+    console.log(s7.substring(2,4));
+    //如果只传1个参数，表示从起始位置到最后全部截取
+    console.log(s7.substring(2));
+    //slice的用法，跟substring的用法是一样的（都是根据区间截取字符串）
+    console.log(s7.slice(2,4));
+    console.log(s7.slice(2));
+    //slice可以传负数索引，表示从后往前的索引
+    console.log(s7.slice(-4,-2));
+    //截取一个字符串最后三位
+    //以前是这么做的
+    console.log(s7.substring(s7.length-3));
+    //现在可以这么做
+    console.log(s7.slice(-3));
+    //substr方法，也是用于截取字符串
+    //参数1是起始位置，参数2是截取长度
+    console.log(s7.substr(2,4));
+    let s8 = 'AbCdEfG'
+    //toLowerCase方法，用于返回字符串的全小写副本
+    console.log(s8.toLowerCase());
+    //toUpperCase方法，用于返回字符串的全大写副本
+    console.log(s8.toUpperCase());
+    //原始字符串并不会发生变化
+    console.log(s8);
+    let s9 = '  hello  '
+    console.log(s9.length);
+    //trim方法，用于去掉字符串两端空格
+    console.log(s9.trim().length);
+    
+    
+  </script>
+</body>
+</html>

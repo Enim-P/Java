@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>取消边距</title>
+  <style>
+    /* 网页中的很多元素都有默认的边距（外边距或内边距），通常情况下这边距要全部去掉 */
+    *{
+      /* 去掉所有的外边距 */
+      margin: 0;
+      /* 去掉所有的内边距 */
+      padding: 0;
+      /* 列表符号去掉 */
+      list-style: none;
+      /* 去掉文本装饰 */
+      text-decoration: none;
+      /* 去掉轮廓线 */
+      outline: none;
+    }
+    body{
+      border: 1px solid #ccc;
+    }
+    ul{
+      border: 1px solid red;
+    }
+    ol{
+      border: 1px solid green;
+    }
+    dl{
+      border: 1px solid blue;
+    }
+    p{
+      border: 1px solid orange;
+    }
+    li{
+      border: 1px solid lightblue;
+    }
+    dt{
+      border: 1px solid lightcoral;
+    }
+    dd{
+      border: 1px solid lightgreen;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li>北京</li>
+    <li>上海</li>
+  </ul>
+  <ol>
+    <li>南京</li>
+    <li>苏州</li>
+  </ol>
+  <dl>
+    <dt>安徽省</dt>
+    <dd>合肥市</dd>
+    <dd>芜湖市</dd>
+  </dl>
+  <p>成都</p>
+  <p>重庆</p>
+</body>
+</html>

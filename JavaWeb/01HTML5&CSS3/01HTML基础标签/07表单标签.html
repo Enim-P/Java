@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表单标签</title>
+</head>
+<body>
+  <!-- form是表单标签，表单是用于收集用户输入的信息，然后向服务器提交，
+   属性method设置提交方式：GET和POST
+   属性action设置提交地址：后端处理该前端请求的地址 -->
+  <form method="post" action="https://www.baidu.com">
+    <p>账号：<input type="text"></p>
+    <p>密码：<input type="password"></p>
+    <p>
+      <input type="submit" value="提交">
+      <input type="reset" value="重置">
+    </p>
+  </form>
+</body>
+</html>

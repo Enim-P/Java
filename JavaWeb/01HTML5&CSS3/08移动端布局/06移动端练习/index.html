@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>京东移动端</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      text-decoration: none;
+      outline: none;
+    }
+    html{
+      font-size: 5.33333vw;
+    }
+    /* 分类样式 */
+    .types{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 10px 0;
+      height: 9rem;
+      align-content: space-between;
+    }
+    .types .item{
+      width: 4.25rem;
+      height: 4.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .types .item img{
+      width: 3rem;
+      height: 3rem;
+    }
+    .types .item span{
+      font-size: .7rem
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="search">搜索</div>
+    <div class="banner">轮播图</div>
+    <div class="types">
+      <div class="item">
+        <img src="./images/nav0.png"/>
+        <span>分类查询</span>
+      </div>
+      <div class="item">
+        <img src="./images/nav1.png"/>
+        <span>物流查询</span>
+      </div>
+      <div class="item">
+        <img src="./images/nav2.png"/>
+        <span>购物车</span>
+      </div>
+      <div class="item">
+        <img src="./images/nav3.png"/>
+        <span>我的京东</span>
+      </div>
+      <div class="item">
+        <img src="./images/nav4.png"/>
+        <span>充值</span>
+      </div>
+      <div class="item">
+        <img src="./images/nav5.png"/>
+        <span>领券中心</span>
+      </div>
+      <div class="item">
+        <img src="./images/nav6.png"/>
+        <span>京东超市</span>
+      </div>
+      <div class="item">
+        <img src="./images/nav7.png"/>
+        <span>我的关注</span>
+      </div>
+    </div>
+    <div class="shopping">超值购</div>
+    <div class="tabbar">底部导航</div>
+  </div>
+</body>
+</html>

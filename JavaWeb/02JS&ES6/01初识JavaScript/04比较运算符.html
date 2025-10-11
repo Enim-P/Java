@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>比较运算符</title>
+</head>
+<body>
+  <script>
+    // 在js中，语句结束时可以省略分号(;)
+    var num1 = 5
+    var num2 = 6
+    var num3 = 5
+    var num4 = "5"
+    var b1 = num1 > num2;
+    console.log(b1);
+    var b2 = num1 >= num3;
+    console.log(b2);
+    var b3 = num1 < num2;
+    console.log(b3)
+    var b4 = num1 <= num3;
+    console.log(b4);
+    console.log('-------------------');
+    var b5 = num1 == num3;
+    console.log(b5);
+    // 注意：在js中，不同数据类型是可以通过比较运算符来比较值的
+    // ==就是比较值是否相等，不看类型
+    var b6 = num1 == num4;
+    console.log(b6);
+    console.log('-------------------');
+    // ===称为：恒等于，既要比较值是否相等，还要比较类型是否相等
+    var b7 = num1 === num3;
+    console.log(b7);
+    // num1和num4的值是相等的，但是类型不等，所以返回false
+    var b8 = num1 === num4;
+    console.log(b8);
+    console.log('-------------------');
+    // != 只看值是否不相等
+    var b9 = num1 != num3
+    console.log(b9);
+    var b10 = num1 != num4;
+    console.log(b10);
+    console.log('-------------------');
+    // != 既看值是否不相等，还看类型是否不相等
+    var b11 = num1 !== num3;
+    console.log(b11);
+    // 虽然值相等，但是类型不相等，所以返回true
+    var b12 = num1 !== num4;
+    console.log(b12);
+    // 总结：在js中，有时为类数据的安全性，通常都使用恒等于和恒不等于来比较
+  </script>
+</body>
+</html>

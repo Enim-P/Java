@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>let和const</title>
+</head>
+<body>
+  <script>
+    /*
+      var是定义变量的关键字，它存在两个问题：1.变量名可以重复 2.变量存在作用域提升
+    */
+    // 问题1：可以重复定义同名变量，后面的变量会覆盖前面的定义
+    var age = 10;
+    var age = 20;
+    var age = 30;
+    var city;
+    console.log(age);
+
+    
+    if(100>500){
+      // 问题2：使用var定义变量，无论变量在哪里定义，都会先提升到当前作用域的顶部定义
+      city = '南京'
+      // 这里的city2看似是在当前位置定义的，其实会提升到当前作用域的最顶部定义，只是在这里赋值
+      var city2 = '合肥'
+    }
+    console.log(city);
+    console.log(city2);
+    console.log('-------------------------');
+    // 因为var定义变量存在上面的两个问题，所以从ES6开始，推出了全新的关键字let 和 const
+    // 使用let不能定义同名的变量
+    let name = '张三'
+    //let name = '李四'  // 这里会报错
+    console.log(name);
+    
+    if(100>500){
+      let sex = '男'
+      console.log(sex);
+    }
+    // 这里会报错，因为let定义的变量，不存在当前作用域提升
+    //console.log(sex);
+    console.log('-------------------------');
+    // const跟let一样，都解决了var的两个问题，
+    // 同时const是常量，常量在定义的时候必须要赋值，并且之后不能修改值
+    const car = '奔驰';
+    // car = '宝马'  //这里会报错，常量的值不能修改
+    
+    
+  </script>
+</body>
+</html>

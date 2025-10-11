@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>三元表达式</title>
+</head>
+<body>
+  <script>
+    var a = 100;
+    var b;
+    if(a>50){
+      b = 1000
+    }else{
+      b = 2000
+    }
+    console.log(b);
+    console.log('-----------');
+    // 使用三元表达式简化上面的步骤
+    var c = 100;
+    var d = c>50 ? 1000 : 2000
+    console.log(d);
+    console.log('-----------');
+    var e = 100;
+    var f = 200;
+    var g;
+    if(e>50){
+      if(f>100){
+        g = 1000
+      }else{
+        g = 2000;
+      }
+    }else{
+      g = 3000;
+    }
+    console.log(g);
+    console.log('-----------');
+    // 使用嵌套三元表达式简化上面的步骤
+    var h = 100;
+    var i = 200;
+    var j = h > 50 ? (i > 100 ? 1000 : 2000) : 3000
+    console.log(j);
+  </script>
+</body>
+</html>

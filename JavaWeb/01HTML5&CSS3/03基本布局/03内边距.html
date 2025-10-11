@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>内边距</title>
+  <style>
+    div{
+      width: 200px;
+      height: 200px;
+      background-color: lightblue;
+      font-size: 20px;
+      border: 2px solid black;
+    }
+    .a{
+      /* 分别设置四条边的内边距 */
+      padding-top: 20px;
+      padding-right: 40px;
+      padding-bottom: 60px;
+      padding-left: 80px;
+    }
+    .b{
+      /* 使用缩写属性设置四条边的内边距，顺序是：上 右 下 左，顺时针顺序 */
+      padding: 20px 40px 60px 80px;
+    }
+    .c{
+      /* 只设置3个属性值，左边就采用右边的属性值 */
+      padding: 20px 40px 60px;
+    }
+    .d{
+      /* 只设置2个属性值，左边采用右边的值，下面采用上面的值 */
+      padding: 20px 40px;
+    }
+    .e{
+      /* 只设置1个属性值，上右下左设置同一个值 */
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="a">好好好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习</div>
+  <hr>
+  <div class="b">好好好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习</div>
+  <hr>
+  <div class="c">好好好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习</div>
+  <hr>
+  <div class="d">好好好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习</div>
+  <hr>
+  <div class="e">好好好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习</div>
+</body>
+</html>

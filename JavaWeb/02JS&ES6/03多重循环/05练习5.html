@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习5</title>
+</head>
+<body>
+  <script>
+    // 练习题5：数字等腰三角形
+    /*
+          1
+         121
+        12321
+       1234321
+      123454321
+    */
+    for(let i=1;i<=5;i++){
+      let str = ""
+      //1.左侧空格部分
+      for(let j=5;j>=i;j--){
+        str += " "
+      } 
+      //2.等腰三角形左侧部分
+      for(let j=1;j<=i;j++){
+        str += j
+      }
+      //3.等腰三角形右侧部分
+      for(let j=i-1;j>=1;j--){
+        str += j
+      }
+      console.log(str);
+    }
+  </script>
+</body>
+</html>

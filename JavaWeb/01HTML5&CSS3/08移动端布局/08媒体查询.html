@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>媒体查询</title>
+  <style>
+    /* 
+    媒体查询：让一个网页在不同的设备上都能够正常显示
+    视口宽度>=1200px 的屏幕 称为超大屏
+    视口宽度>=992px 的屏幕 称为大屏
+    视口宽度>=768px 的屏幕 称为中屏
+    视口宽度>=576px 的屏幕 称为小屏
+    视口宽度<576px 的屏幕 称为超小屏
+    */
+    .a{
+      width: 100%;
+      height: 200px;
+      background-color: red;
+    }
+    /* 定义媒体查询样式，根据screen的宽度定义不同的样式 */
+    @media screen and (max-width:1200px) {
+      .a{
+        background-color: green;
+      }
+    }
+    @media screen and (max-width:992px) {
+      .a{
+        background-color: blue;
+      }
+    }
+    @media screen and (max-width:768px) {
+      .a{
+        background-color: orange;
+      }
+    }
+    /* 媒体查询要针对不同的视口定义不同的样式，样式的代码量会比较多 */
+  </style>
+</head>
+<body>
+  <div class="a"></div>
+</body>
+</html>

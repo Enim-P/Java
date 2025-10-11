@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML5新增的结构标签</title>
+  <style>
+    div{
+      border: 1px solid #ccc;
+      padding: 5px;
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 过去是怎么布局的，全部使用div做布局的主框架，
+   给div定义不同的选择器来控制它充当什么角色 -->
+  <div id="container">
+    网页容器
+    <div id="header">
+      头部
+      <div id="nav">头部中的导航</div>
+    </div>
+    <div id="main">
+      主体
+      <div id="aside">主体中的侧边栏</div>
+      <div id="article">
+        主体中的独立大区域
+        <div class="section">每个独立的小区域</div>
+        <div class="section">每个独立的小区域</div>
+        <div class="section">每个独立的小区域</div>
+      </div>
+    </div>
+    <div id="footer">
+      尾部
+    </div>
+  </div>
+  <hr>
+  <!-- 后来HTML5又新增的一些布局标签，
+   这些标签从语义上让人一眼能看明白这个标签里面的内容是做什么的，
+   同时这些标签也更容易被搜索引擎优化（便于搜索引擎爬虫） -->
+  <div id="container">
+    网页容器
+    <header>
+      头部
+      <nav>头部中的导航</nav>
+    </header>
+    <main>
+      主体
+      <aside>主体中的侧边栏</aside>
+      <article>主体中的独立大区域
+        <section>每个独立的小区域</section>
+        <section>每个独立的小区域</section>
+        <section>每个独立的小区域</section>
+      </article>
+    </main>
+    <footer>尾部</footer>
+  </div>
+  <!-- 其实到目前为止，大部分人还是是用div+id选择器的方式布局 -->
+</body>
+</html>

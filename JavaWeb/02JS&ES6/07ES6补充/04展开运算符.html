@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>展开运算符</title>
+</head>
+<body>
+  <script>
+    let arr1 = [11,22,33,44]
+    let arr2 = [55,66,77,88]
+    let arr3 = arr1.concat(arr2)
+    console.log(arr3);
+    // 通过展开运算符...可以将数组中的所有元素展开
+    let arr4 = [...arr1,...arr2]
+    console.log(arr4);
+    console.log('---------------');
+    let obj1 = {
+      name:'周杰伦',
+      age:20,
+      address:'台北'
+    }
+    let obj2 = {
+      sex:'男',
+      score:60,
+      address:'南京'
+    }
+    // 通过展开运算符，可以将对个对象合并成一个对象
+    // 如果多个对象具有相同的属性，后合并的对象的属性会替换前面的对象的属性
+    let obj3 = {
+      ...obj1,
+      ...obj2
+    }
+    console.log(obj3);
+    
+  </script>
+</body>
+</html>

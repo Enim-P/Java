@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习</title>
+</head>
+<body>
+  <script>
+    // 1.验证用户名（长度为4到12位的字母、数字、_ 组成）
+    let reg1 = /^\w{4,12}$/
+    console.log(reg1.test('abc'));
+    console.log(reg1.test('abcd'));
+    console.log(reg1.test('abcd123'));
+    console.log('--------------');
+    // 2.验证密码（长度为6到18位的字母、数字、_ 组成）
+    let reg2 = /^\w{6,18}$/
+    console.log(reg1.test('123456'));
+    console.log(reg1.test('admin_123456'));
+    console.log('--------------');
+    // 3.验证邮箱（格式：xxx@xxx.com xxx@xxx.com.cn）
+    let reg3 = /^\w+@\w+\.com(\.cn)?$/
+    console.log(reg3.test('abc@.com'));  //false
+    console.log(reg3.test('abc@abc.com'));   //true
+    console.log(reg3.test('abc@abc.com.cn'));  //true
+    console.log('--------------');
+    // 4.验证生日（格式：yyyy-mm-dd）
+    let reg4 = /^\d{4}-\d{1,2}-\d{1,2}$/
+    console.log(reg4.test('2025-11-11'));  //true
+    console.log(reg4.test('2025-1-1'));    //true
+    console.log('--------------');
+    // 5.验证年龄（范围是0到120岁）
+    let reg5 = /^\d{1,2}$|^1[01]\d$|^120$/
+    console.log(reg5.test('0'));  //true
+    console.log(reg5.test('8'));  //true
+    console.log(reg5.test('27')); //true
+    console.log(reg5.test('117')); //true
+    console.log(reg5.test('120'));   //true
+    console.log(reg5.test('121'));   //false
+    console.log('--------------');
+    // 6.验证电话号码（可以是座机（座机可以加区号也可以不加区号），也可以是手机）
+    // xxxxxxxx xxx-xxxxxxxx xxxx-xxxxxxxx 1xxxxxxxxxx
+    let reg6 = /^\d{8}$|^\d{3,4}-\d{8}$|^1\d{10}$/
+    console.log(reg6.test('12345678'));
+    console.log(reg6.test('025-12345678'));
+    console.log(reg6.test('0515-12345678'));
+    console.log(reg6.test('15912345678'));
+  </script>
+</body>
+</html>

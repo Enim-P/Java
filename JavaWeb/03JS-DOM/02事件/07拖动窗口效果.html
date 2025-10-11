@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>拖动窗口效果</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .box{
+      width: 150px;
+      height: 150px;
+      background-color: red;
+      position: absolute;
+      cursor: move;
+      left: 100px;
+      top: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <script>
+    let box = document.querySelector('.box')
+    let isDown = false   //是否按下
+    let x = 0    //点击处到box左边的距离
+    let y = 0    //点击处到box上面的距离
+    // box鼠标按下事件
+    box.onmousedown = function(e){
+      isDown = true   //鼠标按下
+      // 是获取当前元素到到浏览器(0,0)坐标的距离
+      let left = this.offsetLeft
+      let top = this.offsetTop
+      // 获取当前鼠标点击位置到浏览器(0,0)坐标的距离
+      let {pageX,pageY} = e
+      x = pageX - left
+      y = pageY - top
+    }
+
+    // window注册鼠标移动事件
+    window.onmousemove = function(e){
+      if(isDown){
+        // 获取当前鼠标点击位置到浏览器(0,0)坐标的距离
+        let {pageX,pageY} = e
+        box.style.left = (pageX-x)+'px'
+        box.style.top = (pageY-y)+'px'
+      }
+    }
+
+    // box鼠标弹起事件
+    box.onmouseup = function(){
+      isDown = false  //鼠标弹起
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>像素</title>
+  <style>
+    /* 
+      物理像素：
+      比如显示器的分辨率是1920*1080，这里的1920就是物理像素，相当于有1920*1080个发光体
+      所以显示器的分辨率越高，图形越清晰。
+      css像素：
+      通常情况下一个css像素对应一个物理像素（PC端）
+      但是在移动端上，由于手机的屏幕尺寸小，而且分辨率还高。
+      如果一个css像素对应一个物理像素的话，就会显得的字体非常小。
+      所以在移动端，通常一个css像素要对应多个物理像素（比例通常是1:2 1:3）
+      比如iphone6，它的物理像素是750*1334，但是它的css像素是375*667，所以比例是1:2
+    */
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    /* 比如下面的盒子，在PC端需要100个物理像素发光，
+    但是在iphone6上需要200个物理像素发光 */
+    .box1{
+      width: 10px;
+      height: 10px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+    <div class="box1"></div>
+</body>
+</html>

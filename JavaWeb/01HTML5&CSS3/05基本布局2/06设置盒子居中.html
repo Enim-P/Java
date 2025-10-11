@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>设置盒子居中</title>
+  <style>
+    .a{
+      width: 700px;
+      height: 600px;
+      border: 2px solid black;
+      position: relative;
+    }
+    .b{
+      width: 300px;
+      height: 300px;
+      background-color: red;
+      /* 1.手动计算margin的值使盒子居中 */
+      /* margin: 150px auto; */
+      position: absolute;
+      left:0;
+      top:0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+    }
+    /* 2.父元素设置为相对定位，子元素设置为绝对定位，
+    将子元素的left，top，right，bottom属性全部设置为0，
+    margin设置为auto
+    虽然步骤多，但是不需要计算。 */
+  </style>
+</head>
+<body>
+  <div class="a">
+    <div class="b"></div>
+  </div>
+</body>
+</html>

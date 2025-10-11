@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>动态渲染表格</title>
+  <style>
+    table{
+      border-collapse: collapse;
+    }
+    td,th{
+      border: 1px solid #ccc;
+      padding: 2px 20px;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>年龄</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+  <hr>
+  <table>
+    <tr>
+      <td>学号：</td>
+      <td><input type="text" id="no"></td>
+    </tr>
+     <tr>
+      <td>姓名：</td>
+      <td><input type="text" id="name"></td>
+    </tr>
+     <tr>
+      <td>性别：</td>
+      <td><input type="text" id="sex"></td>
+    </tr>
+     <tr>
+      <td>年龄：</td>
+      <td><input type="text" id="age"></td>
+    </tr>
+     <tr>
+      <td></td>
+      <td>
+        <button id="add">添加</button>
+        <button id="cancel">取消</button>
+      </td>
+    </tr>
+  </table>
+  <script>
+    // 学生数组
+    let students = [
+      {no:'1001',name:'彭于晏',sex:'男',age:30},
+      {no:'1002',name:'赵露思',sex:'女',age:25},
+      {no:'1003',name:'周杰伦',sex:'男',age:33},
+      {no:'1004',name:'蔡依林',sex:'女',age:35}
+    ]
+    // 获取tbody对象
+    let tbody = document.querySelector('#tbody')
+    // 遍历学生数组
+    students.forEach(s=>{
+      // 每个学对象创建一个tr
+      let tr = document.createElement('tr')
+      // 每个tr中放置5个td
+      let td1 = document.createElement('td')
+      td1.innerText = s.no
+      let td2 = document.createElement('td')
+      td2.innerText = s.name
+      let td3 = document.createElement('td')
+      td3.innerText = s.sex
+      let td4 = document.createElement('td')
+      td4.innerText = s.age
+      let td5 = document.createElement('td')
+      // td5中放置一个删除按钮
+      let btn = document.createElement('button')
+      btn.innerText="删除"
+      // 给删除按钮注册点击事件
+      btn.onclick = function(){
+        if(confirm('确定删除吗？')){
+          //tr.remove()   // 删除当前行
+          tbody.removeChild(tr)  //通过父元素删除指定的行
+        }
+      }
+      td5.appendChild(btn);
+      tr.appendChild(td1)
+      tr.appendChild(td2)
+      tr.appendChild(td3)
+      tr.appendChild(td4)
+      tr.appendChild(td5)
+      // 将tr添加到tbody中
+      tbody.appendChild(tr)
+    })
+
+    // 封装一个获取元素的方法
+    function $(select){
+      return document.querySelector(select)
+    }
+
+    // 添加按钮点击事件
+    $('#add').onclick = function(){
+      let tr = document.createElement('tr')
+      let td1 = document.createElement('td')
+      td1.innerHTML = $('#no').value
+      let td2 = document.createElement('td')
+      td2.innerText = $('#name').value
+      let td3 = document.createElement('td')
+      td3.innerText = $('#sex').value
+      let td4 = document.createElement('td')
+      td4.innerText = $('#age').value
+      let td5 = document.createElement('td')
+      // td5中放置一个删除按钮
+      let btn = document.createElement('button')
+      btn.innerText="删除"
+      // 给删除按钮注册点击事件
+      btn.onclick = function(){
+        if(confirm('确定删除吗？')){
+          tr.remove()   // 删除当前行
+        }
+      }
+      td5.appendChild(btn);
+      tr.appendChild(td1)
+      tr.appendChild(td2)
+      tr.appendChild(td3)
+      tr.appendChild(td4)
+      tr.appendChild(td5)
+      $('#tbody').appendChild(tr)
+    }
+
+    // 取消按钮点击事件
+    $('#cancel').onclick = function(){
+      $('#no').value = ''
+      $('#name').value = ''
+      $('#sex').value = ''
+      $('#age').value = ''
+    }
+  </script>
+</body>
+</html>

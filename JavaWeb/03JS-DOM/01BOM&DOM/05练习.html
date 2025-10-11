@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    ul{
+      display: flex;
+      margin: 20px;
+    }
+    ul li{
+      width: 70px;
+      height: 30px;
+      background-color: #eee;
+      margin: 0 5px;
+      text-align: center;
+      line-height: 30px;
+      cursor: pointer;
+    }
+    ul li.active{
+      background-color: tomato;
+      color:white;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li class="active">南京</li>
+    <li>杭州</li>
+    <li>福州</li>
+    <li>广州</li>
+    <li>南昌</li>
+  </ul>
+  <script>
+    // 点击切换高亮效果
+    // 获取所有的li标签，并注册点击事件
+    document.querySelectorAll('li').forEach(li=>{
+      li.onclick = function(){
+        // 去掉当前高亮元素的高亮
+        document.querySelector('.active').classList.remove('active')
+        // 给当前点击的元素添加高亮
+        li.classList.add('active')
+      }
+    })
+  </script>
+</body>
+</html>

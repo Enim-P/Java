@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习2</title>
+</head>
+<body>
+  <script>
+    // 输入登录名和密码，要求登录名长度为2-4位，密码长度是6-10位，用户名不能是全数字
+    let loginId = prompt('请输入登录名：')
+    let loginPwd = prompt('请输入密码：')
+    if(loginId.length>=2 && loginId.length<=4){
+      if(isNaN(loginId)){
+        alert("登录名正确！")
+      }else{
+        alert("登录名不能是全数字！")
+      }
+    }else{
+      alert("登录名错误！")
+    }
+    if(loginPwd.length>=6 && loginPwd.length<=10){
+      alert("密码正确！")
+    }else{
+      alert("密码错误！")
+    }
+  </script>
+</body>
+</html>

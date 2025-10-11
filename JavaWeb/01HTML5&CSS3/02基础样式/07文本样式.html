@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文本样式</title>
+  <style>
+    div{
+      font-size: 30px;
+    }
+    /*  颜色的属性值有多种写法：
+        1.使用颜色单词，比如red是红色
+        2.使用十六进制颜色值，#红绿蓝，比如#ff0000是红色
+        3.使用十进制颜色值，rgb(红,绿,蓝)，比如rgb(255,0,0)是红色
+    */
+    .a{
+      color: red;
+    }
+    .b{
+      color: #ff0000;
+    }
+    .c{
+      color: rgb(255, 0, 0);
+    }
+    .d{
+      /* 十六进制颜色值的后面再加上一位用于设置颜色的透明度取值范围是00-ff */
+      color: #ff000099;
+    }
+    .e{
+      /* 十进制颜色值的后面再加上一位用于设置颜色的透明度取值范围是0-1 */
+      color: rgb(255, 0, 0,0.5);
+    }
+    .f{
+      /* 文本对齐方式，属性值包括：left，center，right */
+      text-align: center;
+    }
+    .g{
+      /* 文本首行缩进 */
+      text-indent: 60px;
+      /* 文本行高，属性值不加单位表示行高是字体大小的多少倍 */
+      /* line-height: 2; */
+      /* line-height: 60px; */
+      /* 也可以通过字体的缩写属性设置行高
+      下面的属性值20px是字体大小，40px就是行高 */
+      font: 20px / 40px '幼圆';
+    }
+    .h{
+      /* 文本装饰，属性值包括：
+      underline下划线
+      overline 上划线
+      line-through 删除线
+      none 取消文本装饰（通常我们会给超链接的文本装饰设置为none）
+       */
+      text-decoration: underline;
+    }
+    .i{
+      /* 字符间距 */
+      letter-spacing: 30px;
+    }
+    .j{
+      /* 单词间距，单词间距是根据文本中的空格去判断是否是单词 */
+      word-spacing: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="a">好好学习，天天向上</div>
+  <div class="b">好好学习，天天向上</div>
+  <div class="c">好好学习，天天向上</div>
+  <div class="d">好好学习，天天向上</div>
+  <div class="e">好好学习，天天向上</div>
+  <hr>
+  <div class="f">好好学习，天天向上</div>
+  <div class="g">南京市（Nanjing City），简称“宁”，别称“金陵”“建康”“石头城”，江苏省辖地级市，江苏省省会 [284]，副省级市、特大城市 [402]，位于江苏省西南部、长江下游，是长江三角洲中心区城市 [1]。南京市属北亚热带湿润季风气候，四季分明，雨水充沛，春秋短、冬夏长，年温差较大，素有“天然地质博物馆”之称，长江漫滩、富水软土、岗地、岩溶等多种地貌单元并存。</div>
+  <div class="h">好好学习，天天向上</div>
+  <div class="i">好好学习，Hello World</div>
+  <div class="j">好好 学习，Hello World</div>
+</body>
+</html>

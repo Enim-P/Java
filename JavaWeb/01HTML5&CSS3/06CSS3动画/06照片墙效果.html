@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>照片墙效果</title>
+  <style>
+    .box{
+      width: 920px;
+      height: 400px;
+      margin: 100px auto;
+      /* 父元素相对定位 */
+      position: relative;
+    }
+    img{
+      width: 300px;
+      height: 200px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      /* 子元素绝对定位，这样子元素就相对于父元素定位 */
+      position: absolute;
+      background-color: white;
+      /* 这里只过渡变形属性 */
+      transition: transform .75s;
+    }
+    .a{
+      left: 0;
+      top: 0;
+      transform: rotate(12deg);
+      z-index: 2;
+    }
+    .b{
+      left: 150px;
+      top: 0;
+      transform: rotate(-27deg);
+      z-index: 6;
+    }
+    .c{
+      left: 400px;
+      top: -20px;
+      transform: rotate(-15deg);
+      z-index: 1;
+    }
+    .d{
+      left: 600px;
+      top: 0;
+      transform: rotate(25deg);
+      z-index: 7;
+    }
+    .e{
+      left: 0;
+      top: 150px;
+      transform: rotate(-28deg);
+      z-index: 4;
+    }
+    .f{
+      left: 150px;
+      top:170px;
+      transform: rotate(-14deg);
+      z-index: 8;
+    }
+    .g{
+      left: 400px;
+      top: 170px;
+      transform: rotate(20deg);
+      z-index: 5;
+    }
+    .h{
+      left: 600px;
+      top: 150px;
+      transform: rotate(-35deg);
+      z-index: 3;
+    }
+    img:hover{
+      /* 可以同时设置多个变形函数 */
+      transform: rotate(0) scale(1.2);
+      z-index: 99;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <img class="a" src="./girl/1.jpg"/>
+    <img class="b" src="./girl/2.jpg"/>
+    <img class="c" src="./girl/3.jpg"/>
+    <img class="d" src="./girl/4.jpg"/>
+    <img class="e" src="./girl/5.jpg"/>
+    <img class="f" src="./girl/6.jpg"/>
+    <img class="g" src="./girl/7.jpg"/>
+    <img class="h" src="./girl/8.jpg"/>
+  </div>
+</body>
+</html>

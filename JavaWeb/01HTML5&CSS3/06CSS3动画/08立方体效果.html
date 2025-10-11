@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>立方体效果</title>
+  <style>
+    body{
+      /* 视距设置为1000px */
+      perspective: 1000px;
+    }
+    .box{
+      width: 400px;
+      height: 400px;
+      margin: 200px auto;
+      position: relative;
+      /* 设置为3b变形 */
+      transform-style: preserve-3d;
+      animation: move 20s linear alternate infinite;
+    }
+    .box:hover{
+      /* 鼠标悬停时暂停动画 */
+      animation-play-state: paused;
+    }
+    .box img{
+      width: 400px;
+      height: 400px;
+      position: absolute;
+      /* 设置为3b变形 */
+      transform-style: preserve-3d;
+      /* 设置透明度 */
+      opacity: 0.9;
+      box-shadow: 0 0 10px red;
+    }
+    .box:hover .a{
+      transform: rotateY(90deg) translateZ(-250px);
+    }
+    .box:hover .b{
+      transform: rotateY(90deg) translateZ(250px);
+    }
+    .box:hover .c{
+      transform: rotateX(90deg) translateZ(250px);
+    }
+    .box:hover .d{
+      transform: rotateX(90deg) translateZ(-250px);
+    }
+    .box:hover .e{
+      transform: translateZ(-250px);
+    }
+    .box:hover .f{
+      transform: translateZ(250px);
+    }
+    .a{
+      transform: rotateY(90deg) translateZ(-200px);
+    }
+    .b{
+      transform: rotateY(90deg) translateZ(200px);
+    }
+    .c{
+      transform: rotateX(90deg) translateZ(200px);
+    }
+    .d{
+      transform: rotateX(90deg) translateZ(-200px);
+    }
+    .e{
+      transform: translateZ(-200px);
+    }
+    .f{
+      transform: translateZ(200px);
+    }
+    /* 定义一个动画关键帧 */
+    @keyframes move {
+      from{
+        transform: rotateX(0) rotateY(0);
+      }
+      to{
+        transform: rotateX(720deg) rotateY(-720deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <img class="a" src="./girl/1.jpg"/>
+    <img class="b" src="./girl/2.jpg"/>
+    <img class="c" src="./girl/3.jpg"/>
+    <img class="d" src="./girl/4.jpg"/>
+    <img class="e" src="./girl/5.jpg"/>
+    <img class="f" src="./girl/6.jpg"/>
+  </div>
+</body>
+</html>

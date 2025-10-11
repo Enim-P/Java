@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Map对象</title>
+</head>
+<body>
+  <script>
+    // Map是一种键值对集合
+    let map1 = new Map()
+    // set方法，添加元素，一个键对应一个值，注意：键不能重复
+    map1.set('name','张三')
+    map1.set('age',20)
+    // 如果添加重复的键，后面的会替换前面的
+    map1.set('age',30)
+    console.log(map1);
+    // get方法，根据键获取值
+    console.log(map1.get('age'));
+    // has方法，判断有没有指定的键
+    if(!map1.has('name')){
+      map1.set('name','李四')
+    }
+    console.log(map1);
+    // keys方法，获取所有键
+    console.log(map1.keys());
+    // values方法，获取所有值
+    console.log(map1.values());
+    // 遍历所有的键
+    [...map1.keys()].forEach(k=>{
+      console.log(k);
+      // 根据键获取值
+      console.log(map1.get(k));
+    })
+  </script>
+</body>
+</html>

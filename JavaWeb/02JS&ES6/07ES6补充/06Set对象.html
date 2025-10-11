@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Set对象</title>
+</head>
+<body>
+  <script>
+    // Set是一种集合，用于存储唯一的数据，就是存储的数据不能重复
+    let set1 = new Set()
+    //add方法，添加元素，不能添加重复的元素
+    set1.add(11)
+    set1.add(22)
+    set1.add(33)
+    set1.add(44)
+    set1.add(44)
+    console.log(set1);
+    // has方法，判断是否有指定的元素
+    console.log(set1.has(33));
+    
+    //delete方法，删除元素
+    set1.delete(33)
+    console.log(set1);
+    let arr = [11,22,33,44,11,22,33,44,55]
+    //可以直接根据一个数组对象，创建一个Set对象，它会知道对数组中的数据去重
+    let set2 = new Set(arr);
+    console.log(set2);
+    //通过展开元素，可以将Set对象重新转为数组对象
+    let arr2 = [...set2]
+    console.log(arr2);
+    
+  </script>
+</body>
+</html>

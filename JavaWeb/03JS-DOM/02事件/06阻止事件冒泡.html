@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>阻止事件冒泡</title>
+  <style>
+    .a{
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+    .b{
+      width: 100px;
+      height: 100px;
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="a">
+    <div class="b"></div>
+  </div>
+  <script>
+    document.querySelector('.a').onclick = function(){
+      console.log('点击了a');
+    }
+    //当我们点击b的时候，不想也触发a，这个时候就需要使用阻止事件冒泡
+    document.querySelector('.b').onclick = function(e){
+      // 事件对象的stopPropagation方法，用于阻止事件冒泡
+      e.stopPropagation();
+      console.log('点击了b');
+    }
+  </script>
+</body>
+</html>

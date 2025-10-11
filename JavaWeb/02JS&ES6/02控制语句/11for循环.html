@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>for循环</title>
+</head>
+<body>
+  <script>
+    // for循环，就是由while循环演变而来
+    // while循环的三要素：1.循环变量，2.循环条件判断，3.循环变量赋值，是分开定义的
+    // for循环的的三要素是集中在一起定义的
+    /* for(let i=1;i<=5;i++){
+      console.log("好好学习，天天向上"+i);
+    } */
+    // 循环中的两种跳出语句
+    for(let i=1;i<=10;i++){
+      if(i%2==0){
+        // 跳过本次循环，继续执行下一次循环
+        // 本次循环中continue往下的代码就不执行了
+        continue
+      }
+      if(i==7){
+        // 跳出整个循环，无论循环还剩下多次次，提前结束
+        break
+      }
+      console.log("好好学习"+i);
+    }
+  </script>
+</body>
+</html>

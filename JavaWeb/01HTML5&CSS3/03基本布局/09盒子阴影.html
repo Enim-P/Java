@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>盒子阴影</title>
+  <style>
+    .a{
+      width: 200px;
+      height: 200px;
+      background-color: lightblue;  
+      margin: 50px;
+      text-align: center;
+      line-height: 200px;
+      font-size: 30px;
+      letter-spacing: 10px;
+      /* 文本阴影 */
+      text-shadow: 10px 10px 5px red;
+      /* 盒子阴影，如果要设置盒子内阴影，需要第一个属性值设置inset */
+      box-shadow: inset -10px -10px 5px red;
+    }
+    /* 鼠标悬停在图片上，显示发光效果 */
+    img:hover{
+      box-shadow: 0px 0px 10px red;
+    }
+  </style>
+</head>
+<body>
+  <div class="a">好好学习</div>
+  <hr>
+  <img src="./imgs/cat.jpg"/>
+</body>
+</html>

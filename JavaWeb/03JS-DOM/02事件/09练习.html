@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>兵哥打字通</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .box{
+      width: 900px;
+      height: 100vh;
+      background-color: black;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+    .zm{
+      width: 30px;
+      height: 30px;
+      color: white;
+      text-align: center;
+      line-height: 30px;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    
+  </div>
+  <script>
+    // 随机获取一个颜色
+    function getColor(){
+      // 颜色列表
+      let colorList = '0123456789ABCDEF'
+      let color = '#'
+      for(let i=0;i<6;i++){
+        color += colorList[Math.floor(Math.random()*16)]
+      }
+      return color
+    }
+    // 随机返回一个字母
+    function getZm(){
+      // 字母列表
+      let zmList = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+      return zmList[Math.floor(Math.random()*26)]
+    }
+    // 容器div
+    let box = document.querySelector('.box')
+    
+    let timer1 = null;  //用于接收生成字母的定时器标识
+    let timer2 = null; //用于接收字母下落的定时器标识
+    // 生成字母的方法
+    function createZm(){
+      // 生成字母的定时器
+      timer1 = setInterval(() => {
+        // 创建一个字母
+        let zm = document.createElement('div')
+        zm.className = 'zm'
+        zm.style.left = Math.floor(Math.random()*870)+'px'
+        zm.style.top = '-45px'
+        zm.style.backgroundColor = getColor()
+        zm.innerText = getZm()
+        box.appendChild(zm)
+      }, 500);
+    }
+
+    // 字母下落的方法
+    function downZm(){
+      // 字母下落的定时器
+      timer2 = setInterval(() => {
+        document.querySelectorAll('.zm').forEach(zm=>{
+          // 当字母的top超过了窗口的可见高度，移除字母
+          if(parseInt(zm.style.top) > window.innerHeight){
+            zm.remove()
+          }
+          // 重新设置字母的top
+          zm.style.top = parseInt(zm.style.top)+10+'px'
+        })
+      }, 200);
+    }
+    
+    // 给整个窗口注册键盘弹起事件
+    window.onkeyup = function(e){
+      let {key,keyCode} = e;
+      // 回车实现开始暂停游戏
+      if(keyCode==13){
+        if(timer1==null){
+          createZm()
+          downZm()
+        }else{
+          clearInterval(timer1)
+          clearInterval(timer2)
+          timer1 = null 
+          timer2 = null
+        }
+      }
+      if(timer1==null) return 
+      // 判断是否是清除指定字母div
+      document.querySelectorAll('.zm').forEach(zm=>{
+        if(zm.innerText.toLocaleLowerCase()==key){
+          zm.remove()
+        }
+      })
+    }
+  </script>
+</body>
+</html>

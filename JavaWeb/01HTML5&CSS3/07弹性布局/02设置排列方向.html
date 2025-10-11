@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>设置排列方向</title>
+  <style>
+    .box1,.box2,.box3,.box4{
+      width: 500px;
+      height: 500px;
+      border: 1px solid black;
+      margin: 5px;
+      /* 设置为弹性盒子布局 */
+      display: flex;
+    }
+    div[class^="box"] div{
+      width: 100px;
+      height: 100px;
+      background-color: lightblue;
+      border: 1px solid red;
+      text-align: center;
+      line-height: 100px;
+      font-size:40px;
+    }
+    .box1{
+      /* 设置弹性盒子布局的排列方向，row是按行布局(类似于左浮动布局)，默认值 */
+      flex-direction: row;
+    }
+    .box2{
+      /* row-reverse是按行方向布局(类似于右浮动布局) */
+      flex-direction: row-reverse;
+    }
+    .box3{
+      /* column是按列布局 */
+      flex-direction: column;
+    }
+    .box4{
+      /* column-reverse是按列方向布局 */
+      flex-direction: column-reverse;
+    }
+  </style>
+</head>
+<body>
+  <div class="box1">
+    <div>A</div>
+    <div>B</div>
+    <div>C</div>
+    <div>D</div>
+  </div>
+  <div class="box2">
+    <div>A</div>
+    <div>B</div>
+    <div>C</div>
+    <div>D</div>
+  </div>
+  <div class="box3">
+    <div>A</div>
+    <div>B</div>
+    <div>C</div>
+    <div>D</div>
+  </div>
+  <div class="box4">
+    <div>A</div>
+    <div>B</div>
+    <div>C</div>
+    <div>D</div>
+  </div>
+</body>
+</html>

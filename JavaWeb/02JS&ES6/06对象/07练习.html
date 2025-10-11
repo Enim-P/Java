@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>统计字符串中每个字符出现的次数</title>
+</head>
+<body>
+  <script>
+    let str = 'dsfasdgeqgwerherhasdgesrhwegaWrherhdsgsdheqrheasdhda'
+    //将上面的字符串转为下面的格式
+    /*
+      {
+        a:7,
+        b:8,
+        c:2,
+        ....
+      }
+    */
+    let arr = str.split('')
+    let obj = {}
+    arr.forEach(k=>{
+      if(obj[k]){
+        obj[k]++;
+      }else{
+        obj[k] = 1
+      }
+    })
+    console.log(obj);
+    //找出出现次数最多的字符
+    /*
+      {
+        name:'e'
+        count:8
+      }
+    */
+    let max = {
+      name:'',
+      count:0
+    }
+    Object.keys(obj).forEach(k=>{
+      if(obj[k]>max.count){
+        max.name = k;
+        max.count = obj[k]
+      }
+    })
+    console.log(max);
+    
+    
+    let key = undefined
+    // key值如果是'' null undefined 0
+    // if的条件都会自动转为false
+    if(key){
+      console.log('进来');
+    }
+
+  </script>
+</body>
+</html>

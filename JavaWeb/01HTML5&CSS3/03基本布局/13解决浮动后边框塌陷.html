@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>解决浮动后边框塌陷问题</title>
+  <style>
+    .a{
+      border: 1px solid black;
+      /* 解决边框塌陷办法一：父元素明确高度，前提是要知道最高的子元素有多高 */
+      height: 100px;
+    }
+    .a div{
+      width: 100px;
+      height: 100px;
+      background-color: lightblue;
+      /* 子元素浮动后，会脱离标准文档流，这个时候父元素就无法控制了 */
+      float: left;
+    }
+    .b{
+      border: 1px solid red;
+    }
+    .b div{
+      width: 100px;
+      height: 100px;
+      background-color: lightgreen;
+      float: left;
+    }
+    /* 解决边框塌陷办法二：在父容器的最下面添加一个元素，用这个元素清除前面的浮动 */
+    .b span{
+      display: block;
+      /* 清除前面的浮动 */
+      clear: both;
+    }
+    .c{
+      border: 1px solid green;
+    }
+    .c div{
+      width: 100px;
+      height: 100px;
+      background-color:lightpink;
+      float: left;
+    }
+    /* ::before用于指定元素的上面添加内容
+    ::after用于在指定元素的下面添加内容 */
+    .c::before{
+      /* 定义元素类型 */
+      display: block;
+      /* 定义元素里面的内容 */
+      /* content: '开始...'; */
+    }
+    /* 解决边框塌陷办法三：通过::after结构伪类选择器，在父元素的最下面添加一个元素，
+    使用该元素清除前面的浮动。
+    其实办法三和办法二的原理是一样的，办法二是手动添加元素，办法三是动态添加元素 */
+    .c::after{
+      display: block;
+      /* content:'结束...'; */
+      content: '';
+      /* 清除前面的浮动 */
+      clear: both;
+    }
+    .d{
+      border: 1px solid black;
+      /* 解决边框塌陷办法四：父元素添加overflow: hidden样式 */
+      /* overflow表示溢出处理，hidden表示溢出部分隐藏 */
+      overflow: hidden;
+    }
+    .d div{
+      width: 100px;
+      height: 100px;
+      background-color:lightskyblue;
+      float: left;
+    }
+  </style>
+</head>
+<body>
+  <div class="a">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div class="b">
+    <div></div>
+    <div></div>
+    <div></div>
+    <!-- 这个span标签不需要定义内容，只是单纯的清除前面的浮动 -->
+    <span></span>
+  </div>
+  <div class="c">
+    <div>北京</div>
+    <div>上海</div>
+    <div>广州</div>
+  </div>
+  <div class="d">
+    <div>北京</div>
+    <div>上海</div>
+    <div>广州</div>
+  </div>
+</body>
+</html>

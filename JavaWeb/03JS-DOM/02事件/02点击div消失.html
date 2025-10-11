@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>点击div消失</title>
+  <style>
+    .box{
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <button id="start">开始</button>
+  <button id="paused">暂停</button>
+  <button id="stop">停止</button>
+  <script>
+    function $(select){
+      return document.querySelector(select)
+    }
+    // 获取浏览器的视口宽度
+    console.log(window.innerWidth);
+    // 获取浏览器的视口高度
+    console.log(window.innerHeight);
+    
+    let timer = null;
+    // 开始
+    function run(){
+      // 判断定时是否不为null
+      if(timer!=null){
+        return
+      }
+
+      timer = setInterval(() => {
+        // 创建一个div
+        let div = document.createElement('div')
+        div.className = 'box'
+        div.style.left = (Math.random()*(window.innerWidth-30))+'px'
+        div.style.top = (Math.random()*(window.innerHeight-30))+'200px'
+        document.body.appendChild(div)
+        // 给div注册点击事件
+        div.onclick = function(){
+          this.remove()
+        }
+      }, 2000);
+    }
+
+    $('#start').onclick = function(){
+      run()
+    }
+    $('#paused').onclick = function(){
+      // 清除定时器
+      clearInterval(timer)
+      // 定时器变量重新改成null
+      timer = null
+    }
+    $('#stop').onclick = function(){
+      clearInterval(timer)
+      timer = null
+      // 获取所有的.box，然后全部清除掉
+      document.querySelectorAll('.box').forEach(b=>{
+        b.remove()
+      })
+    }
+    
+  </script>
+</body>
+</html>

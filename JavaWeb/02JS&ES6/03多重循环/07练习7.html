@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在二重循环中使用跳出语句</title>
+</head>
+<body>
+  <script>
+    // 有5家店，每家店最多可以买3件衣服，进入一家店后，提示是否离开本店，
+    // 输入y表示离开(会进入下一家店)，输入n表示买一件衣服，最后输出用户一共买了多少件衣服。
+    let count = 0   //表示购买衣服的总数量
+    for(let i=1;i<=5;i++){
+      alert('欢迎进入第'+i+'家店')
+      for(let j=1;j<=3;j++){
+        let lk = prompt('是否离开(y/n):')
+        if(lk=="y"){
+          break
+        }
+        count++;   //购买数量加1
+      }
+    }
+    alert('一共购买了'+count+'件衣服！！！')
+  </script>
+</body>
+</html>

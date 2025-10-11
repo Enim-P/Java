@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>创建对象的方法</title>
+</head>
+<body>
+  <script>
+    // 在js中，如果a.b，那么a就是对象，b就是a的属性，如果a.b()，b就是a的方法
+    // 对象就是拥有一组属性和方法的集合
+    // 创建对象有两种方式：1.通过构造函数new(创建) 2.通过字面量方式直接定义
+
+    // 方式一：通过构造函数new
+    // 1.必须要先定义类型
+    // 其实就是定义一个函数，该函数通常会首字母大写，我称这样的函数为：构造函数
+    function Student(no,name){
+      // 在构造函数内部定义成员（属性和方法）
+      this.no = no
+      this.name = name
+      this.sayHi = function(){
+        console.log(`你好！我叫${this.name}，学号是${this.no}`);
+      }
+    }
+    // 创建对象，通过构造函数传参给属性赋值
+    let s1 = new Student("1005","李四")
+    s1.sayHi()
+    // 对对象的属性赋值
+    s1.no = "1001"
+    s1.name = "张三"
+    // 调用对象的方法
+    s1.sayHi()
+    console.log("---------------");
+    // 创建一个Object对象
+    let s2 = new Object()
+    // 可以给对象动态添加成员（属性和方法）
+    s2.no = '1001'
+    s2.name = '张三'
+    s2.sayHi = function(){
+      console.log(`你好！我叫${this.name}，学号是${this.no}`);
+    }
+    console.log(s2);
+    s2.sayHi()
+    console.log('-------------------------');
+    // 方式二：使用字面量方式直接定义对象，就是一对{}
+    let s3 = {
+      // 在里面直接定义对象的成员（属性和方法）
+      no:'1001',
+      name:'张三',
+      sayHi:function(){
+        console.log(`你好！我叫${this.name}，学号是${this.no}`);
+      }
+    }
+    s3.sayHi()
+  </script>
+</body>
+</html>

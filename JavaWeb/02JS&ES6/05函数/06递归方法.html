@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>递归方法</title>
+</head>
+<body>
+  <script>
+    // 递归方法：就是一个方法，自己调用自己
+    // 注意：递归方法，一定要控制好何时跳出，否则就是死循环
+
+    // 经典笔试面试题：
+    // 使用递归算法，计算1-20之间所有数之和
+    function calc(num){
+      // 这个if就是递归结束的条件
+      if(num==1){
+        return num;
+      }
+      // 在方法内部，又重新调用了自己，这就是递归
+      let sum = num + calc(num-1);
+      return sum;
+    }
+    let ret = calc(20)
+    console.log(ret);
+    
+  </script>
+</body>
+</html>

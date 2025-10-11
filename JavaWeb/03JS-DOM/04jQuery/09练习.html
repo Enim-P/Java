@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习</title>
+</head>
+<body>
+  <div>
+    <input type="text" id="txt">
+    <button id="add">添加</button>
+  </div>
+  <ul id="box">
+    
+  </ul>
+  <script src="./js/jquery.js"></script>
+  <script>
+    // 序号
+    let nos = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    // 列表数组
+    let list = ['南京','苏州','常州','盐城']
+    
+    // 显示方法
+    function show(){
+      // 先清空结构
+      $('#box').empty()
+      // 遍历数据，展示结构
+      list.forEach((r,i)=>{
+        let li = $('<li>')
+        let span1 = $('<span>')
+        span1.html(nos[i]+". ")
+        let span2 = $('<span>')
+        span2.html(r)
+        let button1 = $('<button>')
+        button1.html('↓')
+        if(i==list.length-1){
+          button1.attr('disabled',true)
+        }
+        //向下按钮点击事件
+        button1.click(function(){
+          let ret = list.splice(i,1)
+          list.splice(i+1,0,ret)
+          show()
+        })
+        let button2 = $('<button>')
+        button2.html('↑')
+        if(i==0){
+          button2.attr('disabled',true)
+        }
+        // 向上按钮点击事件
+        button2.click(function(){
+          let ret = list.splice(i,1)
+          list.splice(i-1,0,ret)
+          show()
+        })
+        let button3 = $('<button>')
+        button3.html('X')
+        // 删除按钮点击事件
+        button3.click(function(){
+          list.splice(i,1)
+          show()  //重新显示
+        })
+        li.append(span1)
+        li.append(span2)
+        li.append(button1)
+        li.append(button2)
+        li.append(button3)
+        $('#box').append(li)
+      })
+    }
+    show()
+
+    //添加按钮点击事件
+    $('#add').click(function(){
+      let txt = $('#txt').val()
+      list.push(txt)
+      show()  //重新显示
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>z-index属性</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    div{
+      width: 200px;
+      height: 200px;
+      position: absolute;
+    }
+    /* 元素定位后，如果发生重叠，后面的div默认会盖住前面的div，
+    可以通过z-index属性进行调整,默认值是0，值越大，显示级别越高，可以取负数 */
+    .a{
+      background-color: red;
+      z-index: 4;
+    }
+    .b{
+      background-color: green;
+      z-index: 5;
+    }
+    .c{
+      background-color: blue;
+      z-index: 3;
+    }
+  </style>
+</head>
+<body>
+  <div class="a"></div>
+  <div class="b"></div>
+  <div class="c"></div>
+</body>
+</html>

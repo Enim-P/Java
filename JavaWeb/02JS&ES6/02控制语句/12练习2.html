@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>会员登录</title>
+</head>
+<body>
+  <script>
+    /*
+      练习题1：会员登录，一共有3次登录机会，如果，第一次登录失败，提示失败原因，并告知还剩下几次机会
+      如果，登录名输入错误，显示信息，并且密码就不需要在输入了 (continue)
+      如果，第一次就登录成功，后面的机会就不需要了 (break)
+    */
+    let loginId = 'admin'  //登录账号
+    let loginPwd = '123456'  //登录密码
+    for(let i=2;i>=0;i--){
+      let id = prompt('请输入账号：')
+      if(loginId != id){
+        alert('账号输入错误！您还有'+i+'次机会！')
+        continue  //跳过本次循环
+      }
+      let pwd = prompt('请输入密码：')
+      if(loginPwd != pwd){
+        alert('密码输入错误！您还有'+i+'次机会！')
+        continue  //跳过本次循环
+      }
+      alert('登录成功！')
+      break   //跳出整个循环
+    }
+  </script>
+</body>
+</html>

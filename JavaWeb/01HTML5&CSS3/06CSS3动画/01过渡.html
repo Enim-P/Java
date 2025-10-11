@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>过渡</title>
+  <style>
+    /* 过渡：指的时样式从一种状态变化到另一种状态 */
+    .a{
+      width: 200px;
+      height: 200px;
+      background-color: lightblue;
+      color: black;
+      margin: 200px auto;
+      text-align: center;
+      line-height: 200px;
+      font-size: 30px;
+      /* 过渡指定的css属性，all表示过渡所有属性 */
+      transition-property: all;
+      /* 过渡时间，单位可以是s或ms */
+      transition-duration: 2s;
+      /* 过渡前等待时间 */
+      transition-delay: .2s;
+      /* 过渡动作函数，属性值包括：
+        linear：匀速
+        ease：先快速再慢速
+        ease-in：加速
+        ease-out：减速
+        ease-in-out：先加速再减速
+      */
+      transition-timing-function: ease-in-out;
+
+      /* 过渡的缩写属性，属性值前两位是：过渡属性和过渡时间，必写
+      后两位是过渡等待时间和动作函数 */
+      transition: all 2s .2s ease-in-out;
+    }
+    /* 在css中，过渡的触发时机可以是鼠标悬停，也可以是鼠标点击
+    :hover 或 :active */
+    /* 鼠标悬停在div上时，背景换成淡粉色，字体颜色换成绿色，大小改成300*300 */
+    .a:hover{
+      width: 300px;
+      height: 300px;
+      background-color: lightpink;
+      color: green;
+      line-height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div class="a">你好世界</div>
+</body>
+</html>

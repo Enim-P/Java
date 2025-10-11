@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>绝对定位</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    div{
+      width: 200px;
+      height: 200px;
+    }
+    .a{
+      background-color: red;
+    }
+    .b{
+      background-color: green;
+      /* absolute是绝对定位，绝对定位是根据最近的定位的父元素重新定位，
+      如果当前元素没有定位的父元素，根据浏览器的左上角(0,0)坐标重新定位，
+      元素采用绝对定位后将会失去它之前的位置 */
+      position: absolute;
+      left: 100px;
+      top: 100px;
+    }
+    .c{
+      background-color: blue;
+    }
+    .d{
+      width: 400px;
+      height: 400px;
+      border: 2px solid black;
+      margin-top: 50px;
+      margin-left: 50px;
+      /* 父元素采用相对定位 */
+      position: relative;
+    }
+    .e{
+      background-color: orange;
+      /* 子元素采用绝对定位，此时子元素就相对父元素重新定位 */
+      position: absolute;
+      left: 50px;
+      top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="a"></div>
+  <div class="b"></div>
+  <div class="c"></div>
+  <div class="d">
+    <div class="e"></div>
+  </div>
+</body>
+</html>

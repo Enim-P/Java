@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>圆角边框</title>
+  <style>
+    div{
+        width: 200px;
+        height: 200px;
+        background-color: lightblue;
+        box-sizing: border-box;
+        border: 1px solid black;
+        margin: 10px;
+    }
+    .a{
+      /* 分别设置四个角的圆角 */
+      border-radius: 20px 40px 60px 80px;
+    }
+    .b{
+      /* 左下角采用右上角的圆角大小 */
+      border-radius: 20px 40px 60px;
+    }
+    .c{
+      /* 左上和右下圆角大小为20px，右上和左下圆角大小为40px */
+      border-radius: 20px 40px;
+    }
+    .d{
+      /* 四个圆角设置相同的大小 */
+      border-radius: 100px;
+    }
+    .e{
+      border-radius: 0 100px 100px 0;
+      width: 100px;
+    }
+    .f{
+      border-radius: 0 0 0 100px;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div class="a"></div>
+  <div class="b"></div>
+  <div class="c"></div>
+  <div class="d"></div>
+  <div class="e"></div>
+  <div class="f"></div>
+</body>
+</html>

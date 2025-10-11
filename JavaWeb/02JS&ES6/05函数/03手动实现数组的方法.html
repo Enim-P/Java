@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>手动实现数组的方法</title>
+</head>
+<body>
+  <script>
+    //1. includes
+    function includes(arr,s){
+      let ret = false
+      for(let i=0;i<arr.length;i++){
+        if(arr[i]==s){
+          ret = true
+        }
+      }
+      return ret;
+    }
+    console.log(includes([11,22,33,44],22));
+    console.log(includes([11,22,33,44],55));
+    //2. push
+    function push(arr,s){
+      arr[arr.length] = s;
+      return arr;
+    }
+    console.log(push([11,22,33,44],55));
+    //3. unshift
+    function unshift(arr,s){
+      let arr2 = []
+      arr2[0] = s;
+      for(let i=0;i<arr.length;i++){
+        arr2[i+1] = arr[i]
+      }
+      return arr2;
+    }
+    console.log(unshift([11,22,33,44],55));
+    console.log('----------------------');
+    //4. pop  删除并返回数组的最后一个元素
+    function pop(arr){
+      // 获取最后一个元素
+      let ret = arr[arr.length-1]
+      // 将数组的长度-1
+      arr.length = arr.length-1
+      return ret;
+    }
+    let arr1 = [11,22,33,44]
+    let ret1 = pop(arr1)
+    console.log(arr1);
+    console.log(ret1);
+    console.log('----------------------');
+    //5. shift  删除并返回数组的第一个元素
+    function shift(arr){
+      let ret = arr[0]
+      for(let i=0;i<arr.length-1;i++){
+        arr[i] = arr[i+1]
+      }
+      arr.length = arr.length-1
+      return ret;
+    }
+    let arr2 = [11,22,33,44]
+    let ret2 = shift(arr2)
+    console.log(arr2);
+    console.log(ret2);
+    console.log('----------------------');
+    //6. reverse   反转数组
+    function reverse(arr){
+      // 获取数组的长度
+      let len1 = arr.length
+      // 获取数组一半的长度
+      let len2 = Math.floor(arr.length/2)
+      // 利用循环，实现两端更换
+      for(let i=0;i<len2;i++){
+        let temp = arr[i]
+        arr[i] = arr[len1-1-i]
+        arr[len1-1-i] = temp
+      }
+    }
+    let arr3 = [11,22,33,44,55]
+    reverse(arr3)
+    console.log(arr3);
+  </script>
+</body>
+</html>

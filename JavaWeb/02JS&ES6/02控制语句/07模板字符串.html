@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模板字符串</title>
+</head>
+<body>
+  <script>
+    let name = '周杰伦'
+    let age = 30
+    let sex = '男'
+    let score = 88
+    let str1 = '大家好！我叫'+name+'，今年'+age+'岁，性别是'+sex+'，考试成绩是'+score+'分'
+    console.log(str1);
+    // ES6推出了模板字符串，就是一对反引号号
+    // 在模板字符串中，可以在${}中定义js的表达式
+    let str2 = `大家好！我叫${name}，今年${age}岁，性别是${sex}，考试成绩是${score}分`;
+    console.log(str2);
+    console.log('------------------------');
+    let str3 = '大家好！我是"张家辉"'
+    console.log(str3);
+    // 如果一个字符串的内容中既要包含单引号 也要包含双引号，可以使用转义字符串\' \"
+    // 常用的转义字符还包括：\t(水平制表符) \n(换行符) \\(\)
+    let str4 = "\'大家好\'！我是\"张家辉\""
+    console.log(str4);
+    // 可以使用模板字符串简化上面的做法
+    let str5 = `'大家好'！我是"张家辉"`
+    console.log(str5);
+    console.log('------------------------');
+    let num1 = 100
+    let num2 = 200
+    // 传统的字符串拼接
+    console.log(num1+"+"+num2+"="+(num1+num2));
+    // 模板字符串拼接
+    console.log(`${num1}+${num2}=${num1+num2}`);
+    
+  </script>
+</body>
+</html>

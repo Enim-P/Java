@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01初识JavaScript</title>
+</head>
+<body>
+  <div>网页内容省略....</div>
+
+  <!-- 在网页中JavaScript代码必须要放在在script标签中运行，
+   script标签可以放在在网页的任何地方，但是最后放在在body的最下方，
+   因为浏览器是自上而下执行代码的，将JS放置在最下方是确保网页加载完毕后再执行JS程序。
+  JavaScript是一种轻量级、解释型编程语言，广泛应用于网页开发中，增强网页的交互性和动态性。
+  -->
+  <!-- ES:ECMAScript,是脚本语言标准，JS:JavaScript,是基于ES标准的实现语言。
+   ES6，又称为ECMAScript2015，是2015年推出的全新的标准，它是一次重大的改革，推动的前端的大力发展。
+   后面其实还推出了ES7，SE8，SE9...SE12，都是在SE6的基础上继续补充，所以我将SE6之后的所有版本都称为SE6 -->
+  <script>
+    // 通过time和timeEnd测试一段程序的运行时长
+    console.time("bing")
+    // 输出语句
+    console.log("输出语句")
+    console.warn("输出警告信息")
+    console.error("输出错误信息")
+    // window是浏览器环境中的全局对象
+    console.log(window.location);
+    // 以表格的信息输出对象的属性
+    console.table(window.location)
+    console.timeEnd("bing")
+  </script>
+</body>
+</html>

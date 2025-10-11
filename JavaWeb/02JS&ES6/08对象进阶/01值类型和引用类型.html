@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>值类型和引用类型</title>
+</head>
+<body>
+  <script>
+    /*
+      在js中，值类型包括：number,boolean,string，值类型在传递时传的是副本
+      对象，数组，函数，是引用类型，引用类型在传递时传的是地址
+    */
+    let num1 = 100;
+    let num2 = num1;  //将num1的值复制一份给num2
+    console.log("num1:"+num1);
+    console.log("num2:"+num2);
+    console.log("-----------------------");
+    num1 = 200;   //这里重新修改num1的值，num2是不会变化的
+    console.log("num1:"+num1);
+    console.log("num2:"+num2);
+    console.log("-----------------------");
+    let obj1 = {
+      name:'小芳',
+      age:18
+    }
+    let obj2 = obj1;  //将obj1的地址复制一份给obj2，此时obj1和obj2都指向obj1的堆空间
+    console.log(obj1);
+    console.log(obj2);
+    console.log("-----------------------");
+    // 这里修改obj1对象的内容，obj2也会变化，因为obj2指向的就是obj1的堆空间
+    obj1.name = "小天"
+    obj1.age = 20
+    console.log(obj1);
+    console.log(obj2);
+    console.log("-----------------------");
+    // 这里是直接给obj1换了一个新对象，此时obj1和obj2就分别指向不同的堆空间
+    obj1 = {
+      name:'小强',
+      age:25
+    }
+    console.log(obj1);
+    console.log(obj2);
+    console.log("-----------------------");
+    const s1 = "hello"
+    // s1 = "你好"  //这里会报错，常量不能修改
+    const s2 = {
+      name:'小杰',
+      age:22
+    }
+    // 直接更新常量对象的地址，会报错
+    // s2 = {
+    //   name:'小兰',
+    //   age:25
+    // }
+    // 但是可以修改常量对象的属性内容
+    s2.name = '小兰'
+    s2.age = 25
+    console.log(s2);
+    console.log("-----------------------");
+    let obj3 = {
+      name:'张三',
+      age:20,
+      sex:'男',
+      car:{
+        name:'宝马',
+        color:'红色'
+      }
+    }
+    // for in 循环可以遍历出对象的所有属性
+    for(let key in obj3){
+      console.log(key); //属性的名称
+      console.log(typeof obj3[key]); //属性的类型
+    }
+  </script>
+</body>
+</html>

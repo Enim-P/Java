@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>其他样式</title>
+  <style>
+    .a{
+      width: 300px;
+      height: 200px;
+      background-color: lightblue;
+      /* 文本水平居中 */
+      text-align: center;
+      /* 设置文本的行高=容器的高度，来设置文本垂直居中 */
+      line-height: 200px;
+      font-size: 22px;
+      /* 字符间距 */
+      letter-spacing: 6px;
+      /* 设置文本阴影，四个参数分别是：
+      X轴偏移量 Y轴偏移量 模糊半径 阴影颜色 */
+      text-shadow: -5px 10px 5px red;
+    }
+    .b{
+      /* 设置图片两端文本的垂直对齐方式 */
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <div class="a">好好学习，天天向上</div>
+  <hr>
+  <div>
+    两只小猫
+    <img class="b" src="./imgs/cat.jpg">
+    两只小猫
+  </div>
+</body>
+</html>

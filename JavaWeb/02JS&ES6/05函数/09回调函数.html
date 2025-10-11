@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>回调函数</title>
+</head>
+<body>
+  <script>
+    // 当一个函数的参数是一个函数时，此时我们也称这个函数为回调函数
+    // 所以回调函数是高阶函数的一种
+
+    let arr = [11,22,33,44,55,66,111,222,333,444]
+    // 返回数组中所有的偶数
+    function os(){
+      let ret = []
+      for(let i=0;i<arr.length;i++){
+        if(arr[i]%2==0){
+          ret.push(arr[i])
+        }
+      }
+      return ret;
+    }
+    console.log(os());
+    
+    // 返回数组中所有的奇数
+    function js(){
+      let ret = []
+      for(let i=0;i<arr.length;i++){
+        if(arr[i]%2!=0){
+          ret.push(arr[i])
+        }
+      }
+      return ret;
+    }
+    console.log(js());
+
+    // 返回数组中所有的三位数
+    function sws(){
+      let ret = []
+      for(let i=0;i<arr.length;i++){
+        if(arr[i]>=100 && arr[i]<1000){
+          ret.push(arr[i])
+        }
+      }
+      return ret;
+    }
+    console.log(sws());
+    
+    console.log('--------------------------');
+    // 为什么叫回调函数？
+    // 因为在执行当前函数的过程中，它突然回头去调用参数函数
+    function filter(callback){
+      let ret = []
+      for(let i=0;i<arr.length;i++){
+        // 这里通过调用参数函数callback，将当前数据传给它
+        // callback函数，如何返回ture，表示条件成立，添加数据到ret数组
+        if(callback(arr[i])){
+          ret.push(arr[i])
+        }
+      }
+      return ret;
+    }
+    
+    // 获取所有偶数
+    function isOs(val){
+      return val%2==0
+    }
+    let ret1 = filter(isOs)
+    console.log(ret1);
+    
+    // 获取所有奇数
+    let ret2 = filter(function(a){
+      return a%2!=0
+    })
+    console.log(ret2);
+
+    // 获取三位数
+    let ret3 = filter(b => b>=100 && b<1000)
+    console.log(ret3);
+
+    // 获取能被3整除的数
+    let ret4 = filter(c => c%3 == 0)
+    console.log(ret4);
+    
+
+    // 回调函数的作用：
+    // 在函数内部搭建固定框架，将动态的条件通过回调函数传入
+    // 所以回调函数减少了代码的冗余
+    
+  </script>
+</body>
+</html>

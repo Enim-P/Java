@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>if选择结构</title>
+</head>
+<body>
+  <script>
+    // 输入成绩，判断成绩是否大于80分，如果大于80分，奖励iphone17一部
+    var cj = prompt('请输入考试成绩：')
+    // if选择结构，()里面的条件成立，执行{}里面的操作
+    // 可以单独使用，也可以结合else一起使用
+    /*
+    if(cj>80){
+      console.log("奖励iphone17一部");
+    }else{
+      console.log("继续加油！！！");
+    }
+    */
+    if(cj>90){
+      console.log("奖励iphone17一部");
+    }else if(cj>80){
+      console.log("奖励小米手机一部");
+    }else if(cj>=70){
+      console.log("奖励一个索尼耳机");
+    }else if(cj>=60){
+      console.log("继续加油！！！");
+    }else{
+      console.log("罚抄代码！！！");
+    }
+  </script>
+</body>
+</html>

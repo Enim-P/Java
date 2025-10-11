@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>switch选择结构</title>
+</head>
+<body>
+  <script>
+    /*
+      请输入考试名次，
+      第一名：奖励iphone17
+      第二名：奖励小米17
+      第三名：奖励索尼耳机
+      第四名：奖励iphone17手机壳
+      否则：没有奖励
+    */
+    var mc = parseInt(prompt('请输入考试名次：'))
+    switch(mc){
+      case 1: 
+        console.log('奖励iphone17');
+        // break的作用是跳出switch，因为一旦满足其中一个case，后续的case就会跳过判断直接执行
+        break;  
+      case 2: 
+        console.log('奖励小米17');
+        break;
+      case 3: 
+        console.log('奖励索尼耳机');
+        break;
+      case 4: 
+        console.log('奖励iphone17手机壳');
+        break;
+      // 所以的case都不成立时，执行default
+      default: 
+        console.log('没有奖励');
+        break;
+    }
+    // 总结：多重if选择结构比较适合用于区间判断，switch选择结构比较适合等值判断
+  </script>
+</body>
+</html>

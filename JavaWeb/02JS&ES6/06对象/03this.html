@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>this</title>
+</head>
+<body>
+  <script>
+    // 在构造函数中，通过this定义成员（属性和方法）
+    // 在方法中使用this指向方法的调用者
+    function Car(name,color){
+      // 通过this定义类的成员变量
+      this.name = name
+      this.color = color
+      // 通过this定义类的成员方法
+      this.run = function(speed){
+        console.log(`一辆${this.color}的${this.name}汽车，正在以${speed}的时速在行驶...`);
+      }
+    }
+    let car = new Car('法拉利','红色')
+    car.run(300)
+    console.log('-------------------');
+    let zs = {
+      name:'张三',
+      sayHi(){
+        //谁在执行该方法，该方法中的this就指向谁
+        console.log(this);
+        console.log(`大家好！我叫${this.name}`);
+      }
+    }
+    zs.sayHi()
+    let ls = {
+      name:'李四'
+    }
+    // 将zs的sayHi方法，传给了ls，其实是zs和ls的sayHi方法，都是指向zs的sayHi方法
+    ls.sayHi = zs.sayHi
+    ls.sayHi()  //谁.sayHi，sayHi中的this就指向谁
+    console.log('-------------------');
+    // 在全局定义的成员，会自动称为window对象的属性
+    var name = "小强"
+    // 上面的name变量会成为window对象的属性
+    console.log(window.name);
+    let xm = {
+      name:'小明',
+      friend:()=>{
+        return {
+          name:'小天',
+          sayHi:()=>{
+            // 注意：箭头函数中没有this，如果在箭头函数中使用了this
+            // 该this指向上层函数中的this
+            // 如果没有上层函数，或者上层函数也就是箭头函数，this最终会指向window对象
+            console.log(this);
+            console.log(`大家好！我叫${this.name}`);
+          }
+        }
+      }
+    }
+    xm.friend().sayHi()
+  </script>
+</body>
+</html>

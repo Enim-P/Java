@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>嵌套if选择结构</title>
+</head>
+<body>
+  <script>
+    /*
+    练习题：
+    请输入是否是会员，输入y是会员，输入n不是会员
+    请输入消费金额
+    会员：消费打8折，满100元打6折
+    非会员：消费满200元打9折，不满200元不打折
+    最后输出本次实际消费金额
+    */
+    var hy = prompt("是否是会员(y/n)：")
+    var money = parseFloat(prompt('请输入消费金额：'))
+    if(hy=="y"){
+      if(money>=100){
+        money = money*0.6
+      }else{
+        money = money*0.8
+      }
+    }else{
+      if(money>=200){
+        money = money*0.9
+      }
+    }
+    alert("本次消费金额："+money)
+  </script>
+</body>
+</html>

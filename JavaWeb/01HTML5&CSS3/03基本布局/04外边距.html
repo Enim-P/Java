@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>外边距</title>
+  <style>
+    /* body有默认的外边距 */
+    body{
+      margin: 0;
+    }
+
+    div{
+      width: 200px;
+      height: 200px;
+      background-color: lightblue;
+      font-size: 20px;
+      border: 2px solid black;
+    }
+    .a{
+      /* 分别设置盒子的上、右、下、左四条边的外边距 */
+      margin-top: 40px;
+      margin-right: 60px;
+      margin-bottom: 80px;
+      margin-left: 100px;
+    }
+    .b{
+      /* 使用外边距的缩写属性，统一设置四条边的外边距 */
+      margin: 40px 60px 80px 100px;
+    }
+    /* 注意：如果两个盒子的上下外边距重叠，取最大值的外边距 */
+    .c{
+      /* 设置4条边相同的外边距 */
+      margin: 50px;
+    }
+    .d{
+      /* 设置一个盒子在水平方向居中，
+      上下的外边距设置为0，左右的外边距设置为自动（左右平分） */
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="a">好好好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习</div>
+  <div class="b">好好好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习</div>
+  <div class="c">好好好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习</div>
+  <div class="d">好好好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习好好学习</div>
+</body>
+</html>

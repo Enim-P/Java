@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>初体验弹性盒子布局</title>
+  <style>
+    .box{
+      width: 1000px;
+      height: 500px;
+      border: 1px solid black;
+      /* 设置父元素为弹性盒子，子元素默认横着排列 */
+      display: flex;
+      /* 设置子元素水平方向对齐排列方式 */
+      justify-content: center;
+      /* 设置子元素垂直方向对齐排列方式 */
+      align-items: center;
+    }
+    .box div{
+      width: 300px;
+      height: 200px;
+    }
+    .a{
+      background-color: lightblue;
+    }
+    .b{
+      background-color: lightcoral;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="a"></div>
+    <div class="b"></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>换行对齐方式</title>
+  <style>
+    .box1{
+      width: 600px;
+      height: 600px;
+      border: 1px solid black;
+      margin: 5px;
+      /* 设置为弹性盒子布局 */
+      display: flex;
+      /* flex-wrap属性，设置换行方式，属性值包括：
+      nowrap不换行，wrap换行，wrap-reverse反向换行 */
+      flex-wrap: wrap;
+      /* align-content属性，设置行与行的对齐方式
+      属性值跟justify-content的属性值一模一样 */
+      /* align-content: flex-start; */
+      /* align-content: flex-end; */
+      /* align-content: center; */
+      /* align-content: space-between; */
+      /* align-content: space-around; */
+      align-content: space-evenly;
+    }
+    .box1 div{
+      width: 80px;
+      height: 80px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+  <div class="box1">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>10</div>
+    <div>11</div>
+    <div>12</div>
+    <div>13</div>
+    <div>14</div>
+    <div>15</div>
+    <div>16</div>
+    <div>17</div>
+    <div>18</div>
+    <div>19</div>
+    <div>20</div>
+    <div>21</div>
+  </div>
+</body>
+</html>

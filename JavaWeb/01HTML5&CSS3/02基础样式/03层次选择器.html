@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>层次选择器</title>
+  <style>
+    /* 后代选择器 */
+    .a p{
+      font-size: 20px;
+    }
+    /* 子选择器 */
+    .a>p{
+      color: red;
+    }
+    /* 相邻兄弟选择器，紧挨着当前元素下面的第一个元素 */
+    .b+div{
+      border: 1px solid #ccc;
+    }
+    /* 通用兄弟选择器，当前元素下面的所有同辈元素 */
+    .b~p{
+      background-color: lightblue;
+    }
+  </style>
+</head>
+<body>
+  <div class="a">
+    <p>南京</p>
+    <p>苏州</p>
+    <div class="b">
+      <p>无锡</p>
+      <p>常州</p>
+    </div>
+    <div class="c">
+      <p>南通</p>
+      <p>泰州</p>
+    </div>
+    <p>盐城</p>
+    <p>扬州</p>
+  </div>
+</body>
+</html>

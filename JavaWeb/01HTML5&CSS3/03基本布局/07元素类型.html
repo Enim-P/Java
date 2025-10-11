@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>元素类型</title>
+  <style>
+    /* 网页中的元素分为：块级元素和行级元素
+    div默认是块级元素，块级元素独占一行，识别宽高属性
+    span默认是行级元素，按行显示，不识别宽高属性
+    */
+    div{
+      width: 100px;
+      height: 100px;
+      background-color: lightblue;
+      border: 1px solid black;
+      /* display属性设置元素的类型，inline表示行级元素 */
+      display: inline;
+    }
+    span{
+      width: 100px;
+      height: 100px;
+      background-color: lightcoral;
+      border: 1px solid black;
+      /* block表示块级元素 */
+      /* display: block; */
+      /* inline-block是行内块元素，
+      行内块元素的特点是：同时具备了行级元素按行显示和块级元素识别宽高的特征 */
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div>北京</div><div>南京</div><div>合肥</div>
+  <hr>
+  <span>青岛</span><span>济南</span><span>南宁</span>
+  <hr>
+  
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习</title>
+</head>
+<body>
+  <script>
+    function menu(){
+      let no = parseInt(prompt(`学生管理系统：
+      1.查询学生 2.添加学生 3.修改学生 4.删除学生 0.退出系统`))
+      if(no==1){
+        alert('成功查询学生！')
+      }else if(no==2){
+        alert('成功添加学生！')
+      }else if(no==3){
+        alert('成功修改学生！')
+      }else if(no==4){
+        alert('成功删除学生！')
+      }else{
+        alert('成功退出系统！')
+      }
+
+      // 这个if是递归结束的条件
+      if(no!=0){
+        // 使用递归实现菜单方法
+        menu()
+      }
+      
+    }
+
+    menu()
+  </script>
+</body>
+</html>

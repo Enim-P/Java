@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>固定定位</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    div{
+      width: 200px;
+      height: 200px;
+    }
+    .a{
+      background-color: red;
+    }
+    .b{
+      background-color: green;
+      /* 绝对定位 */
+      position: absolute;
+      left: 100px;
+      top: 100px;
+    }
+    .c{
+      background-color: blue;
+      /* 固定定位，是根据浏览器的左上角重新定位，不会随着的浏览器滚动条的滚动而移动，
+      始终固定在指定的位置 */
+      position: fixed;
+      left: 350px;
+      top: 100px;
+    }
+    .d{
+      background-color: orange;
+      height: 2000px;
+    }
+  </style>
+</head>
+<body>
+  <div class="a"></div>
+  <div class="b"></div>
+  <div class="c"></div>
+  <div class="d"></div>
+</body>
+</html>

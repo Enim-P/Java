@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>综合练习</title>
+</head>
+<body>
+  <script>
+    // 学生类型
+    class Student{
+      constructor(no,name,age,sex){
+        this.no = no 
+        this.name = name 
+        this.age = age
+        this.sex = sex 
+      }
+    }
+    // 学校类型
+    class School{
+      constructor(){
+        this.students = [
+          new Student('1001','张杰',22,'男'),
+          new Student('1002','李白',27,'女'),
+          new Student('1003','王强',18,'男'),
+          new Student('1004','谢芳',25,'女')
+        ]
+      }
+      menu(){
+        let no = parseInt(prompt(`学生管理系统
+        1.根据学生姓名模糊查询 2.统计学生的平均年龄 3.返回年龄最小的学生信息
+        4.添加新学生 5.修改指定学生的信息 6.删除指定学生 0.退出系统`))
+
+      }
+      
+    }
+    let school = new School()
+    school.menu()
+  </script>
+</body>
+</html>

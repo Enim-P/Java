@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>将字符串转为对象</title>
+</head>
+<body>
+  <script>
+    let str = "no=1001&name=周杰伦&age=30&sex=男"
+    //将上面的字符串转为对象格式
+    /*
+      {
+        no:'1001',
+        name:'周杰伦',
+        age:'30',
+        sex:'男'
+      }
+    */
+    let arr = str.split('&')
+    console.log(arr);
+    let arr2 = arr.map(r=>r.split('='))
+    console.log(arr2);
+    let obj = {}
+    arr2.forEach(r=>{
+      obj[r[0]] = r[1]
+    })
+    console.log(obj);
+    console.log('-----------------');
+    let obj2 = []
+    str.split('&').forEach(r=>{
+      let arr = r.split('=')
+      obj2[arr[0]] = arr[1]
+    })
+    console.log(obj2);
+  </script>
+</body>
+</html>

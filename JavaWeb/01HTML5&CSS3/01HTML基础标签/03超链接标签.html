@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>超链接</title>
+</head>
+<body>
+  <!-- a标签就是超链接标签，href属性设置跳转地址 -->
+  <a href="./02图片标签.html">跳转到02</a>
+  <!-- target属性设置跳转方式：属性值_blank打开新窗口，_self是替换当前窗口，
+   默认属性值是_self -->
+  <a href="./02图片标签.html" target="_blank">跳转到02</a>
+  <!-- 使用a标签跳转到网络地址 -->
+  <a href="https://www.baidu.com" target="_blank">百度</a>
+  <hr>
+  <!-- 上面是超链接的第一种用法：页面间链接 -->
+  <!-- 第二种用法是锚链接，锚链接需要两个a标签，一个定义链接，一个定义锚 -->
+  <!-- 这个a标签定义链接，跳转方式是：#锚标记 -->
+  <a href="#bj">北京</a>
+  <a href="#gz">广州</a>
+  <a href="#cq">重庆</a>
+  <a name="ding"></a>
+  <hr>
+  <div style="height: 2000px;background-color: lightblue;"></div>
+  <div>
+    <!-- 这个a标签定义锚 -->
+    <a name="bj"></a>
+    <h1>北京</h1>
+    <h1>北京</h1>
+    <h1>北京</h1>
+    <h1>北京</h1>
+    <h1>北京</h1>
+    <h1>北京</h1>
+    <a href="#ding">返回顶部</a>
+  </div>
+  <div style="height: 2000px;background-color: lightblue;"></div>
+  <div>
+    <a name="gz"></a>
+    <h1>广州</h1>
+    <h1>广州</h1>
+    <h1>广州</h1>
+    <h1>广州</h1>
+    <h1>广州</h1>
+    <h1>广州</h1>
+    <a href="#ding">返回顶部</a>
+  </div>
+  <div style="height: 2000px;background-color: lightblue;"></div>
+  <div>
+    <a name="cq"></a>
+    <h1>重庆</h1>
+    <h1>重庆</h1>
+    <h1>重庆</h1>
+    <h1>重庆</h1>
+    <h1>重庆</h1>
+    <h1>重庆</h1>
+    <a href="#ding">返回顶部</a>
+  </div>
+  <div style="height: 2000px;background-color: lightblue;"></div>
+  <hr>
+  <!-- 其实超链接还有第三种用法：功能性链接，就是通过点击超链接执行安装在本地的程序
+   比如：通过超链接打开本地QQ，在线跟客服聊天 -->
+</body>
+</html>

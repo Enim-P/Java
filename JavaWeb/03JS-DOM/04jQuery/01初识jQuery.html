@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>初识jQuery</title>
+  <style>
+    #dom1,#dom2{
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div id="dom1"></div>
+  <hr>
+  <div id="dom2"></div>
+  <!-- 引入本地的jquery库文件 -->
+  <script src="./js/jquery.js"></script>
+  <!-- 引入网络上的jquery库文件，通常会从稳定的CDN服务器上获取 -->
+  <!-- <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.js"></script> -->
+  <script>
+    // 测试jquery是否引入成功
+    //console.log(jQuery);
+    // $ 是jQuery的简写
+    //console.log($);
+    
+    // 使用原生JS操作DOM
+    let dom1 = document.getElementById('dom1')
+    dom1.innerHTML = 'Hello Dom1'
+    dom1.style.backgroundColor = 'lightblue'
+    dom1.style.color = 'red'
+    dom1.style.border = '1px solid black'
+    dom1.onclick = function(){
+      this.innerHTML = '你好 DOM1'
+    }
+
+    // 使用jQuery操作DOM
+    $('#dom2').html('Hello Dom2')
+    .css('backgroundColor','lightblue')
+    .css({
+      color:'red',
+      border:'1px solid black'
+    })
+    .click(function(){
+      $(this).html('你好 DOM2')
+    })
+    // jQuery提供了大量的方法对DOM操作进行的封装，所以学习jQuery就是学习它提供的方法
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>调用外部js文件</title>
+</head>
+<body>
+  <!-- script标签通过src属性引入外部js文件，
+   注意：这个script标签中不能定义其他的js代码，需要再定义一个script标签去写当前页码的js代码 -->
+  <script src="./js/bing.js"></script>
+  <script>
+    console.log(isLeepYear(2025));   //false
+    console.log(isLeepYear(2028));   //true
+    console.log('------------------');
+    console.log(repair0(15));  //15
+    console.log(repair0(5));   //05
+    console.log('------------------');
+    console.log(miniDate(new Date()));  //2025-09-19
+    console.log(chinaDate(new Date()))  //2025-09-19 10:07:07 星期五
+    console.log('------------------');
+    console.log(reverseStr('我爱你'));   //你爱我
+    
+  </script>
+</body>
+</html>

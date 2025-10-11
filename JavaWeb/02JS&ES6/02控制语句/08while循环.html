@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>while循环</title>
+</head>
+<body>
+  <script>
+    // 根据java的while循环没有区别
+    /* let i = 1;
+    while(i<=5){
+      console.log("好好学习，天天向上"+i);
+      i++;
+    } */
+    // 练习题1：找出100以内，能被3整除的数，并输出
+    /* let i = 1;
+    while(i<=100){
+      if(i%3==0){
+        console.log(i);
+      }
+      i++;
+    } */
+    // 练习题2：找出21世纪里面所有的闰年，并打印出来
+    /* let i = 2000;
+    while(i<2100){
+      if(i%4==0 && i%100!=0 || i%400==0){
+        console.log(i);
+      }
+      i++;
+    } */
+    // 练习题3：输入年 月 日，算出该日期是全年的第多少天
+    let y = parseInt(prompt('请输入年份：'))
+    let m = parseInt(prompt('请输入月份：'))
+    let d = parseInt(prompt('请输入日期：'))
+    let days = 0;
+    // 先循环月份，累加整月天数
+    let i = 1
+    while(i<m){
+      if(i==1 || i==3 || i==5 || i==7 || i==8 || i==10){
+        days += 31
+      }else if(i==4 || i==6 || i==9 || i==11){
+        days += 30
+      }else{
+        //判断是否是闰年
+        if(y%4==0 && y%100!=0 || y%400==0){
+          days += 29
+        }else{
+          days += 28
+        }
+      }
+      i++;
+    }
+    // 再加上当前月份的天数
+    days += d
+    alert(`${y}-${m}-${d}是全年的第${days}天`)
+  </script>
+</body>
+</html>

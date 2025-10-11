@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中国体育彩票</title>
+  <style>
+    .box{
+      display: flex;
+      flex-direction: column;
+      width: 500px;
+      border: 1px solid #eee;
+      padding: 10px;
+      align-items: center;
+      margin-top: 10px;
+    }
+    .nums{
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+    .nums div{
+      width: 50px;
+      height: 50px;
+      border: 1px solid #ccc;
+      text-align: center;
+      line-height: 50px;
+      font-weight: bold;
+    }
+    .btns{
+      width: 200px;
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <span>选择彩票类型：</span>
+    <select id="type">
+      <option value="1">七星彩</option>
+      <option value="2">大乐透</option>
+      <option value="3">双色球</option>
+    </select>
+  </div>
+  <div class="box">
+    <div class="nums">
+      <div class="one">0</div>
+      <div class="two">0</div>
+      <div class="three">0</div>
+      <div class="four">0</div>
+      <div class="five">0</div>
+      <div class="six">0</div>
+      <div class="seven">0</div>
+    </div>
+    <div class="btns">
+      <button id="start">开始</button>
+      <button id="stop">停止</button>
+    </div>
+  </div>
+  <script>
+    // 七星彩：前六组是0-9之间的随机数，第七组是0-14之间的随机数
+    // 大乐透：前五组是1-35之间不重复的随机数，后两组是1-12之间不重复的随机数
+    // 双色球：前六组是1-33之间不重复的随机数，第七组是1-16之间不重复的随机数
+    function $(select){
+      return document.querySelector(select)
+    }
+
+    function repair0(num){
+      return num>=10 ? num : '0'+num
+    }
+
+    // 七星彩开奖方法
+    function qxc(){
+      let num1 = Math.floor(Math.random()*10)
+      let num2 = Math.floor(Math.random()*10)
+      let num3 = Math.floor(Math.random()*10)
+      let num4 = Math.floor(Math.random()*10)
+      let num5 = Math.floor(Math.random()*10)
+      let num6 = Math.floor(Math.random()*10)
+      let num7 = Math.floor(Math.random()*15)
+      $('.one').innerText = num1
+      $('.two').innerText = num2
+      $('.three').innerText = num3
+      $('.four').innerText = num4
+      $('.five').innerText = num5
+      $('.six').innerText = num6
+      $('.seven').innerText = repair0(num7)
+    }
+    // 大乐透开奖方法
+    function dlt(){
+      //生成前五组号码
+      let arr = new Array(5)
+      for(let i=0;i<arr.length;i++){
+        let num = Math.ceil(Math.random()*35)
+        if(arr.includes(num)){
+          i--
+        }else{
+          arr[i] = num;
+        }
+      }
+      arr.sort((a,b)=>a-b)
+      arr.map(a=>repair0(a))
+      //生成后两组号码
+      let arr2 = new Array(2)
+      for(let i=0;i<arr2.length;i++){
+        let num = Math.ceil(Math.random()*12)
+        if(arr2.includes(num)){
+          i--
+        }else{
+          arr2[i] = num
+        }
+      }
+      arr2.sort((a,b)=>a-b)
+      arr2.map(a=>repair0(a))
+      $('.one').innerText = arr[0]
+      $('.two').innerText = arr[1]
+      $('.three').innerText = arr[2]
+      $('.four').innerText = arr[3]
+      $('.five').innerText = arr[4]
+      $('.six').innerText = arr2[0]
+      $('.seven').innerText = arr2[1]
+    }
+    // 双色球开奖方法
+    function ssq(){
+      //生成前六组号码
+      let arr = new Array(6)
+      for(let i=0;i<arr.length;i++){
+        let num = Math.ceil(Math.random()*33)
+        if(arr.includes(num)){
+          i--
+        }else{
+          arr[i] = num;
+        }
+      }
+      arr.sort((a,b)=>a-b)
+      arr.map(a=>repair0(a))
+      //生成第七组号码
+      let num7 = Math.ceil(Math.random()*16)
+      $('.one').innerText = arr[0]
+      $('.two').innerText = arr[1]
+      $('.three').innerText = arr[2]
+      $('.four').innerText = arr[3]
+      $('.five').innerText = arr[4]
+      $('.six').innerText = arr[5]
+      $('.seven').innerText = repair0(num7)
+    }
+
+    let timer = null;
+    $('#start').onclick = function(){
+      timer = setInterval(() => {
+        if($('#type').value==1){
+          qxc()
+        }else if($('#type').value==2){
+          dlt()
+        }else if($('#type').value==3){
+          ssq()
+        }
+      }, 50);
+    }
+    $('#stop').onclick = function(){
+      clearInterval(timer)
+    }
+  </script>
+</body>
+</html>

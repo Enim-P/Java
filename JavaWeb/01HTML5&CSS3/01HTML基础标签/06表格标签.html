@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表格标签</title>
+</head>
+<body>
+  <!-- table是表格，tr是行，td是列
+   border属性设置边框，width和height属性设置宽高 -->
+  <table border="1" width="400" height="100">
+    <tr>
+      <td>徐州</td>
+      <td>淮安</td>
+      <td>宿迁</td>
+      <td>盐城</td>
+    </tr>
+    <tr>
+      <td>扬州</td>
+      <td>泰州</td>
+      <td>南京</td>
+      <td>无锡</td>
+    </tr>
+  </table>
+  <hr>
+  <!-- colspan设置单元格跨列，rowspan设置单元格跨行 -->
+  <table border="1" width="400" height="200">
+    <tr>
+      <td colspan="2"></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td colspan="2"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td rowspan="2"></td>
+      <td></td>
+      <td colspan="2" rowspan="2"></td>
+    </tr>
+    <tr>
+      <td></td>
+    </tr>
+  </table>
+  <!-- 总结：当表格中的单元格需要合并时：
+   1.先将完整的表格画出来
+   2.先找到哪些单元格需要跨列（先跨列）
+   3.再找到那些单元格需要跨行 (再跨行)-->
+  <hr>
+  <table border="1" width="400">
+    <!-- caption是表格的标题标签 -->
+    <caption>学生成绩表</caption>
+    <!-- 表格根据区域又划分为三部分：头部、主体、尾部 -->
+    <thead style="background-color: lightcoral;">
+      <tr>
+        <!-- td是普通列标签，th是表头列标签，表头列表标签默认加粗居中 -->
+        <th>姓名</th>
+        <th>语文</th>
+        <th>数学</th>
+        <th>英语</th>
+      </tr>
+    </thead>
+    <!-- 其实表格的最基本结构中也是要包含tbody的，
+     如果我们在定义表格的时候省略的tbody，浏览器在运行的时候会帮我们插入tbody元素 -->
+    <tbody>
+      <tr>
+        <td>张飞</td>
+        <td>88</td>
+        <td>77</td>
+        <td>66</td>
+      </tr>
+      <tr>
+        <td>关羽</td>
+        <td>44</td>
+        <td>55</td>
+        <td>66</td>
+      </tr>
+      <tr>
+        <td>刘备</td>
+        <td>99</td>
+        <td>58</td>
+        <td>47</td>
+      </tr>
+    </tbody>
+    <tfoot style="background: lightblue;">
+      <tr>
+        <td colspan="4">总分：23445</td>
+      </tr>
+      <tr>
+        <td colspan="4">平均分：76</td>
+      </tr>
+    </tfoot>
+  </table>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文本溢出处理</title>
+  <style>
+    .a{
+      width: 200px;
+      height: 50px;
+      border: 1px solid #ccc;  
+      /* 溢出部分隐藏 */
+      overflow: hidden;
+      /* 文本不换行 */
+      white-space: nowrap;
+      /* 文本溢出部分显示... */
+      text-overflow: ellipsis;
+    }
+    /* 多行文本溢出处理，目前兼容性不高 */
+    .b{
+      width: 400px;
+      height: 65px;
+      border: 1px solid #ccc;
+      display:-webkit-box; 
+      overflow:hidden;
+      text-overflow:ellipsis; 
+      word-break:break-all;
+      -webkit-box-orient:vertical; 
+      -webkit-line-clamp:3; 
+    }
+  </style>
+</head>
+<body>
+  <div class="a">
+   江苏省省会 [284]，副省级市、特大城市 [402]，位于江苏省西南部、长江下游，
+  </div>
+  <div class="b">
+    南京市（Nanjing City），简称“宁”，别称“金陵”“建康”“石头城”，江苏省辖地级市，江苏省省会 [284]，副省级市、特大城市 [402]，位于江苏省西南部、长江下游，是长江三角洲中心区城市 [1]。
+  </div>
+</body>
+</html>

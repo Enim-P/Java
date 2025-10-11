@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>常用的表单元素</title>
+</head>
+<body>
+  <!-- 如果表单中有文件要上传，需要设置表单属性enctype="multipart/form-data" -->
+  <form enctype="multipart/form-data">
+    <table>
+      <tr>
+        <td>账号：</td>
+        <td>
+          <!-- 表单元素input标签用于输入，通过type属性设置输入框的类型，
+           text表示文本框 -->
+          <input type="text">
+        </td>
+      </tr>
+      <tr>
+        <td>密码：</td>
+        <td>
+          <!-- password表示密码框 -->
+          <input type="password">
+        </td>
+      </tr>
+      <tr>
+        <td>性别：</td>
+        <td>
+          <!-- radio是单选框，这里的value属性设置单选框的值，
+           一组单选框需要设置相同的name属性值
+           checked属性设置默认选中，属性值是checked，可以省略 -->
+          <input type="radio" value="M" name="sex" checked>男
+          <input type="radio" value="F" name="sex">女
+        </td>
+      </tr>
+      <tr>
+        <td>爱好：</td>
+        <td>
+          <!-- checkbox是复选框 -->
+          <input type="checkbox" value="1">看书
+          <input type="checkbox" value="2" checked>听歌
+          <input type="checkbox" value="3">画画
+          <input type="checkbox" value="4">写字
+        </td>
+      </tr>
+      <tr>
+        <td>头像：</td>
+        <td>
+          <!-- file是文件域，用于选择需要上传的文件 -->
+          <input type="file">
+          <!-- button是普通按钮 -->
+          <input type="button" value="上传">
+        </td>
+      </tr>
+      <tr>
+        <td>地区：</td>
+        <td>
+          <!-- 大部分表单元素都是使用input标签，通过type属性设置不同的类型，
+           有一部分比较特殊，必须下拉框标签，使用的是select -->
+          <select>
+            <!-- option是下拉选项标签，通过value属性设置每个选项的值，
+             通过selected属性设置选项是否选中 -->
+            <option value="1">北京</option>
+            <option value="2">上海</option>
+            <option value="3" selected>广州</option>
+            <option value="4">深圳</option>
+          </select>
+        </td>
+      </tr>
+       <tr>
+        <td>描述：</td>
+        <td>
+          <!-- textarea是文本域标签，其实就是多行文本框
+           rows属性设置行数，cols属性设置每行列数 -->
+          <textarea rows="4" cols="40"></textarea>
+        </td>
+      </tr>
+       <tr>
+        <td></td>
+        <td>
+          <!-- submit是提交按钮，点击时会收集表单数据并向服务器提交 -->
+          <input type="submit" value="提交">
+          <!-- reset是重置按钮，点击时会重置表单内容 -->
+          <input type="reset" value="重置">
+          <!-- image是图片提交按钮，src属性设置图片地址 -->
+          <input type="image" src="./cat.jpg">
+          <!-- hidden是隐藏域，通常隐藏一些不需要给用户看到信息，
+           然后这部分信息又需要向服务器提交 -->
+          <input type="hidden" value="隐藏的id信息">
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <!-- readonly属性，设置表单元素为只读 -->
+          <input type="text" value="请认真阅读条款" readonly>
+          <!-- disabled属性，设置表单元素为禁用 -->
+          <input type="button" value="同意" disabled>
+        </td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>

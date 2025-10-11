@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>定位布局</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    div{
+      width: 200px;
+      height: 200px;
+    }
+    .a{
+      background-color: red;
+    }
+    /* position属性用于定位，属性值包括：
+    static(不定位，默认值)，relative(相对定位)，absolute(绝对定位)，fixed(固定定位)
+    元素定位后，可以使用left,right,top,bottom属性对元素进行位置的重新定位 */
+    .b{
+      background-color: green;
+      position: static;
+      /* 元素在不定位的情况下，不识别left,right,top,bottom属性 */
+      left: 100px;
+      top: 100px;
+    }
+    .c{
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+  <div class="a"></div>
+  <div class="b"></div>
+  <div class="c"></div>
+</body>
+</html>

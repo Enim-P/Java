@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>透明度</title>
+  <style>
+    .a,.c{
+      width: 200px;
+      height: 200px;
+      border: 2px solid black;
+      position: relative;
+    }
+    .a img,.c img{
+      position: absolute;
+    }
+    .b{
+      /* opacity是透明度，取整范围是0-1
+      0表示全透明，1表示不透明 */
+      opacity: 0.6;
+    }
+    .c:hover .d{
+      /* 鼠标悬停在.c上面时，将.d的透明度设置为0 */
+      opacity: 0;
+    }
+    /* 下面利用透明度给图片添加滤镜效果 */
+    .e{
+      width: 300px;
+      height: 394px;
+      position: relative;
+    }
+    .e img{
+      width: 300px;
+      height: 394px;
+      position: absolute;
+    }
+    .e .f{
+      width: 300px;
+      height: 394px;
+      background-color: rgba(4, 4, 99, 0.756);
+      position: absolute;
+      opacity: 0.2;
+    }
+  </style>
+</head>
+<body>
+  <div class="a">
+    <img src="./imgs/cat.webp"/>
+    <img class="b" src="./imgs/dog.jpg"/>
+  </div>
+  <hr>
+  <div class="c">
+    <img src="./imgs/cat.webp"/>
+    <img class="d" src="./imgs/dog.jpg"/>
+  </div>
+  <hr>
+  <div class="e">
+    <img src="./imgs/zls.webp"/>
+    <div class="f"></div>
+  </div>
+</body>
+</html>

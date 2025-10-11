@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>轮播图</title>
+  <style>
+    #lunbo{
+      width: 800px;
+      height: 320px;
+      position: relative;
+    }
+    img{
+      width: 800px;
+      height: 320px;
+    }
+    .dots{
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      left: 0;
+      right: 0;
+      bottom: 10px;
+    }
+    .dots li{
+      width: 8px;
+      height: 8px;
+      background-color: #eee;
+      border-radius: 50%;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+    .dots li.active{
+      background-color: darkred;
+    }
+    .arrow{
+      position: absolute;
+      width: 30px;
+      height: 60px;
+      background-color: rgba(0, 0, 0, 0.1);
+      color: white;
+      text-align: center;
+      line-height: 60px;
+      font-size: 25px;
+      cursor: pointer;
+    }
+    .arrow:hover{
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+    .left{
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      margin: auto 0;
+    }
+    .right{
+      right: 10px;
+      top: 0;
+      bottom: 0;
+      margin: auto 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="lunbo">
+    <!-- 轮播图片 -->
+    <img id="img" />
+    <!-- 提示点 -->
+    <ul class="dots">
+    </ul>
+    <!-- 左箭头 -->
+    <div class="arrow left"><</div>
+    <!-- 右箭头 -->
+    <div class="arrow right">></div>
+  </div>
+  <script src="./js/jquery.js"></script>
+  <script>
+    // 轮播图数组
+    let imgs = [
+      "https://p5.music.126.net/obj/wonDlsKUwrLClGjCm8Kx/63078404351/c1b4/e8f0/7a7d/fb78c67dd6664ceae14ab631e4013002.jpg?imageView&quality=89",
+      "https://p5.music.126.net/obj/wonDlsKUwrLClGjCm8Kx/62888372865/a0a0/feaf/72c0/51d5889cbfc958ac0dae398be91ba208.jpg?imageView&quality=89",
+      "https://p5.music.126.net/obj/wonDlsKUwrLClGjCm8Kx/62817064718/cf7a/672e/3493/063e372180ce47815a34e2f6903814eb.jpg?imageView&quality=89",
+      "https://p5.music.126.net/obj/wonDlsKUwrLClGjCm8Kx/63080547558/ac90/9d24/b734/7e96e83d1f1dc62e9b65b9ca6c6cb024.jpg?imageView&quality=89",
+      "https://p5.music.126.net/obj/wonDlsKUwrLClGjCm8Kx/63079340402/8d56/7952/d53a/8135c3c8582b8b6af03f9b97062a17d4.jpg?imageView&quality=89"
+    ]
+    // 轮播索引
+    let index = 0
+    // attr方法，用户操作元素的属性
+    // $('#img').attr('src',imgs[0])
+    // 也可以将jQuery对象重新转回DOM对象，通过DOM的属性操作
+    $('#img')[0].src = imgs[index]
+    // 定时器变量
+    let timer = null;
+
+    // 生成提示点
+    for(let i=0;i<imgs.length;i++){
+      //创建li
+      let li = $('<li>')
+      //添加高亮样式
+      if(index==i){
+        li.addClass('active')
+      }
+      //添加到.dots中
+      $('.dots').append(li)
+    }
+
+    // 提示点注册点击事件
+    $('.dots li').click(function(){
+      index = $(this).index()
+      // 调用切换方法
+      change()
+    })
+
+    // 鼠标进入图片事件
+    $('#img').mouseenter(function(){
+      clearInterval(timer)   //清除定时器
+    })
+    // 鼠标离开图片事件
+    $('#img').mouseleave(function(){
+      run()  //启动定时器
+    })
+    // 左箭头点击事件
+    $('.left').click(function(){
+      if(--index==-1){
+        index = imgs.length-1
+      }
+      // 调用切换方法
+      change()
+    })
+    // 右箭头点击事件
+    $('.right').click(function(){
+      if(++index==imgs.length){
+        index = 0
+      }
+      // 调用切换方法
+      change()
+    })
+
+    // 切换方法
+    function change(){
+      // 切换显示图片
+      $('#img')[0].src = imgs[index]
+      // 切换高亮索引
+      $('.dots li').eq(index).addClass('active').siblings().removeClass('active')
+    }
+
+    // 定时器启动
+    function run(){
+      timer = setInterval(() => {
+        // 如果下标越界，重新恢复到0
+        if(++index==imgs.length){
+          index = 0
+        }
+        // 调用切换方法
+        change()
+      }, 5000);
+    }
+    run()
+  </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>添加事件的方式</title>
+  <style>
+    .a{
+      width: 100px;
+      height: 100px;
+      background-color: lightblue;
+    }
+    .b{
+      width: 100px;
+      height: 100px;
+      background-color: lightcoral;
+    }
+    .c{
+      width: 100px;
+      height: 100px;
+      background-color: lightgreen;
+    }
+    .d{
+      width: 100px;
+      height: 100px;
+      background-color: lightsalmon;
+    }
+  </style>
+</head>
+<body>
+  <!-- 第一种添加事件的方式：直接在元素身上通过onXXX属性定义，
+   这种方式将网页元素跟js函数紧密耦合，不推荐使用 -->
+  <div class="a" onclick="fun1()">a</div>
+  <div class="b">b</div>
+  <div class="c">c</div>
+  <hr>
+  <button id="btn1">添加功能1</button>
+  <button id="btn2">添加功能2</button>
+  <button id="btn3">添加功能3</button>
+  <button id="btn4">移除功能1</button>
+  <button id="btn5">移除功能2</button>
+  <button id="btn6">移除功能3</button>
+  <hr>
+  <div class="d">d</div>
+  <script>
+    function fun1(){
+      console.log('点击了a');
+    }
+    // 第二种添加事件的方式：先获取DOM元素，再给DOM元素注册指定的事件
+    document.querySelector('.b').onclick = function(){
+      console.log('点击了b');
+    }
+    // 第三种添加事件的方式：通过addEventListener方法，注册事件
+    document.querySelector('.c').addEventListener('click',function(){
+      console.log('点击了c');
+    })
+    function gn1(){
+      console.log('可以打电话...');
+    }
+    function gn2(){
+      console.log('可以发短信...');
+    }
+    function gn3(){
+      console.log('可以看视频...');
+    }
+    document.querySelector('#btn1').onclick = function(){
+      // 使用addEventListener方法注册事件，可以给一个事件注册多个方法
+      document.querySelector('.d').addEventListener('click',gn1)
+    }
+    document.querySelector('#btn2').onclick = function(){
+      document.querySelector('.d').addEventListener('click',gn2)
+    }
+    document.querySelector('#btn3').onclick = function(){
+      document.querySelector('.d').addEventListener('click',gn3)
+    }
+    document.querySelector('#btn4').onclick = function(){
+      document.querySelector('.d').removeEventListener('click',gn1)
+    }
+    document.querySelector('#btn5').onclick = function(){
+     document.querySelector('.d').removeEventListener('click',gn2)
+    }
+    document.querySelector('#btn6').onclick = function(){
+      document.querySelector('.d').removeEventListener('click',gn3)
+    }
+    // 给整个窗口注册加载事件
+    window.onload = function(){
+      // 注意：它要等到当前页面中的所有资源都加载完毕后才执行
+      // 包括外部加载的资源，比如引入了很多外部图片，必须等到图片全部打开后才执行
+      console.log('页面加载完毕....');
+    }
+
+    //DOMContentLoaded事件，当当前页码的DOM加载完毕后，就离开执行
+    //注意：该事件每天提供快捷方式onXXX，只能通过addEventListener注册
+    window.addEventListener('DOMContentLoaded',function(){
+      console.log('页面DOM加载完毕...');
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自定义字体</title>
+  <style>
+    /* 定义自定义字体类型 */
+    @font-face {
+      /* 定义字体类型的名称 */
+      font-family: 'bing';
+      /* 引入字体类型的文件 */
+      src: url('./fonts/bingFonts.ttf');
+    }
+    .box{
+      font-size: 50px;
+      /* 设置字体类型，使用自定义的字体类型 */
+      font-family: 'bing';
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    今天是2025年9月11日，阴天，适合出去玩。
+  </div>
+</body>
+</html>

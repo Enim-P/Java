@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>操作DOM属性</title>
+  <style>
+    img{
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div id="a"></div>
+  <div id="b"></div>
+  <hr>
+  <div>
+    <button id="btn1">奔驰</button>
+    <button id="btn2">宝马</button>
+  </div>
+  <img name="宝马" price="30" id="img" src="https://pic.rmb.bdstatic.com/bjh/3ea180a30ef6/240604/f5390ccee5990af2cd2553dcf674479f.jpeg"/>
+  <hr>
+  <input type="text" id="txt">
+  <button id="btn3">提交</button>
+  <div id="show"></div>
+  <script>
+    document.querySelector('#a').innerText = "<h2>innerText设置文本内容</h2>"
+    document.querySelector('#b').innerHTML = "<h2>innerText设置HTML内容</h2>"
+    // 奔驰图片的地址
+    let bc = "https://q2.itc.cn/images01/20241020/8347172534bc4fb38614c8c4d90e9aae.jpeg"
+    // 宝马图片地址
+    let bm = "https://pic.rmb.bdstatic.com/bjh/3ea180a30ef6/240604/f5390ccee5990af2cd2553dcf674479f.jpeg"
+    document.querySelector('#btn1').onclick = function(){
+      // 如果要操作标签自带的属性，可以直接点，比如：img.src
+      document.querySelector('#img').src = bc
+      // 如果要操作标签自定义属性，通过setAttribute方法 和 getAttribute方法
+      // setAttribute方法，设置属性
+      // getAttribute方法，获取属性
+      document.querySelector('#img').setAttribute("name","奔驰")
+      document.querySelector('#img').setAttribute("price","50")
+    }
+    document.querySelector('#btn2').onclick = function(){
+      document.querySelector('#img').src = bm
+       document.querySelector('#img').setAttribute("name","宝马")
+      document.querySelector('#img').setAttribute("price","30")
+    }
+    document.querySelector('#btn3').onclick = function(){
+      let value = document.querySelector('#txt').value
+      // let value = document.querySelector('#txt').getAttribute("value")
+      document.querySelector('#show').innerHTML = value
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数组</title>
+</head>
+<body>
+  <script>
+    // 变量：就是在内存中开辟一个合适的空间，存储一份数据
+    // 数组：就是在内存中开辟一段连续的空间，存储一组数据
+    
+    // 在js中，定义数组有两种方式：
+    // 方式一：new一个Array对象
+    let arr1 = new Array(3);  //长度可以省略
+    console.log(arr1.length);
+    // 通过下标给数组的指定空间赋值，注意：数组是没有类型的，什么数据都可以往数组中添加
+    arr1[0] = "你好"
+    arr1[1] = 100
+    arr1[2] = true;
+    // 在js中，数组的长度是可以随时变化的
+    arr1[3] = "在吗"
+    arr1[4] = "不在"
+    console.log(arr1.length);
+    // 通过下标获取数组指定空间里面的数据
+    console.log(arr1[2]);
+    console.log("---------------");
+    // 方式二：使用字面量方式直接定义数组
+    let arr2 = ['你好',100,true]
+    console.log(arr2.length);
+    arr2[3] = "哈哈"
+    console.log(arr2);
+    
+  </script>
+</body>
+</html>

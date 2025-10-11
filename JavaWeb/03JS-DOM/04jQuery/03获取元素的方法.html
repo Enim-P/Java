@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>获取元素的方法</title>
+</head>
+<body>
+  <ul>
+    <li>苏州</li>
+    <li>无锡</li>
+    <li>常州</li>
+    <li id="zj">镇江</li>
+    <li>南京</li>
+    <li>扬州</li>
+    <li>泰州</li>
+  </ul>
+  <div id="root">
+    <div id="one">
+      <div>苹果</div>
+      <div>西瓜</div>
+    </div>
+    <div id="two">
+      <div>草莓</div>
+      <div class="four">香蕉</div>
+    </div>
+    <div id="three">
+      <div>榴莲</div>
+      <div>荔枝</div>
+    </div>
+  </div>
+  <hr>
+  <div id="root2">
+    <div class="a">奔驰</div>
+    <div>
+      <div class="a">宝马</div>
+      <div>
+        <div>奥迪</div>
+        <div class="a">大众</div>
+      </div>
+    </div>
+    <div class="a">保时捷</div>
+  </div>
+  <script src="./js/jquery.js"></script>
+  <script>
+    // 使用$方法，获取到的是DOM对象转成的jQuery对象
+    // 它是一个类似于集合的对象，因为通过选择器一次性可以获取多个元素
+    // 通过下标就获取能获取到对应的DOM对象
+    let zj = $('#zj')
+    //console.log(zj[0]);
+    
+    // 转为原始DOM后，操作style属性
+    // zj[0].style.color = 'red'
+    // 直接通过jQuery对象的css方法，操作DOM的css
+    zj.css('color','red')
+
+    // 获取下一个元素
+    zj.next().css('color','green')
+    // 方法可以链式调用
+    zj.next().next().css('color','blue')
+    // 获取上一个元素
+    zj.prev().css('color','orange')
+    // 获取下面的所有元素
+    zj.nextAll().css('text-align','center')
+    // 获取上面的所有元素
+    zj.prevAll().css('text-decoration','underline')
+    // 获取所有的兄弟元素
+    zj.siblings().css('background-color','lightblue')
+
+    let xj = $('.four')
+    xj.css('font-size','30px')
+    // 获取父级元素
+    xj.parent().css({
+      border:'1px solid #ccc',
+      padding:'10px'
+    })
+    // 通过链式调用，获取任意层级的父级元素
+    xj.parent().parent().css({
+      border:'1px solid #ccc',
+      padding:'10px'
+    })
+    // 获取所有的父级元素
+    // 通过给方法传选择器参数，指定获取那一级父级元素
+    xj.parents('#root').css({
+      border:'1px solid red',
+      padding:'10px'
+    })
+    // children方法，获取所有的子元素
+    // 再通过eq方法，获取指定的子元素
+    xj.parent().prev().children().eq(0).css({
+      border:'1px solid lightpink',
+      padding:'10px'
+    })
+    xj.parent().next().children().eq(1).css({
+      border:'1px solid lightpink',
+      padding:'10px'
+    })
+
+    let root2 = $('#root2')
+    // children()方法，通过选择器精准的获取子元素
+    // each方法，用于遍历
+    root2.children('.a').css({
+      color:'green'
+    }).each((i,e)=>{
+      console.log(i,e);
+    })
+    // find()方法，通过选择器获取后代元素
+    root2.find('.a').css({
+      border:'1px solid lightpink',
+      padding:'10px'
+    }).each((i,e)=>{
+      console.log(i,e);
+    })
+  </script>
+</body>
+</html>

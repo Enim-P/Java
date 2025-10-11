@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习3</title>
+</head>
+<body>
+  <script>
+    // 随机生成一组双色球中奖号码并放到数组中保存
+    // 双色球中奖号码的规则是：前6组号码是0-32之间不重复的随机数，第7组号码是0-16之间的随机数
+    // 提示：Math.random()用于生成0-1之间的随机数
+    
+    // 定义一个数组，用于存储生成的号码
+    let arr = new Array(6);
+    // 利用循环生成前6组号码
+    for(let i=0;i<arr.length;i++){
+      // 生成当前的号码
+      arr[i] = parseInt(Math.random()*33)
+      // 判断当前生成的号码，跟之前生成的号码是否重复
+      for(let j=0;j<i;j++){
+        if(arr[i]==arr[j]){
+          i--;
+          break;
+        }
+      }
+    } 
+    // 生成第7组号码
+    arr[6] = parseInt(Math.random()*17)
+    console.log(arr);
+  </script>
+</body>
+</html>
