@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace指定Mapper接口的完整类名，此时mapperXML文件 和 mapper接口就成为了一个整体-->
+<mapper namespace="com.bing.mapper.SubjectMapper">
+    <!--查询全部课程-->
+    <!--select定义查询语句，id设置唯一标识，resultType设置返回类型-->
+    <!--定义了别名以后，resultType可以指定类型的别名，比如课程类的别名直接写subject，不需要再指定完整类名-->
+    <select id="selectAllSubject" resultType="com.bing.pojo.Subject">
+        select * from subject
+    </select>
+
+    <!--映射成Map类型-->
+    <select id="selectAllSubject2" resultType="map">
+        select * from subject
+    </select>
+
+    <!--这里需要使用resultMap属性，指定自定义映射关系-->
+    <select id="selectAllSubject3" resultMap="asKeCheng">
+        select * from subject
+    </select>
+
+    <!--自定义映射关系-->
+    <resultMap id="asKeCheng" type="com.bing.pojo.Kc">
+        <!--指定主键映射关系-->
+        <id column="subjectId" property="id"/>
+        <!--指定其他列映射关系-->
+        <result column="subjectName" property="name"/>
+        <result column="classHour" property="ks"/>
+        <result column="gradeId" property="nj"/>
+    </resultMap>
+</mapper>

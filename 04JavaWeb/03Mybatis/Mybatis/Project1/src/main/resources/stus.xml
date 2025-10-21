@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<students>
+    <student no="1001">
+        <name>张三</name>
+        <age>20</age>
+        <sex>男</sex>
+        <score value="66"/>
+    </student>
+    <student no="1002">
+        <name>李四</name>
+        <age>21</age>
+        <sex>女</sex>
+        <score value="77"/>
+    </student>
+    <student no="1003">
+        <name>王五</name>
+        <age>22</age>
+        <sex>男</sex>
+        <score value="88"/>
+    </student>
+    <student no="1004">
+        <name>赵六</name>
+        <age>23</age>
+        <sex>女</sex>
+        <score value="99"/>
+    </student>
+</students>
+
+
+
+<!--
+XML：Extensible Markup Language 可扩展性标记语言，官方没有定义任何XML标签，你想怎么写自由发挥
+要求：
+1.必须包含一个根标签
+2.标签名和标签的属性名完全自定义
+3.标签必须要正确嵌套，属性使用引号引起来
+4.最上面的文档声明可加可不加，一般用于定义编码类型
+作用：
+XML文件的作用就是用于组织和存储数据，就是将数据以我们自定义的方式进行存储
+-->
