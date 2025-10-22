@@ -45,5 +45,6 @@
     <mappers>
         <!--resource属性直接指定resources资源目录-->
         <mapper resource="mapper/SubjectMapper.xml"/>
+        <mapper resource="mapper/GradeMapper.xml"/>
     </mappers>
 </configuration>

@@ -1,19 +1,19 @@
 package com.bing.test;
 
 import com.bing.mapper.SubjectMapper;
-import com.bing.pojo.Kc;
+import com.bing.pojo.Subject;
 import com.bing.util.MybatisUtil;
 import org.apache.ibatis.session.SqlSession;
 
-import java.util.List;
-
-// 自定义映射关系：数据表的字段跟我们的实体类定义的属性不一样
-public class Test5 {
+// 修改课程
+public class Test11 {
     public static void main(String[] args) {
         try(SqlSession sqlSession = MybatisUtil.getSession(true)){
             SubjectMapper subjectMapper = sqlSession.getMapper(SubjectMapper.class);
-            List<Kc> keChengs = subjectMapper.selectAllSubject3();
-            System.out.println(keChengs);
+            Subject subject = new Subject().setSubjectId(13)
+                    .setSubjectName("CBA").setClassHour(321).setGradeId(2);
+            int rows = subjectMapper.updateSubject(subject);
+            System.out.println(rows);
         }
     }
 }

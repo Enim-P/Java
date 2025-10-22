@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bing.mapper.GradeMapper">
+    <select id="selectAllGrade" resultMap="asGrade">
+        select subjectId,subjectName,classHour,grade.gradeId,gradeName
+        from `subject` inner join grade on `subject`.gradeId=grade.gradeId
+    </select>
+
+    <!--自定义映射关系，一个年级包含多个课程信息-->
+    <resultMap id="asGrade" type="com.bing.pojo.Grade">
+        <id column="gradeId" property="gradeId"/>
+        <result column="gradeName" property="gradeName"/>
+        <collection property="subjectList" ofType="com.bing.pojo.Subject">
+            <id column="subjectId" property="subjectId"/>
+            <result column="subjectName" property="subjectName"/>
+            <result column="classHour" property="classHour"/>
+            <result column="gradeId" property="gradeId"/>
+        </collection>
+    </resultMap>
+</mapper>

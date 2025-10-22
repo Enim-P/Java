@@ -21,6 +21,93 @@
         select * from subject
     </select>
 
+    <!--查询出课程+年级的综合数据-->
+    <select id="selectAllSubject4" resultMap="asSubject">
+        select subjectId,subjectName,classHour,grade.gradeId,gradeName
+        from `subject` inner join grade on `subject`.gradeId=grade.gradeId
+    </select>
+
+    <!--根据课程编号查询，传参有两种写法：1.${参数名} 2.#{参数名}
+    ${参数名}采用的是字符串拼接的方式，这种方式存储SQL注入风险
+    #{参数名}采用的是SQL参数方式，就是之前定义SQL语句的?-->
+    <select id="selectOneSubject" resultType="com.bing.pojo.Subject">
+        select * from subject where subjectId=#{subjectId}
+    </select>
+
+    <!--传递多个参数-->
+    <select id="selectSubjectsByGradeIdAndName" resultType="com.bing.pojo.Subject">
+        select * from subject
+        where gradeId=#{gradeId} and subjectName like concat('%',#{subjectName},'%')
+    </select>
+
+    <!--插入语句-->
+    <insert id="addSubject">
+        insert into subject(subjectName,classHour,gradeId)
+        values(#{subjectName},#{classHour},#{gradeId})
+    </insert>
+
+    <!--更新语句-->
+    <update id="updateSubject">
+        update subject set subjectName=#{subjectName},classHour=#{classHour},
+        gradeId=#{gradeId} where subjectId=#{subjectId}
+    </update>
+
+    <!--删除语句-->
+    <delete id="deleteSubject">
+        delete from subject where subjectId=#{subjectId}
+    </delete>
+
+    <!--动态SQL-->
+    <!--if 如果年级编号大于2，只查询课时超过100课程信息-->
+    <select id="selectSubjectsByGradeId" resultType="com.bing.pojo.Subject">
+        select * from subject where gradeId=#{gradeId}
+        <if test="gradeId>2">
+            and classHour>100
+        </if>
+    </select>
+    <!--choose 如果年级为1查询课时>50的信息，如果那就为2查询课时小于50的信息，否则查询课时超过100的信息-->
+    <!--这里是不能写大于号和小于号的-->
+    <select id="selectSubjectsByGradeId2" resultType="com.bing.pojo.Subject">
+        select * from subject where gradeId=#{gradeId}
+        <choose>
+            <when test="gradeId==1">
+                and classHour &gt; 50
+            </when>
+            <when test="gradeId==2">
+                and classHour &lt; 50
+            </when>
+            <otherwise>
+                and classHour &gt; 100
+            </otherwise>
+        </choose>
+    </select>
+    <!--foreach：批量删除-->
+    <delete id="deleteSubjects">
+        delete from subject where subjectId in
+        <foreach collection="subjectIds" item="item" index="index" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+    <!--foreach：批量插入-->
+    <insert id="addSubjects">
+        insert into subject(subjectName,classHour,gradeId) values
+        <foreach collection="subjects" item="subject" separator=",">
+            (#{subject.subjectName},#{subject.classHour},#{subject.gradeId})
+        </foreach>
+    </insert>
+    <!--where：如果有添加自动在SQL语句中添加where，并且还为帮我们删除多余的and或or-->
+    <select id="selectSubjectsByCondition" resultType="com.bing.pojo.Subject">
+        select * from subject
+        <where>
+            <if test="gradeId!=null and gradeId!=0">
+                and gradeId=#{gradeId}
+            </if>
+            <if test="subjectName!=null and subjectName!=''">
+                and subjectName like concat('%',#{subjectName},'%')
+            </if>
+        </where>
+    </select>
+
     <!--自定义映射关系-->
     <resultMap id="asKeCheng" type="com.bing.pojo.Kc">
         <!--指定主键映射关系-->
@@ -29,5 +116,17 @@
         <result column="subjectName" property="name"/>
         <result column="classHour" property="ks"/>
         <result column="gradeId" property="nj"/>
+    </resultMap>
+    <!--这里通过自定义映射定义一对一关系-->
+    <resultMap id="asSubject" type="com.bing.pojo.Subject">
+        <id column="subjectId" property="subjectId"/>
+        <result column="subjectName" property="subjectName"/>
+        <result column="classHour" property="classHour"/>
+        <result column="gradeId" property="gradeId"/>
+        <!--映射课程实体里面的年级对象-->
+        <association property="grade" javaType="com.bing.pojo.Grade">
+            <id column="gradeId" property="gradeId"/>
+            <result column="gradeName" property="gradeName"/>
+        </association>
     </resultMap>
 </mapper>
