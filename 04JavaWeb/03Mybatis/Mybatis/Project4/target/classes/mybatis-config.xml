@@ -3,6 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!--彻底关闭缓存的第一步：在Mybatis配置文件中配置setting关闭缓存-->
+    <!--<settings>
+        <setting name="cacheEnabled" value="false"/>
+    </settings>-->
     <!--定义类型别名-->
     <typeAliases>
         <!--给课程实体类定义一个别名-->
@@ -29,22 +33,13 @@
                 <property name="password" value="123456"/>
             </dataSource>
         </environment>
-        <!--测试环境-->
-        <environment id="test">
-            <transactionManager type="JDBC"></transactionManager>
-            <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/myschool"/>
-                <property name="username" value="root"/>
-                <property name="password" value="123456"/>
-            </dataSource>
-        </environment>
     </environments>
 
     <!--注册mapper-->
     <mappers>
-        <!--resource属性直接指定resources资源目录-->
-        <mapper resource="mapper/SubjectMapper.xml"/>
-        <mapper resource="mapper/GradeMapper.xml"/>
+        <!--注册指定的Mapper接口-->
+        <!--<mapper class="com.bing.project4.mapper.SubjectMapper"/>-->
+        <!--也可以注册整个包下面的所有Mapper接口-->
+        <package name="com.bing.project4.mapper"/>
     </mappers>
 </configuration>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bing.mapper.SubjectMapper">
+    <!--开启二级缓存，二级缓存是针对整个Mapper级别的缓存-->
+    <cache
+     eviction="FIFO"
+     flushInterval="60000"
+     size="512"
+     readOnly="true" />
+
+    <!--彻底关闭缓存的第二步：对应的方法也要关闭缓存，并且还要刷新缓存
+     useCache="false" flushCache="true"-->
+    <select id="selectOneSubject" resultType="com.bing.pojo.Subject">
+        select * from subject where subjectId=#{subjectId}
+    </select>
+
+    <!--由于开启二级缓存是针对整个Mapper级别，整个Mapper里面的方法都开启缓存，
+    通过useCache属性可以选择性关闭部分方法的缓存useCache="false"
+    也可以通过flushCache属性每次执行完方法后，清空缓存flushCache="true"-->
+    <select id="selectOneSubject2" resultType="com.bing.pojo.Subject" useCache="false">
+        select * from subject where subjectId=#{subjectId}
+    </select>
+
+    <insert id="addSubject">
+        insert into subject(subjectName,classHour,gradeId)
+        values(#{subjectName},#{classHour},#{gradeId})
+    </insert>
+</mapper>

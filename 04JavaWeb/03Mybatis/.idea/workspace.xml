@@ -4,45 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8753276d-3db5-480e-a195-a1a04b881062" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/03Mybatis.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_protobuf_protobuf_java_3_11_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_28.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_dom4j_dom4j_2_0_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_5_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_22.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mybatis/Project1/Project1.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mybatis/Project2/Project2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mybatis/Project2/src/main/java/com/bing/mapper/SubjectMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Mybatis/Project2/src/main/java/com/bing/mapper/SubjectMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mybatis/Project2/src/main/java/com/bing/pojo/Grade.java" beforeDir="false" afterPath="$PROJECT_DIR$/Mybatis/Project2/src/main/java/com/bing/pojo/Grade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mybatis/Project2/src/main/java/com/bing/pojo/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/Mybatis/Project2/src/main/java/com/bing/pojo/Subject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mybatis/Project2/src/main/java/com/bing/test/Test5.java" beforeDir="false" afterPath="$PROJECT_DIR$/Mybatis/Project2/src/main/java/com/bing/test/Test5.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mybatis/Project2/src/main/resources/mapper/SubjectMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Mybatis/Project2/src/main/resources/mapper/SubjectMapper.xml" afterDir="false" />
+    <list default="true" id="01d26cb7-5011-43f4-bc26-cc5a1c1db07c" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mybatis/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Mybatis/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mybatis/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Mybatis/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mybatis/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Mybatis/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mybatis/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Mybatis/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mybatis/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Mybatis/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mybatis/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Mybatis/Project2/src/main/resources/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Mybatis/Project2/src/main/resources/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mybatis/Project2/target/classes/com/bing/mapper/SubjectMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/Mybatis/Project2/target/classes/com/bing/mapper/SubjectMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mybatis/Project2/target/classes/com/bing/pojo/Grade.class" beforeDir="false" afterPath="$PROJECT_DIR$/Mybatis/Project2/target/classes/com/bing/pojo/Grade.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mybatis/Project2/target/classes/com/bing/pojo/Subject.class" beforeDir="false" afterPath="$PROJECT_DIR$/Mybatis/Project2/target/classes/com/bing/pojo/Subject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mybatis/Project2/target/classes/mapper/SubjectMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Mybatis/Project2/target/classes/mapper/SubjectMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mybatis/Project2/target/classes/com/bing/test/Test5.class" beforeDir="false" afterPath="$PROJECT_DIR$/Mybatis/Project2/target/classes/com/bing/test/Test5.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Mybatis/Project2/target/classes/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Mybatis/Project2/target/classes/mybatis-config.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -55,11 +32,12 @@
       <MavenGeneralSettings>
         <option name="localRepository" value="D:\Maven\repository" />
         <option name="mavenHome" value="$PROJECT_DIR$/../../../../Maven/apache-maven-3.9.9" />
+        <option name="useMavenConfig" value="true" />
         <option name="userSettingsFile" value="D:\Maven\apache-maven-3.9.9\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectId" id="34Mxor0AXD88DeYwBMSTcqHIfSR" />
+  <component name="ProjectId" id="34SEqC4yOc3aTGtkb5defxNZAgL" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -68,10 +46,10 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/KG37/TeacherGSubjectFile/04JavaWeb/03Mybatis/Mybatis",
-    "project.structure.last.edited": "模块",
+    "last_opened_file_path": "D:/KG37/TeacherGSubjectFile/04JavaWeb/03Mybatis",
+    "project.structure.last.edited": "SDK",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
+    "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "MavenSettings",
     "vue.rearranger.settings.migration": "true"
   }
@@ -79,16 +57,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
-      <changelist id="8753276d-3db5-480e-a195-a1a04b881062" name="更改" comment="" />
-      <created>1761037420036</created>
+      <changelist id="01d26cb7-5011-43f4-bc26-cc5a1c1db07c" name="更改" comment="" />
+      <created>1761198761123</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1761037420036</updated>
-      <workItem from="1761037421132" duration="27000" />
-      <workItem from="1761038753797" duration="665000" />
-      <workItem from="1761093111956" duration="2000" />
-      <workItem from="1761093259160" duration="13318000" />
-      <workItem from="1761112402340" duration="74000" />
+      <updated>1761198761123</updated>
+      <workItem from="1761198762207" duration="206000" />
     </task>
     <servers />
   </component>
