@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--<settings>
+        &lt;!&ndash;开启日志系统，STDOUT_LOGGING：在控制台输出&ndash;&gt;
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>-->
+    <!--环境，default指定当前环境-->
+    <environments default="development">
+        <!--开发环境-->
+        <environment id="development">
+            <!--事务管理模式，使用JDBC的事务-->
+            <transactionManager type="JDBC"></transactionManager>
+            <!--配置数据源-->
+            <dataSource type="POOLED">
+                <!--驱动类-->
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <!--连接地址-->
+                <property name="url" value="jdbc:mysql://localhost:3306/myschool"/>
+                <!--用户名-->
+                <property name="username" value="root"/>
+                <!--密码-->
+                <property name="password" value="root1234"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--注册mapper-->
+    <mappers>
+        <!--resource属性直接指定resources资源目录-->
+        <mapper resource="mapper/AdminMapper.xml"/>
+        <mapper resource="mapper/GradeMapper.xml"/>
+        <mapper resource="mapper/StudentMapper.xml"/>
+        <mapper resource="mapper/ResultMapper.xml"/>
+    </mappers>
+</configuration>

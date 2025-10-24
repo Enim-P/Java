@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--彻底关闭缓存的第一步：在Mybatis配置文件中配置setting关闭缓存-->
+    <!--<settings>
+        <setting name="cacheEnabled" value="false"/>
+    </settings>-->
+    <!--定义类型别名-->
+    <typeAliases>
+        <!--给课程实体类定义一个别名-->
+        <!--<typeAlias type="com.bing.pojo.Subject" alias="subject" />-->
+        <!--指定扫描整个包，将整个包下面的实体类都定义一个别名，别名的命名方式是实体类首字母小写-->
+        <package name="com.bing.pojo"/>
+    </typeAliases>
+
+    <!--环境，default指定当前环境-->
+    <environments default="development">
+        <!--开发环境-->
+        <environment id="development">
+            <!--事务管理模式，使用JDBC的事务-->
+            <transactionManager type="JDBC"></transactionManager>
+            <!--配置数据源-->
+            <dataSource type="POOLED">
+                <!--驱动类-->
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <!--连接地址-->
+                <property name="url" value="jdbc:mysql://localhost:3306/myschool"/>
+                <!--用户名-->
+                <property name="username" value="root"/>
+                <!--密码-->
+                <property name="password" value="root1234"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--注册mapper-->
+    <mappers>
+        <!--注册指定的Mapper接口-->
+        <!--<mapper class="com.bing.project4.mapper.SubjectMapper"/>-->
+        <!--也可以注册整个包下面的所有Mapper接口-->
+        <package name="com.bing.project4.mapper"/>
+    </mappers>
+</configuration>

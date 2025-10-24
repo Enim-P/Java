@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bing.mapper.ResultMapper">
+    <select id="resultCountByStudentNo" resultType="int">
+        select count(*) from result where studentNo=#{studentNo}
+    </select>
+    <delete id="deleteResultByStudentNo">
+        delete from student where studentNo=#{studentNo}
+    </delete>
+</mapper>

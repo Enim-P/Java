@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bing.mapper.StudentMapper">
+    <insert id="insertStudent">
+        insert into student values(#{studentNo},#{loginPwd},#{studentName},
+        #{sex},#{gradeId},#{phone},#{address},#{bornDate},#{email},#{identityCard})
+    </insert>
+    <update id="updateStudent">
+        update student set loginPwd=#{loginPwd},studentName=#{studentName},
+        sex=#{sex},gradeId=#{gradeId},phone=#{phone},address=#{address},
+        bornDate=#{bornDate},email=#{email},identityCard=#{identityCard}
+        where studentNo=#{studentNo}
+    </update>
+    <delete id="deleteStudent">
+        delete from student where studentNo=#{studentNo}
+    </delete>
+    <select id="selectStudentByNo" resultType="com.bing.pojo.Student">
+        select * from student where studentNo=#{studentNo}
+    </select>
+    <select id="selectAll" resultType="com.bing.pojo.Student">
+        select * from student
+    </select>
+    <select id="selectByGrade" resultType="com.bing.pojo.Student">
+        select * from student where gradeId=#{gradeId}
+    </select>
+    <select id="selectByName" resultType="com.bing.pojo.Student">
+        select * from student where studentName like concat('%',#{studentName},'%')
+    </select>
+    <select id="selectByGradeAndName" resultType="com.bing.pojo.Student">
+        select * from student
+        <where>
+            <if test="gradeId!=null and gradeId!=0">
+                and gradeId=#{gradeId}
+            </if>
+            <if test="studentName!=null and studentName!=''">
+                and studentName like concat('%',#{studentName},'%')
+            </if>
+        </where>
+    </select>
+</mapper>
