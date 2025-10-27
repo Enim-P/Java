@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.bing</groupId>
+    <artifactId>project2</artifactId>
+    <version>1.0.0</version>
+    <name>project2</name>
+    <!--项目的打包类型，java程序通常会打包成jar包，javaWeb程序通常会打包成war包-->
+    <packaging>war</packaging>
+
+    <!--配置属性信息-->
+    <properties>
+        <!--字符编码-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--jdb版本-->
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <!--junit的版本号-->
+        <junit.version>5.9.1</junit.version>
+    </properties>
+
+    <!--依赖-->
+    <dependencies>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <!--junit5.X需要引入两个依赖，为了维护两个依赖的版本，这里采用定义一个属性的方式-->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <!--这里的版本号是通过调用junit.version属性获取的-->
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
