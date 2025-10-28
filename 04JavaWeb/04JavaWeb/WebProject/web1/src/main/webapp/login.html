@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录</title>
+</head>
+<body>
+  <h2>登录系统</h2>
+  <!--action指定后端服务的地址，这里我们并没有采用前后端分离开发，
+  所以直接写后端Servlet地址就可以了。
+  method设置请求方式，表单的请求方式一般都是post。
+  get请求方式，会将请求参数拼接在url地址栏中，如果参数很多url地址会显得非常长，而且也不安全。
+  get请求传递的数据是有限的，默认限制 URL 长度在 2KB~8KB（约 2000~8000 个字符），超出会直接截断或拒绝发送。
+  -->
+  <form action="login" method="get">
+    <table>
+      <tr>
+        <td>登录名：</td>
+        <td><input type="text" name="loginId"></td>
+      </tr>
+      <tr>
+        <td>密码：</td>
+        <td><input type="password" name="loginPwd"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <button type="submit">登录</button>
+          <button type="reset">重置</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>
