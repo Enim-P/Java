@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ajax请求</title>
+</head>
+<body>
+  <!-- 
+    ajax：async javascript and xml，异步的javascript和xml技术
+    其实就是页面无刷新技术，在页面不刷新的情况下更新后端数据
+  -->
+  <div>
+    <button id="btn">更新时间</button>
+  </div>
+  <hr>
+  <div>
+    <span>时间：</span>
+    <span id="showtime"></span>
+  </div>
+  <script>
+    document.querySelector('#btn').onclick = function(){
+      //1.创建xhr对象
+      let xhr = new XMLHttpRequest();
+      //readyState表示读取状态，刚创建完成的xhr对象的读取状态是0
+      //console.log(xhr.readyState);
+      //2.初始化请求（参数1：请求方式 参数2：请求地址）
+      xhr.open('GET','time')
+      //请求初始化完成后的读取状态为1
+      //console.log(xhr.readyState);
+      //3.发送请求
+      //发送请求后的读取状态会变成3次，分别是：2,3,4
+      //2表示发送成功
+      //3表示后端接收到请求并开发反馈结果
+      //4表示前端收到后端返回的结果
+      xhr.send()
+      //4.通过监听方法获取后端返回的数据
+      xhr.onreadystatechange = function(){
+        //console.log(xhr.readyState);
+        //读取状态为4表示接收到了后端反馈的结果
+        if(xhr.readyState===4){ 
+          //status返回的是状态：200表示成功，500表示服务器发生错误，404标识请求资源不存在
+          if(xhr.status===200){
+            // 请求完成 并且 请求成功 后
+            // 将后端响应的结果在指定的元素s中显示
+            document.querySelector('#showtime').innerHTML = xhr.response
+          }
+        }
+      }
+      // 程序继续往下执行，因为监听方法什么时候得到数据是不确定的
+
+    }
+
+    
+  </script>
+</body>
+</html>

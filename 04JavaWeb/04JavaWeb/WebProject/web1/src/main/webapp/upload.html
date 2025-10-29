@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>上传</title>
+</head>
+<body>
+  <!-- action设置表单提交地址
+   表单上传必须使用post请求方式
+   必须添加enctype="multipart/form-data"属性，表示文件上传 -->
+  <form action="user/up" method="post" enctype="multipart/form-data">
+    <div>
+      <label>头像：</label>
+      <input type="file" name="photo">
+    </div>
+    <div>
+      <button type="submit">上传</button>
+    </div>
+  </form>
+</body>
+</html>

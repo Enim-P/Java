@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>添加学生</title>
+  <style>
+    table{
+      border-collapse: collapse;
+    }
+    td,th{
+      border: 1px solid #ccc;
+      padding: 2px 20px;
+    }
+  </style>
+</head>
+<body>
+  <h2>添加学生</h2>
+  <table>
+    <tr>
+      <td>学号：</td>
+      <td><input type="text" id="studentNo"></td>
+    </tr>
+    <tr>
+      <td>密码：</td>
+      <td><input type="text" id="loginPwd"></td>
+    </tr>
+    <tr>
+      <td>姓名：</td>
+      <td><input type="text" id="studentName"></td>
+    </tr>
+    <tr>
+      <td>性别：</td>
+      <td><input type="text" id="sex"></td>
+    </tr>
+    <tr>
+      <td>年级：</td>
+      <td><input type="text" id="gradeId"></td>
+    </tr>
+    <tr>
+      <td>电话：</td>
+      <td><input type="text" id="phone"></td>
+    </tr>
+    <tr>
+      <td>生日：</td>
+      <td><input type="text" id="bornDate"></td>
+    </tr>
+    <tr>
+      <td>邮箱：</td>
+      <td><input type="text" id="email"></td>
+    </tr>
+    <tr>
+      <td>地址：</td>
+      <td><input type="text" id="address"></td>
+    </tr>
+    <tr>
+      <td>证件：</td>
+      <td><input type="text" id="identityCard"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button id="add">添加</button>
+      </td>
+    </tr>
+  </table>
+  <script>
+    function $r(selecter){
+      return document.querySelector(selecter);
+    }
+
+    document.querySelector('#add').onclick = function(){
+      // 获取数据
+      let studentNo = $r("#studentNo").value;
+      let loginPwd = $r("#loginPwd").value;
+      let studentName = $r("#studentName").value;
+      let sex = $r("#sex").value;
+      let gradeId = $r("#gradeId").value;
+      let phone = $r("#phone").value;
+      let bornDate = $r("#bornDate").value;
+      let email = $r("#email").value;
+      let address = $r("#address").value;
+      let identityCard = $r("#identityCard").value;
+      // 定义一个学生对象
+      let stu = {studentNo,loginPwd,studentName,sex,
+        gradeId,phone,bornDate,email,address,identityCard
+      }
+      // 将学生对象拼接成URL参数字符串
+      let str = Object.keys(stu).map(k=>{
+        return k+"="+stu[k]
+      }).join("&")
+      
+    }
+  </script>
+</body>
+</html>

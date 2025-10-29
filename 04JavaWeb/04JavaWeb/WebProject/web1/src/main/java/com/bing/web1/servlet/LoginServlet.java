@@ -23,14 +23,15 @@ public class LoginServlet extends HttpServlet {
     // GET请求方法
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 设置响应内容的类型
+        resp.setContentType("text/html;charset=UTF-8");
         // 解决GET请求参数中文乱码问题
-
         // 方式一：直接在当前GET请求方法中解决
         // GET请求参数默认采用的编码是（ISO-8859-1）
-        String loginId = req.getParameter("loginId");
+        //String loginId = req.getParameter("loginId");
         // 将原来采用ISO-8859-1编码的字符串数据，转为UTF-8编码
-        String loginId2 = new String(loginId.getBytes("ISO-8859-1"),"UTF-8");
-        System.out.println(loginId2);
+        //String loginId2 = new String(loginId.getBytes("ISO-8859-1"),"UTF-8");
+        //System.out.println(loginId2);
         // 方式二：直接改tomcat服务器的配置，统一处理GET请求的参数编码
         // 修改server.xml配置文件中的配置
         /*
@@ -42,6 +43,22 @@ public class LoginServlet extends HttpServlet {
                URIEncoding="UTF-8"
                />
         */
+        String loginId = req.getParameter("loginId");
+        String loginPwd = req.getParameter("loginPwd");
+        if(loginId!=null && loginPwd!=null){
+            Admin admin = adminMapper.getAdminByLoginId(loginId);
+            if(admin!=null){
+                if(admin.getLoginPwd().equals(loginPwd)){
+                    resp.getWriter().write("登录成功！");
+                }else{
+                    resp.getWriter().write("密码错误！");
+                }
+            }else{
+                resp.getWriter().write("登录名错误！");
+            }
+        }else{
+            resp.getWriter().write("抱歉！登录数据不完整！");
+        }
     }
 
     // POST请求方法
