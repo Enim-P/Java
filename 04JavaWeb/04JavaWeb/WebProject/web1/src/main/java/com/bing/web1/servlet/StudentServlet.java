@@ -11,15 +11,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @WebServlet("/student")
 public class StudentServlet extends HttpServlet {
-    StudentMapper studentMapper = MybatisUtil.getSession(true).getMapper(StudentMapper.class);
+
 
     // get做查询
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        StudentMapper studentMapper = MybatisUtil.getSession(true).getMapper(StudentMapper.class);
         // 响应的内容类型是application/json，是一个json格式的数据
         resp.setContentType("application/json;charset=UTF-8");
         // 获取学生的姓名
@@ -35,9 +37,40 @@ public class StudentServlet extends HttpServlet {
     // post做添加
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        StudentMapper studentMapper = MybatisUtil.getSession(true).getMapper(StudentMapper.class);
+        // 除了post请求传递中文参数中文乱码问题
+        req.setCharacterEncoding("UTF-8");
         // 响应的内容类型是application/json，是一个json格式的数据
         resp.setContentType("application/json;charset=UTF-8");
+        // 拿到前端传递的参数
         String studentNo = req.getParameter("studentNo");
-        System.out.println(studentNo);
+        String loginPwd = req.getParameter("loginPwd");
+        String studentName = req.getParameter("studentName");
+        String sex = req.getParameter("sex");
+        int gradeId = Integer.valueOf(req.getParameter("gradeId"));
+        String phone = req.getParameter("phone");
+        LocalDateTime bornDate = LocalDateTime.now();
+        String email = req.getParameter("email");
+        String address = req.getParameter("address");
+        String identityCard = req.getParameter("identityCard");
+        // 创建一个学生对象
+        Student student = new Student();
+        student.setStudentNo(studentNo);
+        student.setLoginPwd(loginPwd);
+        student.setStudentName(studentName);
+        student.setSex(sex);
+        student.setGradeId(gradeId);
+        student.setPhone(phone);
+        student.setBornDate(bornDate);
+        student.setEmail(email);
+        student.setAddress(address);
+        student.setIdentityCard(identityCard);
+        int rows = studentMapper.addStudent(student);
+        if(rows>0){
+            resp.getWriter().write("ok");
+        }else{
+            resp.getWriter().write("no");
+        }
+
     }
 }

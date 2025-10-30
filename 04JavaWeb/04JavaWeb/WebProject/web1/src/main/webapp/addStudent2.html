@@ -64,56 +64,35 @@
       </td>
     </tr>
   </table>
+  <script src="./js/jquery.js"></script>
   <script>
-    function $r(selecter){
-      return document.querySelector(selecter);
-    }
-
-    document.querySelector('#add').onclick = function(){
+    //添加按钮点击事件
+    $('#add').click(function(){
       // 获取数据
-      let studentNo = $r("#studentNo").value;
-      let loginPwd = $r("#loginPwd").value;
-      let studentName = $r("#studentName").value;
-      let sex = $r("#sex").value;
-      let gradeId = $r("#gradeId").value;
-      let phone = $r("#phone").value;
-      let bornDate = $r("#bornDate").value;
-      let email = $r("#email").value;
-      let address = $r("#address").value;
-      let identityCard = $r("#identityCard").value;
+      let studentNo = $("#studentNo").val();
+      let loginPwd = $("#loginPwd").val();
+      let studentName = $("#studentName").val();
+      let sex = $("#sex").val();
+      let gradeId = $("#gradeId").val();
+      let phone = $("#phone").val();
+      let bornDate = $("#bornDate").val();
+      let email = $("#email").val();
+      let address = $("#address").val();
+      let identityCard = $("#identityCard").val();
       // 定义一个学生对象
       let stu = {studentNo,loginPwd,studentName,sex,
         gradeId,phone,bornDate,email,address,identityCard
       }
-      // 将学生对象拼接成URL参数字符串
-      let str = Object.keys(stu).map(k=>{
-        return k+"="+stu[k]
-      }).join("&")
-      // 1.创建xhr对象
-      let xhr = new XMLHttpRequest();
-      // 2.初始化请求
-      xhr.open('POST','student')
-      // 设置传递给后端的数据的格式
-      // json格式
-      //xhr.setRequestHeader('Content-Type', 'application/json');
-      // url格式
-      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      // 3.发送请求,post请求的参数通过send方法发送
-      xhr.send(str)
-      // 4.监听事件
-      xhr.onreadystatechange = function(){
-        if(xhr.readyState===4){
-          if(xhr.status===200){
-            if(xhr.response=="ok"){
-              alert("添加成功！")
-              location.href = 'student.html'
-            }else{
-              alert("添加失败！")
-            }
-          }
+      //使用jquery的post方法，发送post请求
+      $.post('student',stu,(ret)=>{
+        if(ret=="ok"){
+          alert("添加成功！")
+          location.href = 'student2.html'
+        }else{
+          alert("添加失败！")
         }
-      }
-    }
+      })
+    })
   </script>
 </body>
 </html>

@@ -45,6 +45,7 @@
         <th>年级</th>
         <th>生日</th>
         <th>地址</th>
+        <th>操作</th>
       </tr>
     </thead>
     <tbody id="tbody">
@@ -85,6 +86,9 @@
                   <td>${s.gradeId}</td>
                   <td>${s.bornDate}</td>
                   <td>${s.address}</td>
+                  <td>
+                    <button onclick="deleteStudent('${s.studentNo}')">删除</button>
+                  </td>
                 </tr>
               `
             })
@@ -96,6 +100,32 @@
     }
     // 执行一下加载学生列表的方法
     loadStudents()
+
+    // 删除方法
+    function deleteStudent(studentNo){
+      if(confirm('确定删除吗？')){
+        // 发送ajax-get请求，将学号传到后端，后端返回ok删除成功，返回no删除失败
+        // 删除成功后，重新加载学生列表，展示最新数据
+        let xhr = new XMLHttpRequest()
+        xhr.open('GET','delstudent?studentNo='+studentNo)
+        xhr.send()
+        xhr.onreadystatechange = function(){
+          // 请求完成
+          if(xhr.readyState===4){
+            // 请求成功
+            if(xhr.status===200){
+              if(xhr.response=='ok'){
+                alert('删除成功！')
+                // 重新加载学生列表
+                loadStudents()
+              }else{
+                alert('删除失败！')
+              }
+            }
+          }
+        }
+      }
+    }
   </script>
 </body>
 </html>

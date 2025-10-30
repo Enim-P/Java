@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>学生管理</title>
+  <style>
+    .search{
+      padding: 10px;
+      border: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+    }
+    .search input{
+      width: 300px;
+    }
+    .search button{
+      padding: 2px 10px;
+      margin-left: 10px;
+    }
+    table{
+      border-collapse: collapse;
+    }
+    td,th{
+      border: 1px solid #ccc;
+      padding: 2px 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="search">
+    <span>学生姓名(模糊查询)：</span>
+    <input type="text" id="studentName">
+    <button id="find">查询</button>
+    <a href="addStudent2.html">添加学生</a>
+  </div>
+  <hr>
+  <table>
+    <thead>
+      <tr>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>电话</th>
+        <th>年级</th>
+        <th>生日</th>
+        <th>地址</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody id="tbody">
+
+    </tbody>
+  </table>
+
+  <script src="./js/jquery.js"></script>
+  <script src="./js/bing.js"></script>
+  <script>
+    // 查询按钮点击事件
+    $("#find").click(function(){
+      loadStudents()
+    })
+
+    // 加载学生列表的方法
+    function loadStudents(){
+      // 获取学生的姓名
+      let studentName = $('#studentName').val();
+      // 使用jquery提供的get方法，发送get请求
+      $.get('student',{studentName},(stus)=>{
+        let str = '';
+        stus.forEach(s=>{
+          s.bornDate = miniDate(new Date(s.bornDate))
+          str += `
+            <tr>
+              <td>${s.studentNo}</td>
+              <td>${s.studentName}</td>
+              <td>${s.sex}</td>
+              <td>${s.phone}</td>
+              <td>${s.gradeId}</td>
+              <td>${s.bornDate}</td>
+              <td>${s.address}</td>
+              <td>
+                <button onclick="deleteStudent('${s.studentNo}')">删除</button>
+              </td>
+            </tr>
+          `
+        })
+        $('#tbody').html(str)
+      })
+    }
+    // 执行一下加载学生列表的方法
+    loadStudents()
+
+    // 删除方法
+    function deleteStudent(studentNo){
+      if(confirm('确定删除吗？')){
+        $.get('delstudent',{studentNo},(ret)=>{
+          if(ret=="ok"){
+            alert('删除成功！')
+            // 重新加载学生列表
+            loadStudents()
+          }else{
+            alert('删除失败！')
+          }
+        })
+      }
+    }
+  </script>
+</body>
+</html>
