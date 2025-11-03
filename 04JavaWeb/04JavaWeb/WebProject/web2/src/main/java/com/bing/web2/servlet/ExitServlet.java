@@ -27,6 +27,10 @@ public class ExitServlet extends HttpServlet {
                 cookie.setMaxAge(0);
                 resp.addCookie(cookie);
             }
+            // 从Session中移除存储数据
+            //req.getSession().removeAttribute("user");
+            // 设置Session立刻失效，Session中存储的所有数据全部清除
+            req.getSession().invalidate();
         }
         resp.getWriter().write("<script>" +
                 "alert('成功退出！');" +

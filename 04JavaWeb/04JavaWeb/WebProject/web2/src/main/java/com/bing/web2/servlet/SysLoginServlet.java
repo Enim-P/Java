@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+// 3. syslogin -> exit Cookie相关操作
 @WebServlet("/syslogin")
 public class SysLoginServlet extends HttpServlet {
     // 使用Cookie实现自动登录功能
@@ -69,7 +70,8 @@ public class SysLoginServlet extends HttpServlet {
                 resp.addCookie(cookie2);
             }
             // 登录成功后跳转到首页
-            resp.sendRedirect("index.html");
+            // req.getContextPath()获取的是当前容器根路径（可以省略）
+            resp.sendRedirect(req.getContextPath()+"index.html");
         }else{
             resp.getWriter().write("登录失败！");
         }

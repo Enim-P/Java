@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+// 2. login -> time 是重定向
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
@@ -27,7 +28,7 @@ public class LoginServlet extends HttpServlet {
         ServletContext context = getServletContext();
         context.setAttribute("name","全局上下文容器");
 
-        if(loginId.equals("test") && loginPwd.equals("123456")){
+        if("test".equals(loginId) && "123456".equals(loginPwd)){
             //resp.getWriter().write("登录成功！");
             //sendRedirect方法用于重定向
             //重定向是一种前端行为，是后端指定了前端跳转的行为

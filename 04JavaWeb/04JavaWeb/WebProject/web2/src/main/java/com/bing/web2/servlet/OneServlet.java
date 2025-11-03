@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+// 1. one -> two 是请求转发
 @WebServlet("/one")
 public class OneServlet extends HttpServlet {
     @Override
