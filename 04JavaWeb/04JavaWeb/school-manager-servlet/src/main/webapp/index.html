@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .index{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            color: #fff;
+        }
+        .left{
+            width: 200px;
+            background: #369;
+        }
+        .left h2{
+            height: 60px;
+            text-align: center;
+            font-size: 30px;
+            line-height: 60px;
+        }
+        .left .item{
+            text-align: center;
+        }
+        .left .item a{
+            font-size: 20px;
+            text-decoration: none;
+            color: #fff;
+        }
+        .right{
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .top{
+            height: 60px;
+            background: #369;
+            padding-right: 20px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        .top button{
+            padding: 2px 20px;
+        }
+        .center{
+            flex: 1;
+            padding: 10px;
+        }
+        .mosk{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+  <div class="index">
+      <div class="left">
+          <h2>高校管理系统</h2>
+          <div class="item">
+              <a href="student.html" target="center">学生管理</a>
+          </div>
+          <div class="item">
+              <a href="subject.html" target="center">课程管理</a>
+          </div>
+          <div class="item">
+              <a href="result.html" target="center">成绩管理</a>
+          </div>
+      </div>
+      <div class="right">
+          <div class="top">
+              <button id="exit">退出</button>
+          </div>
+          <div class="center">
+            <iframe style="width: 100%;height: 100%" frameborder="0" name="center"></iframe>
+          </div>
+      </div>
+  </div>
+  <!--首页遮罩层-->
+  <div class="mosk"></div>
+  <script src="./js/bing.js"></script>
+  <script>
+      // 窗体加载事件
+      window.onload = function (){
+          $b.get("ckLogin",{},(res)=>{
+              if(res.code==0){
+                  alert("请登录系统！")
+                  location.href = "login.html"
+              }else{
+                  // 移除遮罩层
+                  $b.selecter(".mosk").remove()
+              }
+          })
+      }
+      // 退出按钮点击事件
+      $b.selecter("#exit").onclick = function (){
+          if(confirm("确定退出吗？")){
+              $b.post("exit",{},(res)=>{
+                  if(res.code==1){
+                      alert(res.message)
+                      location.href = "login.html"
+                  }
+              })
+          }
+      }
+  </script>
+</body>
+</html>

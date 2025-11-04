@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            width: 100vw;
+            height: 100vh;
+            background: #369;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .login{
+            padding: 20px;
+            border: 1px solid #fff;
+            border-radius: 8px;
+            color: #fff;
+        }
+        .txt{
+            width: 300px;
+            outline: none;
+        }
+        button{
+            padding: 2px 20px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login">
+            <h2>登录系统</h2>
+            <table>
+                <tr>
+                    <td>账号：</td>
+                    <td><input type="text" class="txt" id="loginId"/></td>
+                </tr>
+                <tr>
+                    <td>密码：</td>
+                    <td><input type="password" class="txt" id="loginPwd"/></td>
+                </tr>
+                <tr>
+                    <td>记住我</td>
+                    <td><input type="checkbox" id="ckMe"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button id="login">登录</button>
+                        <button id="cancel">取消</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script src="./js/bing.js"></script>
+    <script>
+        // 窗体加载事件
+        window.onload = function (){
+            // 判断是否是登录状态
+            $b.get("ckLogin",{},(res)=>{
+                if(res.code==1){
+                    location.href = "index.html"
+                }
+            })
+            // 判断有没有使用Cookie保存登录信息
+            let loginData = {}
+            // 将Cookie中保存的信息，组织成一个对象进行存储
+            document.cookie.split("; ").forEach(r=>{
+                let arr = r.split("=")
+                loginData[arr[0]] = arr[1]
+            })
+            // 显示登录信息
+            if(loginData.ckMe){
+                $b.selecter("#loginId").value = loginData.loginId;
+                $b.selecter("#loginPwd").value = loginData.loginPwd;
+                $b.selecter("#ckMe").checked = true;
+            }
+        }
+
+        // 登录按钮点击事件
+        $b.selecter("#login").onclick = function (){
+            let loginId = $b.selecter("#loginId").value;  // 获取账号
+            let loginPwd = $b.selecter("#loginPwd").value;  // 获取密码
+            let ckMe = $b.selecter("#ckMe").checked;  // 获取是否记住我
+            if(!loginId){
+                return alert("请输入账号！")
+            }
+            if(!loginPwd){
+                return alert("请输入密码！")
+            }
+            $b.post('login',{loginId,loginPwd,ckMe},(res)=>{
+                alert(res.message)
+                if(res.code==1){
+                    // 跳转到首页
+                    location.href = "index.html";
+                }
+            })
+        }
+        // 取消按钮点击事件
+        $b.selecter("#cancel").onclick = function (){
+            $b.selecter("#loginId").value = ""
+            $b.selecter("#loginPwd").value = ""
+        }
+    </script>
+</body>
+</html>
