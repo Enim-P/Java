@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加学生</title>
+</head>
+<body>
+  <table>
+    <tr>
+      <td>学号：</td>
+      <td><input type="text" id="studentNo"/></td>
+    </tr>
+    <tr>
+      <td>密码：</td>
+      <td><input type="password" id="loginPwd"/></td>
+    </tr>
+    <tr>
+      <td>姓名：</td>
+      <td><input type="text" id="studentName"/></td>
+    </tr>
+    <tr>
+      <td>性别：</td>
+      <td>
+        <input type="radio" value="男" name="sex" checked/>男
+        <input type="radio" value="女" name="sex"/>女
+      </td>
+    </tr>
+    <tr>
+      <td>年级：</td>
+      <td>
+        <select id="gradeId">
+          <option value="1">大一</option>
+          <option value="2">大二</option>
+          <option value="3">大三</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>电话：</td>
+      <td><input type="text" id="phone"/></td>
+    </tr>
+    <tr>
+      <td>生日：</td>
+      <td><input type="date" id="bornDate"/></td>
+    </tr>
+    <tr>
+      <td>邮箱：</td>
+      <td><input type="text" id="email"/></td>
+    </tr>
+    <tr>
+      <td>地址：</td>
+      <td><input type="text" id="address"/></td>
+    </tr>
+    <tr>
+      <td>身份证：</td>
+      <td><input type="text" id="identityCard"/></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button id="add">添加</button>
+        <button id="cancel">取消</button>
+      </td>
+    </tr>
+  </table>
+  <script src="./js/bing.js"></script>
+  <script>
+    // 添加按钮点击事件
+    $b.selecter("#add").onclick = function (){
+      let studentNo = $b.selecter('#studentNo').value
+      let loginPwd = $b.selecter('#loginPwd').value
+      let studentName = $b.selecter('#studentName').value
+      let sex = [...document.getElementsByName('sex')].find(s=>s.checked).value;
+      let gradeId = $b.selecter("#gradeId").value
+      let phone = $b.selecter('#phone').value
+      let bornDate = $b.selecter('#bornDate').value
+      let email = $b.selecter('#email').value
+      let address = $b.selecter('#address').value
+      let identityCard = $b.selecter('#identityCard').value
+      let stu = {
+        studentNo,loginPwd,studentName,sex,gradeId,phone,bornDate,email,address,identityCard
+      }
+      $b.post('addStu',stu,(res)=>{
+        if(res.code==1){
+          alert(res.message)
+        }
+      })
+    }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>样式表的优先级</title>
+  <style>
+    /* 行内样式的优先级最高，内部样式和外部样式的优先级采取就近原则 */
+    p{
+      font-size: 30px;
+      color: blue;
+    }
+  </style>
+  <!-- 引入外部样式 -->
+  <link rel="stylesheet" href="./one.css">
+  <!-- 这里是先定义内部样式，再引入外部样式，所以外部样式会覆盖内部样式 -->
+</head>
+<body>
+  <p>北京</p>
+  <p style="font-size: 40px; color: red;">上海</p>
+  <p>南京</p>
+</body>
+</html>

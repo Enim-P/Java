@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>外部样式</title>
+  <!-- 通过link标签引入外部样式文件 -->
+   <!-- link标签用于引入外部资源
+    rel设置外部资源的类型，属性值stylesheet表示样式表资源
+    href属性指定资源地址 -->
+  <!-- <link rel="stylesheet" href = "./style.css"> -->
+  <!-- 外部样式表可以做到多页面的样式复用，他是真正体现了结构和样式的分离
+   .html文件中定义网页的结构
+   .css文件中定义网页需要的样式 -->
+   <style>
+    /* 还可以在style标签通过@import的方式导入一个外部样式表的资源 */
+    @import url('./style.css');
+   </style>
+</head>
+<body>
+  
+  <h2>北京</h2>
+  <h2>南京</h2>
+
+  <p>苹果</p>
+  <p>荔枝</p>
+  <p>西瓜</p>
+
+  <div>奔驰</div>
+  <div>宝马</div>
+</body>
+</html>

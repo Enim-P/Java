@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>H5新增的表单属性</title>
+</head>
+<body>
+  <form>
+    <p>姓名：
+      <!-- placeholder属性设置文本框的输入提示信息，
+       required属性设置文本框非空验证，属性值也是required，可以省略 -->
+      <input type="text" placeholder="请输入姓名"
+      required>
+    </p>
+    <p>手机号码：
+      <!-- pattern属性用于定义正则表达式，
+       通过正则表达式对表单元素的内容进行验证（在正则表达式时\d表示数字,{n}表示重复前面的次数） -->
+      <input type="text" placeholder="请输入手机号码" required
+      pattern="1\d{10}">
+    </p>
+    <p>
+      <button>提交</button>
+    </p>
+  </form>
+</body>
+</html>

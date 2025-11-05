@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>链接伪类选择器</title>
+  <style>
+    /* .是类选择器，:伪类选择器 */
+    a{
+      /* 去掉超链接的下划线 */
+      text-decoration: none;
+    }
+    /* :visited表示点击过后的状态 */
+    a:visited{
+      color: green;
+    }
+    /* :link表示未点击状态 */
+    a:link{
+      color: black;
+    }
+    /* :hover表示鼠标悬停状态 */
+    a:hover{
+      color: orange;
+    }
+    /* :active表示点击未释放状态，就是点击时的那一瞬间样式 */
+    a:active{
+      color: darkred;
+      font-size: 30px;
+    }
+   
+  </style>
+</head>
+<body>
+  <!-- href="#"表示锚链接跳转到页面的最上面，这里可以当做空连接使用 -->
+  <a href="#">打开行内样式</a>
+</body>
+</html>

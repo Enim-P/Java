@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>层次选择器</title>
+  <style>
+    p{
+      font-size: 30px;
+    }
+    /* 后代选择器 */
+    .one P{
+      color:red;
+    }
+    /* 子选择器 */
+    .one >p{
+      background-color: lightblue;
+    }
+    /* 相邻兄弟选择器，就是当前元素的下一个兄弟元素 */
+    .pt + li{
+      font-size  :30px;
+      color:darkred;
+    }
+    /* 通用兄弟选择器，就是当前元素下面所有兄弟元素 */
+    .pt~li{
+      background-color: lightpink;
+    }
+  </style>
+</head>
+<body>
+  <div class = "one">
+    <p>小米</p>
+    <p>华为</p>
+    <div>
+      <p>联想</p>
+      <p>华硕</p>
+    </div>
+  </div>
+  <p>索尼</p>
+  <p>尼康</p>
+  <hr/>
+  <ul>
+    <li>苹果</li>
+    <li>西瓜</li>
+    <li class = "pt">葡萄</li>
+    <li>荔枝</li>
+    <li>榴莲</li>
+  </ul>
+</body>
+</html>

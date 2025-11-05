@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>结构伪类练习</title>
+  <style>
+    table{
+      width: 400px;
+      height: 200px;
+      /* 去掉表格的单元格间隙 */
+      border-collapse: collapse;
+    }
+    /* odd表示所有的奇数行 */
+    table tr:nth-child(odd){
+      background-color: lightblue;
+    }
+    /* even表示所有的偶数行 */
+    table tr:nth-child(even){
+      background-color: lightpink;
+    }
+  </style>
+</head>
+<body>
+  <table border="1">
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+</body>
+</html>

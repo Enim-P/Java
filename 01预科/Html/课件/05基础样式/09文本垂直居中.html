@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=, initial-scale=1.0">
+  <title>文本垂直居中</title>
+  <style>
+    .a{
+      font-size: 20px;
+      width: 300px;
+      height: 200px;
+      background-color: lightblue;
+      /* 设置文本水平居中 */
+      text-align: center;
+      /* 设置文本的行高=高度，就相当于设置文本垂直居中 */
+      line-height: 200px;
+    }
+    /* 默认情况下图片两端的文本都是靠下对齐的，如果要更改文本的对齐方式，
+    需要设置图片的vertical-align属性，该属性作用在图片两端的文本身上 */
+    .b img{
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <div class="a">好好学习，天天向上</div>
+  <hr>
+  <div class="b">
+    <img src="./cat.jpg"/>
+    两只可爱的小猫
+  </div>
+</body>
+</html>

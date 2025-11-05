@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习1</title>
+  <style>
+    /* 容器有一张背景图片，鼠标悬停到容器上市换一张背景图片
+    两张背景图片都要撑满背景图片 */
+    .a{
+      width:1200px;
+      height:800px;
+      background:lightblue url(./R-C.jpg) no-repeat center;
+    }
+    /* 鼠标悬停时换一张图片 */
+    .a:hover{
+       width:1200px;
+      height:800px;
+      background:lightblue url(./cat.jpg) no-repeat center cover;
+    }
+    /* 鼠标点击时换一张图片 */
+    .a:active{
+      width:1200px;
+      height:800px;
+      background:lightblue url(./apex\ sign.png) no-repeat center cover;
+    }
+  </style>
+</head>
+<body>
+  <div class = "a"></div>
+</body>
+</html>

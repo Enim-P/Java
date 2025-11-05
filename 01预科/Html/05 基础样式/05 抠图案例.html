@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>抠图案例</title>
+  <style>
+    .a{
+      width:140px;
+      height:200px;
+      background-color: lightblue;
+      background-image: url(./hz.jpg);
+      background-repeat: no-repeat;
+      /* 设置图片背景位置，位置可以是固定值 */
+      background-position: -480px -250px;
+    }
+    .b{
+      width:100px;
+      height: 30px;
+      text-height:30px;
+      color:white;
+      background-color: lightblue;
+      background-image: url(./tb.jpg);
+      background-repeat: no-repeat;
+      background-position: 0px -195px;
+      /* 设置文本内容不给选中 */
+      user-select:none;
+      /* 设置鼠标指针样式为小手 */
+      cursor: pointer;
+    }
+   
+    /* 总结：根据元素的宽高属性结合背景图片的background-position属性实现抠图效果 */
+
+    .b:active{
+      background-position: -110px -195px;
+    }
+  </style>
+</head>
+<body>
+  <div class = "a"></div>
+  <hr/>
+  <div class = "b">按钮</></div>
+
+</body>
+</html>

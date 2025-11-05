@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>内部样式</title>
+  <!-- 内部样式表通过在style标签在head中定义 -->
+  <style>
+    /* 在style标签中定义选择器，选择器用来指定哪些标签需要我们定义的样式 */
+    h2{
+      font-size: 30px;
+      color: red;
+    }
+    p{
+      font-size: 40px;
+      color: orange;
+    }
+    div{
+      font-size: 50px;
+      color: green;
+    }
+    /* 内部样式可以做到当前页面中指定元素的样式复用，但是做不到多页面间样式的复用 */
+  </style>
+</head>
+<body>
+  <h2>北京</h2>
+  <h2>南京</h2>
+  <p>苹果</p>
+  <p>荔枝</p>
+  <p>西瓜</p>
+  <div>奔驰</div>
+  <div>宝马</div>
+</body>
+</html>

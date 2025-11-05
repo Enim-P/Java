@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>基本选择器</title>
+  <style>
+    /* 选择器的作用就是选中元素，然后对元素定义样式 */
+    /* 基本选择器又分为：标签选择器、类选择器、id选择器 */
+    /* 标签选择器：直接根据标签的名字定义选择器的名字，这种选择器作用于所有该标签 */
+    h2{
+      font-size: 20px;
+      color: red;
+    }
+    /* 类选择器的命名方式是：.自定义名称 */
+    .one{
+      font-size: 30px;
+      color: blue;
+    }
+    /* id选择器的命名方式是：#自定义名称 */
+    #two{
+      font-size: 40px;
+      color: green;
+    }
+    /* 基本选择器的优先级：
+    id选择器 > 类选择器 > 标签选择器 */
+    div{
+      /* 给样式属性添加!important表示最高权重，该样式的优先级最高 */
+      color: red !important;
+      font-size: 30px;
+    }
+    .three{
+      color: green;
+      font-size:40px;
+      background-color: lightblue;
+    }
+    #four{
+      /* id选择器没有自己背景，所以背景颜色还是继续使用类选择器的 */
+      color: blue;
+      font-size: 50px;
+    }
+</style>
+</head>
+<body>
+  <h2 id="two" class="one">成都</h2>
+  <h2>重庆</h2>
+  <p>郑州</p>
+  <!-- 标签通过class属性调用指定的类选择器 -->
+  <p class="one">洛阳</p>
+  <!-- 标签通过id属性调用指定的id选择器 -->
+  <p id="two">西安</p>
+  <p>济南</p>
+  <div class="one">大众</div>
+  <div id="two">宝马</div>
+  <hr>
+  <div class="three" id="four">你好！欢迎光临！</div>
+</body>
+</html>

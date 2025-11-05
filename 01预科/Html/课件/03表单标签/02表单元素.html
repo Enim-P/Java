@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表单元素</title>
+</head>
+<body>
+  <!-- 如果不需要跟服务器交互，现阶段不用指定action和method属性 -->
+  <form>
+    <table>
+      <tr>
+        <td>账号：</td>
+        <!-- input是表单的子元素，叫输入标签，通过type属性设置类型
+         text是文本框，value属性设置元素的内容，name属性设置元素的名称 -->
+        <td><input type="text" value="张三" name="loginId"></td>
+      </tr>
+      <tr>
+        <td>密码：</td>
+        <!-- password是密码框 -->
+        <td><input type="password"></td>
+      </tr>
+      <tr>
+        <td>性别：</td>
+        <td>
+          <!-- radio是单选框，一组单选框需要设置相同的name属性值，
+           单选框中的value属性设置单选框的值，
+           checked属性设置选中状态，该属性的属性值也是checked,
+           在HTML5的标准中，标签的属性值跟属性名相同时，属性值可以省略 -->
+          <input type="radio" value="M" name="sex" checked>男
+          <input type="radio" value="F" name="sex">女
+        </td>
+      </tr>
+      <tr>
+        <td>血型：</td>
+        <td>
+          <input type="radio" value="无" name="bloodType" checked>未知
+          <input type="radio" value="A" name="bloodType">A型
+          <input type="radio" value="B" name="bloodType">B型
+          <input type="radio" value="O" name="bloodType">O型
+        </td>
+      </tr>
+      <tr>
+        <td>爱好：</td>
+        <td>
+          <!-- checkbox是复选框，同时可以选择多个 -->
+          <input name="hobby" type="checkbox" value="1">游泳
+          <input name="hobby" type="checkbox" value="2" checked>跑步
+          <input name="hobby" type="checkbox" value="3">钓鱼
+          <input name="hobby" type="checkbox" value="4" checked>唱歌
+          <input name="hobby" type="checkbox" value="5">踢球
+          <input name="hobby" type="checkbox" value="6" checked>画画
+        </td>
+      </tr>
+      <tr>
+        <td>地区：</td>
+        <td>
+          <!-- select是下拉框元素，option是下拉框的选项元素
+          selected属性设置默认选中，属性值selected可以省略  -->
+          <select>
+            <option value="bj">北京</option>
+            <option value="sh">上海</option>
+            <option value="gz" selected>广州</option>
+            <option value="sz">深圳</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>头像：</td>
+        <!-- file是文件域，用于选择文件 -->
+        <td>
+          <input type="file">
+          <!-- button是普通按钮 -->
+          <input type="button" value="上传">
+        </td>
+      </tr>
+      <tr>
+        <td>地址：</td>
+        <td>
+          <!-- textarea是文本域（多行文本框）
+           rows属性设置行数，cols属性设置列数
+          表单元素的readonly属性设置表单元素是否是只读，
+          如果是只读状态，只能看不能改 -->
+          <textarea readonly rows="5" cols="50">南京市雨花台区软件大道108号</textarea>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <!-- submit是提交按钮，点击提交按钮时，页面会刷新，
+           其实就是在收集表单元素中的内容，向服务器提交，
+           这里我们没有设置提交地址，默认就是向当前网页提交，会刷新页面，
+          通过disabled属性禁用表单元素，属性值也是disabled，可以省略 -->
+          <input type="submit" value="提交" disabled>
+          <!-- reset是重置按钮，点击重置按钮，会使表单恢复到默认状态 -->
+          <input type="reset" value="重置">
+          <!-- image是图片提交按钮，功能给submit是一样的，都是手机表单数据向服务器提交
+           通过src属性设置图片的地址，value属性的值在没设置图片地址时显示 -->
+          <input type="image" value="图片加载中...." src="./BMW.webp"
+          width="50">
+          <!-- hidden是隐藏域，用于在页面中隐藏信息，
+           有些信息是不需要给用户看到的，但是向服务器提交时又必须要用到，
+           这个时候就需要使用隐藏域 -->
+          <input type="hidden" value="这里是页面隐藏的信息">
+        </td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>

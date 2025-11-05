@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>结构为类样式</title>
+  <style>
+    /* first-child 表示指定的第一个元素  如果第一个元素不是li样式失效*/
+    .a li:first-child{
+      font-size: 20px;
+      color: red;
+    }
+    /* ：last-child 表示指定的最后一个元素 如果最后一个元素不是li那么样式失效*/
+    .a li:last-child{
+      font-size: 30px;
+      color: green;
+    }
+    /* ：nth-child(n) 表示指定位置的元素 因为第一个元素是P所以这里的第三个元素指向了淮安*/
+    .a li:nth-child(3){
+      font-size: 30px;
+      color: blue;
+    }
+    /* :first-of-type 和 :first-of-child 的区别，他会跳过非指定元素*/
+    .b li:first-of-type{
+      font-size: 20px;
+      color:red;
+    }
+/* :last-of-type 和 :last-child 的区别是，他会跳过非指定元素 */
+    .b li:last-of-type{
+      font-size: 30px;
+      color: green;
+    }
+    /* :nth-of-type(n) 和 :nth-child 的区别，他会跳过非指定的元素  */
+    .b li:nth-of-type(3){
+      font-size: 30px;
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+  <ul class = "a">
+    <p>城市：</p>
+    <li>徐州</li>
+    <li>淮安</li>
+    <li>宿迁</li>
+    <li>南通</li>
+    <li>泰州</li>
+    <li>扬州</li>
+    <p>end</p>
+  </ul>
+  <hr>
+  <ul class = "b">
+    <p>城市：</p>
+    <li>徐州</li>
+    <li>淮安</li>
+    <li>宿迁</li>
+    <li>南通</li>
+    <li>泰州</li>
+    <li>扬州</li>
+    <p>end</p>
+  </ul>
+</body>
+</html>

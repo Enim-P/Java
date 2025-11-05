@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表格的分区标签</title>
+</head>
+<body>
+  <!-- 一个完整的表格分为三个部分：thead定义头部，tbody定义主体，tfoot定义尾部 -->
+  <table border="1" width="300">
+    <!-- caption定义表格的标题 -->
+    <caption>汽车信息表</caption>
+    <!-- 头部标签中定义表格的标题栏 -->
+    <thead style="background-color: lightblue;">
+      <tr>
+        <th>车牌</th>
+        <th>车名</th>
+        <th>颜色</th>
+        <th>价格</th>
+      </tr>
+    </thead>
+    <!-- 主体标签中定义表格的展示的数据 -->
+    <tbody style="background-color: lightgreen;">
+      <tr>
+        <td>苏A1001</td>
+        <td>奔驰</td>
+        <td>白色</td>
+        <td>100</td>
+      </tr>
+      <tr>
+        <td>苏B1001</td>
+        <td>奥迪</td>
+        <td>黑色</td>
+        <td>200</td>
+      </tr>
+    </tbody>
+    <!-- 尾部标签中定义表格的统计信息，分页信息等等 -->
+    <tfoot style="background-color: lightpink;">
+      <tr>
+        <td colspan="4">总价：300</td>
+      </tr>
+    </tfoot>
+  </table>
+</body>
+</html>

@@ -17,11 +17,20 @@ public class StudentServiceImpl implements StudentServie {
     @Override
     public List<Student> getStudentsByName(String studentName) {
         List<Student> students = studentMapper.getStudentsByName(studentName);
-        List<Grade> grades = gradeMapper.getAllGrade();
-        students.forEach(s->{
-            Grade grade = grades.stream().filter(g -> g.getGradeId() == s.getGradeId()).findFirst().get();
-            s.setGrade(grade);
-        });
+        for(Student s : students){
+            Grade grade = gradeMapper.getGradeById(s.getGradeId());
+            s.setGrade(new Grade(grade.getGradeId(),grade.getGradeName()));
+        }
         return students;
+    }
+
+    @Override
+    public int addStudent(Student student) {
+        return studentMapper.addStudent(student);
+    }
+
+    @Override
+    public int deleteStudent(String studentNo) {
+        return studentMapper.deleteStudent(studentNo);
     }
 }

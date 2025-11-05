@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>背景样式</title>
+  <style>
+    .a{
+      width: 500px;
+      height: 500px;
+      /* 背景颜色 */
+      background-color: lightblue;
+      /* 背景图片 */
+      background-image: url(./cat.jpg);
+      /* 背景图片的平铺方式，
+      属性值包括：repeat，no-repeat，repeat-x，repeat-y */
+      background-repeat: no-repeat;
+      /* 背景图片的位置，
+      属性值包括：left,right,top,bottom,center,也可以组合使用设置位置 */
+      /* background-position: left bottom; */
+      /* 可以通过具体的值设置背景图片的偏移量 */
+      background-position: 150px 250px;
+    }
+  </style>
+</head>
+<body>
+  <div class="a"></div>
+</body>
+</html>

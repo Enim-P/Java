@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字体样式</title>
+  <style>
+    .a {
+      /* 字体大小 */
+      font-size: 30px;
+      /* 字体类型 */
+      font-family: cursive;
+      /* 字体风格 属性值italic表示倾斜 */
+      font-style: italic;
+      /* 字体粗细 ，属性值bold表示加粗 */
+      font-weight: bold;
+    }
+  
+    .b {
+      /* font是字体的缩写属性，可以同时设置：字体风格 字体粗细 字体大小 字体类型
+        属性值的顺序：字体风格/字体粗细(可以只设置一个，也可以不设置)，字体大小，字体类型 */
+      font: italic bold 30px cursive;
+    }
+  
+    .c {
+      font: italic 30px cursive;
+    }
+  
+    .d {
+      font: bold 30px cursive;
+    }
+  
+    .e {
+      /* 缩写属性中。至少包含：字体大小和字体类型属性 */
+      font: 30px cursive;
+    }
+     .f{
+      /* font-size: 30px;如果内容中既包含中文又包含英文，而且中英文又要设置不停的字体类型
+      先设置英文字体，再设置中文字体类型，再用逗号隔开 
+      总结一下：将所有的英文字体类型写在前面，中文字体类型放在后面*/
+      font-family: 'courier new','宋体';
+     }
+  </style>
+</head>
+<body>
+  <p class="a ">好好学习天天向上</p>
+  <P class = "b">好好学习天天向上</P>
+  <P class = "c">好好学习天天向上</P>
+  <P class = "d">好好学习天天向上</P>
+  <P class = "e">好好学习天天向上</P>
+  <P class = "f">好好学习天天向上。good&nbsp;good&nbsp;study&nbsp;day&nbsp;day&nbsp;up</P>
+</body>
+</html>

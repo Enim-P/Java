@@ -24,6 +24,12 @@
 
     <!--项目依赖-->
     <dependencies>
+        <!-- Hutool 核心包（包含日期工具） -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.25</version> <!-- 最新版本可在 Maven 中央仓库查询 -->
+        </dependency>
         <!--lombok工具-->
         <dependency>
             <groupId>org.projectlombok</groupId>

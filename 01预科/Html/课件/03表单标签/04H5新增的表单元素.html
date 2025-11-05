@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>H5新增的表单元素</title>
+</head>
+<body>
+  <form>
+    <p>数字文本框：
+      <!-- number是数字文本框，只能输入数字
+      max和min限制文本框的输入范围，step设置分隔区间 -->
+      <input type="number" max="100" min="0" step="5">
+    </p>
+    <p>滑块：
+      <!--range是滑块，也可以设置max，min，ste,
+      value属性设置默认值  -->
+      <input type="range" max="100" min="0" step="5" value="30"></p>
+    <p>网址文本框：
+      <!-- url是网址文本框，提交表单时，会对文本框中的内容进行验证，
+       网址的格式必须以http: / https: / ftp: 开头 -->
+      <input type="url">
+    </p>
+    <p>邮箱文本框：
+      <!-- email是邮箱文本框，会对文本框中的内容进行验证，
+       邮箱格式必须包含@符号 -->
+      <input type="email">
+    </p>
+    <p>搜索文本框：
+      <!-- search搜索文本框，跟普通文本框的区别是，自带一个清空小按钮 -->
+      <input type="search">
+    </p>
+    <p>
+      <!-- 5H中通过button标签定义按钮，通过type属性设置按钮的类型
+       type属性的默认值是submit -->
+      <button>提交按钮</button>
+      <button type="reset">重置按钮</button>
+      <button type="button">普通按钮</button>
+    </p>
+  </form>
+</body>
+</html>

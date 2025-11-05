@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>属性选择器</title>
+  <style>
+    /* [xxx]就是属性选择器，这里表示li标签并且有name属性的元素 */
+    li[name]{
+      font-size:30px;
+    }
+    /* 可以指定具体的属性值 */
+    li[name = 'shanghai']{
+      color:rebeccapurple;
+    }
+    /* ^=:表示属性值以指定的内容开头 */
+    li[name^='s']{
+      background-color:lightblue;
+    }
+    /* $=：表示属性值以指定的内容结尾 */
+    li[name$='zhou']{
+      text-decoration: underline;
+    }
+    /* *=：表示属性值包含指定内容 */
+    li[name*= 'ang']{
+      text-align: center
+    }
+    </style>
+</head>
+<body>
+  <ul>
+    <li name = "suzhou">苏州</li>
+    <li name = "shanghai">上海</li>
+    <li name = "hangzhou">杭州</li>
+    <li name = "hefei">合肥</li>
+    <li name = "nanjing">南京</li>
+    <li>无锡</li>
+  </ul>
+</body>
+</html>

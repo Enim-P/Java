@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文本阴影</title>
+  <style>
+    div{
+      width:400px;
+      height:200px;
+      line-height: 200px;
+      font-size: 30px;
+      background-color: lightblue;
+      text-align: center;
+      letter-spacing: 10px;
+    }
+    .a{
+      /* text-shadow 属性设置文本阴影，属性值：
+      X轴偏移量，Y轴偏移量 阴影的模糊半径 阴影颜色 */
+      text-shadow:10px 10px 5px grey;
+    }
+    .b{
+      /* 设置文本发光效果 */
+      text-shadow: 0 0 5px red;
+    }
+  </style>
+</head>
+<body>
+  <div class = "a">好好学习，天天向上<div>
+    <hr/>
+    <div class = "b">好好学习，天天向上</div>
+</body>
+</html>

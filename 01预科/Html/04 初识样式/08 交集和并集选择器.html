@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>交集和并集选择器</title>
+  <style>
+    /* 交集选择器  这里表示div标签同时拥有类选择器a*/
+    div.a{
+      color:red;
+    }
+    p.a{
+      color:green;
+    }
+    /* ,表示并集选择器，这里表示div.b 并且 div#c  定义相同的样式 */
+    div.b,div#c{
+      font-size :30px;
+    }
+    .b{
+      color:orange;
+    }
+    .c{
+      font-size:50px;
+    }
+    .d{
+      background-color: lightblue;
+    }
+  </style>
+</head>
+<body>
+  <div class=  "a">徐州</div>
+  <div class = "b">淮安</div>
+  <div id = "c">宿迁</div>
+  <div id = "d">盐城</div>
+  <p class = "a">南通</p>
+  <!-- class属性可以同时调用多个类选择器，使用空格隔开 -->
+  <p class = "b c d">泰州</p>
+</body>
+</html>

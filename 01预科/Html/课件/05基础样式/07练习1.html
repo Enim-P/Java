@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习1</title>
+  <style>
+    /* 容器一张背景图片，鼠标悬停到容器上时换一种背景图片，
+      两张背景图片都要撑满整个容器
+     */
+    .a{
+      width: 400px;
+      height: 600px;
+      background-color: lightblue;
+      background-image: url(./pyy.jpg);
+      background-size: cover;
+    }
+    /* 鼠标悬停换一张图片 */
+    .a:hover{
+      background-image: url(./zls.webp);
+    }
+    /* 鼠标点击时换一张图片 */
+    .a:active{
+      background-image: url(./hz.png);
+    }
+  </style>
+</head>
+<body>
+  <div class="a"></div>
+</body>
+</html>

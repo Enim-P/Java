@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>背景的缩写属性</title>
+  <style>
+    div{
+      width:400px;
+      height:400px;
+    }
+    .a{
+      background-color: lightblue;
+      background-image: url(./cat.jpg);
+      background-repeat: no-repeat;
+      background-position: center;
+      /* 背景图片的大小 */
+      background-size: cover;
+    }
+    .b{
+      /* 背景的缩写属性，属性值顺序无要求 */
+      /* 背景图片的大小写在反斜杠的右边 */
+      background: lightblue url(./cat.jpg) no-repeat center / 400px 400px ;
+    }
+    .c{
+      width:300px;
+      height:400px;
+      background-color: lightblue;
+      background-image: url(./cat.jpg);
+      background-repeat: no-repeat;
+      background-position: center;
+      /* contain:表示放大图片跟容器最近的边框重叠，可能会导致容器没有被图片撑满 */
+      /* background-size: contain; */
+      /* cover:放大图片跟容器的所有边框重叠，可能会导致先发生重叠部分的图片缺失 */
+      background-size:cover;
+      /* 通常情况下使用cover更多，我们需要图片填充整个容器，被裁剪的部分只是图片的边缘 */
+    }
+  </style>
+</head>
+<body>
+  <div class="a"></div>
+  <hr/>
+  <div class = "b"></div>
+  <hr/>
+  <div class = "c"></div>
+</body>
+</html>

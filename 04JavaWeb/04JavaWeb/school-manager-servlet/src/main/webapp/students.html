@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>学生管理</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        h2{
+            font-size: 40px;
+        }
+        table{
+            border-collapse: collapse;
+        }
+        td,th{
+            border: 1px solid #ddd;
+            padding: 2px 10px;
+        }
+        .search{
+            padding: 10px;
+        }
+        .search input{
+            width: 300px;
+        }
+        .search button{
+            padding: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>学生管理</h2>
+    <div class="search">
+        <span>姓名：</span>
+        <input type="text" id="studentName"/>
+        <button id="find">查询</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>学号</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>年级</th>
+                <th>电话</th>
+                <th>生日</th>
+                <th>地址</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
+    </table>
+    <script src="./js/bing.js"></script>
+    <script>
+        // 查询按钮点击事件
+        $b.selecter("#find").onclick = function (){
+            loadStuList();
+        }
+        //加载学生列表
+        function loadStuList(){
+            let studentName = $b.selecter("#studentName").value
+            $b.get('stuList',{studentName},(res)=>{
+                let str = ''  //拼接的字符串内容
+                res.data.forEach(s=>{
+                    str += `
+                        <tr>
+                            <td>${s.studentNo}</td>
+                            <td>${s.studentName}</td>
+                            <td>${s.sex}</td>
+                            <td>${s.grade.gradeName}</td>
+                            <td>${s.phone}</td>
+                            <td>${s.bornDate}</td>
+                            <td>${s.address}</td>
+                            <td>
+                                <button>编辑</button>
+                                <button onclick="delStudent('${s.studentNo}')">删除</button>
+                            </td>
+                        </tr>
+                    `;
+                })
+                $b.selecter("#tbody").innerHTML = str;
+            })
+        }
+        loadStuList();
+
+        // 删除学生的方法
+        function delStudent(studentNo){
+            if(confirm("确定删除吗？")){
+                $b.post("delStu",{studentNo},(res)=>{
+                    if(res.code==1){
+                        alert(res.message)
+                        loadStuList()   //重新加载学生列表
+                    }else{
+                        alert(res.message)
+                    }
+                })
+            }
+        }
+    </script>
+</body>
+</html>

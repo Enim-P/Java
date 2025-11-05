@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>背景渐变</title>
+  <style>
+    .a{
+      width:200px;
+      height:200px;
+      background-color:lightblue;
+      /* linear-gradient是线性渐变，第一个是渐变的方向，后面的参数是渐变的颜色
+      方向通过 left right top bottom设置 */
+      background: linear-gradient(to right top,red,black,blue,red);
+    }
+    .b{
+      width:200px;
+      height:200px;
+      /* radial-gradient是径向渐变，不需要设置渐变方向，直接添加渐变的颜色 */
+      background: radial-gradient(red,orange,black);
+    }
+    .c{
+      width:200px;
+      height:200px;
+      background: linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%);
+    }
+  </style>
+</head>
+<body>
+  <div class = "a"></div>
+  <hr/>
+  <div class = "b"></div>
+  <div class = "c"></div>
+</body>
+</html>
