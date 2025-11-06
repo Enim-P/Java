@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--注册bean-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--汽车对象-->
+    <bean name="car" class="com.bing.pojo.Car">
+        <!--给car对象注入属性-->
+        <property name="name" value="宝马"/>
+        <property name="color" value="红色"/>
+    </bean>
+    <!--员工对象-->
+    <bean name="employee" class="com.bing.pojo.Employee">
+        <!--DI：依赖注入，用于给IoC容器中的Bean对象的属性赋值-->
+        <!--使用property子节点注入属性的值，name指定属性名称，value指定值，注意：属性必须包含set方法-->
+        <property name="name" value="小明"/>
+        <property name="age" value="20"/>
+        <!--ref属性指定已经注册的bean的引用-->
+        <property name="car" ref="car"/>
+        <!--注入集合属性-->
+        <property name="hobbies">
+            <list>
+                <value>跳舞</value>
+                <value>画画</value>
+                <value>唱歌</value>
+            </list>
+        </property>
+        <property name="moneys">
+            <list>
+                <!--可以使用type属性指定数据的类型-->
+                <value type="double">8000.0</value>
+                <value type="double">12000.0</value>
+                <value type="double">15000.0</value>
+            </list>
+        </property>
+        <!--注入map集合-->
+        <property name="score">
+            <map>
+                <entry key="企业文化" value="88.5"/>
+                <entry key="智商考试" value="112"/>
+                <entry key="情商考试" value="148"/>
+                <entry key="技能考试" value="115.5"/>
+            </map>
+        </property>
+    </bean>
+    <!--项目经理对象-->
+    <!--使用autowire自动注入，可以根据类型自动注入，也可以根据名称字段注入-->
+    <bean name="manager" class="com.bing.pojo.Manager" autowire="byType"/>
+    <!--公司对象-->
+    <bean name="company" class="com.bing.pojo.Company">
+        <!--通过带参构造函数注入属性-->
+        <!--name是根据参数的名称-->
+        <!--<constructor-arg name="name" value="阿里巴巴"/>
+        <constructor-arg name="age" value="30"/>-->
+        <constructor-arg index="0" value="百度"/>
+        <constructor-arg index="1" value="32"/>
+    </bean>
+</beans>

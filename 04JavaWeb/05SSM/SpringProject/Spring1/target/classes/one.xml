@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--注册bean-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--将JavaBean交给IoC容器管理，通过bean节点去注册-->
+    <!--name属性 或 id属性定义全局唯一的名称，class属性定义bean类型的全类名-->
+    <bean name="user" class="com.bing.pojo.User" />
+
+    <!--scope设置创建默认，默认是singleton单例模式（可以省略），容器初始化时会提交创建出所有的单例模式bean-->
+    <!--depends-on属性设置手动设置当前bean在指定的bean之后创建-->
+    <bean name="student" class="com.bing.pojo.Student" scope="singleton" depends-on="school"/>
+    <!--scope="prototype"设置为原型模式，只会在调用时创建bean-->
+    <bean name="teacher" class="com.bing.pojo.Teacher" scope="prototype"/>
+
+    <!--在注册bean的时候，可以通过init-method属性设置一个初始化方法，destroy-method属性设做一个销毁方法，
+    初始化方法在bean对象创建的时候执行，销毁方法在IoC容器销毁时执行-->
+    <bean name="school" class="com.bing.pojo.School" init-method="init" destroy-method="destroy"/>
+</beans>
