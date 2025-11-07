@@ -2,10 +2,13 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Spring4" />
+        <module name="Spring3" />
         <module name="Spring2" />
         <module name="Spring1" />
       </profile>
@@ -13,6 +16,8 @@
     <bytecodeTargetLevel target="17">
       <module name="Spring1" target="1.8" />
       <module name="Spring2" target="1.8" />
+      <module name="Spring3" target="1.8" />
+      <module name="Spring4" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

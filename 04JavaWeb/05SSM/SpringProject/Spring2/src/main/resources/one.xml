@@ -9,21 +9,52 @@
        http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 
-    <!--切入类-->
+    <!--Student切入类-->
     <bean name="student" class="com.bing.pojo.Student"/>
-    <!--切面类-->
+    <!--Student切面类-->
     <bean name="studentAop" class="com.bing.aop.StudentAop"/>
+
+    <!--Teacher切入类-->
+    <bean name="teacher" class="com.bing.pojo.Teacher"/>
+    <!--Teacher切面类-->
+    <bean name="teacherAop" class="com.bing.aop.TeacherAop"/>
+
+    <bean name="emloyee" class="com.bing.pojo.Employee"/>
+    <bean name="employeeAop" class="com.bing.aop.EmployeeAop"/>
+    <bean name="manager" class="com.bing.pojo.Manager"/>
+    <bean name="managerAop" class="com.bing.aop.ManagerAop"/>
 
     <!--配置aop进行增强-->
     <aop:config>
         <!--定义切点：通过切入点进行增强-->
         <!--id定义切点的标识（确保唯一），expression定义切点的位置-->
+        <!--execution(* com.*.Student.strLength(..))：com的任意子包里面的Student类的strLength任意参数方法-->
+        <!--execution(* com.bing.pojo.Student.*(..))：对Student类下面的所有方法进行增强-->
         <aop:pointcut id="point1" expression="execution(* com.bing.pojo.Student.strLength(String))"/>
+        <aop:pointcut id="point2" expression="execution(* com.bing.pojo.Teacher.strLength(String))"/>
+        <aop:pointcut id="point3" expression="execution(* com.bing.pojo.Employee.strLength(String))"/>
+        <aop:pointcut id="point4" expression="execution(* com.bing.pojo.Manager.strLength(String))"/>
+
+        <!--指定切面类和切点：切面-->
+        <aop:advisor advice-ref="employeeAop" pointcut-ref="point3" />
+        <!--切面-->
+        <aop:advisor advice-ref="managerAop" pointcut-ref="point4"/>
 
         <!--定义具体的增强，这里需要引用具体的切面类-->
         <aop:aspect ref="studentAop">
-            <aop:before  method="before" pointcut-ref="point1"/>
+            <!--before：方法之前-->
+            <!--after：方法之后，原始方法中发生异常，依然执行-->
+            <!--after-returning：方法之后，原始方法中发生异常，不执行-->
+            <!--after-throwing：方法之后，发生异常才执行-->
+            <!--after:around：方法环绕-->
+            <aop:before method="before" pointcut-ref="point1"/>
             <aop:after-returning method="after" pointcut-ref="point1"/>
+        </aop:aspect>
+
+        <!--切面-->
+        <aop:aspect ref="teacherAop">
+            <!--环绕增强-->
+            <aop:around method="around" pointcut-ref="point2"/>
         </aop:aspect>
     </aop:config>
 
