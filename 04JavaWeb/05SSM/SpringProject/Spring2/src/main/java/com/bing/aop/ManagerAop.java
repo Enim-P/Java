@@ -14,6 +14,7 @@ public class ManagerAop implements MethodInterceptor {
         // 直接执行原始方法
         //Object value = invocation.proceed();
         // 执行原始方法时传递改造后的参数
+        // 反射
         Object value = invocation.getMethod().invoke(invocation.getThis(),arg);
         System.out.println("-----------------------");
         System.out.println("方法执行之后....");
