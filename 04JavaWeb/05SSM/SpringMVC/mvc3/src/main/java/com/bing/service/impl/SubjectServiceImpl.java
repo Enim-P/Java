@@ -29,10 +29,8 @@ public class SubjectServiceImpl implements SubjectService {
 
     @Transactional
     @Override
-    public int addSubject() {
-        // 同时添加两条课程信息，要么都执行，要么都不执行：保证事务的原子性
-        Subject subject1 = new Subject(null,"课程A",100,1);
-        return subjectMapper.addSubject(subject1);
+    public int addSubject(Subject subject) {
+        return subjectMapper.addSubject(subject);
     }
 
     @Transactional

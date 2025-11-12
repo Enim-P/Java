@@ -9,7 +9,7 @@ public interface SubjectService {
 
     List<Subject> getSubjects();
 
-    int addSubject();
+    int addSubject(Subject subject);
 
     int updateSubject(Subject subject);
 
