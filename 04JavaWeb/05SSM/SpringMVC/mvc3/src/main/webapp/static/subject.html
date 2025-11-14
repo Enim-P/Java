@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>查询课程</title>
+  <style>
+    table{
+      border-collapse: collapse;
+    }
+    td,th{
+      padding: 2px 20px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+<h2>课程信息</h2>
+<table>
+  <thead>
+  <tr>
+    <th>课程编号</th>
+    <th>课程名称</th>
+    <th>课程课时</th>
+    <th>所属年级</th>
+  </tr>
+  </thead>
+  <tbody id="tbody">
+
+  </tbody>
+</table>
+<script src="./js/bing.js"></script>
+<script>
+  $b.get("/mvc3/subject/list",{},(res)=>{
+    let str = ""
+    res.forEach(r=>{
+      str += `
+                <tr>
+                    <td>${r.subjectId}</td>
+                    <td>${r.subjectName}</td>
+                    <td>${r.classHour}</td>
+                    <td>${r.gradeId}</td>
+                </tr>
+              `
+    })
+    $b.selecter("#tbody").innerHTML = str;
+  })
+</script>
+</body>
+</html>

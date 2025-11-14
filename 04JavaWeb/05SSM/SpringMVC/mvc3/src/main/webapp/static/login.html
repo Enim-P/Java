@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录系统</title>
+</head>
+<body>
+    <h2>登录系统</h2>
+    <table>
+        <tr>
+            <td>账号：</td>
+            <td><input id="loginId" type="text"/></td>
+        </tr>
+        <tr>
+            <td>密码：</td>
+            <td><input id="loginPwd" type="password"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button id="login">登录</button>
+                <button>取消</button>
+            </td>
+        </tr>
+    </table>
+    <script src="./js/bing.js"></script>
+    <script>
+        $b.selecter("#login").onclick = function (){
+            let loginId = $b.selecter("#loginId").value;
+            let loginPwd = $b.selecter("#loginPwd").value;
+            $b.post("/mvc3/login",{loginId, loginPwd},(res)=>{
+                alert(res.message)
+                if(res.code==1){
+                    location.href = "index.html"
+                }
+            })
+        }
+    </script>
+</body>
+</html>
