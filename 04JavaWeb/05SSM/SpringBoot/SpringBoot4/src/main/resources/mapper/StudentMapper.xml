@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bing.mapper.StudentMapper">
+    <!--新增-->
+    <insert id="insertStudent" parameterType="com.bing.pojo.Student">
+        insert into student(studentNo,loginPwd,studentName,sex,gradeId,
+                            phone,address,bornDate,email,identityCard)
+        values(#{studentNo},#{loginPwd},#{studentName},#{sex},#{gradeId},
+               #{phone},#{address},#{bornDate},#{email},#{identityCard})
+    </insert>
+    <!--修改-->
+    <update id="updateStudent" parameterType="com.bing.pojo.Student">
+        update student set loginPwd=#{loginPwd},studentName=#{studentName},
+                           sex=#{sex},gradeId=#{gradeId},phone=#{phone},
+                           address=#{address},bornDate=#{bornDate},email=#{email},
+                           identityCard=#{identityCard} where studentNo=#{studentNo}
+    </update>
+    <!--删除-->
+    <delete id="deleteStudent" parameterType="java.lang.String">
+        delete from student where studentNo=#{studentNo}
+    </delete>
+    <!--查询全部-->
+    <select id="selectAll" resultType="com.bing.pojo.Student">
+        select * from student
+    </select>
+</mapper>

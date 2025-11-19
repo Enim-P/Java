@@ -1,6 +1,56 @@
 <html>
-<body>
-<h1>hello word!!!</h1>
-<p>this is a html page</p>
-</body>
+    <head>
+        <title>员工信息</title>
+        <meta charset="UTF-8">
+        <style>
+            table{
+                border-collapse: collapse;
+            }
+            td,th{
+                border: 1px solid #ccc;
+                padding: 2px 20px;
+            }
+            img{
+                width: 150px;
+                height: 150px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>员工信息</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>头像</th>
+                    <th>性别</th>
+                    <th>工作</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+    </body>
+    <script src="./js/bing.js"></script>
+    <script>
+        $b.get("/empList2",{},(res)=>{
+            let str = "";
+            res.data.forEach(r=>{
+                str += `
+                    <tr>
+                        <td>${r.name}</td>
+                        <td>${r.age}</td>
+                        <td>
+                            <img src="${r.image}"/>
+                        </td>
+                        <td>${r.gender}</td>
+                        <td>${r.job}</td>
+                    </tr>
+                `
+            })
+            $b.selecter("#tbody").innerHTML = str;
+        })
+    </script>
 </html>

@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="SpringBoot2" />
         <module name="SpringBoot1" />
+        <module name="SpringBoot4" />
         <module name="SpringBoot3" />
       </profile>
     </annotationProcessing>
@@ -17,6 +18,7 @@
       <module name="SpringBoot1" target="1.8" />
       <module name="SpringBoot2" target="1.8" />
       <module name="SpringBoot3" target="1.8" />
+      <module name="SpringBoot4" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

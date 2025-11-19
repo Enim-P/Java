@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<emps>
+    <emp>
+        <name>张无忌</name>
+        <age>55</age>
+        <image>https://img2.woyaogexing.com/2022/04/05/fa5f73712cc5413eb8ac9d9bfec2d3e6!400x400.jpeg</image>
+        <!-- 1: 男, 2: 女 -->
+        <gender>1</gender>
+        <!-- 1: 讲师, 2: 班主任 , 3: 就业指导 -->
+        <job>1</job>
+    </emp>
+
+    <emp>
+        <name>韦小宝</name>
+        <age>65</age>
+        <image>https://5b0988e595225.cdn.sohucs.com/images/20170709/b02dbaf2ee6e41eca6eae797a2f41af0.png</image>
+        <gender>1</gender>
+        <job>1</job>
+    </emp>
+
+    <emp>
+        <name>周芷若</name>
+        <age>45</age>
+        <image>https://bj.bcebos.com/bjh-pixel/1700670019933806956_3_ainote_new.jpg</image>
+        <gender>2</gender>
+        <job>2</job>
+    </emp>
+
+    <emp>
+        <name>赵敏</name>
+        <age>38</age>
+        <image>https://bj.bcebos.com/bjh-pixel/1700670019933806956_3_ainote_new.jpg</image>
+        <gender>2</gender>
+        <job>3</job>
+    </emp>
+</emps>
