@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bing.mapper.StudentMapper">
+    <!--代码片段-->
+    <sql id="commonSQL">
+        select studentNo,loginPwd,studentName,sex,gradeId,phone,address,bornDate,email,identityCard from student
+    </sql>
+
     <!--新增-->
     <insert id="insertStudent" parameterType="com.bing.pojo.Student">
         insert into student(studentNo,loginPwd,studentName,sex,gradeId,
@@ -8,6 +13,7 @@
         values(#{studentNo},#{loginPwd},#{studentName},#{sex},#{gradeId},
                #{phone},#{address},#{bornDate},#{email},#{identityCard})
     </insert>
+
     <!--修改-->
     <update id="updateStudent" parameterType="com.bing.pojo.Student">
         update student set loginPwd=#{loginPwd},studentName=#{studentName},
@@ -15,12 +21,73 @@
                            address=#{address},bornDate=#{bornDate},email=#{email},
                            identityCard=#{identityCard} where studentNo=#{studentNo}
     </update>
+
+    <!--动态SQL - set
+        set：动态的在行手插入set关键字，并且会自去除多余的逗号
+    -->
+    <update id="updateStudent2" parameterType="com.bing.pojo.Student">
+        update student
+        <set>
+            <if test="loginPwd!=null"> loginPwd=#{loginPwd},</if>
+            <if test="studentName!=null"> studentName=#{studentName},</if>
+            <if test="sex!=null"> sex=#{sex},</if>
+            <if test="gradeId!=null"> gradeId=#{gradeId},</if>
+            <if test="phone!=null"> phone=#{phone},</if>
+            <if test="address!=null"> address=#{address},</if>
+            <if test="bornDate!=null"> bornDate=#{bornDate},</if>
+            <if test="email!=null"> email=#{email},</if>
+            <if test="identityCard!=null"> identityCard=#{identityCard},</if>
+        </set>
+        where studentNo=#{studentNo}
+    </update>
+
     <!--删除-->
     <delete id="deleteStudent" parameterType="java.lang.String">
         delete from student where studentNo=#{studentNo}
     </delete>
     <!--查询全部-->
     <select id="selectAll" resultType="com.bing.pojo.Student">
-        select * from student
+        <!--引用代码片段-->
+        <include refid="commonSQL"></include>
     </select>
+
+    <!--动态SQL
+        where：如果有条件成立，插入where子句，并且会自动去除子句中开头的and 或 or
+        if：用于判断条件是否成立，条件车辆拼接if内部的SQL语句
+    -->
+    <select id="selectByNameAndSexAndBornDate2" resultType="com.bing.pojo.Student">
+        <!--引用代码片段-->
+        <include refid="commonSQL"></include>
+        <where>
+            <if test="studentName!=null">
+                and studentName like concat('%',#{studentName},'%')
+            </if>
+            <if test="sex!=null">
+                and sex = #{sex}
+            </if>
+            <if test="begin!=null and end!=null">
+                and bornDate between #{begin} and #{end}
+            </if>
+        </where>
+        order by bornDate desc
+    </select>
+
+    <!--动态SQL - foreach
+        foreach：用于遍历一个集合
+        collection：指定遍历的集合
+        item：定义遍历出来的每一项
+        index：定义遍历出来的每一项对应的索引
+        separator：每次遍历使用的分隔符
+        open：遍历前拼接的SQL片段
+        close：遍历后拼接的SQL片段
+    -->
+    <select id="selectByNos" resultType="com.bing.pojo.Student">
+        <!--引用代码片段-->
+        <include refid="commonSQL"></include>
+        where studentNo in
+        <foreach collection="nos" item="no" index="index" separator="," open="(" close=")">
+            #{no}
+        </foreach>
+    </select>
+
 </mapper>

@@ -29,4 +29,14 @@ public interface SubjectMapper {
     @Select("select subjectId as id,subjectName as name,classHour,gradeId from subject")
     List<Subject> selectAll2();
 
+    // 根据条件查询课程
+    // 如果传课程名称，根据课程名称模糊查询
+    // 如果同时传了classHour1 和 classHour2 查询课时在该区间的课程
+    // 如果只传classHour1 查询课时大于classHour1的课程
+    // 如果只传classHour2 查询课时小于classHour2的课程
+    List<Subject> selectCondition(
+            @Param("subjectName") String subjectName,@Param("classHour1") Integer classHour1,@Param("classHour2") Integer classHour2);
+
+    // 批量删除课程
+    int deleteByIds(@Param("ids") List<Integer> ids);
 }

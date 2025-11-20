@@ -31,7 +31,32 @@ public interface StudentMapper {
 //            " where studentNo=#{studentNo}")
     int updateStudent(Student student);
 
+    // 只修改对象身上属性值不为null的字段
+    int updateStudent2(Student student);
+
     // 查询全部
     //@Select("select * from student")
     List<Student> selectAll();
+
+    // 根据学号查询
+    @Select("select * from student where studentNo=#{studentNo}")
+    Student selectByNo(String studentNo);
+
+    // 根据姓名模糊 + 性别查询
+    @Select("select * from student where studentName like concat('%',#{studentName},'%') and sex=#{sex}")
+    List<Student> selectByNameAndSex(@Param("studentName") String studentName,@Param("sex") String sex);
+
+    // 根据姓名模糊 + 性别查询 生日在指定的区间内的学生信息
+    @Select("select * from student where studentName like concat('%',#{studentName},'%') and sex=#{sex} " +
+            "and bornDate between #{begin} and #{end}")
+    List<Student> selectByNameAndSexAndBornDate(
+            @Param("studentName")String studentName, @Param("sex")String sex,
+            @Param("begin")String begin,@Param("end")String end);
+
+    List<Student> selectByNameAndSexAndBornDate2(
+            @Param("studentName")String studentName, @Param("sex")String sex,
+            @Param("begin")String begin,@Param("end")String end);
+
+    // 查询一组学号的学生信息
+    List<Student> selectByNos(@Param("nos") List<String> nos);
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bing.mapper.SubjectMapper">
+    <!--动态SQL：删除多个课程-->
+    <delete id="deleteByIds">
+        delete from subject where subjectId in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <!--动态SQL：根据条件查询课程信息-->
+    <select id="selectCondition" resultType="com.bing.pojo.Subject">
+        select * from subject
+        <where>
+            <if test="subjectName!=null">
+                and subjectName like concat('%',#{subjectName},'%')
+            </if>
+            <if test="classHour1!=null and classHour2!=null">
+                and classHour between #{classHour1} and #{classHour2}
+            </if>
+            <if test="classHour1!=null and classHour2==null">
+                and classHour &gt; #{classHour1}
+            </if>
+            <if test="classHour1==null and classHour2!=null">
+                and classHour &lt; #{classHour2}
+            </if>
+        </where>
+    </select>
+</mapper>
