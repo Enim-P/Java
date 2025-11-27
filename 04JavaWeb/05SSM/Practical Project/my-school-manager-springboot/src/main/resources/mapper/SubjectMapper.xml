@@ -26,4 +26,16 @@
             </if>
         </where>
     </select>
+    <!--根据条件查询课程-->
+    <select id="findByCondition2" resultType="com.bing.pojo.Subject">
+        select * from subject
+        <where>
+            <if test="gradeId!=null and gradeId!=0">
+                and gradeId=#{gradeId}
+            </if>
+            <if test="subjectName!=null">
+                and subjectName like concat('%',#{subjectName},'%')
+            </if>
+        </where>
+    </select>
 </mapper>

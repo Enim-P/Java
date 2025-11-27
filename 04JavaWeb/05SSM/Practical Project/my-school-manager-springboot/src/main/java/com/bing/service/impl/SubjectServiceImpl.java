@@ -6,6 +6,8 @@ import com.bing.pojo.Grade;
 import com.bing.pojo.PageBean;
 import com.bing.pojo.Subject;
 import com.bing.service.SubjectService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -48,7 +50,8 @@ public class SubjectServiceImpl implements SubjectService {
         return subject;
     }
 
-    @Override
+    // 手动实现分页
+    /*@Override
     public PageBean<Subject> findByCondition(Integer gradeId, String subjectName, Integer pageIndex, Integer pageSize) {
         //查询总数量
         Long total = subjectMapper.findByConditionSize(gradeId,subjectName);
@@ -58,6 +61,25 @@ public class SubjectServiceImpl implements SubjectService {
         List<Subject> subjects = subjectMapper.findByCondition(gradeId, subjectName, skipSize, pageSize);
         //创建一个分页数据返回
         PageBean<Subject> pageBean = new PageBean<>(total,subjects);
+        return pageBean;
+    }*/
+
+    // 使用PageHelper实现分页
+    @Override
+    public PageBean<Subject> findByCondition(Integer gradeId, String subjectName, Integer pageIndex, Integer pageSize) {
+        // 1.设置分页参数
+        PageHelper.startPage(pageIndex,pageSize);
+        // 2.执行查询
+        List<Subject> subjects = subjectMapper.findByCondition2(gradeId, subjectName);
+        // 给每个课程添加年级信息
+        subjects.forEach(s->{
+            Grade grade = gradeMapper.findById(s.getGradeId());
+            s.setGrade(grade);
+        });
+        // 将查询结果转为Page<T>类型：它会帮你实现分页功能
+        Page<Subject> pages = (Page<Subject>) subjects;
+        // 3.封装PageBean对象返回
+        PageBean<Subject> pageBean = new PageBean<>(pages.getTotal(),pages.getResult());
         return pageBean;
     }
 }

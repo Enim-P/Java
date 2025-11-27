@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bing.mapper.ResultMapper">
+    <!--根据ids批量删除成绩-->
+    <delete id="deleteByIds">
+        delete from result where resultId in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <!--根据条件查询成绩-->
+    <select id="findByCondition" resultType="com.bing.pojo.Result">
+        select * from result
+        <where>
+            <if test="studentNo!=null and studentNo!=''">
+                and studentNo=#{studentNo}
+            </if>
+            <if test="subjectId!=null and subjectId!=0">
+                and subjectId=#{subjectId}
+            </if>
+        </where>
+    </select>
+</mapper>

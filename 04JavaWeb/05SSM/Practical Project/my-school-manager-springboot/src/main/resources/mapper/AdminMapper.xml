@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bing.mapper.AdminMapper">
+    <!--根据条件查询用户-->
+    <select id="findByCondition" resultType="com.bing.pojo.Admin">
+        select * from `admin`
+        <where>
+            <if test="type!=null and type!=''">
+                and type=#{type}
+            </if>
+            <if test="name!=null">
+                and name like concat('%',#{name},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

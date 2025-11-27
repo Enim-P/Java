@@ -39,15 +39,15 @@ public interface SubjectService {
     Subject findById(Integer subejctId);
 
     /**
-     * 条件+分页查询课程
+     * 根据条件+分页查询课程
      * @param gradeId 年级编号
      * @param subjectName 年级名称
      * @param pageIndex 页码
      * @param pageSize 每页数量
      * @return 课程分页数据
      */
-    PageBean<Subject> findByCondition(@Param("gradeId") Integer gradeId,
-                                      @Param("subjectName") String subjectName,
-                                      @Param("pageIndex") Integer pageIndex,
-                                      @Param("pageSize") Integer pageSize);
+    PageBean<Subject> findByCondition(Integer gradeId,
+                                      String subjectName,
+                                      Integer pageIndex,
+                                      Integer pageSize);
 }

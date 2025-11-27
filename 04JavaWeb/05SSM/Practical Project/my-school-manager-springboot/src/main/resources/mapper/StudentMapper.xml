@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bing.mapper.StudentMapper">
+    <!--根据条件查询学生信息-->
+    <select id="findByCondition" resultType="com.bing.pojo.Student">
+        select * from student
+        <where>
+            <if test="gradeId!=null and gradeId!=0">
+                and gradeId=#{gradeId}
+            </if>
+            <if test="studentName!=null">
+                and studentName like concat('%',#{studentName},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

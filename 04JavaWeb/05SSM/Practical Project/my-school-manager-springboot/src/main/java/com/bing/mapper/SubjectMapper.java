@@ -48,16 +48,16 @@ public interface SubjectMapper {
 
     /**
      * 根据条件查询课程的数量
-     * @param gradeId
-     * @param subjectName
-     * @return
+     * @param gradeId 年级编号
+     * @param subjectName 课程名称
+     * @return 总数量
      */
     Long findByConditionSize(@Param("gradeId") Integer gradeId,
                              @Param("subjectName") String subjectName);
     /**
      * 条件+分页查询课程
      * @param gradeId 年级编号
-     * @param subjectName 年级名称
+     * @param subjectName 课程名称
      * @param skipSize 跳过数量
      * @param pageSize 每页数量
      * @return 课程集合
@@ -66,5 +66,14 @@ public interface SubjectMapper {
                          @Param("subjectName") String subjectName,
                          @Param("skipSize") Integer skipSize,
                          @Param("pageSize") Integer pageSize);
+
+    /**
+     * 条件查询课程
+     * @param gradeId 年级编号
+     * @param subjectName 课程名称
+     * @return 课程集合
+     */
+    List<Subject> findByCondition2(@Param("gradeId") Integer gradeId,
+                                  @Param("subjectName") String subjectName);
 
 }
