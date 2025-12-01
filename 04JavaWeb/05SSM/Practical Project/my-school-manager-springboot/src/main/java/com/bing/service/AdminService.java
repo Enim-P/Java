@@ -1,10 +1,8 @@
 package com.bing.service;
 
+import com.bing.annotation.LogAnnotation;
 import com.bing.pojo.Admin;
 import com.bing.pojo.PageBean;
-import org.apache.ibatis.annotations.Mapper;
-
-import java.util.List;
 
 /**
  * 用户Service

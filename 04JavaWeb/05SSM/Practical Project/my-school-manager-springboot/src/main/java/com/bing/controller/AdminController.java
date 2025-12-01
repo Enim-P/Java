@@ -7,6 +7,9 @@ import com.bing.pojo.Student;
 import com.bing.service.AdminService;
 import com.bing.util.AliOSSUtils;
 import com.bing.util.JwtUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,6 +23,7 @@ import java.util.UUID;
 /**
  * 用户控制器
  */
+@Api(tags = "用户相关接口")   // Swagger的注解，用于定义控制器的描述
 @RestController
 @RequestMapping("/admins")
 public class AdminController {
@@ -29,6 +33,7 @@ public class AdminController {
     AliOSSUtils aliOSSUtils;
 
     // 添加用户
+    @ApiOperation("添加用户")   // Swagger的注解，用于定义控制器方法的描述
     @PostMapping("/add")
     public ReturnData add(@RequestBody Admin admin){
         Admin retAdmin = adminService.findByLoginId(admin.getLoginId());
@@ -44,6 +49,7 @@ public class AdminController {
     }
 
     // 注册用户
+    @ApiOperation("注册用户")
     @PostMapping("/register")
     public ReturnData regisger(@RequestBody Admin admin){
         Admin retAdmin = adminService.findByLoginId(admin.getLoginId());
@@ -59,6 +65,7 @@ public class AdminController {
     }
 
     // 登录系统
+    @ApiOperation("登录系统")
     @PostMapping("/login")
     public ReturnData login(@RequestBody Admin admin){
         Admin retAdmin = adminService.findByLoginId(admin.getLoginId());
@@ -80,6 +87,7 @@ public class AdminController {
     }
 
     // 修改用户
+    @ApiOperation("修改用户")
     @PutMapping("/update")
     public ReturnData update(@RequestBody Admin admin){
         int rows = adminService.update(admin);
@@ -91,6 +99,7 @@ public class AdminController {
     }
 
     // 修改密码
+    @ApiOperation("修改密码")
     @PutMapping("/updatePwd")
     public ReturnData updatePwd(@RequestBody Map admin){
         Integer id = (Integer)admin.get("id");
@@ -105,8 +114,9 @@ public class AdminController {
     }
 
     // 删除
+    @ApiOperation("删除用户")  // 路径参数也是用户@ApiParam描述
     @DeleteMapping("/{id}")
-    public ReturnData delete(@PathVariable Integer id){
+    public ReturnData delete(@ApiParam("用户id") @PathVariable Integer id){
         int rows = adminService.delete(id);
         if(rows>0){
             return ReturnData.success();
@@ -116,23 +126,26 @@ public class AdminController {
     }
 
     // 根据登录名查询
+    @ApiOperation("根据登录名查询用户信息")  // @ApiParam是给请求参数添加描述信息
     @GetMapping("/findByLoginId")
-    public ReturnData findByloginId(@RequestParam String loginId){
+    public ReturnData findByloginId(@ApiParam("登录名") @RequestParam String loginId){
         Admin admin = adminService.findByLoginId(loginId);
         return ReturnData.success(admin);
     }
 
     // 根据条件+分页查询用户
+    @ApiOperation("条件+分页查询用户信息")
     @GetMapping
-    public ReturnData findByCondition(@RequestParam(required = false,defaultValue = "") String type,
-                                      @RequestParam(required = false,defaultValue = "") String name,
-                                      @RequestParam(required = false,defaultValue = "1") Integer pageIndex,
-                                      @RequestParam(required = false,defaultValue = "10") Integer pageSize){
+    public ReturnData findByCondition(@ApiParam("类型") @RequestParam(required = false,defaultValue = "") String type,
+                                      @ApiParam("姓名") @RequestParam(required = false,defaultValue = "") String name,
+                                      @ApiParam("页码") @RequestParam(required = false,defaultValue = "1") Integer pageIndex,
+                                      @ApiParam("每页数量") @RequestParam(required = false,defaultValue = "10") Integer pageSize){
         PageBean<Admin> pageBean = adminService.findByCondition(type, name,pageIndex,pageSize);
         return ReturnData.success(pageBean);
     }
 
     // 上传头像（阿里云OSS对象存储）
+    @ApiOperation("上传头像（阿里云）")
     @PostMapping("/upload")
     public ReturnData uploadOSS(MultipartFile photo) throws IOException {
         // 调用阿里云OSS工具类进行文件上传
@@ -141,6 +154,7 @@ public class AdminController {
     }
 
     // 上传头像（本地存储）
+    @ApiOperation("上传头像（本地）")
     @PostMapping("/upload2")
     public ReturnData uploadLocal(MultipartFile photo) throws IOException {
         //获取原始文件名

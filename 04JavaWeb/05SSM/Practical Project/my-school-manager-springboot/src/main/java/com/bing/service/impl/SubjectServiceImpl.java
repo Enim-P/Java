@@ -1,6 +1,8 @@
 package com.bing.service.impl;
 
+import com.bing.annotation.LogAnnotation;
 import com.bing.mapper.GradeMapper;
+import com.bing.mapper.ResultMapper;
 import com.bing.mapper.SubjectMapper;
 import com.bing.pojo.Grade;
 import com.bing.pojo.PageBean;
@@ -9,6 +11,7 @@ import com.bing.service.SubjectService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -19,23 +22,32 @@ import java.util.List;
 @Service
 public class SubjectServiceImpl implements SubjectService {
     @Resource
+    ResultMapper resultMapper;
+    @Resource
     SubjectMapper subjectMapper;
-
     @Resource
     GradeMapper gradeMapper;
 
+    @Transactional  // 添加事务管理
+    @LogAnnotation   //操作是需要写入日志
     @Override
     public int insert(Subject subject) {
         return subjectMapper.insert(subject);
     }
 
+    @Transactional  // 添加事务管理
+    @LogAnnotation   //操作是需要写入日志
     @Override
     public int update(Subject subject) {
         return subjectMapper.update(subject);
     }
 
+    @Transactional  // 添加事务管理
+    @LogAnnotation   //操作是需要写入日志
     @Override
     public int delete(Integer subjectId) {
+        //要先删除课程对应的成绩，在删除课程
+        resultMapper.deleteBySubjectId(subjectId);
         return subjectMapper.delete(subjectId);
     }
 

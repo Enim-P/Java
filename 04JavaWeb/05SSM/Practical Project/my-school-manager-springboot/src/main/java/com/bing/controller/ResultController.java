@@ -4,6 +4,8 @@ import com.bing.pojo.PageBean;
 import com.bing.pojo.Result;
 import com.bing.pojo.ReturnData;
 import com.bing.service.ResultService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -12,6 +14,7 @@ import java.util.List;
 /**
  * 成绩控制器
  */
+@Api(tags = "成绩相关接口")
 @RestController
 @RequestMapping("/results")
 public class ResultController {
@@ -19,6 +22,7 @@ public class ResultController {
     ResultService resultService;
 
     // 添加成绩
+    @ApiOperation("添加成绩")
     @PostMapping
     public ReturnData insert(@RequestBody Result result){
         int rows = resultService.insert(result);
@@ -30,6 +34,7 @@ public class ResultController {
     }
 
     // 修改成绩
+    @ApiOperation("修改成绩")
     @PutMapping
     public ReturnData update(@RequestBody Result result){
         int rows = resultService.update(result);
@@ -41,6 +46,7 @@ public class ResultController {
     }
 
     // 删除成绩
+    @ApiOperation("删除成绩")
     @DeleteMapping("/{resultId}")
     public ReturnData delete(@PathVariable Integer resultId){
         int rows = resultService.delete(resultId);
@@ -52,6 +58,7 @@ public class ResultController {
     }
 
     // 根据成绩编号查询成绩
+    @ApiOperation("根据成绩编号查询成绩")
     @GetMapping("/{resultId}")
     public ReturnData findById(@PathVariable Integer resultId){
         Result result = resultService.findById(resultId);
@@ -59,6 +66,7 @@ public class ResultController {
     }
 
     // 条件+分页查询成绩信息
+    @ApiOperation("条件+分页查询成绩")
     @GetMapping
     public ReturnData findByCondition(@RequestParam(required = false,defaultValue = "") String studentNo,
                                       @RequestParam(required = false,defaultValue = "0") Integer subjectId,
@@ -69,6 +77,7 @@ public class ResultController {
     }
 
     // 根据ids批量删除
+    @ApiOperation("批量删除成绩")
     @PostMapping("/deleteByIds")
     public ReturnData deleteByIds(@RequestBody List<Integer> ids){
         int rows = resultService.deleteByIds(ids);

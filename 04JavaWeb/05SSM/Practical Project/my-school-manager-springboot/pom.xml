@@ -25,6 +25,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!--spring-boot 整合AOP起步依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
         <!--配置注解处理器-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -79,6 +84,18 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.76</version>
         </dependency>
+        <!--swagger自动生成API文档，通过浏览http://localhost:XXXX/swagger-ui/index.html查看文档（简易的接口文档）-->
+        <!--<dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
+        </dependency>-->
+        <!--Knife4j框架，是根据swagger2.0版本进行二次开发的增强版本，通过浏览http://localhost:XXXX/doc.html查看文档-->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
+            <version>4.1.0</version>
+        </dependency>
     </dependencies>
 
     <!--依赖管理-->
@@ -98,6 +115,7 @@
     <build>
         <!--插件-->
         <plugins>
+            <!--maven编译插件-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -108,6 +126,7 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+            <!--spring-boot打包插件-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

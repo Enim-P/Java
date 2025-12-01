@@ -1,5 +1,6 @@
 package com.bing.service.impl;
 
+import com.bing.annotation.LogAnnotation;
 import com.bing.mapper.ResultMapper;
 import com.bing.mapper.StudentMapper;
 import com.bing.mapper.SubjectMapper;
@@ -11,6 +12,7 @@ import com.bing.service.ResultService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -27,21 +29,29 @@ public class ResultServiceImpl implements ResultService {
     @Resource
     SubjectMapper subjectMapper;
 
+    @Transactional  // 添加事务管理
+    @LogAnnotation   //操作是需要写入日志
     @Override
     public int insert(Result result) {
         return resultMapper.insert(result);
     }
 
+    @Transactional  // 添加事务管理
+    @LogAnnotation   //操作是需要写入日志
     @Override
     public int update(Result result) {
         return resultMapper.update(result);
     }
 
+    @Transactional  // 添加事务管理
+    @LogAnnotation   //操作是需要写入日志
     @Override
     public int delete(Integer resultId) {
         return resultMapper.delete(resultId);
     }
 
+    @Transactional  // 添加事务管理
+    @LogAnnotation   //操作是需要写入日志
     @Override
     public int deleteByIds(List<Integer> ids) {
         return resultMapper.deleteByIds(ids);

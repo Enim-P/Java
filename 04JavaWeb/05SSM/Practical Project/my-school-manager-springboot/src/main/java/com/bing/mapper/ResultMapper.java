@@ -46,6 +46,22 @@ public interface ResultMapper {
     int deleteByIds(@Param("ids") List<Integer> ids);
 
     /**
+     * 根据学号删除成绩信息
+     * @param studentNo 学号
+     * @return 受影响行数
+     */
+    @Delete("delete from result where studentNo=#{studentNo}")
+    int deleteByStudentNo(String studentNo);
+
+    /**
+     * 根据课程编号删除成绩信息
+     * @param subjectId 课程编号
+     * @return 受影响行数
+     */
+    @Delete("delete from result where subjectId=#{subjectId}")
+    int deleteBySubjectId(Integer subjectId);
+
+    /**
      * 根据id查询成绩
      * @param resultId 成绩id
      * @return  成绩对象

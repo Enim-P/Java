@@ -4,6 +4,8 @@ import com.bing.pojo.PageBean;
 import com.bing.pojo.ReturnData;
 import com.bing.pojo.Student;
 import com.bing.service.StudentService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -11,6 +13,7 @@ import javax.annotation.Resource;
 /**
  * 学生控制器
  */
+@Api(tags = "学生相关接口")
 @RestController
 @RequestMapping("/students")
 public class StudentController {
@@ -18,6 +21,7 @@ public class StudentController {
     StudentService studentService;
 
     //新增学生
+    @ApiOperation("添加学生")
     @PostMapping
     public ReturnData insert(@RequestBody Student student){
         int rows = studentService.insert(student);
@@ -29,6 +33,7 @@ public class StudentController {
     }
 
     //修改学生
+    @ApiOperation("修改学生")
     @PutMapping
     public ReturnData update(@RequestBody Student student){
         int rows = studentService.update(student);
@@ -40,6 +45,7 @@ public class StudentController {
     }
 
     //删除学生
+    @ApiOperation("删除学生")
     @DeleteMapping("/{studentNo}")
     public ReturnData delete(@PathVariable String studentNo){
         int rows = studentService.delete(studentNo);
@@ -51,6 +57,7 @@ public class StudentController {
     }
 
     //根据学号查询学生
+    @ApiOperation("根据学号查询学生")
     @GetMapping("/{studentNo}")
     public ReturnData findByNo(@PathVariable String studentNo){
         Student student = studentService.findByNo(studentNo);
@@ -58,6 +65,7 @@ public class StudentController {
     }
 
     //条件+分页查询学生
+    @ApiOperation("条件+分页查询学生")
     @GetMapping
     public ReturnData findByCondition(@RequestParam(required = false,defaultValue = "0") Integer gradeId,
                                       @RequestParam(required = false,defaultValue = "") String studentName,

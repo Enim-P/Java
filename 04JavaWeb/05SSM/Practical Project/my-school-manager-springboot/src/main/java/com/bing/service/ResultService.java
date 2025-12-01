@@ -1,5 +1,6 @@
 package com.bing.service;
 
+import com.bing.annotation.LogAnnotation;
 import com.bing.pojo.PageBean;
 import com.bing.pojo.Result;
 import org.apache.ibatis.annotations.Param;

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bing.mapper.OperateLogMapper">
+    <!--根据条件查询操作日志信息-->
+    <select id="findByCondition" resultType="com.bing.pojo.OperateLog">
+        select * from operate_log
+        <where>
+            <if test="operateUser!=null and operateUser!=0">
+                and operate_user=#{operateUser}
+            </if>
+            <if test="operateTime1!=null and operateTime2!=null">
+                and operate_time between #{operateTime1} and #{operateTime2}
+            </if>
+        </where>
+    </select>
+</mapper>
