@@ -1,0 +1,10 @@
+# 主配置文件
+#server:
+#  port: 8083
+
+# 全局公共配置
+spring:
+  application:
+    name: MySchoolManager  # 应用名称（所有环境共享）
+  profiles:
+    active: dev # 激活开发环境（可改为prod切换到生产环境）
