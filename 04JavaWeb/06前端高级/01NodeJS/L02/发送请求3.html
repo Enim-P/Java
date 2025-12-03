@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>显示地区信息</title>
+</head>
+<body>
+  <div>省份：<span id="province"></span></div>
+  <div>城市：<span id="city"></span></div>
+  <div>区县：<span id="district"></span></div>
+  <div>街道：<span id="street"></span></div>
+</body>
+<!-- 引入jquery -->
+<script src="./js/jquery.min.js"></script>
+<script>
+  // 发送ajax请求拿到省 市 区 街道数据，并在对应的DOM元素上显示
+  // 如果省份是江苏省，继续读取城市信息
+  // 如果城市是南京市，继续读取区县信息
+  // 如果区县是雨花台区，继续读取街道信息
+  
+  // 使用Promise优化上一个案例
+  // 1.使用Promise封装一个get请求方法
+  function myGet(url){
+    return new Promise((resolve)=>{
+      $.get(url,(res)=>{
+        resolve(res.name)
+      })
+    })
+  }
+
+  // 2.使用异步函数，简化Promise的.then调用
+  async function fun(){
+    let p = await myGet('./json/province.json')
+    $("#province").html(p)
+    if(p!="江苏省") return
+    let c = await myGet('./json/city.json')
+    $("#city").html(c)
+    if(c!="南京市") return
+    let d = await myGet('./json/district.json')
+    $("#district").html(d)
+    if(d!="雨花台区") return
+    let s = await myGet('./json/street.json')
+    $("#street").html(s)
+  }
+  // 3.调用异步函数
+  fun()
+
+</script>
+</html>

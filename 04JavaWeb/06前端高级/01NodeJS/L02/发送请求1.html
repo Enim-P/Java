@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>显示地区信息</title>
+</head>
+<body>
+  <div>省份：<span id="province"></span></div>
+  <div>城市：<span id="city"></span></div>
+  <div>区县：<span id="district"></span></div>
+  <div>街道：<span id="street"></span></div>
+</body>
+<!-- 引入jquery -->
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+  // 发送ajax请求拿到省 市 区 街道数据，并在对应的DOM元素上显示
+  // 如果省份是江苏省，继续读取城市信息
+  // 如果城市是南京市，继续读取区县信息
+  // 如果区县是雨花台区，继续读取街道信息
+
+  $.get("./json/province.json",(p)=>{
+    $("#province").html(p.name)
+    if(p.name=="江苏省"){
+      $.get("./json/city.json",(c)=>{
+        $("#city").html(c.name)
+        if(c.name=="南京市"){
+          $.get("./json/district.json",(d)=>{
+            $("#district").html(d.name)
+            if(d.name=="雨花台区"){
+              $.get("./json/street.json",(s)=>{
+                $("#street").html(s.name)
+              })
+            }
+          })
+        }
+      })
+    }
+  })
+
+  // 再次出现了回调地狱
+</script>
+</html>
