@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>原生-ajax-Fetch</title>
+  <style>
+    table{
+      border-collapse: collapse;
+    }
+    td,th{
+      border: 1px solid #ccc;
+      padding: 2px 20px;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>编号</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>年龄</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody id="tbody">
+     
+    </tbody>
+  </table>
+  <hr>
+  <table>
+    <tr>
+      <td>编号：</td>
+      <td><input type="text" id="id"></td>
+    </tr>
+    <tr>
+      <td>姓名：</td>
+      <td><input type="text" id="name"></td>
+    </tr>
+    <tr>
+      <td>性别：</td>
+      <td><input type="text" id="sex"></td>
+    </tr>
+    <tr>
+      <td>年龄：</td>
+      <td><input type="text" id="age"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button id="update" style="display: none;">修改</button>
+        <button id="add">添加</button>
+        <button id="cancel">取消</button>
+      </td>
+    </tr>
+  </table>
+  <script>
+
+    function $r(select){
+      return document.querySelector(select);
+    }
+
+    // 取消按钮点击事件
+    $r('#cancel').onclick = function(){
+      $r("#id").value = ""
+      $r("#name").value = ""
+      $r("#sex").value = ""
+      $r("#age").value = ""
+      // 编号文本框取消禁用
+      $r("#id").removeAttribute("disabled");
+      // 显示添加按钮 隐藏修改按钮
+      $r("#add").style.display = "inline"
+      $r("#update").style.display = "none"
+    }
+
+    // 修改按钮点击事件
+    $r("#update").onclick = function(){
+      // 获取学生数据
+      let id = $r("#id").value;
+      let name = $r("#name").value;
+      let sex = $r("#sex").value;
+      let age = $r("#age").value;
+      // 将数据组织成一个对象
+      let stu = {id,name,sex,age};
+      let xhr = new XMLHttpRequest();
+      fetch('http://127.0.0.1:5200/update',{
+        method:'PUT',
+        // 请求头
+        headers:{
+          // 指定请求体为json格式
+          'Content-Type':'application/json'
+        },
+        // 请求体
+        body:JSON.stringify(stu)
+      })
+      .then(res=>{
+        return res.json()
+      })
+      .then(res=>{
+        alert(res.message)
+        if(res.code==1){
+          loadStus()   // 重新加载学生信息
+        }
+      })
+    }
+
+    // 添加按钮点击事件
+    $r('#add').onclick = function(){
+      // 获取学生数据
+      let id = $r("#id").value;
+      let name = $r("#name").value;
+      let sex = $r("#sex").value;
+      let age = $r("#age").value;
+      // 将数据组织成一个对象
+      let stu = {id,name,sex,age};
+      // fetch方法的第二个参数使用一个配置对象
+      fetch('http://127.0.0.1:5200/add',{
+        // 请求方式
+        method:'POST',
+        // 请求头
+        headers:{
+          // 指定请求体为json格式
+          'Content-Type':'application/json'
+        },
+        // 请求体
+        body:JSON.stringify(stu)
+      })
+      .then(res=>{
+        return res.json()
+      })
+      .then(res=>{
+        console.log(res);
+        alert(res.message)
+        if(res.code==1){
+          loadStus()   // 重新加载学生信息
+        }
+      })
+    }
+    
+    // 加载学生信息的方法
+    function loadStus(){
+      // fetch是ES6之后推出的用于发送请求的方法，该方法基于Promise对象返回数据
+      // fetch方法将整个响应体返回，响应体的json方法返回数据
+      fetch('http://127.0.0.1:5200/list')
+      .then(res=>{
+        // then方法中返回出去的Promise，通过下一个then方法获取
+        return res.json()
+      })
+      .then(stus=>{
+        let str = '';
+        stus.forEach(s=>{
+          str += `
+              <tr>
+              <td>${s.id}</td>
+              <td>${s.name}</td>
+              <td>${s.sex}</td>
+              <td>${s.age}</td>
+              <td>
+                <button onclick="edit(${s.id})">编辑</button>  
+                <button onclick="del(${s.id})">删除</button>  
+              </td>
+            </tr>
+          `;
+        })
+        document.querySelector("#tbody").innerHTML = str;
+      })
+    }
+
+    // 删除方法
+    function del(id){
+      if(confirm('确定删除吗？')){
+        fetch('http://127.0.0.1:5200/delete?id='+id,{
+          method:'DELETE'
+        })
+        .then(res=>res.json())
+        .then(res=>{
+          alert(res.message)
+          if(res.code==1){
+            loadStus()  //重新加载学生信息
+          }
+        })
+      }
+    }
+
+    // 编辑方法
+    function edit(id){
+      let xhr = new XMLHttpRequest();
+      // 使用fetch方法发送请求，参数依然需要拼接在url地址上
+      fetch('http://127.0.0.1:5200/one?id='+id)
+      .then(res=>{
+        return res.json()
+      })
+      .then(stu=>{
+        //编号文本框禁用
+        $r("#id").setAttribute("disabled",true);
+        $r("#id").value = stu.id
+        $r("#name").value = stu.name
+        $r("#sex").value = stu.sex
+        $r("#age").value = stu.age
+        // 显示修改按钮 隐藏添加按钮
+        $r("#update").style.display = "inline"
+        $r("#add").style.display = "none"
+      })
+    }
+
+    loadStus()  // 调用加载学生信息的方法
+  </script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>axios-ajax（通用方法）</title>
+  <style>
+    table{
+      border-collapse: collapse;
+    }
+    td,th{
+      border: 1px solid #ccc;
+      padding: 2px 20px;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>编号</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>年龄</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody id="tbody">
+     
+    </tbody>
+  </table>
+  <hr>
+  <table>
+    <tr>
+      <td>编号：</td>
+      <td><input type="text" id="id"></td>
+    </tr>
+    <tr>
+      <td>姓名：</td>
+      <td><input type="text" id="name"></td>
+    </tr>
+    <tr>
+      <td>性别：</td>
+      <td><input type="text" id="sex"></td>
+    </tr>
+    <tr>
+      <td>年龄：</td>
+      <td><input type="text" id="age"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button id="update" style="display: none;">修改</button>
+        <button id="add">添加</button>
+        <button id="cancel">取消</button>
+      </td>
+    </tr>
+  </table>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+  
+    function $r(select){
+      return document.querySelector(select);
+    }
+
+    // 取消按钮点击事件
+    $r('#cancel').onclick = function(){
+      $r("#id").value = ""
+      $r("#name").value = ""
+      $r("#sex").value = ""
+      $r("#age").value = ""
+      // 编号文本框取消禁用
+      $r("#id").removeAttribute("disabled");
+      // 显示添加按钮 隐藏修改按钮
+      $r("#add").style.display = "inline"
+      $r("#update").style.display = "none"
+    }
+
+    // 修改按钮点击事件
+    $r("#update").onclick = function(){
+      // 获取学生数据
+      let id = $r("#id").value;
+      let name = $r("#name").value;
+      let sex = $r("#sex").value;
+      let age = $r("#age").value;
+      // 将数据组织成一个对象
+      let stu = {id,name,sex,age};
+      axios({
+        url:'http://127.0.0.1:5200/update',
+        method:'put',
+        data:stu
+      })
+      .then(({data:res})=>{
+        alert(res.message)
+        if(res.code==1){
+          loadStus()   // 重新加载学生信息
+        }
+      })
+    }
+
+    // 添加按钮点击事件
+    $r('#add').onclick = function(){
+      // 获取学生数据
+      let id = $r("#id").value;
+      let name = $r("#name").value;
+      let sex = $r("#sex").value;
+      let age = $r("#age").value;
+      // 将数据组织成一个对象
+      let stu = {id,name,sex,age};
+
+      axios({
+        // 请求地址
+        url:'http://127.0.0.1:5200/add',
+        // 请求方式
+        method:'post',
+        // 请求体
+        data:stu
+      })
+      .then(({data:res})=>{
+        alert(res.message)
+        if(res.code==1){
+          loadStus()   // 重新加载学生信息
+        }
+      })
+    }
+    
+    // 加载学生信息的方法
+    function loadStus(){
+      axios({
+        // 请求地址
+        url:'http://127.0.0.1:5200/list',
+        // 请求方式
+        method:'get'
+      })
+      .then(({data:stus})=>{
+        let str = '';
+          stus.forEach(s=>{
+            str += `
+                <tr>
+                <td>${s.id}</td>
+                <td>${s.name}</td>
+                <td>${s.sex}</td>
+                <td>${s.age}</td>
+                <td>
+                  <button onclick="edit(${s.id})">编辑</button>  
+                  <button onclick="del(${s.id})">删除</button>  
+                </td>
+              </tr>
+            `;
+          })
+          document.querySelector("#tbody").innerHTML = str;
+      })
+    }
+
+    // 删除方法
+    function del(id){
+      if(confirm('确定删除吗？')){
+        axios({
+          url:'http://127.0.0.1:5200/delete',
+          method:'delete',
+          params:{id}
+        })
+        .then(({data:res})=>{
+          alert(res.message)
+          if(res.code==1){
+            loadStus()  //重新加载学生信息
+          }
+        })
+      }
+    }
+
+    // 编辑方法
+    function edit(id){
+      let xhr = new XMLHttpRequest();
+      axios({
+        // 请求地址
+        url:'http://127.0.0.1:5200/one',
+        // 请求方式
+        method:'get',
+        // 请求参数
+        params:{
+          id
+        }
+      })
+      .then(({data:stu})=>{
+        //编号文本框禁用
+        $r("#id").setAttribute("disabled",true);
+        $r("#id").value = stu.id
+        $r("#name").value = stu.name
+        $r("#sex").value = stu.sex
+        $r("#age").value = stu.age
+        // 显示修改按钮 隐藏添加按钮
+        $r("#update").style.display = "inline"
+        $r("#add").style.display = "none"
+      })
+    }
+
+    loadStus()  // 调用加载学生信息的方法
+  </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>学生信息</title>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    td,
+    th {
+      border: 1px solid #ccc;
+      padding: 2px 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="padding: 10px;">
+    <span>年级：</span>
+    <select id="gradeId">
+      <option value="0">请选择年级</option>
+      <option value="1">大一</option>
+      <option value="2">大二</option>
+      <option value="3">大三</option>
+    </select>
+    <span>姓名：</span>
+    <input id="studentName" />
+    <button id="search">搜索</button>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>电话</th>
+        <th>生日</th>
+        <th>邮箱</th>
+        <th>年级</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody id="tbody">
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="8">
+          <button id="first">首页</button>
+          <button id="prev">上一页</button>
+          <span id="pageIndex"></span>
+          <span>/</span>
+          <span id="totalPage"></span>
+          <button id="next">下一页</button>
+          <button id="last">尾页</button>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    function $r(select) {
+      return document.querySelector(select)
+    }
+    let pageSize = 8;  // 每页数量
+    let pageIndex = 1;  // 当前页
+    let totalPage = 1;  // 总页数
+
+    // 搜索按钮点击事件
+    $r('#search').onclick = function(){
+      
+    }
+
+    // 首页按钮点击事件
+    $r('#first').onclick = function(){
+
+    }
+    // 上一页按钮点击事件
+    $r('#prev').onclick = function(){
+
+    }
+    // 下一页按钮点击事件
+    $r('#next').onclick = function(){
+
+    }
+    // 尾页按钮点击事件
+    $r('#last').onclick = function(){
+
+    }
+
+
+    // 加载学生信息的方法
+    function loadStudents() {
+      axios.get('http://localhost:8081/students', {
+        params: {
+          pageSize, pageIndex
+        }
+      }).then(({ data: { data } }) => {
+        let str = '';
+        let { rows, total } = data;
+        rows.forEach(s => {
+          str += `
+            <tr>
+              <td>${s.studentNo}</td>
+              <td>${s.studentName}</td>
+              <td>${s.sex}</td>
+              <td>${s.phone}</td>
+              <td>${s.bornDate}</td>
+              <td>${s.email}</td>
+              <td>${s.grade.gradeName}</td>
+              <td>
+                <button>编辑</button>
+                <button>删除</button>
+              </td>
+            </tr>
+            `
+        })
+        // 显示当前页数量
+        $r('#tbody').innerHTML = str;
+        // 显示当前页信息
+        $r("#pageIndex").innerHTML = pageIndex;
+        // 显示总页信息
+        $r("#totalPage").innerHTML = Math.ceil(total / pageSize);
+      })
+    }
+
+    loadStudents();
+  </script>
+</body>
+
+</html>

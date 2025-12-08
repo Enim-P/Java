@@ -7,12 +7,55 @@
 </head>
 <body>
   <div>
-    
+    <select id="province">
+      <option value="0">请选择省份</option>
+    </select>
+    <select id="city">
+      <option value="0">请选择城市</option>
+    </select>
+    <select id="district">
+      <option value="0">请选择区县</option>
+    </select>
   </div>
   <script src="./js/jquery.min.js"></script>
   <script>
+    // 拿到所有数据
     $.get("./data/city.json",(res)=>{
-      console.log(res);
+      // 遍历出省份数据
+      res.filter(r=>r.pid==0).forEach(p=>{
+        // 添加省份下拉框
+        let option = $("<option/>")
+        option.attr("value",p.id)
+        option.html(p.name)
+        $("#province").append(option)        
+      })
+      // 给省份下拉框注册下拉选项改变事件
+      $("#province").change(function(){
+        let id = this.value;
+        // 每次先清空城市信息，再加载对应的城市信息
+        $("#city option:not(:first)").remove()
+        $("#district option:not(:first)").remove()
+        if(id==0) return  // 选项如果是请选择，没有对应城市信息
+        res.filter(r=>r.pid==id).forEach(c=>{
+          // 添加城市下拉框
+          let option = $("<option/>")
+          option.attr("value",c.id)
+          option.html(c.name)
+          $("#city").append(option)
+        })
+      })
+      // 给城市下拉框注册下拉选项改变事件
+      $("#city").change(function(){
+        let id = this.value;
+        $("#district option:not(:first)").remove()
+        if(id==0) return
+        res.filter(r=>r.pid==id).forEach(d=>{
+          let option = $("<option/>")
+          option.attr("value",d.id)
+          option.html(d.name)
+          $("#district").append(option)
+        })
+      })
     })
   </script>
 </body>

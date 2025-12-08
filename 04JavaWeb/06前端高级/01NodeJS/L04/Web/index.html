@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>原生-ajax-XHR</title>
+  <style>
+    table{
+      border-collapse: collapse;
+    }
+    td,th{
+      border: 1px solid #ccc;
+      padding: 2px 20px;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>编号</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>年龄</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody id="tbody">
+     
+    </tbody>
+  </table>
+  <hr>
+  <table>
+    <tr>
+      <td>编号：</td>
+      <td><input type="text" id="id"></td>
+    </tr>
+    <tr>
+      <td>姓名：</td>
+      <td><input type="text" id="name"></td>
+    </tr>
+    <tr>
+      <td>性别：</td>
+      <td><input type="text" id="sex"></td>
+    </tr>
+    <tr>
+      <td>年龄：</td>
+      <td><input type="text" id="age"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button id="update" style="display: none;">修改</button>
+        <button id="add">添加</button>
+        <button id="cancel">取消</button>
+      </td>
+    </tr>
+  </table>
+  <script>
+    // 发送ajax请求，拿到学生数据，并在表格中显示
+    // ajax请求必须要遵循同源策略：请求地址的协议名，域名(IP)，端口号，跟当前服务必须一致。
+    // 否则就是跨越请求，实现跨越请求有很多方法，其中最主要的两个方法是：
+    // 1.后端允许跨域 2.前端通过代理服务器实现跨域
+
+    function $r(select){
+      return document.querySelector(select);
+    }
+
+    // 取消按钮点击事件
+    $r('#cancel').onclick = function(){
+      $r("#id").value = ""
+      $r("#name").value = ""
+      $r("#sex").value = ""
+      $r("#age").value = ""
+      // 编号文本框取消禁用
+      $r("#id").removeAttribute("disabled");
+      // 显示添加按钮 隐藏修改按钮
+      $r("#add").style.display = "inline"
+      $r("#update").style.display = "none"
+    }
+
+    // 修改按钮点击事件
+    $r("#update").onclick = function(){
+      // 获取学生数据
+      let id = $r("#id").value;
+      let name = $r("#name").value;
+      let sex = $r("#sex").value;
+      let age = $r("#age").value;
+      // 将数据组织成一个对象
+      let stu = {id,name,sex,age};
+      let xhr = new XMLHttpRequest();
+      // 注意：这么修改学生信息，采用的是PUT请求方式
+      xhr.open('PUT','http://127.0.0.1:5200/update')
+      // 需要在请求头中设置请求体的数据类型（告诉后端，传递的是json格式的请求体）
+      xhr.setRequestHeader("Content-Type","application/json")
+      // post请求的请求体，通过send方法发送
+      xhr.send(JSON.stringify(stu))
+      xhr.onreadystatechange = function(){
+        if(xhr.readyState==4){
+          if(xhr.status==200){
+            let res = JSON.parse(xhr.response)
+            alert(res.message)
+            if(res.code==1){
+              loadStus()   // 重新加载学生信息
+            }
+          }
+        }
+      }
+    }
+
+    // 添加按钮点击事件
+    $r('#add').onclick = function(){
+      // 获取学生数据
+      let id = $r("#id").value;
+      let name = $r("#name").value;
+      let sex = $r("#sex").value;
+      let age = $r("#age").value;
+      // 将数据组织成一个对象
+      let stu = {id,name,sex,age};
+      let xhr = new XMLHttpRequest();
+      xhr.open('POST','http://127.0.0.1:5200/add')
+      // 需要在请求头中设置请求体的数据类型（告诉后端，传递的是json格式的请求体）
+      xhr.setRequestHeader("Content-Type","application/json")
+      // post请求的请求体，通过send方法发送
+      xhr.send(JSON.stringify(stu))
+      xhr.onreadystatechange = function(){
+        if(xhr.readyState==4){
+          if(xhr.status==200){
+            let res = JSON.parse(xhr.response)
+            alert(res.message)
+            if(res.code==1){
+              loadStus()   // 重新加载学生信息
+            }
+          }
+        }
+      }
+    }
+    
+    // 加载学生信息的方法
+    function loadStus(){
+      //1.创建ajax对象
+      let xhr = new XMLHttpRequest();
+      //2.初始化请求
+      xhr.open('GET','http://127.0.0.1:5200/list')
+      //3.发生请求
+      xhr.send()
+      //4.监听方法接收数据
+      xhr.onreadystatechange = function(){
+        // 读取状态为4，表示请求完成
+        if(xhr.readyState==4){
+          // 请求状态码为200，表示请求成功
+          if(xhr.status==200){
+            let stus = JSON.parse(xhr.response)
+            let str = '';
+            stus.forEach(s=>{
+              str += `
+                 <tr>
+                  <td>${s.id}</td>
+                  <td>${s.name}</td>
+                  <td>${s.sex}</td>
+                  <td>${s.age}</td>
+                  <td>
+                    <button onclick="edit(${s.id})">编辑</button>  
+                    <button onclick="del(${s.id})">删除</button>  
+                  </td>
+                </tr>
+              `;
+            })
+            document.querySelector("#tbody").innerHTML = str;
+          }
+        }
+      }
+    }
+
+    // 删除方法
+    function del(id){
+      if(confirm('确定删除吗？')){
+        let xhr = new XMLHttpRequest();
+        xhr.open('DELETE','http://127.0.0.1:5200/delete?id='+id)
+        xhr.send()
+        xhr.onreadystatechange = function(){
+          if(xhr.readyState==4){
+            if(xhr.status=200){
+              let res = JSON.parse(xhr.response)
+              alert(res.message)
+              if(res.code==1){
+                loadStus()  //重新加载学生信息
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // 编辑方法
+    function edit(id){
+      let xhr = new XMLHttpRequest();
+      // get请求的参数，需要拼接在url地址上
+      xhr.open('GET','http://127.0.0.1:5200/one?id='+id)
+      xhr.send()
+      xhr.onreadystatechange = function(){
+        if(xhr.readyState==4){
+          if(xhr.status==200){
+            let stu = JSON.parse(xhr.response);
+            //编号文本框禁用
+            $r("#id").setAttribute("disabled",true);
+            $r("#id").value = stu.id
+            $r("#name").value = stu.name
+            $r("#sex").value = stu.sex
+            $r("#age").value = stu.age
+            // 显示修改按钮 隐藏添加按钮
+            $r("#update").style.display = "inline"
+            $r("#add").style.display = "none"
+          }
+        }
+      }
+    }
+
+    loadStus()  // 调用加载学生信息的方法
+  </script>
+</body>
+</html>
