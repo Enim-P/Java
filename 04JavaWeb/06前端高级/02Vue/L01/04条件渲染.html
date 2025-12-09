@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>条件渲染</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 事件方法的逻辑比较简单是，可以直接将业务代码写在行内 -->
+    <button @click="isShow=!isShow">显示/隐藏</button>
+    <hr>
+    <!-- v-if用于条件渲染，满足条件渲染DOM元素 -->
+    <img style="width: 300px;" v-if="isShow"
+    src="https://pic.rmb.bdstatic.com/bjh/news/7839f77f84c7912748a2f0fe2ab8f961.png"/>
+    <!-- v-show也是用于条件渲染，满足条件渲染DOM元素 -->
+    <img style="width: 300px;" v-show="isShow"
+    src="https://pic.rmb.bdstatic.com/bjh/news/7839f77f84c7912748a2f0fe2ab8f961.png"/>
+    <!-- v-if和v-show的区别：
+       v-if：创建和移除DOM元素，v-show：显示和隐藏DOM元素。
+       当页面展示时，需要判断一个元素是否显示时，通常选择v-if。
+       当一个元素需要反复切换显示和隐藏时，通常选择v-show.
+    -->
+    <hr>
+    <!-- v-if、v-else-if、v-else可以组合使用，实现多重条件渲染 -->
+    <img v-if="money>=500" style="width: 300px;" src="https://img2.baidu.com/it/u=2331376475,945014996&fm=253&app=138&f=JPEG?w=1200&h=800"/>
+    <img v-else-if="money>=400" style="width: 300px;" src="https://i.img16888.com//upload/autonews/202507/07113214686b3fbe791d7.jpg"/>
+    <img v-else-if="money>=300" style="width: 300px;" src="https://gips3.baidu.com/it/u=1706804019,3141952334&fm=3003&app=3003&f=JPEG?w=4800&h=2700" />
+    <img v-else style="width: 300px;" src="https://pic.rmb.bdstatic.com/bjh/240308/events/3a0a4a863929334a91b501c966080b7a5640.jpeg@h_1280"/>
+  </div>
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      data:{
+        // 控制元素显示或隐藏
+        isShow:false,
+        money:350,
+      },
+      methods: {
+        
+      },
+    })
+  </script>
+</body>
+</html>

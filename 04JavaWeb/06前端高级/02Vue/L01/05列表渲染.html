@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>列表渲染</title>
+</head>
+<body>
+  <div id="app">
+    <h2>最喜欢的食物</h2>
+    <!-- 使用v-model指令将文本框和foodName属性进行双向绑定 -->
+    <input type="text" v-model="foodName">
+    <button @click="addFood">添加</button>
+    <ul>
+      <!-- v-for指令用于列表渲染，语法：v-for="(列表项,索引) in 列表",
+       列表渲染时，通常需要绑定一个唯一的key，这里我们先选择用index -->
+      <li v-for="(item,index) in foods" :key="index">
+        {{index+" "+item}}
+        <button @click="delFood(index)">删除</button>
+      </li>
+    </ul>
+  </div>
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      data:{
+        // 食物名称
+        foodName:'',
+        foods:['奶茶','咖啡','蛋糕','饼干']
+      },
+      methods: {
+        // 删除食物的方法
+        delFood(index){
+          if(confirm('确定删除吗？')){
+            this.foods.splice(index,1)
+          }
+        },
+        // 添加食物的方法
+        addFood(){
+          if(this.foodName==""){
+            return alert('请输入添加的食物名称！')
+          }
+          if(this.foods.some(f=>f==this.foodName)){
+            return alert('不能添加重复的食物！')
+          }
+          // 将食物添加到食物数组中
+          this.foods.push(this.foodName)
+          // 添加成功后，清空文本框
+          this.foodName = ''
+        }
+      },
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习</title>
+  <style>
+    table{
+      border-collapse: collapse;  
+    }
+    td,th{
+      border: 1px solid #ccc;
+      padding: 2px 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <table>
+      <thead>
+        <tr>
+          <th>学号</th>
+          <th>姓名</th>
+          <th>性别</th>
+          <th>年龄</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item,index) in stus" :Key="index">
+          <td>{{item.no}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.sex}}</td>
+          <td>{{item.age}}</td>
+          <td>
+            <button>编辑</button>
+            <button>删除</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <table>
+      <tr>
+        <td>学号：</td>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td>姓名：</td>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td>性别：</td>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td>年龄：</td>
+        <td><input type="'text'"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <button>修改</button>
+          <button>添加</button>
+          <button>取消</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      data:{
+        // 学生数组
+        stus:[
+          {no:'1001',name:'张三',sex:'男',age:20},
+          {no:'1002',name:'李四',sex:'女',age:21},
+          {no:'1003',name:'王五',sex:'女',age:22},
+          {no:'1004',name:'赵六',sex:'男',age:23}
+        ]
+      },
+      methods: {
+        
+      },
+    })
+  </script>
+</body>
+</html>

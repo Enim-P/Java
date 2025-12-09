@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>常用指令</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 通过插值表达式显示数据 -->
+    <p>姓名：{{name}}</p>
+    <p>年龄：{{age}}</p>
+    <hr>
+    <!-- v-bind:指令，用于绑定属性 -->
+    <p>姓名：<input type="text" v-bind:value="name"></p>
+    <!-- v-bind:指令的简写形式是: -->
+    <p>年龄：<input type="text" :value="age"></p>
+    <p>
+      <!-- v-on:指令，用于绑定事件 -->
+      <button v-on:click="setName">修改姓名</button>
+      <!-- v-on:指令的简写形式是@ -->
+      <button @click="setAge">修改年龄</button>
+    </p>
+    <hr>
+    <!-- input是文本框输入事件，在文本框中输入内容时执行 -->
+    <p>地址：<input type="text" :value="address" @input="upAddress">{{address}}</p>
+    <!-- v-model指令，用于实现双向绑定，
+    双向绑定：数据发生变化了更新DOM，DOM发生变化了更新数据，
+    其实v-model指令只是一个语法糖，它背后实现的原理依赖是v-bind:value和v-on:input -->
+    <p>地址：<input type="text" v-model="address"></p>
+  </div>
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      // 定义管理的数据
+      data:{
+        name:'张三',
+        age:20,
+        address:'南京市雨花台区'
+      },
+      // 定义管理的方法
+      methods: {
+        setName(){
+          // 通过this可以拿到当前Vue实例管理的所有数据
+          this.name = "李四"
+        },
+        setAge(){
+          this.age = 25
+        },
+        upAddress(e){
+          // 事件方法的第一个参数，默认传递的是事件对象
+          this.address = e.target.value;
+        }
+      },
+    })
+  </script>
+</body>
+</html>

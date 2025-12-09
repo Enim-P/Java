@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>初识Vue</title>
+</head>
+<body>
+  <!-- 1.准备一个容器，所有的操作都在该容器中完成 -->
+  <div id="app">
+  <!-- {{}}是Vue的语法，表示插值表示，在里面可以调用vue实例管理的数据和方法，也可以直接书写js表达式 -->
+    <p>姓名：{{name}}</p>
+    <p>年龄：{{age}}</p>
+    <p>
+      <!-- v-on:是Vue的一个指令，该指令用于绑定事件 -->
+      <button v-on:click="setName">修改姓名</button>
+      <button v-on:click="setAge">修改年龄</button>
+    </p>
+  </div>
+  <!-- 引入vue框架 -->
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    // 2.创建一个Vue实例，在创建的时候，传递一个配置对象
+    new Vue({
+      // 指定挂载的容器
+      el:'#app',
+      // 定义数据
+      data:{
+        name:'张三',
+        age:20
+      },
+      // 定义方法
+      methods:{
+        setName(){
+          // 更新数据，数据更新后，页面会重新渲染
+          this.name = '李四'  
+        },
+        setAge(){
+          this.age = 25
+        }
+      }
+    })
+    // 以前我们需要手动对DOM结构做更新，就是将更新后的数据重新渲染到DOM元素上
+    // 使用了Vue框架后，直接对Vue管理的数据做更新，数据更新后页面自动重新渲染
+    // 我们将这种方式称之为Vue的响应式
+  </script>
+</body>
+</html>

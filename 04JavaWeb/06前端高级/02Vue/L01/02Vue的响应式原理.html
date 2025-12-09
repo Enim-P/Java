@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue2的响应式原理</title>
+</head>
+<body>
+  <p>姓名：<span id="name"></span></p>
+  <p>年龄：<span id="age"></span></p>
+  <script>
+    // 源对象
+    let obj = {
+      name:'张三',
+      age:20
+    }
+    document.querySelector('#name').innerHTML = obj.name
+    document.querySelector('#age').innerHTML = obj.age
+
+    /*
+    // 代理对象
+    let obj2 = obj;
+    // 代理对象更新了数据
+    obj2.name = '李四'
+    obj2.age = 25
+    // 其实改的是源对象
+    console.log(obj);
+    */ 
+    
+    // 代理对象
+    let obj2 = {}
+    // 使用Object.defineProperty，给代理对象添加代理的属性
+    Object.defineProperty(obj2,'name',{
+      // get方法，返回属性的值
+      get(){
+        return obj.name;
+      },
+      // set方法，修改属性的值
+      set(val){
+        // 注意：这里实际改的是源对象的属性
+        obj.name = val
+        // 当前代理对象更改了数据后，页面重新渲染，这就是Vue2背后的响应式原理
+        document.querySelector('#name').innerHTML = obj.name
+      }
+    })
+    
+    Object.defineProperty(obj2,'age',{
+      get(){
+        return obj.age
+      },
+      set(val){
+        obj.age = val
+        document.querySelector('#age').innerHTML = obj.age
+      }
+    })
+    
+    
+  </script>
+</body>
+</html>
