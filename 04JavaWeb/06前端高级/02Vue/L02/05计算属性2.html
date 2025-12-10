@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>计算属性2</title>
+  <style>
+    table{
+      border-collapse: collapse;  
+    }
+    td,th{
+      border: 1px solid #ccc;
+      padding: 2px 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <input type="checkbox" v-model="ckAll">通过
+          </th>
+          <th>姓名</th>
+          <th>年龄</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item,index) in stus" :key="index">
+          <td>
+            <input type="checkbox" v-model="item.isCk">
+          </td>
+          <td>{{item.name}}</td>
+          <td>{{item.age}}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3">
+            平均年龄：{{avgAge}}
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      data:{
+        stus:[
+          {name:'张三',age:22,isCk:false},
+          {name:'李四',age:25,isCk:true},
+          {name:'王五',age:26,isCk:true},
+          {name:'赵六',age:21,isCk:false}
+        ],
+      },
+      computed:{
+        // 平均年龄
+        avgAge(){
+          // 总年龄
+          let total = this.stus.reduce((p,c)=>p+c.age,0)
+          // 计算平均年龄
+          return (total / this.stus.length).toFixed(1)
+        },
+        // 全选
+        // 注意：计算属性默认是只读的，如果要定义可写的计算属性，需要使用对象的形式定义
+        // ckAll(){
+        //   return this.stus.every(s=>s.isCk)
+        // }
+        ckAll:{
+          // get方法，返回计算属性的结果
+          get(){
+            return this.stus.every(s=>s.isCk)
+          },
+          // set方法，更新计算属性的值
+          set(val){
+            // set方法的参数，返回的是要设置的值
+            this.stus.forEach(s=>s.isCk=val)
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>

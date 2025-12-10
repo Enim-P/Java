@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生命周期函数</title>
+</head>
+<body>
+  <div id="app">
+    <p>数量：{{count}} <button @click="count++">count++</button></p>
+    <p>
+      <button @click="destroy">不过了</button>
+    </p>
+  </div>
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    // 创建Vue实例的时候，可以定义一个变量来接收它
+    let vm = new Vue({
+      // 指定挂载的容器
+      el:'#app',
+      // 编译的模板，其实就是将template编译后挂载到el容器中
+      // 如果没有模板，Vue实例会将el容器里面的内容当成模板来处理
+      // template:`
+      // <div>
+      //   <h2>个数：{{count}}</h2>
+      // </div>
+      // `,
+      data:{
+        count:5
+      },
+      methods: {
+        destroy(){
+          // Vue实例的$destroy方法，用于自我销毁
+          this.$destroy()
+        }
+      },
+      // 创建之前
+      beforeCreate() {
+        // 此时Vue正在做初始化的工作，数据还没有初始化完成
+        // 所以只能在该生命周期函数中做一些跟数据无关事情
+        console.log('beforeCreate：创建之前',this.count);
+      },
+      // 创建完成
+      created() {
+        // 此时Vue已经完成了初始化工作，数据也已经初始化完成
+        // 该该生命周期函数中可以围绕数据展开操作，比如发送请求拿数据
+        console.log('created：创建完成',this.count);
+      },
+      // 创建完成之后，后面就要开始执行挂载动作，在挂载之前它要先判断有没有挂载容器
+      // 挂载之前
+      beforeMount() {
+        // 此时Vue正在编译模板，通过$el属性可以拿到模板内容
+        console.log('beforeMount：挂载之前');
+        console.log(this.$el);
+      },
+      // 挂载完成
+      mounted() {
+        // 此时vue已经将模板编译完成，并且将编译后的内容挂载到指定的容器中
+        console.log('mounted：挂载完成');
+        console.log(this.$el);
+      },
+      // 更新之前
+      beforeUpdate() {
+        // 数据改变后，页面更新之前
+        console.log('beforeUpdate：更新之前');
+        // 注意：这里的更新指的是页面的更新，数据已经变了
+        console.log(this.count);
+        // debugger
+      },
+      // 更新完成
+      updated() {
+        // 数据改变后，页面更新完成
+        console.log('updated：更新完成');
+        console.log(this.count);
+        // debugger
+      },
+      // 销毁之前
+      beforeDestroy() {
+        // 当前Vue实例正在销毁
+        console.log('beforeDestroy：销毁之前');
+      },
+      // 销毁完成
+      destroyed() {
+        // 当前Vue实例已经销毁完成
+        // 可以在销毁的生命周期函数中做一些收尾操作，比如开启过的定时器需要在这里关掉
+        console.log('destroyed：销毁完成');
+      },
+    })
+
+    // Vue实例，可以通过$mount方法手动指定挂载的容器
+    // setTimeout(()=>{
+    //   vm.$mount('#app')
+    // },5000)
+
+    // 这么多生命周期函数中用的最多就是mounted，created和destroyed偶尔用用，其他的机会不用
+    // 如果mounted 和 created 区分不开怎么用，全部用mounted
+    // created是创建完成，创建完成之前才能操作数据
+    // mounted是挂载完成，挂载完成之前才能操作DOM，因为挂载在创建之前，所以可以全部使用mounted
+  </script>
+</body>
+</html>

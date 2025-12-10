@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>计算属性</title>
+</head>
+<body>
+  <div id="app">
+    <p>年龄：{{age}} <button @click="age++">age++</button></p>
+    <p>姓：<input type="text" v-model="firstName">{{firstName}}</p>
+    <p>名：<input type="text" v-model="lastName">{{lastName}}</p>
+    <!-- 插值表达式中尽量不要写技术步骤 -->
+    <p>姓名：{{firstName+'.'+lastName}}</p>
+    <!-- 定义一个方法，返回姓名信息，使用方法的弊端是：只要有数据发生变化，方法都要重新执行，
+     无论变化的数据是否会影响当前方法的计算结果。 -->
+    <p>姓名：{{fullName()}}</p>
+    <!-- 注意：计算属性在使用时不需要加()，计算属性具有缓存能力，只有计算属性中用到的数据
+     发生变化后，计算属性才会重新执行。 -->
+    <p>姓名：{{fullName2}}</p>
+  </div>
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      // 数据
+      data:{
+        firstName:'王',
+        lastName:'丽丽',
+        age:20
+      },
+      // 方法
+      methods: {
+        fullName(){
+          console.log('方法返回姓名');
+          return this.firstName+'.'+this.lastName
+        }
+      },
+      // 计算属性
+      computed:{
+        // 计算属性在定义的时候是方法，在使用的时候是属性
+        fullName2(){
+          console.log('计算属性返回姓名');
+          return this.firstName+'.'+this.lastName
+        }
+      }
+    })
+  </script>
+</body>
+</html>

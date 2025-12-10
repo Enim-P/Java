@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .city{
+      margin: 20px;
+      display: flex;
+    }
+    .city li{
+      border: 1px solid #ddd;
+      padding: 4px 20px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    /* 高亮样式 */
+    .active{
+      background-color: tomato;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <ul class="city">
+      <li :class="{active:index==activeIndex}" @click="activeIndex=index" 
+      v-for="(item,index) in citys">{{item}}</li>
+    </ul>
+  </div>
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      data:{
+        citys:['南京','合肥','杭州','武汉','长沙'],
+        activeIndex:0,  //高亮索引
+      }
+    })
+  </script>
+</body>
+</html>

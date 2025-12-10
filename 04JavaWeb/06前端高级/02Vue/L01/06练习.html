@@ -33,8 +33,8 @@
           <td>{{item.sex}}</td>
           <td>{{item.age}}</td>
           <td>
-            <button>编辑</button>
-            <button>删除</button>
+            <button @click="edit(item)">编辑</button>
+            <button @click="delStu(index)">删除</button>
           </td>
         </tr>
       </tbody>
@@ -43,26 +43,26 @@
     <table>
       <tr>
         <td>学号：</td>
-        <td><input type="text"></td>
+        <td><input type="text" v-model="stu.no" :disabled="isEdit"></td>
       </tr>
       <tr>
         <td>姓名：</td>
-        <td><input type="text"></td>
+        <td><input type="text" v-model="stu.name"></td>
       </tr>
       <tr>
         <td>性别：</td>
-        <td><input type="text"></td>
+        <td><input type="text" v-model="stu.sex"></td>
       </tr>
       <tr>
         <td>年龄：</td>
-        <td><input type="'text'"></td>
+        <td><input type="text" v-model="stu.age"></td>
       </tr>
       <tr>
         <td></td>
         <td>
-          <button>修改</button>
-          <button>添加</button>
-          <button>取消</button>
+          <button v-if="isEdit" @click="upStu">修改</button>
+          <button v-else @click="addStu">添加</button>
+          <button @click="cancel">取消</button>
         </td>
       </tr>
     </table>
@@ -72,6 +72,12 @@
     new Vue({
       el:'#app',
       data:{
+        // 是否是编辑状态
+        isEdit:false,
+        // 学生对象
+        stu:{
+          no:'',name:'',sex:'',age:'',
+        },
         // 学生数组
         stus:[
           {no:'1001',name:'张三',sex:'男',age:20},
@@ -81,7 +87,43 @@
         ]
       },
       methods: {
-        
+        // 删除
+        delStu(index){
+          if(confirm('确定删除吗？')){
+            this.stus.splice(index,1)
+            alert('删除成功！')
+          }
+        },
+        // 修改
+        upStu(){
+          // 找到学生在数组中的位置
+          let index = this.stus.findIndex(s=>s.no==this.stu.no)
+          // 将该位置下面的学生对象替换掉
+          this.stus.splice(index,1,{...this.stu})
+          alert('修改成功！')
+        },
+        // 编辑
+        edit(item){
+          // 通过展开运算符，将指定的对象的属性展开后，重复赋值给stu对象
+          this.stu = {...item}
+          this.isEdit = true;  // 设置为编辑状态
+        },
+        // 取消
+        cancel(){
+          this.stu = {no:'',name:'',sex:'',age:''}
+          this.isEdit = false;  // 恢复成添加状态
+        },
+        // 添加学生
+        addStu(){
+          if(!this.stu.no){
+            return alert('学号不能为空！')
+          }
+          if(this.stus.some(s=>s.no==this.stu.no)){
+            return alert('学号不能重复！')
+          }
+          this.stus.push(this.stu)
+          alert('添加成功！')
+        }
       },
     })
   </script>
