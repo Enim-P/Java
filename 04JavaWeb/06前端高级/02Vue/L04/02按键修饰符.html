@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>按键修饰符</title>
+</head>
+<body>
+  <div id="app">
+    <div>
+      <span>商品名称：</span>
+      <!-- .enter是按钮修饰符回车，只有在按下回车键时才会触发该事件 -->
+      <input type="text" v-model="goodsName" @keyup.enter="find">
+      <button @click="find">搜索</button>
+      <!-- 按键修饰符一共有这几个：
+        .enter：回车键
+        .tab：tab键
+        .delete (捕获“删除”和“退格”键)
+        .esc：退出键
+        .space：空格键
+        .up：上键
+        .down：小键
+        .left：左键
+        .right：右键
+      -->
+    </div>
+  </div>
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      data:{
+        goodsName:''
+      },
+      methods: {
+        find(){
+          console.log('正在搜索商品：'+this.goodsName);
+        }
+      },
+    })
+  </script>
+</body>
+</html>

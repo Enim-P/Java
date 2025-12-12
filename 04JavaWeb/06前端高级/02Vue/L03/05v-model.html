@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-model</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 文本框直接使用v-model实现双向绑定 -->
+    <p>姓名：<input type="text" v-model="name">{{name}}</p>
+    <!-- 一组单选框，使用v-model绑定同一个数据 -->
+    <p>性别：
+      <input type="radio" value="男" v-model="sex">男
+      <input type="radio" value="女" v-model="sex">女 | {{sex}}
+    </p>
+    <!-- 一组复选框，使用v-model绑定同一个数组 -->
+    <p>爱好：
+      <input type="checkbox" value="睡觉" v-model="hobbies">睡觉
+      <input type="checkbox" value="吃饭" v-model="hobbies">吃饭
+      <input type="checkbox" value="唱歌" v-model="hobbies">唱歌
+      <input type="checkbox" value="跳舞" v-model="hobbies">跳舞
+      <input type="checkbox" value="喝酒" v-model="hobbies">喝酒
+      | {{hobbies}}
+    </p>
+    <!-- 单个复选框使用v-model绑定一个bool值 -->
+    <p>同意：
+      <input type="checkbox" v-model="isOK"> | {{isOK}}
+    </p>
+    <!-- 下拉框通过v-model绑定一个数据，这个数据的更新通过下拉框的option选项的切换而改变 -->
+    <p>地区：
+      <select v-model="city">
+        <option value="北京">北京</option>
+        <option value="天津">天津</option>
+        <option value="上海">上海</option>
+        <option value="重庆">重庆</option>
+      </select> | {{city}}
+    </p>
+    <!-- 多行文本框，也是通过v-model直接绑定一份数据 -->
+    <p>详情：
+      <textarea rows="4" cols="50" v-model="msg"></textarea> | {{msg}}
+    </p>
+    <hr>
+    <!-- .lazy修饰符，用于设置懒加载响应式，只会在失去光标的时候触发响应式 -->
+    <p>请输入：<textarea rows="4" cols="50" v-model.lazy="content"></textarea> | {{content}}</p>
+    <p>
+      <!-- v-model默认会将数据转为字符串处理，
+       通过.number修饰符，将数据转number类型处理 -->
+      <input type="text" v-model.number="num1"/> + <input type="text" v-model.number="num2"/> = {{num1+num2}}
+    </p>
+    <p>
+      <!-- .trim修饰符，用于去掉字符串两端空格 -->
+      <input type="text" v-model.trim="content2"> | {{content2.length}}
+    </p>
+  </div>
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      data:{
+        name:'张三',
+        sex:'女',
+        hobbies:['吃饭','喝酒'],
+        isOK:false,
+        city:'上海',
+        msg:"请输入详情信息",
+        content:'',
+        num1:100,
+        num2:200,
+        content2:''
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>发送请求</title>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    td,
+    th {
+      border: 1px solid #ccc;
+      padding: 1px 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div>
+      <span>年级：</span>
+      <select v-model="gradeId">
+        <option v-for="(item,index) in grades" 
+        :key="index" :value="item.gradeId">{{item.gradeName}}</option>
+      </select>
+      <span>名称：</span>
+      <input type="text" v-model="subjectName">
+      <button @click="find">查询</button>
+    </div>
+    <hr>
+    <table>
+      <thead>
+        <tr>
+          <th>编号</th>
+          <th>名称</th>
+          <th>课时</th>
+          <th>年级</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item,index) in subjects" :key="index">
+          <td>{{item.subjectId}}</td>
+          <td>{{item.subjectName}}</td>
+          <td>{{item.classHour}}</td>
+          <td>{{item.grade.gradeName}}</td>
+          <td>
+            <button>编辑</button>
+            <button>删除</button>
+          </td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <td colspan="5">
+            <button @click="pageIndex=1" :disabled="pageIndex==1">首页</button>
+            <button @click="pageIndex--" :disabled="pageIndex==1">上一页</button>
+            <span>{{pageIndex}}</span>
+            <span>/</span>
+            <span>{{totalPage}}</span>
+            <button @click="pageIndex++" :disabled="pageIndex==totalPage">下一页</button>
+            <button @click="pageIndex=totalPage" :disabled="pageIndex==totalPage">尾页</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- 引入vue -->
+  <script src="../JS/vue.min.js"></script>
+  <!-- 引入axios -->
+  <script src="../JS/axios.min.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        // 页码
+        pageIndex: 1,
+        // 每页数量
+        pageSize: 5,
+        // 年级编号（用于查询）
+        gradeId:0,
+        // 课程名称（用于查询）
+        subjectName:'',
+        // 年级数组
+        grades: [],
+        // 课程数组
+        subjects: [],
+        // 总数量
+        total: 0
+      },
+      methods: {
+        // 查询方法
+        find(){
+          this.pageIndex = 1;   // 页码回到1
+          this.loadSubjects();  // 重新加载课程信息
+        },
+        // 加载年级列表
+        async loadGrades() {
+          // 发送请求拿到年级数据
+          let { data: { data } } = await axios.get('http://localhost:8081/grades')
+          // 添加一个请选择年级
+          data.unshift({gradeId:0,gradeName:'请选择年级'});
+          this.grades = data
+        },
+        // 加载课程列表
+        async loadSubjects() {
+          let { data: { data: { rows, total } } } = await axios.get('http://localhost:8081/subjects', {
+            params: {
+              pageIndex: this.pageIndex,
+              pageSize: this.pageSize,
+              gradeId:this.gradeId,
+              subjectName:this.subjectName
+            }
+          })
+          this.subjects = rows
+          this.total = total
+        }
+      },
+      computed: {
+        // 总页数
+        totalPage() {
+          return Math.ceil(this.total / this.pageSize);
+        }
+      },
+      watch: {
+        // 监听页码
+        pageIndex() {
+          this.loadSubjects()  //重新加载数据
+        }
+      },
+      // 页面挂载完成
+      mounted() {
+        this.loadGrades()   // 加载年级
+        this.loadSubjects() // 加载课程
+      },
+    })
+  </script>
+</body>
+
+</html>

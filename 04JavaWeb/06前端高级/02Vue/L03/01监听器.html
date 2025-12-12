@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>监听器</title>
+</head>
+<body>
+  <div id="app">
+    <p>姓名：{{name}}</p>
+    <p>年龄：{{age}}</p>
+    <p>
+      <!-- 当某一个数据变化到指定的值后，需要去执行另外一件事情，这种时候可以使用监听器 -->
+      <button @click="age++">年龄++</button>
+    </p>
+    <hr>
+    <p>{{stu}}</p>
+    <p>
+      <button @click="stu.age++">李四年龄++</button>
+      <button @click="stu.friend.age++">王五年龄++</button>
+    </p>
+  </div>
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      data:{
+        name:'张三',
+        age:5,
+        stu:{
+          name:'李四',
+          age:18,
+          friend:{
+            name:'王五',
+            age:6
+          }
+        }
+      },
+      // 定义监听器（也叫侦听器）
+      watch:{
+        // 要监听谁，就以谁的名字定义一个方法，当数据变化后，该方法会执行
+        age(nval,oval){
+          // 监听方法有两个参数，分别是：新值和旧值
+          if(nval==18){
+            console.log('你已经长大了！！！');
+          }
+        },
+        // 监听对象，需要将整个对象换掉，该监听方法才会执行
+        // stu(nval,oval){
+        //   console.log(nval,oval);
+        // }
+        // 如果要监听对象身上的属性变化，需要开启深度监视
+        stu:{
+          // 开启深度监视
+          deep:true,
+          // 设置监听器立刻执行一次
+          immediate:true,
+          // 监听方法
+          handler(nval,oval){
+            if(nval.age==18){
+              console.log('李四你已经长大了！');
+            }
+            if(nval.friend.age==18){
+              console.log('王五你已经长大了！');
+            }
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>

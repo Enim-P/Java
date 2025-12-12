@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>绑定事件</title>
+  <style>
+    .a,.d,.g,.i{
+      width: 150px;
+      height: 200px;
+      background-color: red;
+    }
+    .b,.e,.h{
+      width: 100px;
+      height: 100px;
+      background-color: green;
+    }
+    .c,.f{
+      width: 100px;
+      height: 100px;
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="a" @click="clickA">
+      <!-- 如果事件方法需要传递参数，同时又要保留事件对象参数，使用$event保留事件对象 -->
+      <div class="b" @click="clickB('hello',$event)"></div>
+      <!-- vue通过.stop修饰符就可以阻止事件冒泡 -->
+      <div class="c" @click.stop="clickC"></div>
+    </div>
+    <hr>
+    <div class="d">
+      <!-- contextmenu是右键点击事件，右键点击事件会触发打开浏览器的快捷菜单 -->
+      <div class="e" @contextmenu="clickE"></div>
+      <!-- .prevent修饰符用于阻止默认行为 -->
+      <div class="f" @contextmenu.prevent="clickF"></div>
+    </div>
+    <hr>
+    <!-- .self修饰符表示只在当前元素身上触发，当前元素跟其他元素重叠的区域不触发 -->
+    <div class="g" @click.self="clickG">
+      <div class="h"></div>
+    </div>
+    <hr>
+    <!-- .once修饰符设置事件方法只触发一次 -->
+    <div class="i" @click.once="clickI"></div>
+  </div>
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      methods: {
+        clickA(){
+          console.log('点击了A');
+        },
+        clickB(val,e){
+          // 事件方法的第一个参数默认是事件对象，但是如果传参数了，事件对象就被顶替了
+          e.stopPropagation();  // 阻止事件冒泡
+          console.log('点击了B');
+        },
+        clickC(){
+          console.log('点击了C');
+        },
+        clickE(e){
+          e.preventDefault();  // 阻止默认行为
+          console.log('点击了E');
+        },
+        clickF(){
+          console.log('点击了F');
+        },
+        clickG(){
+          console.log('点击了G');
+        },
+        clickI(){
+          console.log('点击了I');
+        }
+      },
+    })
+  </script>
+</body>
+</html>

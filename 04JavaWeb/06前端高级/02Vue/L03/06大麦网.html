@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大麦网</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .list{
+      border: 1px solid #ddd;
+      padding: 10px;
+      display: flex;
+      margin: 10px;
+    }
+    .list li{
+      padding: 5px 10px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    .list li.active{
+      background-color: tomato;
+      color: white;
+    }
+    .content{
+      margin: 10px;
+      border: 1px solid #ddd;
+    }
+    .content .item{
+      display: flex;
+      border-bottom: 1px dotted #ddd;
+      padding: 10px;
+      margin: 10px;
+    }
+    .content .item img{
+      width: 150px;
+    }
+    .content .item .desc{
+      margin-left: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <ul class="list">
+      <li>城市：</li>
+      <li :class="{active:cityActive==item.city}" 
+      @click="cityActive=item.city"
+      v-for="(item,index) in citys" :key="index">{{item.city}}</li>
+    </ul>
+    <ul class="list">
+      <li>分类：</li>
+      <li :class="{active:typeActive==item.type}" 
+      @click="typeActive=item.type"
+      v-for="(item,index) in types" :key="index">{{item.type}}</li>
+    </ul>
+    <div class="content">
+      <div class="item" v-for="(item,index) in filterData" :key="index">
+        <img :src="item.img"/>
+        <div class="desc">
+          <div>{{item.title}}</div>
+          <div>{{item.city}}</div>
+          <div>{{item.type}}</div>
+          <div>{{item.time}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        // 高亮城市
+        cityActive:'全部',
+        // 高亮分类
+        typeActive:'全部',
+        // 城市
+        citys: [
+          {
+            "id": 0,
+            "city": "全部"
+          },
+          {
+            "id": 1,
+            "city": "北京"
+          },
+          {
+            "id": 2,
+            "city": "上海"
+          },
+          {
+            "id": 3,
+            "city": "南京"
+          }
+        ],
+        // 分类
+        types: [
+          {
+            "id": 0,
+            "type": "全部"
+          },
+          {
+            "id": 1,
+            "type": "音乐会"
+          },
+          {
+            "id": 2,
+            "type": "演唱会"
+          },
+          {
+            "id": 3,
+            "type": "体育"
+          }
+        ],
+        // 数据
+        shows: [
+          {
+            "title": "【北京】 杭盖乐队《北归》摇滚与铜管音乐会",
+            "city": "北京",
+            "type": "演唱会",
+            "time": "2020.12.04-12.05",
+            "img": "https://img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i3/2251059038/O1CN019zOA512GdSHDlmFF4_!!2251059038.jpg_q60.jpg_.webp"
+          },
+          {
+            "title": "【北京】 第19届330金属音乐节",
+            "city": "北京",
+            "type": "演唱会",
+            "time": "2020.12.19 周六 15:00",
+            "img": "https://img.alicdn.com/bao/uploaded/i4/2251059038/O1CN017Hh5482GdSHORMnRd_!!0-item_pic.jpg_q60.jpg_.webp"
+          },
+          {
+            "title": "【北京】 《维也纳施特劳斯之夜》北京新年交响音乐会",
+            "city": "北京",
+            "type": "音乐会",
+            "time": "2020.12.31 周四 19:30",
+            "img": "https://img.alicdn.com/bao/uploaded/i3/2251059038/O1CN015uo4uP2GdSHPQkW4V_!!0-item_pic.jpg_q60.jpg_.webp"
+          },
+          {
+            "title": "【上海】 上海爱乐乐团2021新年音乐会",
+            "city": "上海",
+            "type": "音乐会",
+            "time": "2020.12.26 周六 19:30",
+            "img": "https://img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i4/2251059038/O1CN01LGPJid2GdSHJXo7NY_!!2251059038.png_q60.jpg_.webp"
+          },
+          {
+            "title": "【上海】 《维也纳施特劳斯之夜》新年交响音乐会",
+            "city": "上海",
+            "type": "音乐会",
+            "time": "2021.01.02 周六 19:30",
+            "img": "https://img.alicdn.com/bao/uploaded/i4/2251059038/O1CN01egazS32GdSHB3IAu8_!!0-item_pic.jpg_q60.jpg_.webp"
+          },
+          {
+            "title": "【上海】 2020 FORMULA1 中国大奖赛（礼包&福袋）",
+            "city": "上海",
+            "type": "体育",
+            "time": "2020.07.04-2021.03.09",
+            "img": "https://img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i2/2251059038/O1CN01ZHrnGM2GdSFbZjdUV_!!2251059038.jpg_q60.jpg_.webp"
+          },
+          {
+            "title": "【北京】 东方启明星少儿篮球课",
+            "city": "北京",
+            "type": "体育",
+            "time": "2020.11.21-2021.09.30",
+            "img": "https://img.alicdn.com/bao/uploaded/i2/2251059038/O1CN012xQAvs2GdSHSFgsiC_!!0-item_pic.jpg_q60.jpg_.webp"
+          },
+          {
+            "title": "【南京】 花乐逗脱口秀小剧场",
+            "city": "南京",
+            "type": "演唱会",
+            "time": "2020.11.25 周三 20:00",
+            "img": "https://img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i4/2251059038/O1CN01q2QCIi2GdSHPXFRlc_!!2251059038.jpg_q60.jpg_.webp"
+          }
+        ]
+      },
+      computed:{
+        // 计算每次展示的数据
+        filterData(){
+          let data = this.shows;
+          if(this.cityActive!='全部'){
+            data = data.filter(d=>d.city==this.cityActive)
+          }
+          if(this.typeActive!='全部'){
+            data = data.filter(d=>d.type==this.typeActive)
+          }
+          return data;
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

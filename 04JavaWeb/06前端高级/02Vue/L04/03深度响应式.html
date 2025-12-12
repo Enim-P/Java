@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>深度响应式</title>
+</head>
+<body>
+  <div id="app">
+    <p>姓名：{{name}} <button @click="setName">更新姓名</button></p>
+    <p>{{stu}}</p>
+    <p>
+      <button @click="setStuName">修改姓名</button>
+      <button @click="addStuAge">添加年龄</button>
+      <button @click="delStuSex">删除性别</button>
+    </p>
+    <p>{{foods}}</p>
+    <p>
+      <button @click="addFoods">添加吃的</button>
+      <button @click="delFoods">删除第一个吃的</button>
+    </p>
+  </div>
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      data:{
+        name:'张三',
+        stu:{
+          name:'张无忌',
+          sex:'男'
+        },
+        foods:['苹果','香蕉','草莓','西瓜']
+      },
+      methods: {
+        setName(){
+          // 当数据发生变化后，页面重新渲染，这就是响应式
+          this.name = '李四'
+        },
+        setStuName(){
+          // 修改一个对象的属性，响应式依然生效
+          this.stu.name = '张学友'
+        },
+        addStuAge(){
+          // 直接给对象添加属性是不具备立刻响应式的
+          // this.stu.age = 20
+          // 如果要给对象添加属性，并且还要具备响应式，就必须使用Vue提供的方法$set
+          this.$set(this.stu,'age',20)          
+        },
+        delStuSex(){
+          // 直接删除对象的属性是不具备立刻响应式的
+          // delete this.stu.sex
+          // 如果要删除对象属性，并且还要具备响应式，就必须使用Vue提供的方法$delete
+          this.$delete(this.stu,'sex')
+        },
+        addFoods(){
+          // 操作数组并且还要具备响应式，只能使用数组的这7个方法：
+          // push unshift pop shift splice reverse sort
+          // this.foods.push('橘子')
+          // 根据数组的下标操作数组是不具备立刻响应式的
+          // this.foods[this.foods.length] = '橘子'
+          // 如果要根据数组的下标操作数据，并且还要具备响应式，就必须使用Vue提供的方法$set
+          this.$set(this.foods,this.foods.length,'橘子')
+        },
+        delFoods(){
+          this.foods.shift()
+        }
+      },
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>购物车</title>
+  <style>
+    table{
+      border-collapse: collapse;
+    }
+    td,th{
+      border: 1px solid #ccc;
+      padding: 2px 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <table v-if="goods.length>0">
+      <thead>
+        <tr>
+          <th>
+            <input type="checkbox" v-model="ckAll">
+          </th>
+          <th>名称</th>
+          <th>图片</th>
+          <th>单价</th>
+          <th>数量</th>
+          <th>小计</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item,index) in goods" :key="index">
+          <td>
+            <input type="checkbox" v-model="item.state">
+          </td>
+          <td>{{item.name}}</td>
+          <td>
+            <img :src="item.img" style="width: 100px;"/>
+          </td>
+          <td>{{item.price | toRMB}}</td>
+          <td>
+            <button @click="item.count--" :disabled="item.count==0">-</button>
+            <span>{{item.count}}</span>
+            <button @click="item.count++" :disabled="item.count==9">+</button>
+          </td>
+          <td>{{item.price*item.count | toRMB}}</td>
+          <td>
+            <button @click="del(index)">删除</button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="7">
+            总价：{{total | toRMB}}
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+    <div v-else>
+      您的购物车空空如也
+    </div>
+  </div>
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      // 数据
+      data: {
+        // 商品数组
+        goods: [
+          {
+            "id": "1001",
+            "name": "iphone12",
+            "img": "https://img10.360buyimg.com/n7/jfs/t1/132022/23/12216/60913/5f86195bEacd08599/c5dc348d3f943324.jpg",
+            "price": 9000,
+            "count": 3,
+            "state":true
+          },
+          {
+            "id": "1002",
+            "name": "小米电脑",
+            "img": "https://img11.360buyimg.com/n7/jfs/t1/127672/5/15908/94068/5f92e7e6Ef068f4d6/3a071222eb8ead96.jpg",
+            "price": 5000,
+            "count": 2,
+            "state":false
+          },
+          {
+            "id": "1003",
+            "name": "格力空调",
+            "img": "https://img14.360buyimg.com/n7/jfs/t1/141664/26/341/121440/5ee036b0E9b7e56a2/2e8faf73c4694929.jpg",
+            "price": 3000,
+            "count": 5,
+            "state":true
+          },
+          {
+            "id": "1004",
+            "name": "西门子冰箱",
+            "img": "https://img14.360buyimg.com/n7/jfs/t1/149351/3/15311/355317/5fbb6275E8b2c03b1/5cbd427fdbeeb545.jpg",
+            "price": 20000,
+            "count": 1,
+            "state":false
+          }
+        ]
+      },
+      // 方法
+      methods: {
+        del(index){
+          if(confirm('确定删除吗？')){
+            this.goods.splice(index,1)
+          }
+        }
+      },
+      // 监听器
+      watch:{
+        // 监听消费总金额
+        total(nval){
+          if(nval>100000){
+            alert('消费总金额已经超过10万！')
+          }
+        }
+      },
+      // 计算属性
+      computed:{
+        // 全选
+        ckAll:{
+          get(){
+            return this.goods.every(g=>g.state) && this.goods.length>0
+          },
+          set(val){
+            this.goods.forEach(g=>g.state=val)
+          }
+        },
+        // 总价
+        total(){
+          return this.goods.filter(g=>g.state)
+          .map(g=>g.count*g.price)
+          .reduce((p,c)=>p+c,0)
+        }
+      },
+      // 过滤器
+      filters:{
+        // 将金额转为人民币格式
+        toRMB(val){
+          return '￥'+val.toFixed(2)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

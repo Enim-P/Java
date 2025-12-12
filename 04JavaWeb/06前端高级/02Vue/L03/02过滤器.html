@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>过滤器</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 尽量不要在{{}}中写太多的逻辑代码，它就是一个输出展示的地方 -->
+    <p>金额(人民币)：{{'￥'+money.toFixed(2)}}</p>
+    <p>金额(美元)：{{'$'+(money/7.6).toFixed(2)}}</p>
+    <hr>
+    <!-- 通过|符号调用指定的过滤器，其实相当于调用指定的方法，将值传进去 -->
+    <p>金额(人民币)：{{money | toRMB}}</p>
+    <p>金额(美元)：{{money | toUS}}</p>
+  </div>
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      data:{
+        money:123456789
+      },
+      // 定义过滤器
+      filters:{
+        // 过滤器就是一个方法，对方法参数的值进行过滤
+        toRMB(val){
+          return '￥'+val.toFixed(2);
+        },
+        toUS(val){
+          return '$'+(val/7.6).toFixed(2)
+        }
+      }
+    })
+  </script>
+</body>
+</html>

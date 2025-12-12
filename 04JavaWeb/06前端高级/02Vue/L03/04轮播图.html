@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>轮播图</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .lunbo{
+      width: 800px;
+      height: 310px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .lunbo img{
+      width: 800px;
+      height: 310px;
+    }
+    .lunbo .dots{
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+    }
+    .lunbo .dots li{
+      width: 8px;
+      height: 8px;
+      background-color: #eee;
+      border-radius: 4px;
+      margin: 0 6px;
+      cursor: pointer;
+    }
+    .lunbo .dots li.active{
+      background-color: tomato;
+    }
+    .lunbo .arrow{
+      width: 30px;
+      height: 60px;
+      background-color: rgba(0, 0, 0, 0.15);
+      color: white;
+      text-align: center;
+      line-height: 60px;
+      font-size: 30px;
+      cursor: pointer;
+      position: absolute;
+      top:0;
+      bottom: 0;
+      margin: auto;
+    }
+    .lunbo .left{
+      left: 10px;
+    }
+    .lunbo .right{
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- mouseenter是鼠标进入事件，mouseleave是鼠标离开事件 -->
+    <div class="lunbo" @mouseenter="stop" @mouseleave="run">
+      <img :src="imgs[index]"/>
+      <ul class="dots">
+        <li :class="{active:index==i}" @click="index=i"
+         v-for="(item,i) in imgs" :key="i"></li>
+      </ul>
+      <div class="arrow left" @click="left"><</div>
+      <div class="arrow right" @click="right">></div>
+    </div>
+  </div>
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      data:{
+        // 定时器变量
+        timer:null,
+        // 轮播索引
+        index:0,
+        // 轮播图数组
+        imgs:[
+          "https://p5.music.126.net/obj/wonDlsKUwrLClGjCm8Kx/77054896507/d848/218d/bdab/d0a7eaa5b2e9e97f8501d5c5e24bc5ea.jpg?imageView&quality=89",
+          "https://p5.music.126.net/obj/wonDlsKUwrLClGjCm8Kx/77010850634/4553/1cd4/00d4/08c3e64ad8ceebcfb36fa41417dab693.jpg?imageView&quality=89",
+          "https://p5.music.126.net/obj/wonDlsKUwrLClGjCm8Kx/77030946152/04af/9fb1/9b7d/2d52f4cf4c8474f9003087188944345c.jpg?imageView&quality=89",
+          "https://p5.music.126.net/obj/wonDlsKUwrLClGjCm8Kx/77052164028/9aaf/1c7f/3b78/d575f339dcc0ccdf988793bcf1ee25b1.jpg?imageView&quality=89",
+          "https://p5.music.126.net/obj/wonDlsKUwrLClGjCm8Kx/77057958861/57ee/ddea/f65f/f752b3df0b71b9177e1444cb2be4d8a6.jpg?imageView&quality=89"
+        ]
+      },
+      methods: {
+        // 向左
+        left(){
+          if(--this.index==-1){
+            this.index = this.imgs.length-1
+          }
+        },
+        // 向右
+        right(){
+          if(++this.index==this.imgs.length){
+            this.index = 0
+          }
+        },
+        // 停止轮播
+        stop(){
+          clearInterval(this.timer)
+        },
+        // 轮播方法
+        run(){
+          this.timer = setInterval(() => {
+            if(++this.index == this.imgs.length){
+              this.index = 0
+            }
+          }, 5000);
+        }
+      },
+      // 挂载完成
+      mounted() {
+        this.run()  //调用轮播方法
+      },
+    })
+  </script>
+</body>
+</html>
