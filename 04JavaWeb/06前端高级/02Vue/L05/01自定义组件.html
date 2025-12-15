@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自定义组件</title>
+  <style>
+    .box{
+      width: 500px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px;
+    }
+    .box .title{
+      border: 1px solid #ccc;
+      padding: 10px;
+      font-weight: bold;
+    }
+    .box .content{
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- 调用自定义组件，传递两个属性 -->
+    <b-box :title="title1" :content="content1"></b-box>
+    <b-box :title="title2" :content="content2"></b-box>
+    <b-box :title="title3" :content="content3"></b-box>
+  </div>
+  <!-- 引入vue -->
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    // 使用Vue.component创建自定义一个组件
+    // 自定义组件用于将一个完整的页面结构，页面样式，交互逻辑进行统一封装
+    // 第一个参数是组件名称
+    // 第二个参数是配置对象（配置对象中除了不能写el选项，其他所有选项都可以写）
+    Vue.component('b-box', {
+      // 定义组件的模板
+      template:`
+        <div class="box">
+          <div class="title">{{title}}</div>
+          <div class="content">{{content}}</div>
+        </div>
+      `,
+      // 注意：在自定义组件中，data选项是一个方法，由方法返回一个对象
+      // Vue实例的data选项，可以直接是一个对象，也可以是一个方法由方法返回一个对象
+      data(){
+        return {
+          
+        }
+      },
+      // 定义方法
+      methods: {
+        
+      },
+      // props选项，定义组件的属性，属性是有外部传进来的数据
+      props:['title','content']
+    })
+
+    new Vue({
+      el:'#app',
+      data:{
+        title1:'南京',
+        content1:'南京市（Nanjing City），简称“宁”，别称“金陵”“建康”，江苏省辖地级市，江苏省省会 [284]、副省级市、特大城市 [402]、南京都市圈核心城市 [537]，是国务院批复确定的中国东部地区重要的中心城市、国际性综合交通枢纽城市，全国先进制造业基地、东部产业创新中心和区域性科技创新高地、东部现代服务业中心、区域性航运物流中心 [536]，也是中国人民解放军东部战区司令部驻地 [541]。',
+        title2:'苏州',
+        content2:'苏州市（英文名：Suzhou City），江苏省辖地级市，特大城市 [102]，位于中国华东地区，江苏省东南部，东傍上海市，南接浙江省，西抱太湖，北依长江，是长江三角洲中心区城市 [213]，属长江三角洲平原和太湖平原地区，地势低平，河流纵横，湖泊众多，太湖水面绝大部分在苏州市境内，为亚热带季风海洋性气候 [2]，总面积8657.32平方千米 [2] [144]。',
+        title3:'杭州',
+        content3:'杭州市（英文名：Hangzhou City），简称“杭”，古称临安、钱塘、武林、杭城，是浙江省辖地级市，浙江省省会，副省级市，超大城市 [177]，长江三角洲中心区城市 [153]，杭州都市圈核心城市 [187]，地处浙江省北部、钱塘江下游、京杭大运河南端，属亚热带季风气候，四季分明，光照充足，雨量充沛，春秋较短，冬夏较长，丘陵、山地、平原等地形兼有 [186]，总面积16850平方千米。',
+      }
+    })
+
+    
+  </script>
+</body>
+</html>

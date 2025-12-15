@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counter组件</title>
+  <style>
+    .counter{
+      display: flex;
+      align-items: center;
+    }
+    .title{
+      font-weight: bold;
+    }
+    .count{
+      display: flex;
+      align-items: center;
+    }
+    .count button{
+      padding: 0 5px;
+    }
+    .count span{
+      width: 30px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <b-counter title="苹果：" :count="appleCount" 
+    @sync-count="appleCount=$event"></b-counter>
+    <!-- min和max是可选属性，不传递时有默认值 -->
+    <b-counter title="橙子：" :count="orangeCount" :min="3" :max="8"
+    @sync-count="orangeCount=$event"></b-counter>
+    <b-counter title="香蕉：" :count="balalaCount" 
+    @sync-count="balalaCount=$event"></b-counter>
+  </div>
+  <!-- 引入vue -->
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    Vue.component('b-counter', {
+      template:`
+         <div class="counter">
+          <div class="title">{{title}}</div>
+          <div class="count">
+            <button @click="setCount(count-1)" :disabled="min==count">-</button>
+            <span>{{count}}</span>
+            <button @click="setCount(count+1)" :disabled="max==count">+</button>
+          </div>
+        </div>
+      `,
+      // props有两种写法，第一种是简写，传一个字符串数组，数组中定义属性的名称
+      // props:['title','count'],
+      // 第二种是完整写法，传一个对象，在对象中可以对象属性进行详细描述
+      props:{
+        // 每个属性又是对象
+        title:{
+          // 设置属性的类型是String
+          type:String,
+          // 设置默认值
+          default:'未知：'
+        },
+        count:{
+          // 设置属性的类型是Number
+          type:Number,
+          // 设置为必传属性
+          required:true,
+        },
+        // 设置最小值
+        min:{
+          type:Number,
+          // 是非必传属性
+          required:false,
+          // 没有传递最小值，默认值是0
+          default:0
+        },
+        // 设置最大值
+        max:{
+          type:Number,
+          required:false,
+          default:10
+        }
+      },
+      methods: {
+        setCount(val){
+          this.$emit('sync-count',val)
+        }
+      },
+    })
+    new Vue({
+      el:'#app',
+      data(){
+        return {
+          // 苹果数量
+          appleCount:3,
+          // 橙子数量
+          orangeCount:5,
+          // 香蕉数量
+          balalaCount:2
+        }
+      }
+    })
+  </script>
+</body>
+</html>

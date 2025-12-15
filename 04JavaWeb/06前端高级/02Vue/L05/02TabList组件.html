@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TabList组件</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      list-style:none;
+    }
+    .tabs{
+      margin: 10px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+    }
+    .tabs .title{
+      font-weight: bold;
+    }
+    .tabs li:not(:first-child){
+      border: 1px solid #ddd;
+      padding: 2px 10px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    .tabs li.active{
+      background-color: tomato;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div>温度：{{wdActive}}</div>
+    <div>甜度：{{tdActive}}</div>
+    <div>配料：{{plActive}}</div>
+    <!-- sync-active是子自己内部触发的自定义事件，需要定义一个事件方法来监听 -->
+    <b-tabs title="温度：" :list="wdList" :active="wdActive" @sync-active="syncWd"></b-tabs>
+    <b-tabs title="甜度：" :list="tdList" :active="tdActive" @sync-active="syncTd"></b-tabs>
+    <!-- $event返回的是事件对象，此时的事件对象就是自定义事件的回传值 -->
+    <b-tabs title="配料：" :list="plList" :active="plActive" @sync-active="plActive=$event"></b-tabs>
+  </div>
+  <!-- 引入vue -->
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    Vue.component('b-tabs', {
+      template:`
+        <ul class="tabs">
+          <li class="title">{{title}}</li>
+          <li :class="{active:active==index}" @click="setActive(index)"
+          v-for="(item,index) in list" :key="index">{{item}}</li>
+        </ul>
+      `,
+      // 定义属性：用于来接收父组件传进来的数据
+      // 注意：属性是不能修改的，如果要改，只能通知父组件去改
+      props:['title','active','list'],
+      methods: {
+        setActive(index){
+          // 子自己通过触发自定义事件，通知父组件更新数据
+          // $emit方法，用于触发自定义事件
+          // 参数1：事件名称，参数2：回传值
+          this.$emit('sync-active',index)
+        }
+      },
+
+    })
+    new Vue({
+      el:'#app',
+      // vue实例中的data选项，也可以是一个方法，由方法返回一个对象
+      data(){
+        return {
+          // 温度高亮索引
+          wdActive:0,
+          // 温度数组
+          wdList:['加冰','少冰','去冰','常温'],
+          // 甜度高亮索引
+          tdActive:1,
+          // 甜度数组
+          tdList:['加糖','半塘','少糖','无糖'],
+          // 配料高亮索引
+          plActive:2,
+          // 配料数组
+          plList:['珍珠','椰果','布丁','红豆']
+        }
+      },
+      methods:{
+        // 同步温度
+        syncWd(e){
+          // 这里的事件对象，就是自定义事件中的回传值
+          this.wdActive = e;
+        },
+        // 同步甜度
+        syncTd(e){
+          this.tdActive = e;
+        }
+      }
+    })
+  </script>
+</body>
+</html>
