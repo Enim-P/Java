@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>父传子</title>
+  <style>
+    #app{
+      border: 1px solid black;
+      padding: 20px;
+      margin: 20px;
+    }
+    .child{
+      border: 1px solid red;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h2>父组件</h2>
+    <p>汽车：{{car}}</p>
+    <!-- 父组件监听自定义事件 -->
+    <b-box v-on:sync-car="changeCar"></b-box>
+  </div>
+  <!-- 引入vue -->
+  <script src="../JS/vue.js"></script>
+  <script>
+    // 定义一个子组件
+    Vue.component('b-box', {
+      template:`
+        <div class="child">
+          <h3>子组件</h3>
+          <p>手机：{{phone}}</p>
+          <p>
+            <button v-on:click="setParentCar">修改父组件的汽车</button>
+          </p>
+        </div>
+      `,
+      data(){
+        return {
+          phone:'三星手机'
+        }
+      },
+      methods: {
+        setParentCar(){
+          // 子组件通过触发自定义事件向父组件回传值
+          // $emit方法，用于触发自定义事件
+          this.$emit('sync-car','奥迪')
+        }
+      },
+    })
+
+    // 将当前Vue实例看成是一个父组件
+    new Vue({
+      el:'#app',
+      data(){
+        return {
+          car:'奔驰'
+        }
+      },
+      methods:{
+        // 该方法用于监听自定义事件的回传值
+        changeCar(e){
+          // 自定义事件的回传值，以事件对象的形式返回
+          this.car = e;
+        }
+      }
+    })
+  </script>
+</body>
+</html>

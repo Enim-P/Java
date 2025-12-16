@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>父传子</title>
+  <style>
+    #app{
+      border: 1px solid black;
+      padding: 20px;
+      margin: 20px;
+    }
+    .child{
+      border: 1px solid red;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h2>父组件</h2>
+    <p>汽车：{{car}}</p>
+    <b-box v-bind:mycar="car"></b-box>
+  </div>
+  <!-- 引入vue -->
+  <script src="../JS/vue.js"></script>
+  <script>
+    // 定义一个子组件
+    Vue.component('b-box', {
+      template:`
+        <div class="child">
+          <h3>子组件</h3>
+          <p>手机：{{phone}}</p>
+          <p>汽车：{{mycar}}</p>
+        </div>
+      `,
+      data(){
+        return {
+          phone:'三星手机'
+        }
+      },
+      // 定义属性：用于接收父组件传递进来的数据
+      props:['mycar']
+    })
+
+    // 将当前Vue实例看成是一个父组件
+    new Vue({
+      el:'#app',
+      data(){
+        return {
+          car:'奔驰'
+        }
+      }
+    })
+  </script>
+</body>
+</html>

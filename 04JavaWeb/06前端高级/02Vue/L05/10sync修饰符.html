@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sync修饰符</title>
+  <style>
+    .counter{
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+    .count{
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <p>衣服：{{yfCount}}</p>
+    <p>裤子：{{kzCount}}</p>
+    <p>鞋子：{{xzCount}}</p>
+    <hr>
+    <!-- 2.只要自定义的事件名命名为update:属性名，那么这绑定属性的时候就可以使用.sync修饰符实现双向绑定 -->
+    <b-counter :yf="yfCount" @update:yf="yfCount=$event" 
+    :kz.sync="kzCount" :xz.sync="xzCount"
+     ></b-counter>
+  </div>
+  <!-- 引入vue -->
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    Vue.component('b-counter', {
+      template:`
+        <div class="counter">
+          <div class="count">
+            <span>衣服：</span>
+            <button @click="setYf(yf-1)">-</button>
+            <span>{{yf}}</span>
+            <button @click="setYf(yf+1)">+</button>
+          </div>
+          <div class="count">
+            <span>裤子：</span>
+            <button @click="setKz(kz-1)">-</button>
+            <span>{{kz}}</span>
+            <button @click="setKz(kz+1)">+</button>
+          </div>
+          <div class="count">
+            <span>鞋子：</span>
+            <button @click="setXz(xz-1)">-</button>
+            <span>{{xz}}</span>
+            <button @click="setXz(xz+1)">+</button>
+          </div>
+        </div>
+      `,
+      props:['yf','kz','xz'],
+      methods: {
+        setYf(val){
+          // 1.自定义的事件命名为update:属性名
+          this.$emit('update:yf',val)
+        },
+        setKz(val){
+          this.$emit('update:kz',val)
+        },
+        setXz(val){
+          this.$emit('update:xz',val)
+        }
+      },  
+    })
+    new Vue({
+      el:'#app',
+      data:{
+        yfCount:5,
+        kzCount:4,
+        xzCount:3
+      }
+    })
+  </script>
+</body>
+</html>

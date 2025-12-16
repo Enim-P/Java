@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>获取父组件实例</title>
+  <style>
+    #app{
+      border: 1px solid black;
+      padding: 10px;
+    }
+    .one{
+      border: 1px solid red;
+      padding: 10px;
+    }
+    .two{
+      border: 1px solid green;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>一级组件</h1>
+    <p>姓名：{{name}}</p>
+    <p>年龄：{{age}}</p>
+    <p>性别：{{sex}}</p>
+    <p>身高：{{height}}</p>
+    <One @set-name="name=$event" @set-age="age=$event"></One>
+  </div>
+  <!-- 引入vue -->
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    Vue.component('Two', {
+      template:`
+        <div class="two">
+          <h3>三级组件</h3>
+          <p>
+            <button @click="setAge">修改张三的年龄</button>  
+            <button>修改张三身高</button>
+          </p>
+        </div>
+      `,
+      methods:{
+        setAge(){
+          this.$emit('set-age',25)
+        }
+      }
+    })
+    Vue.component('One', {
+      template:`
+        <div class="one">
+          <h2>二级组件</h2>
+          <p>
+            <button @click="setName">修改张三姓名</button>
+            <button @click="setSex">修改张三性别</button>
+          </p>
+          <Two @set-age="setAge"></Two>
+        </div>
+      `,
+      methods: {
+        setName(){
+          // 直接触发自定义事件，回传姓名
+          this.$emit('set-name','李四')
+        },
+        setAge(e){
+          // 先监听子组件的回传的值，然后在触发自定义事件回传子组件回传的值
+          this.$emit('set-age',e)
+        },
+        setSex(){
+          // $parent获取的是当前组件的父组件实例
+          this.$parent.sex = '女'
+        }
+      },
+    })
+    new Vue({
+      el:'#app',
+      data:{
+        name:'张三',
+        age:20,
+        sex:'男',
+        height:170
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使用v-model改造Counter</title>
+  <style>
+    .count{
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <p>衣服：{{yfCount}}</p>
+    <p>裤子：{{kzCount}}</p>
+    <p>鞋子：{{xzCount}}</p>
+    <hr>
+    <!-- 当自定义组件绑定的属性名是value，监听的事件名是input，此时就可以使用语法糖v-model -->
+    <p>衣服：<b-counter :value="yfCount" @input="yfCount=$event"></b-counter></p>
+    <p>裤子：<b-counter v-model="kzCount"></b-counter></p>
+    <p>鞋子：<b-counter v-model="xzCount"></b-counter></p>
+  </div>
+  <!-- 引入vue -->
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    Vue.component('b-counter', {
+        template:`
+          <div class="count">
+            <button @click="setCount(value-1)">-</button>
+            <span>{{value}}</span>
+            <button @click=setCount(value+1)>+</button>
+          </div>
+        `,
+        props:['value'],
+        methods: {
+          setCount(val){
+            this.$emit('input',val)
+          }
+        },
+      }
+    )
+    new Vue({
+      el:'#app',
+      data:{
+        yfCount:5,
+        kzCount:3,
+        xzCount:2
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件v-model双向绑定</title>
+  <style>
+    .box{
+      border: 1px solid #ccc;
+      margin: 10px;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <p>姓名：{{name}}</p>
+    <p>姓名：<input type="text" v-bind:value="name"
+       v-on:input="name=$event.target.value"></p>
+    <!-- v-model是v-bind:vlaue和v-on:input的语法糖 -->
+    <p>姓名：<input type="text" v-model="name"></p>
+    <hr>
+    <p>数量：{{count}}</p>
+    <b-box v-bind:value="count" v-on:input="count=$event"></b-box>
+    <!-- 当自定义组件绑定的属性名叫value，监听的事件名叫input，此时也可以使用v-model语法糖 -->
+    <b-box v-model="count"></b-box>
+  </div>
+  <!-- 引入vue -->
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    Vue.component('b-box', {
+      template:`
+      <div class="box">
+        <span>数量：</span>
+        <span>{{value}}</span>
+        <button @click="setCount">数量++</button>
+      </div>
+      `,
+      props:['value'],
+      methods: {
+        setCount(){
+          this.$emit('input',this.value+1)
+        }
+      },
+    })
+
+    new Vue({
+      el:'#app',
+      data(){
+        return {
+          name:'张三',
+          count:5
+        }
+      }
+    })
+  </script>
+</body>
+</html>
