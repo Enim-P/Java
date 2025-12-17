@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作用域插槽</title>
+  <style>
+    .list{
+      border: 1px solid #ccc;
+      padding: 10px;
+      width: 500px;
+      margin: 10px;
+    }
+    .list .item{
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <b-box :list="stus"></b-box>
+    <b-box :list="cars">
+      <!-- 在使用插槽时，可以使用一个对象接受插槽内部传出来的值 -->
+      <template #edit="{index,item}">
+        <button @click="delCar(index)">删除.{{item.name}}</button>
+      </template>
+    </b-box>
+  </div>
+  <!-- 引入vue -->
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    // 该组件可以将一个列表渲染出来
+    // slot内置组件用于定义插槽，在插槽身上通过添加属性向外部传递数据，这样的插槽称之为：作用域插槽
+    // 作用域插槽一般要先定义为具名插槽
+    Vue.component('b-box', {
+      template:`
+        <div class="list">
+          <div class="item" v-for="(item,index) in list" :key="index">
+            <span>{{item}}</span>
+            <slot name="edit" :index="index" :item="item"></slot>
+          </div>
+        </div>
+      `,
+      props:['list']
+    })
+    
+    new Vue({
+      el:'#app',
+      data:{
+        stus:[
+          {no:'1001',name:'张三'},
+          {no:'1002',name:'李四'},
+          {no:'1003',name:'王五'},
+          {no:'1004',name:'赵六'}
+        ],
+        cars:[
+          {no:'苏A1001',name:'奔驰'},
+          {no:'苏A1002',name:'宝马'},
+          {no:'苏A1003',name:'奥迪'},
+          {no:'苏A1004',name:'大众'},
+        ]
+      },
+      methods: {
+        delCar(index){
+          if(confirm('确定删除吗？')){
+            this.cars.splice(index,1)
+          }
+        }
+      },
+    })
+  </script>
+</body>
+</html>

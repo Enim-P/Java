@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>具名插槽</title>
+  <style>
+    .box{
+      width: 600px;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    .header{
+      border: 1px solid red;
+      padding: 10px;
+    }
+    .body{
+      border: 1px solid green;
+      padding: 10px;
+      margin: 10px 0;
+    }
+    .footer{
+      border: 1px solid blue;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <b-box>
+      <!-- 使用template内置组件指定具体应用的具名插槽 -->
+      <template v-slot:header>
+        <h2>上海</h2>
+      </template>
+      <!-- v-slot:指令用于指定具名插槽的名称，简写是# -->
+      <template #body>
+        <div>上海市（Shanghai City [232]），简称“沪”，别名“申”，是中华人民共和国直辖市 [35]，超大城市， [235]世界一线城市 [236]，位于中国东部，地处长江入海口 [157]，北界长江，东濒东海，南临杭州湾，西接江苏省和浙江省，总面积6340.5平方千米。</div>
+      </template>
+      <template #footer>
+        <div>
+          <h2>友情链接</h2>
+          <div>
+            <a href="#">南京</a>
+            <a href="#">苏州</a>
+            <a href="#">无锡</a>
+            <a href="#">常州</a>
+          </div>
+        </div>
+      </template>
+    </b-box>
+  </div>
+  <!-- 引入vue -->
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    // 在一个组件中定义了多个插槽后，就需要给插槽定义名字，这样的插槽称之为：具名插槽
+    Vue.component('b-box', {
+      template:`
+        <div class="box">
+          <div class="header">
+            <slot name="header"></slot>
+          </div>
+          <div class="body">
+            <slot name="body"></slot>  
+          </div>
+          <div class="footer">
+            <slot name="footer"></slot>  
+          </div>
+        </div>
+      `
+    })
+    new Vue({
+      el:'#app',
+      data:{
+
+      }
+    })
+  </script>
+</body>
+</html>

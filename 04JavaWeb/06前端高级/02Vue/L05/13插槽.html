@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>插槽</title>
+  <style>
+    .box{
+      width: 600px;
+      margin: 10px;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    .box .title{
+      font-weight: bold;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    .box .content{
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- 在使用组件时，组件标签之间的内容会在插槽处显示 -->
+    <b-box :title="title1" :content="content1">
+      <img style="width: 400px;" 
+      src="https://q7.itc.cn/images01/20240925/d58d0ccda68147949a75b741e57aefa3.jpeg"/>
+    </b-box>
+    <b-box :title="title2" :content="content2">
+      <h2>友情链接</h2>
+      <div>
+        <a href="#">南京</a>
+        <a href="#">苏州</a>
+        <a href="#">无锡</a>
+        <a href="#">常州</a>
+      </div>
+    </b-box>
+  </div>
+  <!-- 引入vue -->
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    // 在组件结构的内部使用slot定义插槽，插槽就是一个占位符
+    // 在使用组件时，组件标签之间的内容会在插槽处显示
+    Vue.component('b-box', {
+        template:`
+          <div class="box">
+            <div class="title">{{title}}</div>
+            <div class="content">
+              {{content}}
+              <slot></slot>
+            </div>
+          </div>
+        `,
+        props:['title','content']
+      }
+    )
+    new Vue({
+      el:'#app',
+      data:{
+        title1:'北京',
+        content1:'北京市（英语：Beijing Municipality [252]或Beijing City [131]），简称“京”，古称燕京、北平，是中华人民共和国首都、直辖市、国家中心城市、超大城市 [178]；中共中央、国务院批复确定的中国政治中心、文化中心、国际交往中心、科技创新中心 [1]；中国历史文化名城和古都之一、世界一线城市 [3] [138] [181]，总面积16410.54平方千米。',
+        title2:'上海',
+        content2:'上海市（Shanghai City [232]），简称“沪”，别名“申”，是中华人民共和国直辖市 [35]，超大城市， [235]世界一线城市 [236]，位于中国东部，地处长江入海口 [157]，北界长江，东濒东海，南临杭州湾，西接江苏省和浙江省，总面积6340.5平方千米。'
+      }
+    })
+  </script>
+</body>
+</html>

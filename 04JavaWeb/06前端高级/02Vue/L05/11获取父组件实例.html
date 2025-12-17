@@ -31,19 +31,28 @@
   <!-- 引入vue -->
   <script src="../JS/vue.min.js"></script>
   <script>
+    // 到目前为止子组件操作父组件有两种方式：
+    // 1.触发自定义事件通知父组件自己更新（优先选择）
+    // 2.获取父组件的实例直接更新（谨慎使用）
     Vue.component('Two', {
       template:`
         <div class="two">
           <h3>三级组件</h3>
           <p>
             <button @click="setAge">修改张三的年龄</button>  
-            <button>修改张三身高</button>
+            <button @click="setHeight">修改张三身高</button>
           </p>
         </div>
       `,
       methods:{
         setAge(){
           this.$emit('set-age',25)
+        },
+        setHeight(){
+          // 通过$parent属性层层返回父组件
+          // this.$parent.$parent.height = 180
+          // 通过$root属性返回根组件
+          this.$root.height = 180
         }
       }
     })

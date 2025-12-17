@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>获取子组件实例</title>
+  <style>
+    #app{
+      border: 1px solid black;
+      padding: 10px;
+    }
+    .child1{
+      border: 1px solid red;
+      padding: 10px;
+      margin: 10px;
+    }
+    .child2{
+      border: 1px solid green;
+      padding: 10px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h2>父组件</h2>
+    <p>
+      <button @click="setCar">修改汽车名称</button>
+      <button @click="setPhone">修改手机名称</button>
+      <button @click="setPc">修改电脑名称</button>
+      <button @click="setWatch">修改手表名称</button>
+    </p>
+    <!-- ref属性，用于给组件添加唯一标记 -->
+    <Child1 :car="car" ref="one"></Child1>
+    <Child2 :phone="phone" ref="two"></Child2>
+  </div>
+  <!-- 引入vue -->
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    Vue.component('Child1', {
+      template:`
+        <div class="child1">
+          <h3>子组件1</h3>
+          <p>汽车：{{car}}</p>
+          <p>电脑：{{pc}}</p>
+        </div>
+      `,
+      props:['car'],
+      data(){
+        return {
+          pc:'联想电脑',
+        }
+      }
+    })
+    Vue.component('Child2', {
+      template:`
+        <div class="child2">
+          <h3>子组件2</h3>
+          <p>手机：{{phone}}</p>
+          <p>手表：{{watch}}</p>
+        </div>
+      `,
+      props:['phone'],
+      data(){
+        return {
+          watch:'浪琴手表'
+        }
+      }
+    })
+    new Vue({
+      el:'#app',
+      data:{
+        car:'奥迪',
+        phone:'苹果'
+      },
+      methods: {
+        setCar(){
+          this.car = '宝马'
+        },
+        setPhone(){
+          this.phone = '华为'
+        },
+        setPc(){
+          // $children属性返回一个包含所有子组件的数组
+          // 注意：数组中子组件的顺序是DOM结构的顺序，但是DOM是不可信的，因为它的位置会随时变化
+          // this.$children[0].pc = '惠普电脑'
+          // $refs对象将每个子组件以属性的形式进行保存，属性名就是组件的ref属性设置的名称
+          this.$refs.one.pc = '惠普电脑'
+        },
+        setWatch(){
+          // this.$children[1].watch = '上海手表'
+          this.$refs.two.watch = '上海手表'
+        }
+      },
+    })
+    // 到目前为止，父组件操作子组件有两种方式：
+    // 1.父组件将数据定义好传给子组件，然后修改自己的数据控制子组件（优先选择）
+    // 2.父组件直接拿到子组件的实例，然后直接修改子组件（谨慎使用）
+  </script>
+</body>
+</html>

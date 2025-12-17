@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表格组件</title>
+  <style>
+    table{
+      border-collapse: collapse;
+      margin: 10px;
+    }
+    td,th{
+      border: 1px solid #ccc;
+      padding: 2px 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <table>
+      <thead>
+        <tr>
+          <th>学号</th>
+          <th>姓名</th>
+          <th>性别</th>
+          <th>年龄</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item,index) in stus" :key="index">
+          <td>{{item.no}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.sex}}</td>
+          <td>{{item.age}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <b-table :list="stus" :keys="stuKeys"></b-table>
+    <b-table :list="cars" :keys="carKeys"></b-table>
+  </div>
+  <!-- 引入vue -->
+  <script src="../JS/vue.min.js"></script>
+  <script>
+    // let obj = {
+    //   no:'123',
+    //   name:'张三'
+    // }
+    // console.log(obj.no);
+    // console.log(obj['no']);
+    // let a = 'name'
+    // console.log(obj[a]);
+    
+    // 表格组件
+    Vue.component('b-table', {
+      template:`
+        <table>
+          <thead>
+            <tr>
+              <th v-for="(item,index) in keys" :key="index">{{item.title}}</th>  
+            </tr>
+          </thead>  
+          <tbody>
+            <tr v-for="(item,i) in list" :keuy="i">
+              <td v-for="(key,j) in keys" :key="j">{{item[key.key]}}</td>
+            </tr>  
+          </tbody>
+        </table>
+      `,
+      props:['list','keys']
+    })
+
+    new Vue({
+      el:'#app',
+      data:{
+        // 学生数组
+        stus:[
+          {no:'1001',name:'张三',sex:'男',age:20},
+          {no:'1002',name:'李四',sex:'女',age:22},
+          {no:'1003',name:'王五',sex:'女',age:24},
+          {no:'1004',name:'赵六',sex:'男',age:25}
+        ],
+        stuKeys:[
+          {key:'no',title:'学号'},
+          {key:'name',title:'姓名'},
+          {key:'sex',title:'性别'},
+          {key:'age',title:'年龄'}
+        ],
+        // 汽车数组
+        cars:[
+          {no:'苏A1001',name:'奔驰',color:'白色',price:500},
+          {no:'苏A1002',name:'宝马',color:'黑色',price:400},
+          {no:'苏A1003',name:'奥迪',color:'红色',price:300},
+          {no:'苏A1004',name:'大众',color:'蓝色',price:200}
+        ],
+        carKeys:[
+          {key:'no',title:'车牌'},
+          {key:'name',title:'车名'},
+          {key:'color',title:'颜色'},
+          {key:'price',title:'价格'}
+        ]
+        // 还有其他数组...
+      }
+    })
+  </script>
+</body>
+</html>

@@ -48,8 +48,8 @@
           <td>{{item.classHour}}</td>
           <td>{{item.grade.gradeName}}</td>
           <td>
-            <button>编辑</button>
-            <button>删除</button>
+            <button @click="editSubject(item.subjectId)">编辑</button>
+            <button @click="delSubject(item.subjectId)">删除</button>
           </td>
         </tr>
       </tbody>
@@ -66,6 +66,34 @@
           </td>
         </tr>
       </tbody>
+    </table>
+    <hr>
+    <table>
+      <tr>
+        <td>课程名称</td>
+        <td><input type="text" v-model="subject.subjectName"></td>
+      </tr>
+      <tr>
+        <td>课程课时：</td>
+        <td><input type="text" v-model="subject.classHour"></td>
+      </tr>
+      <tr>
+        <td>所属年级</td>
+        <td>
+          <select v-model="subject.gradeId">
+            <option v-for="(item,index) in grades" 
+            :key="index" :value="item.gradeId">{{item.gradeName}}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <button v-if="subject.subjectId>0" @click="upSubject">修改</button>
+          <button v-else @click="addSubject">添加</button>
+          <button @click="cancel">取消</button>
+        </td>
+      </tr>
     </table>
   </div>
   <!-- 引入vue -->
@@ -89,9 +117,68 @@
         // 课程数组
         subjects: [],
         // 总数量
-        total: 0
+        total: 0,
+        // 课程对象
+        subject:{
+          subjectId:0,
+          subjectName:'',
+          classHour:0,
+          gradeId:0
+        }
       },
       methods: {
+        // 删除课程
+        async delSubject(subjectId){
+          if(confirm('确定删除吗？')){
+            let {data} = await axios.delete('http://localhost:8081/subjects/'+subjectId)
+            if(data.code==1){
+              alert('删除成功！')
+              this.loadSubjects()  // 重新加载课程信息
+            }
+          }
+        },
+        // 修改课程
+        async upSubject(){
+          if(!this.subject.subjectName){
+            return alert('请输入课程名称！')
+          }
+          if(this.subject.gradeId==0){
+            return alert('请选择年级！')
+          }
+          let {data} = await axios.put('http://localhost:8081/subjects',this.subject)
+          if(data.code==1){
+            alert('修改成功！')
+            this.loadSubjects()  // 重新加载课程信息
+          }
+        },
+        // 编辑课程
+        async editSubject(subjectId){
+          let {data:{data}} = await axios.get('http://localhost:8081/subjects/'+subjectId)
+          this.subject = data;
+        },
+        // 添加课程
+        async addSubject(){
+          if(!this.subject.subjectName){
+            return alert('请输入课程名称！')
+          }
+          if(this.subject.gradeId==0){
+            return alert('请选择年级！')
+          }
+          let {data} = await axios.post('http://localhost:8081/subjects',this.subject)
+          if(data.code==1){
+            alert('添加成功！')
+            this.loadSubjects()  // 重新加载课程信息
+          }
+        },
+        // 取消方法
+        cancel(){
+          this.subject = {
+            subjectId:0,
+            subjectName:'',
+            classHour:0,
+            gradeId:0
+          }
+        },
         // 查询方法
         find(){
           this.pageIndex = 1;   // 页码回到1
