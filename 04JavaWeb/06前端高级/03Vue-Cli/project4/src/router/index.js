@@ -11,6 +11,14 @@ let routes = [
   {
      path:'/page2',
     component:()=>import('@/views/PageTwo.vue')
+  },
+  {
+    path:'/page3',
+    component:()=>import('@/views/PageThree.vue')
+  },
+  {
+    path:'/page4',
+    component:()=>import('@/views/PageFour.vue')
   }
 ]
 

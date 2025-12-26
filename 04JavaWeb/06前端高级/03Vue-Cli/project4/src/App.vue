@@ -3,6 +3,8 @@
     <div class="nav">
       <router-link to="/page1" active-class="active">组件传值</router-link>
       <router-link to="/page2" active-class="active">Vuex</router-link>
+      <router-link to="/page3" active-class="active">Vuex-子模块</router-link>
+      <router-link to="/page4" active-class="active">Vuex-映射函数</router-link>
     </div>
     <router-view></router-view>
   </div>
