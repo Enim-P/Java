@@ -9,6 +9,8 @@
       <router-link to="/page4">待办事项</router-link> |
       <router-link to="/page5">Key和动画</router-link> |
       <router-link to="/page6">nextTick</router-link> |
+      <router-link to="/page7">代理服务器</router-link> |
+      <router-link to="/page8">MockJS</router-link> |
     </nav>
     <router-view/>
   </div>

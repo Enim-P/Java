@@ -1,0 +1,32 @@
+1.课程查询 GET请求
+http://192.168.1.2:8001/subjects/list
+参数：无
+结果：
+[
+  {
+    subjectId:1,
+    subjectName:'课程名称',
+    classHour:36,
+    gradeId:1,
+    grade:{
+      gradeId:1,
+      gradeName:'大一'
+    }
+  }
+  ...
+]
+
+2.添加课程 POST请求
+http://192.168.1.2:8001/subjects/add
+参数：
+{
+  subjectName:'课程名称',
+  classHour:36,
+  gradeId:1
+}
+结果：
+{
+  code:0/1,
+  success:true/false
+  message:'消息'
+}

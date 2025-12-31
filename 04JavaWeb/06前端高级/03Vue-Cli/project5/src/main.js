@@ -7,6 +7,8 @@ import router from './router'
 // 导入Store
 import store from './store'
 
+import './mock'
+
 // 直接导入模块，就将模块中的代码执行一遍
 // import './mixin'
 // 加入事件总线

@@ -38,6 +38,14 @@ const routes = [
   {
     path:'/page6',
     component:()=>import('../views/PageSix.vue')
+  },
+  {
+    path:'/page7',
+    component:()=>import('../views/PageSeven.vue')
+  },
+  {
+    path:'/page8',
+    component:()=>import('../views/PageEight.vue')
   }
 ]
 
