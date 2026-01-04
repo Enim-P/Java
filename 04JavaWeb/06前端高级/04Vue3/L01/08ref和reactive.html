@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ref和reactive</title>
+</head>
+<body>
+  <div id="app">
+    <div>数量：{{count}} <button @click="setCount">count++</button></div>
+    <div>学生：{{stu}} <button @click="setStuName">修改学生姓名</button></div>
+    <div>汽车：{{car}} <button @click="setCarName">修改汽车名称</button></div>
+    <div>食物：{{foods}} <button @click="addFood">添加吃的</button></div>
+  </div>
+  <script src="./js/vue.global.js"></script>
+  <script>
+    // ref和reactive都是用于定义响应式数据的组合式API
+    let {ref,reactive} = Vue
+    Vue.createApp({
+      setup() {
+        // ref：既可以定义基本数据类型，也可以定义引用数据类型
+        let count = ref(5)
+        let setCount = ()=>{
+          count.value++;
+        }
+        let stu = ref({
+          name:'周杰伦',
+          age:25
+        })
+        let setStuName = ()=>{
+          // ref定义的成员，都要通过.value先获取值，然后再修改值
+          stu.value.name = '昆凌'
+        }
+        // reactive：只能用于定义引用类型（对象、数组）
+        let car = reactive({
+          name:'马萨拉蒂',
+          color:'白色'
+        })
+        let setCarName = ()=>{
+          // 修改reactive定义的成员，不用通过.value先返回值，直接修改
+          car.name = '保时捷'
+        }
+        let foods = reactive(['苹果','西瓜','葡萄'])
+        let addFood = ()=>{
+          foods.push('奶茶')
+        }
+
+        return {
+          count,setCount,
+          stu,setStuName,
+          car,setCarName,
+          foods,addFood
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue2的响应式原理</title>
+</head>
+<body>
+  <div id="ret"></div>
+  <script>
+    // 源对象
+    let obj = {
+      name:'张三',
+      age:20
+    }
+
+    document.querySelector('#ret').innerHTML = JSON.stringify(obj)
+
+    // 代理对象
+    let obj2 = {}
+    // 代理对象需要代理源对象身上的所有属性
+    Object.defineProperty(obj2,'name',{
+      // get方法，返回指定的属性
+      get(){
+        return obj.name
+      },
+      // set方法，给指定属性赋值
+      set(val){
+        obj.name = val
+        document.querySelector('#ret').innerHTML = JSON.stringify(obj)
+      }
+    })
+    Object.defineProperty(obj2,'age',{
+      get(){
+        return obj.age
+      },
+      set(val){
+        obj.age = val
+        document.querySelector('#ret').innerHTML = JSON.stringify(obj)
+      }
+    })
+    // 从此以后操作obj2，其实就是在操作obj
+    // Vue2采用的是Object对象的defineProperty方法，给代理对象添加代理属性
+    // 只有更新的添加的代理属性才具备响应式
+    
+  </script>
+</body>
+</html>

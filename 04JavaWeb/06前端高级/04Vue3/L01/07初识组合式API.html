@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>初识组合式API</title>
+</head>
+<body>
+  <div id="app">
+    <h2>学生信息</h2>
+    <div>姓名：{{name}}</div>
+    <div>年龄：{{age}}</div>
+    <div>
+      <button @click="setName">修改姓名</button>
+      <button @click="setAge">修改年龄</button>
+    </div>
+    <hr>
+    <h2>汽车信息</h2>
+    <div>车名：{{carName}}</div>
+    <div>颜色：{{carColor}}</div>
+    <div>
+      <button @click="setCarName">修改车名</button>
+      <button @click="setCarColor">修改颜色</button>
+    </div>
+    <hr>
+    <h2>手机信息</h2>
+    <div>名称：{{phoneName}}</div>
+    <div>价格：{{phonePrice}}</div>
+    <div>
+      <button @click="setPhoneName">修改名称</button>
+      <button @click="setPhonePrice">修改价格</button>
+    </div>
+  </div>
+  <script src="./js/vue.global.js"></script>
+  <script>
+    // Vue2采用的是选项是API，就是将业务分散到不同的选项中定义
+    // 比如：data选项定义数据，methods选项定义方法，computed选项定义计算属性等等...
+    // Vue3保留了选项是API，同时还推出了全新的组合式API方式
+    // 选项式API：适用于业务比较简单的组件，当业务复杂时由于将同一个业务的不同代码分散到了
+    // 不同的选项中去定义，后期查找起来会比较麻烦。
+    // 所以，Vue3推出了全新的组合式API
+
+    // 从Vue中导入一个API函数ref，这个函数用于定义响应式数据
+    let {ref} = Vue
+
+    Vue.createApp({
+      /*
+      data() {
+        return {
+          // 学生数据
+          name:'张三',
+          age:20,
+          // 汽车数据
+          carName:'丰田',
+          carColor:'白色',
+          // 手机数据
+          phoneName:'oppo',
+          phonePrice:2000
+        }
+      },
+      methods: {
+        // 学生方法
+        setName(){
+          this.name = '李四'
+        },
+        setAge(){
+          this.age = 25
+        },
+        // 汽车方法
+        setCarName(){
+          this.carName = '大众'
+        },
+        setCarColor(){
+          this.carColor = '红色'
+        },
+        // 手机方法
+        setPhoneName(){
+          this.phoneName = '华为'
+        },
+        setPhonePrice(){
+          this.phonePrice = 3000
+        }
+      },
+      */
+      // setup方法中，用于定义组合式API
+      setup() {
+        // 在这里定义所有的业务代码
+        // 学生相关业务
+        // 注意：在setup方法中定义的数据，默认情况下都是普通数据，是不具备响应式的
+        // 过去在Vue2中，定义的所有数据默认都是响应式数据，响应式数据在底层要实时监听，也是有性能损耗的
+        // 所以Vue3推崇的是需要定义成响应式才定义成响应式，在setup中定义数据默认都是非响应式的
+        // 如果要定义响应式数据，需要使用组合式API ref函数
+        let name = ref('张三')
+        let age = ref(20)
+        let setName = ()=>{
+          // 方法调用了，name一个更新了，但是页面没有刷新
+          // 那是因为name不是响应式数据
+          // name = '李四'
+          // 我们将name属性使用ref定义，就成了响应式数据
+          // 修改响应式数据，要通过它的.value属性
+          name.value = '李四'
+        }
+        let setAge = ()=>{
+          age.value = 25
+        }
+        // 汽车相关业务
+        let carName = ref('丰田')
+        let carColor = ref('白色')
+        let setCarName = ()=>{
+          carName.value = '大众'
+        }
+        let setCarColor = ()=>{
+          carColor.value = '红色'
+        }
+        // 手机相关业务
+        let phoneName = ref('oppo')
+        let phonePrice = ref(2000)
+        let setPhoneName = ()=>{
+          phoneName.value = '华为'
+        }
+        let setPhonePrice = ()=>{
+          phonePrice.value = 3000
+        }
+
+        // 返回需要在模板中用到的成员
+        return{
+          name,age,setName,setAge,
+          carName,carColor,setCarName,setCarColor,
+          phoneName,phonePrice,setPhoneName,setPhonePrice
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>

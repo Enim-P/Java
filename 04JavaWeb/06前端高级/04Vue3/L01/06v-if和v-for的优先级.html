@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width='device-width', initial-scale=1.0">
+  <title>v-if和v-for的优先级</title>
+</head>
+<body>
+  <div id="app">
+    <button @click="isShow=!isShow">显示/隐藏</button>
+    <!-- 在Vue2中，v-for的优先级高于v-if，
+       所以下面li会先执行v-for遍历4次，然后再执行v-if确定是否显示，
+       所以，在Vu2中，通道v-if会高于v-for一层使用 -->
+    <!-- <ul v-if="isShow">
+      <li v-for="(item,index) in foods" :key="index">{{item}}</li>
+    </ul> -->
+    <ul>
+      <!-- 在Vue3中，v-if的优先级高于v-for，
+       所以下面的li会先执行v-if判断是否成立，如果成立，在执行v-for进行遍历 -->
+      <li v-if="isShow" v-for="(item,index) in foods" :key="index">{{item}}</li>
+    </ul>
+  </div>
+  <!-- <script src="./js/vue.js"></script> -->
+  <script src="./js/vue.global.js"></script>
+  <script>
+    // new Vue({
+    //   el:'#app',
+    //   data:{
+    //     isShow:false,
+    //     foods:['苹果','橘子','奶茶','咖啡']
+    //   }
+    // })
+    Vue.createApp({
+      data(){
+        return {
+          isShow:false,
+          foods:['苹果','橘子','奶茶','咖啡']
+        }
+      },
+    }).mount('#app')
+  </script>
+</body>
+</html>

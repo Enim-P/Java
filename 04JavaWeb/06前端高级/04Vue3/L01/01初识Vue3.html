@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>初识Vue3</title>
+</head>
+<body>
+  <!-- Vue挂载的容器 -->
+  <div id="app">
+    <div>数量：{{count}}</div>
+    <div>
+      <button @click="setCount">数量++</button>
+    </div>
+  </div>
+  <!-- 引入本地的vue库 -->
+  <script src="./js/vue.global.js"></script>
+  <!-- 引入线上的vue库 -->
+  <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+  <script>
+    // Vue2的语法，创建一个Vue实例，在Vue2中，Vue是构造函数
+    // new Vue({
+    //   el:'#app'
+    // })
+    // 在Vue3中，Vue是一个全局对象，这个全局对象的身上有一个createApp方法，该方法用于创建Vue实例
+    let app = Vue.createApp({
+      // 数据
+      // 注意：在Vue2中data选项可以是对象，也可以是方法返回对象
+      // 在Vue3中，data选项只能是方法，由方法返回一个对象
+      data() {
+        return {
+          count:5
+        }
+      },
+      // 方法
+      methods: {
+        setCount(){
+          this.count++
+        }
+      },
+    })
+    // Vue实例的mount方法，用于挂载容器，在Vue2中对应的方法是$mount
+    // 注意：这里是Vue3唯一的挂载方式，在Vue3中取消了el选项
+    app.mount('#app')
+    
+    
+  </script>
+</body>
+</html>

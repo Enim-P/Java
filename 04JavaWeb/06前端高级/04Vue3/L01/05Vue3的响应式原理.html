@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue3的响应式原理</title>
+</head>
+<body>
+  <div id="ret"></div>
+  <script>
+    // 源对象
+    let obj = {
+      name:'张三',
+      age:20
+    }
+    document.querySelector('#ret').innerHTML = JSON.stringify(obj)
+
+    // Vue3使用了H5全新的Proxy API，直接创建代理对象
+    // Proxy方法，根据一个原始对象，创建一个代理对象
+    // 从此操作这个代理对象，就是在操作原始对象
+    let obj2 = new Proxy(obj,{
+      // 返回属性的值
+      get(target,property){
+        // target：源对象
+        // property：是具体操作的属性
+        return target[property]
+        document.querySelector('#ret').innerHTML = JSON.stringify(obj)
+      },
+      // 设置属性的值
+      set(target,property,value){
+        target[property] = value
+        document.querySelector('#ret').innerHTML = JSON.stringify(obj)
+      },
+      // 删除属性
+      deleteProperty(target,property){
+        delete target[property]
+        document.querySelector('#ret').innerHTML = JSON.stringify(obj)
+      }
+    })
+  </script>
+</body>
+</html>

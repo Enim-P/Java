@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue3的响应式</title>
+</head>
+<body>
+  <div id="app2">
+    <h2>Vue3的响应式</h2>
+    <div>学生：{{stu}}</div>
+    <div>
+      <button @click="upAge">age++</button>
+      <button @click="addSex">添加性别</button>
+      <button @click="delName">删除姓名</button>
+    </div>
+    <div>食物：{{foods}}</div>
+    <div>
+      <button @click="addFood">添加食物</button>
+    </div>
+  </div>
+  <script src="./js/vue.global.js"></script>
+  <script>
+    Vue.createApp({
+      data(){
+        return {
+          stu:{
+            name:'张三',
+            age:20
+          },
+          foods:['苹果','西瓜','香蕉','葡萄']
+        }
+      },
+      methods: {
+        upAge(){
+          // 年龄更新后，页面自动刷新
+          this.stu.age++
+        },
+        addSex(){
+          // 直接给对象添加属性，具备响应式
+          this.stu.sex = '女'
+        },
+        delName(){
+          // 直接删除对象的属性，具备响应式
+          delete this.stu.name;
+        },
+        addFood(){
+          // 根据数组的索引操作数组，具备响应式
+          this.foods[this.foods.length] = "奶茶"
+        }
+        // 总结：Vue3从底层解决了Vue2的响应式缺陷
+      },
+    }).mount('#app2')
+  </script>
+</body>
+</html>
