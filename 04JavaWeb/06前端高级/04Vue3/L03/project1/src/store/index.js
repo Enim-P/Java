@@ -24,11 +24,25 @@ let store = createStore({
   },
   // 同步方法
   mutations:{
-
+    // 添加学生
+    addStu(state,stu){
+      if(state.stus.some(s=>s.no==stu.no)){
+        return alert('学号不能重复！')
+      } 
+      state.stus.push(stu)
+    },
+    // 删除学生
+    delStu(state,index){
+      state.stus.splice(index,1)
+    }
   },
   // 异步方法
   actions:{
-
+    delStu(store,index){
+      setTimeout(() => {
+        store.commit('delStu',index)
+      }, 500);
+    }
   },
   // 子模块
   modules:{

@@ -19,6 +19,18 @@ let router = createRouter({
     {
       path:'/page3',
       component:()=>import('../views/Page3.vue')
+    },
+    {
+      path:'/page4',
+      component:()=>import('../views/Page4.vue')
+    },
+    {
+      path:'/page5',
+      component:()=>import('../views/Page5.vue')
+    },
+    {
+      path:'/page6',
+      component:()=>import('../views/Page6.vue')
     }
   ]
 })
