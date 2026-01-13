@@ -1,0 +1,14 @@
+# spring配置
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource   # Druid数据源连接池
+    driver-class-name: com.mysql.cj.jdbc.Driver    # 驱动类
+    url: jdbc:mysql://localhost:3306/mp?serverTimezone=UTC   # 数据库连接地址
+    username: root   # 数据库登录名
+    password: root1234   # 登录密码
+
+# mybatis-plus配置
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl   # 控制台输出日志
+    map-underscore-to-camel-case: false    # 驼峰命名自动映射开关，就是数据库字段的下划线命名自动转成程序属性的驼峰命名(true是开启，false是关闭)
