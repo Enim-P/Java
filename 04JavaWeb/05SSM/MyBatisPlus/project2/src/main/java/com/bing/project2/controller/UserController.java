@@ -1,11 +1,14 @@
 package com.bing.project2.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.bing.project2.pojo.User;
 import com.bing.project2.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 用户控制器
@@ -44,5 +47,15 @@ public class UserController {
     @DeleteMapping("/del/{id}")
     public int delUser(@PathVariable Long id){
         return userService.delUser(id);
+    }
+
+    // 分页查询
+    @GetMapping("/findPage")
+    public Map findPage(@RequestParam Integer current,@RequestParam Integer size){
+        IPage<User> page = userService.findPage(current, size);
+        Map map = new HashMap();
+        map.put("pages",page.getPages());
+        map.put("rows",page.getRecords());
+        return map;
     }
 }

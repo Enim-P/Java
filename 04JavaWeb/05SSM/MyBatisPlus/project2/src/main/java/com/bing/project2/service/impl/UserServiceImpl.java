@@ -1,5 +1,7 @@
 package com.bing.project2.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.bing.project2.mapper.UserMapper;
 import com.bing.project2.pojo.User;
 import com.bing.project2.service.UserService;
@@ -39,5 +41,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public int delUser(Long id) {
         return userMapper.deleteById(id);
+    }
+
+    @Override
+    public IPage<User> findPage(Integer current, Integer size) {
+        IPage<User> page = new Page<>(current,size);
+        userMapper.selectPage(page,null);
+        return page;
     }
 }

@@ -1,0 +1,76 @@
+# SpringBoot有三种配置文件，分别是：application.properties.bak、application.yml、application.yaml.bak
+# 优先级是 properties > yml > yaml
+# properties配置文件层级结构不够清晰，而且配置信息会大量冗余，所以推荐使用yml/yaml，这里我们使用yml
+# 注意：yml 和 yaml在配置信息时，:后面要加空格，然后再写值，层级之间使用空格缩进
+
+# 服务端口
+server:
+  port: 8081
+
+# Spring配置
+spring:
+#  mvc:
+#    pathmatch:
+#      matching-strategy: ant_path_matcher  # Swagger配置
+  datasource:   # MySQL数据库连接配置
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/myschool
+    username: root
+    password: root1234
+  servlet:      # servlet相关配置
+    multipart:  # 配置文件上传
+      max-file-size: 10MB  # 单个文件最大上传大小（默认值是1MB）
+      max-request-size: 100MB  # 单次请求的最大上传大小（默认值是10MB）（一次请求可以上传多个文件）
+
+# MyBatis配置
+#mybatis:
+#  mapper-locations: classpath:mapper/*xml  # 指定Mybatis的Mapper文件路径
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  #指定Mybatis的日志信息输出到控制台
+#    map-underscore-to-camel-case: true   #开始表字段短横线命名自动映射实体类属性小驼峰命名
+#  type-aliases-package: com.bing.pojo  #指定Mybatis的实体类的包信息
+
+# mybatis-plus配置
+mybatis-plus:
+#  global-config:
+#    db-config:
+      # id-type: auto   # 统一设置所有表的id的生成策略
+      # table-prefix: tb_    # 统一设置表的前置
+      # logic-delete-field: deleted   # 统一设置逻辑删除字段名
+      # logic-not-delete-value: 0     # 未删除值为0
+      # logic-delete-value: 1         # 删除值为1
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl   # 控制台输出日志
+    map-underscore-to-camel-case: false    # 驼峰命名自动映射开关，开启后数据表中的字段严格按照短横线命名，实体属性严格按照小驼峰命名
+
+
+# 阿里云OSS配置信息
+aliyun:
+  oss:
+    bucketName: bing-3
+    endpoint: https://oss-cn-hangzhou.aliyuncs.com
+    accessKeyId: LTAI5tKkBaEfpyJGZogSXgv5
+    accessKeySecret: vSzWXh7T6BAf95tz0D8R5AdMXHxY5h
+
+# 开启事务管理日志
+logging:
+  level:
+    org.springframework.jdbc.support.JdbcTransactionManager: debug
+
+# Swagger文档
+knife4j:
+  enable: true
+  openapi:
+    title: 高校管理系统
+    description: "高校管理系统接口文档"
+    email: bing@qq.cn
+    concat: 兵哥
+    url: https://www.bing.com
+    version: v1.0.0
+    group:
+      default:
+        group-name: default
+        api-rule: package
+        api-rule-resources:
+          - com.bing.controller
+

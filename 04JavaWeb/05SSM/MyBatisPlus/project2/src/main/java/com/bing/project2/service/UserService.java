@@ -1,5 +1,6 @@
 package com.bing.project2.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.bing.project2.pojo.User;
 
 import java.util.List;
@@ -22,4 +23,7 @@ public interface UserService {
 
     // 删除用户
     int delUser(Long id);
+
+    // 分页查询
+    IPage<User> findPage(Integer current,Integer size);
 }
